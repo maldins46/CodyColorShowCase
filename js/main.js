@@ -22,6 +22,12 @@ app.config(function ($routeProvider, $locationProvider) {
 		      { templateUrl: "partials/login.html", 
  			  	controller: "loginCtrl"
 			  })
+
+		// regole del gioco
+		.when("/rules", 
+			  { templateUrl: "partials/rules.html", 
+			    controller:  "homeCtrl"
+			  })
 				  
 		// schermata registrazione
 		.when("/register", 

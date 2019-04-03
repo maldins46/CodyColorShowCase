@@ -99,12 +99,17 @@ textarea {
 
 html {
   height: 100%;
+  margin: 0;
 }
 
+
 body {
-  background-color: #2b2d30;
-  color: white;
+  background-color: #123d82;
+  background-image: linear-gradient(to bottom right, #123d82, #203556);
+  background-attachment: fixed; 
   height: 100%;
+  margin: 0;
+  color: white;
   font-family: 'Gill Sans', Helvetica, sans-serif;
 }
 
@@ -116,8 +121,9 @@ body {
 
 #page-container {
     position: absolute;
-    height: 100%;
     text-align: center;
+    height: 100%;
+    margin: 0;
     width: 100%; 
 }
 
@@ -127,8 +133,7 @@ body {
       position: absolute; 
       left: 0; 
       right: 0; 
-      margin-left: auto; 
-      margin-right: auto; 
+      margin: 0 auto; 
       text-align: center;
       width: 768px;
       height: 100%;
@@ -136,72 +141,182 @@ body {
 }
 
 
-#page-container h1 { 
-    font-size: 40px; 
+h1 { 
+    font-size: 30px; 
+    margin: 0;
 }
 
 
-/*
- * Stili per definire il menù nella home page
- */
-
-#page-home {
-   height: 100%;
+#wrapper {
+  min-height: 100%;
+  margin-bottom: -120px;
 }
 
-#page-home #header-container {
-  padding-top:40px;
-  padding-bottom:20px;
+
+#push {
+  height: 120px;
 }
 
-#page-home #footer-container {
-   position: fixed;
-    bottom: 0;
-    width: 100%;
-    left: 0;
+
+
+#header-container {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  width: 90%;
+  margin: 0 auto;
 }
 
-#page-home img {
+
+#footer-container {
+    height: 120px;
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#footer-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+
+#page-body-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.logo {
   width: 40px;
   height: 40px;
 }
 
-#page-home h1 {
+
+ul {
+  padding: 0;
   margin: 0;
 }
 
-#page-home ul {
-  padding: 0;
-}
-
-#page-home li {
+li {
     list-style-type: none;
-    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
-#page-home a {
+
+input[type=text], input[type=email], input[type=password] {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 0 auto;
+  font-size: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
+@media only screen and (min-width: 400px) {
+  input[type=text], input[type=email], input[type=password] {
+    width: 360px;
+    padding: 12px 20px;
+    margin: 0 auto;
+    font-size: 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+}
+
+#login-container {
+  margin-top: 60px;
+}
+
+/* stile standard dei links */
+
+a {
   text-decoration: none;
   font-size: 30px;
-  margin-bottom: 40px;
-}
-
-#page-home a:link {
   color: white;
+  transition-duration: 0.2s;
 }
 
-#page-home a:visited {
+
+a:hover {
+  color: #818387;
+  text-decoration: none;
+  font-size: 30px;
+  transition-duration: 0.2s;
+}
+
+
+button {
+  background-color: Transparent;
+  border: none;
   color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  transition-duration: 0.2s;
 }
 
-/* mouse over link */
-#page-home a:hover {
+
+button:hover {
+  background-color: Transparent;
+  border: none;
   color: #818387;
 }
 
-/* selected link */
-#page-home a:active {
-  color: white;
+#btn-player-ready {
+  color: #f5f90c;
+  text-align: center; 
+  display: inline-block;
+  font-size: 30px;
+  transition-duration: 0.2s;
 }
+
+
+#btn-player-ready:hover {
+  background-color: #f5f90c;
+  color: #123d82;
+  border-radius: 8px;
+}
+
+
+/* Spinner */
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 28px;
+    left: 28px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -1px;
+    left: -1px;
+    width: 58px;
+    height: 58px;
+    opacity: 0;
+  }
+}
+
 
 
 
