@@ -13,6 +13,11 @@ app.config(function ($routeProvider, $locationProvider) {
 
 		// schermata home menu
 		.when("/", 
+			  { templateUrl: "partials/splash.html", 
+			    controller:  "homeCtrl"
+			  })
+
+		.when("/home", 
 			  { templateUrl: "partials/home.html", 
 			    controller:  "homeCtrl"
 			  })
