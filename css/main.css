@@ -225,6 +225,8 @@ h1 {
 h2 { 
     font-size: 30px; 
     margin: 0;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 
@@ -436,6 +438,22 @@ input[type=text], input[type=email], input[type=password] {
   padding-bottom: 100%;
   background-color: #bc241c;
   border-radius: 4px;
+}
+
+/* Aftermatch */
+
+#aftermatch-table {
+   width: 90%;
+   table-layout: fixed;
+   margin: 0 auto;
+   padding-bottom: 30px;
+}
+
+.aftermatch-cell {
+  max-width: 0;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
