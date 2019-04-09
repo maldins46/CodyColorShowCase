@@ -197,6 +197,20 @@ body {
   vertical-align: middle;
 }
 
+.icons-connected {
+  color: green;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+
+.icons-notconnected {
+  color: red;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+
 .footer-component-left {
   float: left;
   width: 29%;

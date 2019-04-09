@@ -1,11 +1,13 @@
 <div id="wrapper">
   <div id="page-body-container">    
     <ul>
+      <li>Scegli il nickname con il quale apparire nella partita</li>
+      <li><input type="text" id="inputNick" placeholder="Nickname" required autofocus></li>
+     
       <li><div class="lds-ripple"><div></div><div></div></div></li>
     	<li>In attesa di un avversario…</li>
-    	
-    	<br/>
-  		<!--<li><button id="btn-player-ready" type="submit">Iniziamo!</button></li>-->
+    	  		
+      <!--<li><button id="btn-player-ready" type="submit">Iniziamo!</button></li>-->
   		<a href="#match" id="btn-player-ready">Iniziamo! <i class="fas fa-play"></i></a>
     </ul>
   </div>
@@ -15,6 +17,9 @@
 
 <div id="footer-container">
   <div id="footer-content"> 
-      <div class="footer-component-left"><a href="#home"><i class="fa fa-times fa-2x icons"></i></a></div>
+      <div class="footer-component-left">
+        <a href="#home"><i class="fa fa-times fa-2x icons"></i></a>
+        <i class="fas fa-plug fa-2x" ng-class="connected? 'icons-connected' : 'icons-notconnected'"></i>
+      </div>
       <div class="footer-component-right"> <i class="far fa-user-circle fa-2x icons"></i>Non loggato</div>
 </div>

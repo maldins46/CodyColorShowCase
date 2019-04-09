@@ -27,11 +27,6 @@
   <!-- Contenitore dentro il quale vengono visualizzate le varie schermate dell'app. Varia
        dinamicamente forma e posizionamento a seconda del tipo di dispositivo utilizzato -->
   <div id="page-container" ng-view></div>
-
-  <!-- AngularJS import -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.js"></script>
   
   <!-- Boilerplate scripts -->
   <script src="js/vendor/modernizr-3.6.0.min.js"></script>
@@ -40,8 +35,21 @@
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
   <script src="js/plugins.js"></script>
   
-  <!-- Angular controllers -->
+  <!-- AngularJS import -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.js"></script>
+  <script src="js/stomp.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+
+  
+
+  <!-- AngularJS logic -->
   <script src="js/main.js"></script>
+  <script src="js/baseRouting.js"></script>
+  <script src="js/rabbitCommunicator.js"></script>
+  <script src="js/controllers.js"></script>
+
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
