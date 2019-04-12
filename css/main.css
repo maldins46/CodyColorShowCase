@@ -197,6 +197,17 @@ body {
   vertical-align: middle;
 }
 
+
+.mmaking-container {
+  margin-top: 40px;
+}
+
+.icons-margin {
+  color: white;
+  margin: 10px;
+  vertical-align: middle;
+}
+
 .icons-connected {
   color: green;
   margin-left: 10px;
@@ -437,6 +448,15 @@ input[type=text], input[type=email], input[type=password] {
   margin: -20px;
 }
 
+
+.start-countdown {
+  font-size: 60px; 
+  font-family: 'Baloo Chettan', cursive;
+  width: 100%;
+  text-align: center;
+  margin-top: 60px;
+}
+
 /* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
 @media only screen and (min-width: 320px) {
   #playground-table {
@@ -447,10 +467,25 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 
-.playground-cell {
+
+.red-play-tile {
   width: 100%;
   padding-bottom: 100%;
   background-color: #bc241c;
+  border-radius: 4px;
+}
+
+.yellow-play-tile {
+  width: 100%;
+  padding-bottom: 100%;
+  background-color: #efd10b;
+  border-radius: 4px;
+}
+
+.gray-play-tile {
+  width: 100%;
+  padding-bottom: 100%;
+  background-color: #bababa;
   border-radius: 4px;
 }
 

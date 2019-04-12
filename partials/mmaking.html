@@ -1,25 +1,42 @@
 <div id="wrapper">
   <div id="page-body-container">    
-    <ul>
-      <li>Scegli il nickname con il quale apparire nella partita</li>
-      <li><input type="text" id="inputNick" placeholder="Nickname" required autofocus></li>
-     
-      <li><div class="lds-ripple"><div></div><div></div></div></li>
-    	<li>In attesa di un avversario…</li>
-    	  		
-      <!--<li><button id="btn-player-ready" type="submit">Iniziamo!</button></li>-->
-  		<a href="#match" id="btn-player-ready">Iniziamo! <i class="fas fa-play"></i></a>
-    </ul>
+    <div ng-show="nicknameRequired" class="mmaking-container">
+      Scegli il nickname con il quale apparire nella partita <br><br>
+      <form name="nickForm">
+        <input type="text" name="nickname" ng-model="nickname" placeholder="Nickname" required autofocus /> 
+        <button class="icons-margin" type="submit" ng-click="requestMMaking(nickForm.nickname.$viewValue)" ng-disabled="nickForm.nickname.$invalid">
+          <i class="fas fa-play"></i>
+        </button>
+
+      </form>
+    </div> 
+      
+    <div ng-show="mmInProgress" class="mmaking-container">
+      <div class="lds-ripple"><div></div><div></div></div>
+      </br>
+    	In attesa di un avversario…
+    </div>
+    	
+    <div ng-show="mmCompleted" class="mmaking-container">
+      Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
+      <button id="btn-player-ready" type="submit" ng-click="playerReady()">Iniziamo! <i class="fas fa-play"></i></button>
+    </div>
+
+    <div ng-show="mmReady" class="mmaking-container">
+      <div class="lds-ripple"><div></div><div></div></div>
+      </br>
+      Attendi che l'avversario confermi la sua partecipazione…
+    </div>
+  		
   </div>
-  
   <div id="push"></div>
 </div>
 
 <div id="footer-container">
   <div id="footer-content"> 
-      <div class="footer-component-left">
-        <a href="#home"><i class="fa fa-times fa-2x icons"></i></a>
-        <i class="fas fa-plug fa-2x" ng-class="connected? 'icons-connected' : 'icons-notconnected'"></i>
-      </div>
-      <div class="footer-component-right"> <i class="far fa-user-circle fa-2x icons"></i>Non loggato</div>
+    <div class="footer-component-left">
+      <a href="#!home"><i class="fa fa-times fa-2x icons"></i></a>
+      <i class="fas fa-plug fa-2x" ng-class="connected? 'icons-connected' : 'icons-notconnected'"></i>
+    </div>
+    <div class="footer-component-right"> <i class="far fa-user-circle fa-2x icons"></i>Non loggato</div>
 </div>

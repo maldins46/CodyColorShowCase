@@ -1,16 +1,10 @@
 /*
  * BaseRouting module: definisce la logica di base che consente la navigazione tra le pagine
  */
-var app = angular.module('codyColor');
 
+angular.module('codyColor')
+	   .config(['$routeProvider', function($routeProvider) {
 
-/*
- * Routing: codice responsabile dello switch tra le varie schermate
- */
-app.config(function ($routeProvider, $locationProvider) {
-	// rimuove il punto esclamativo posto avanti all'hash in alcuni browser
-	$locationProvider.hashPrefix('');
-	
 	$routeProvider
 
 		// splash screen all'avvio dell'app
@@ -80,8 +74,5 @@ app.config(function ($routeProvider, $locationProvider) {
 			  })
 		
 		// schermata errore
-		.otherwise("/404", 
-				   { templateUrl: "partials/404.html", 
-				     controller: "emptyCtrl" 
-				   });
-});
+		.otherwise("/404", { templateUrl: "partials/404.html" });
+}]);
