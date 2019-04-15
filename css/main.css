@@ -7,12 +7,12 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
- 
+
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
 
-   html {
+html {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
@@ -91,27 +91,25 @@ textarea {
 }
 
 
-
-
- /* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+/* ==========================================================================
+  Author's custom styles
+  ========================================================================== */
 
 
 /* 1. Stili comuni a tutte le pagine */
 
 html {
-  height: 100%;
-  margin: 0;
+    height: 100%;
+    margin: 0;
 }
 
 
 body {
-  background-color: #123d82;
-  height: 100%;
-  margin: 0;
-  color: white;
-  font-family: 'Play', sans-serif;
+    background-color: #123d82;
+    height: 100%;
+    margin: 0;
+    color: white;
+    font-family: 'Play', sans-serif;
 }
 
 
@@ -120,48 +118,46 @@ body {
     text-align: center;
     height: 100%;
     margin: 0;
-    width: 100%; 
+    width: 100%;
 }
 
 
 @media only screen and (min-width: 768px) {
-  #page-container {
-      position: absolute; 
-      left: 0; 
-      right: 0; 
-      margin: 0 auto; 
-      text-align: center;
-      width: 768px;
-      height: 100%;
-  }
+    #page-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        text-align: center;
+        width: 768px;
+        height: 100%;
+    }
 }
 
 
-
 #wrapper {
-  min-height: 100%;
-  margin-bottom: -60px;
+    min-height: 100%;
+    margin-bottom: -60px;
 }
 
 
 #push {
-  height: 60px;
+    height: 60px;
 }
 
 
-
 #header-container {
-  padding-top: 20px;
-  padding-bottom: 30px;
-  width: 90%;
-  margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    width: 90%;
+    margin: 0 auto;
 }
 
 
 #page-body-container {
-  width: 90%;
-  margin: 0 auto;
-  padding-top: 20px;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 20px;
 }
 
 
@@ -174,91 +170,90 @@ body {
 
 /* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
 @media only screen and (min-width: 320px) {
- #footer-container {
-    width: 280px;
-    height: 60px;
-    position: relative;
-    margin: 0 auto;
-  }
+    #footer-container {
+        width: 280px;
+        height: 60px;
+        position: relative;
+        margin: 0 auto;
+    }
 }
 
 #footer-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
 }
 
 
 .icons {
-  color: white;
-  margin-right: 5px;
-  vertical-align: middle;
+    color: white;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 
 .mmaking-container {
-  margin-top: 40px;
+    margin-top: 40px;
 }
 
 .icons-margin {
-  color: white;
-  margin: 10px;
-  vertical-align: middle;
+    color: white;
+    margin: 10px;
+    vertical-align: middle;
 }
 
 .icons-connected {
-  color: green;
-  margin-left: 10px;
-  vertical-align: middle;
+    color: green;
+    margin-left: 10px;
+    vertical-align: middle;
 }
 
 
 .icons-notconnected {
-  color: red;
-  margin-left: 10px;
-  vertical-align: middle;
+    color: red;
+    margin-left: 10px;
+    vertical-align: middle;
 }
 
 
 .footer-component-left {
-  float: left;
-  width: 29%;
-  text-align: left;
-  padding-left: 1%;
+    float: left;
+    width: 29%;
+    text-align: left;
+    padding-left: 1%;
 }
 
 .footer-component-right {
-  float: right;
-  text-align: right;
-  width: 69%;
-  padding-right: 1%;
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis;
+    float: right;
+    text-align: right;
+    width: 69%;
+    padding-right: 1%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
-h1 { 
-    font-size: 60px; 
+h1 {
+    font-size: 60px;
     font-family: 'Baloo Chettan', cursive;
     margin: 0;
 }
 
 
-h2 { 
-    font-size: 30px; 
+h2 {
+    font-size: 30px;
     margin: 0;
     padding-bottom: 30px;
     padding-top: 30px;
 }
 
 
-
 ul {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 li {
@@ -268,93 +263,90 @@ li {
 
 
 .menu-link {
-  text-decoration: none;
-  font-size: 30px;
-  color: white;
-  transition-duration: 0.2s;
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis;
+    text-decoration: none;
+    font-size: 30px;
+    color: white;
+    transition-duration: 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
 .menu-link:hover {
-  color: #818387;
-  text-decoration: none;
-  font-size: 30px;
-  transition-duration: 0.2s;
+    color: #818387;
+    text-decoration: none;
+    font-size: 30px;
+    transition-duration: 0.2s;
 }
-
-
 
 
 /* Rende i button generici uguali a i menu links */
 
 button {
-  background-color: Transparent;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 30px;
-  transition-duration: 0.2s;
+    background-color: Transparent;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    transition-duration: 0.2s;
 }
 
 
 button:hover {
-  background-color: Transparent;
-  border: none;
-  color: #818387;
+    background-color: Transparent;
+    border: none;
+    color: #818387;
 }
 
 
 input[type=text], input[type=email], input[type=password] {
-  width: 90%;
-  padding: 12px 20px;
-  margin: 0 auto;
-  font-size: 20px;
-  box-sizing: border-box;
-  border-radius: 4px;
-}
-
-/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
-@media only screen and (min-width: 320px) {
-  input[type=text], input[type=email], input[type=password] {
-    width: 280px;
+    width: 90%;
     padding: 12px 20px;
     margin: 0 auto;
     font-size: 20px;
     box-sizing: border-box;
     border-radius: 4px;
-  }
 }
 
+/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
+@media only screen and (min-width: 320px) {
+    input[type=text], input[type=email], input[type=password] {
+        width: 280px;
+        padding: 12px 20px;
+        margin: 0 auto;
+        font-size: 20px;
+        box-sizing: border-box;
+        border-radius: 4px;
+    }
+}
 
 
 /* 2. Stili splash */
 
 #splash-link {
-  text-decoration: none;
-  color: white;
+    text-decoration: none;
+    color: white;
 }
 
 
 #body-splash {
-  padding-top: 80px;
-  padding-bottom: 30px;
-  width: 90%;
-  margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 30px;
+    width: 90%;
+    margin: 0 auto;
 }
 
 #wrapper-splash {
-  min-height: 100%;
-  margin-bottom: -120px;
+    min-height: 100%;
+    margin-bottom: -120px;
 }
 
 
 #push-splash {
-  height: 120px;
+    height: 120px;
 }
 
 
@@ -366,216 +358,246 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 #footer-content-splash {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
 }
 
 
 #splash-logo {
-  width: 100px;
-  height: 100px;
+    width: 100px;
+    height: 100px;
 }
-
 
 
 /* 3. stili home */
 
 
 #page-body-container-home {
-  width: 90%;
-  margin: 0 auto;
+    width: 90%;
+    margin: 0 auto;
 }
 
 
 /* 4. stili matchmaking */
 
 #btn-player-ready {
-  color: #f5f90c;
-  text-decoration: none;
-  text-align: center; 
-  display: inline-block;
-  font-size: 30px;
-  padding: 12px 16px;
-  border-radius: 8px;
-  transition-duration: 0.2s;
+    color: #f5f90c;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    font-size: 30px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition-duration: 0.2s;
 }
 
 
 #btn-player-ready:hover {
-  background-color: #f5f90c;
-  color: #123d82;
+    background-color: #f5f90c;
+    color: #123d82;
 }
 
 /* 5. stili match */
 
 
-
 .playhead-container {
-  width: 90%; 
-  margin: 0 auto;
-  margin-bottom: 20px;
+    width: 90%;
+    margin: 0 auto 20px;
 }
 
 .playhead {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  font-size: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
 }
 
 .playhead-component {
-  float: left;
-  width: 50%;
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis;
+    float: left;
+    width: 50%;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: ellipsis;
 }
 
-#playground-table {
-   width: 90%;
-   table-layout: fixed;
-   margin: 0 auto;
-   padding-bottom:20px;
+.arrow-cell {
+    max-height:100%;
+    max-width:100%;
+}
+
+#playground-container {
+    width: 90%;
+    height: 260px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    display: inline-block;
+    position: relative;
+}
+
+.playground-table {
+    width: 100%;
+    table-layout: fixed;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin: 0 auto;
+}
+
+
+/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
+@media only screen and (min-width: 320px) {
+    .playground-table {
+        width: 260px;
+        height: 260px;
+        table-layout: fixed;
+        margin: 0 auto;
+    }
 }
 
 .points {
-  font-size: 60px; 
-  font-family: 'Baloo Chettan', cursive;
-  margin: -20px;
+    font-size: 60px;
+    font-family: 'Baloo Chettan', cursive;
+    margin: -20px;
+}
+
+#robot-image {
+    width: 100px;
+    height: 100px;;
 }
 
 
 .start-countdown {
-  font-size: 60px; 
-  font-family: 'Baloo Chettan', cursive;
-  width: 100%;
-  text-align: center;
-  margin-top: 60px;
-}
-
-/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
-@media only screen and (min-width: 320px) {
-  #playground-table {
-    width: 280px;
-    table-layout: fixed;
-    margin: 0 auto;
-  }
+    font-size: 60px;
+    font-family: 'Baloo Chettan', cursive;
+    width: 100%;
+    text-align: center;
+    margin-top: 60px;
 }
 
 
 
 .red-play-tile {
-  width: 100%;
-  padding-bottom: 100%;
-  background-color: #bc241c;
-  border-radius: 4px;
+    width: 100%;
+    padding-bottom: 100%;
+    background-color: #bc241c;
+    border-radius: 4px;
 }
 
 .yellow-play-tile {
-  width: 100%;
-  padding-bottom: 100%;
-  background-color: #efd10b;
-  border-radius: 4px;
+    width: 100%;
+    padding-bottom: 100%;
+    background-color: #efd10b;
+    border-radius: 4px;
 }
 
 .gray-play-tile {
-  width: 100%;
-  padding-bottom: 100%;
-  background-color: #bababa;
-  border-radius: 4px;
+    width: 100%;
+    padding-bottom: 100%;
+    background-color: #bababa;
+    border-radius: 4px;
 }
 
 /* Aftermatch */
 
 #aftermatch-table {
-   width: 90%;
-   table-layout: fixed;
-   margin: 0 auto;
-   padding-bottom: 30px;
+    width: 90%;
+    table-layout: fixed;
+    margin: 0 auto;
+    padding-bottom: 30px;
 }
 
 .aftermatch-cell {
-  max-width: 0;
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis;
+    max-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
 /* Spinner */
 
 .lds-ripple {
-  display: inline-block;
-  position: relative;
-  width: 64px;
-  height: 64px;
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
 }
 
 .lds-ripple div {
-  position: absolute;
-  border: 4px solid #fff;
-  opacity: 1;
-  border-radius: 50%;
-  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
 .lds-ripple div:nth-child(2) {
-  animation-delay: -0.5s;
+    animation-delay: -0.5s;
 }
 
 @keyframes lds-ripple {
-  0% {
-    top: 28px;
-    left: 28px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  100% {
-    top: -1px;
-    left: -1px;
-    width: 58px;
-    height: 58px;
-    opacity: 0;
-  }
+    0% {
+        top: 28px;
+        left: 28px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: -1px;
+        left: -1px;
+        width: 58px;
+        height: 58px;
+        opacity: 0;
+    }
 }
 
 /* AngularJS cross-page animations */
 
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes fadeout {
-    from { opacity: 1; }
-    to   { opacity: 0; }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 
-.ng-enter { animation: fadein 0.2s both ease-in; z-index: 8888; }
-.ng-leave { animation: fadeout 0.2s both ease-in; z-index: 9999; }
+.ng-enter {
+    animation: fadein 0.2s both ease-in;
+    z-index: 8888;
+}
+
+.ng-leave {
+    animation: fadeout 0.2s both ease-in;
+    z-index: 9999;
+}
 
 
-
-
-
-
-
- /* ==========================================================================
-   Helper classes
-   ========================================================================== */
+/* ==========================================================================
+  Helper classes
+  ========================================================================== */
 
 /*
  * Hide visually and from screen readers
  */
 
- .hidden {
-  display: none !important;
+.hidden {
+    display: none !important;
 }
 
 /*
@@ -588,15 +610,15 @@ input[type=text], input[type=email], input[type=password] {
 */
 
 .visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap; /* 1 */
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /* 1 */
 }
 
 /*
@@ -607,13 +629,13 @@ input[type=text], input[type=email], input[type=password] {
 
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto;
-  white-space: inherit;
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+    white-space: inherit;
 }
 
 /*
@@ -621,7 +643,7 @@ input[type=text], input[type=email], input[type=password] {
 */
 
 .invisible {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 /*
@@ -638,16 +660,13 @@ input[type=text], input[type=email], input[type=password] {
 
 .clearfix:before,
 .clearfix:after {
-  content: " "; /* 1 */
-  display: table; /* 2 */
+    content: " "; /* 1 */
+    display: table; /* 2 */
 }
 
 .clearfix:after {
-  clear: both;
+    clear: both;
 }
-
- 
-
 
 
 /* ==========================================================================
@@ -656,28 +675,25 @@ input[type=text], input[type=email], input[type=password] {
    Modify as content requires.
    ========================================================================== */
 
-   @media only screen and (min-width: 35em) {
+@media only screen and (min-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
 }
 
 @media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
 
 
-
-
- 
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
    https://www.phpied.com/delay-loading-your-print-css/
    ========================================================================== */
 
-   @media print {
+@media print {
     *,
     *:before,
     *:after {
@@ -705,7 +721,6 @@ input[type=text], input[type=email], input[type=password] {
      * Don't show links that are fragment identifiers,
      * or use the `javascript:` pseudo protocol
      */
-
     a[href^="#"]:after,
     a[href^="javascript:"]:after {
         content: "";
@@ -714,6 +729,7 @@ input[type=text], input[type=email], input[type=password] {
     pre {
         white-space: pre-wrap !important;
     }
+
     pre,
     blockquote {
         border: 1px solid #999;
@@ -724,7 +740,6 @@ input[type=text], input[type=email], input[type=password] {
      * Printing Tables:
      * http://css-discuss.incutio.com/wiki/Printing_Tables
      */
-
     thead {
         display: table-header-group;
     }

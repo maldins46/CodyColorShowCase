@@ -1,99 +1,313 @@
 <div id="wrapper">
-  <div id="page-body-container">   
+    <div id="page-body-container">
 
-    <div ng-hide="matchInProgress" class="start-countdown">
-      {{startCountdown}}
+        <div ng-hide="matchInProgress" class="start-countdown">
+            {{startCountdown}}
+        </div>
+
+        <div ng-show="matchInProgress">
+            <div class="playhead-container">
+                <div class="playhead">
+                    <div class="playhead-component">
+                        <p class="points">{{playerPoints}}</p>
+                    </div>
+
+                    <div class="playhead-component">
+                        <p class="points">{{enemyPoints}}</p>
+                    </div>
+                </div>
+
+                <div class="playhead">
+                    <div class="playhead-component">
+                        {{playerNickname}}
+                    </div>
+
+                    <div class="playhead-component">
+                        {{enemyNickname}}
+                    </div>
+                </div>
+            </div>
+
+            <div id="playground-container">
+                <table class="playground-table" ng-hide="draggingRoby">
+                    <tr>
+                        <td>
+                            <div ng-class="getTileStyle(0,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(0,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(0,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(0,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(0,4)"></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div ng-class="getTileStyle(1,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,4)"></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div ng-class="getTileStyle(2,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,4)"></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div ng-class="getTileStyle(3,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,4)"></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div ng-class="getTileStyle(4,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,4)"></div>
+                        </td>
+                    </tr>
+                </table>
+
+
+                <table class="playground-table" ng-show="draggingRoby">
+                    <tr>
+                        <td></td>
+                        <td>
+                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"
+                                 jqyoui-droppable="{onDrop:'', onOver:'', onOut:'' }"/>
+                        </td>
+                        <td>
+                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                        <td>
+                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                        <td>
+                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                        <td>
+                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(0,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(0,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(0,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(0,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(0,4)"></div>
+                        </td>
+                        <td>
+                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,4)"></div>
+                        </td>
+                        <td>
+                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,4)"></div>
+                        </td>
+                        <td>
+                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,4)"></div>
+                        </td>
+                        <td>
+                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,0)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,1)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,2)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,3)"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,4)"></div>
+                        </td>
+                        <td>
+                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        </td>
+                    </tr>
+
+                    <td></td>
+                    <td>
+                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                    </td>
+                    <td>
+                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                    </td>
+                    <td>
+                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                    </td>
+                    <td>
+                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                    </td>
+                    <td>
+                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                    </td>
+                    <td></td>
+                </table>
+            </div>
+
+            <div class="playhead">
+                <div class="playhead-component">
+                    <img src="img/{{robotImage}}.png" id="robot-image" data-drag="true"
+                         data-jqyoui-options="{revert: 'invalid'}"
+                         jqyoui-draggable="{animate:true, onStart:'startDragging', onStop:'endDragging' }" alt="Roby the robot"/>
+                </div>
+
+                <div class="playhead-component">
+                    <i class="far fa-clock icons"></i>{{matchTimerText}}
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div ng-show="matchInProgress">
-    <div class="playhead-container"> 
-    <div class="playhead">
-      <div class="playhead-component">
-        <p class="points">{{playerPoints}}</p>
-      </div>
 
-      <div class="playhead-component">
-       <p class="points">{{enemyPoints}}</p>
-      </div>
-    </div>
-
-    <div class="playhead">
-      <div class="playhead-component">
-        {{playerNickname}}
-      </div>
-
-      <div class="playhead-component">
-        {{enemyNickname}}
-      </div>
-    </div>
-    </div>
-
-    <table id="playground-table">
-      <tr>
-        <td><div ng-class="getTileStyle(0,0)"></div></td>
-        <td><div ng-class="getTileStyle(0,1)"></div></td>
-        <td><div ng-class="getTileStyle(0,2)"></div></td>
-        <td><div ng-class="getTileStyle(0,3)"></div></td>
-        <td><div ng-class="getTileStyle(0,4)"></div></td>
-      </tr>
-
-      <tr>
-        <td><div ng-class="getTileStyle(1,0)"></div></td>
-        <td><div ng-class="getTileStyle(1,1)"></div></td>
-        <td><div ng-class="getTileStyle(1,2)"></div></td>
-        <td><div ng-class="getTileStyle(1,3)"></div></td>
-        <td><div ng-class="getTileStyle(1,4)"></div></td>
-      </tr>
-
-      <tr>
-        <td><div ng-class="getTileStyle(2,0)"></div></td>
-        <td><div ng-class="getTileStyle(2,1)"></div></td>
-        <td><div ng-class="getTileStyle(2,2)"></div></td>
-        <td><div ng-class="getTileStyle(2,3)"></div></td>
-        <td><div ng-class="getTileStyle(2,4)"></div></td>
-      </tr>
-
-      <tr>
-        <td><div ng-class="getTileStyle(3,0)"></div></td>
-        <td><div ng-class="getTileStyle(3,1)"></div></td>
-        <td><div ng-class="getTileStyle(3,2)"></div></td>
-        <td><div ng-class="getTileStyle(3,3)"></div></td>
-        <td><div ng-class="getTileStyle(3,4)"></div></td>
-      </tr>
-
-      <tr>
-        <td><div ng-class="getTileStyle(4,0)"></div></td>
-        <td><div ng-class="getTileStyle(4,1)"></div></td>
-        <td><div ng-class="getTileStyle(4,2)"></div></td>
-        <td><div ng-class="getTileStyle(4,3)"></div></td>
-        <td><div ng-class="getTileStyle(4,4)"></div></td>
-      </tr>
-    </table>
-
-     <div class="playhead">
-      <div class="playhead-component">
-        <img id="splash-logo" src="img/robot.png" data-drag="true"
-             data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{animate:true}">
-      </div>
-
-      <div class="playhead-component">
-        <i class="far fa-clock icons"></i>{{matchTimerText}}
-      </div>
-    </div> 
-    </div> 
-  </div>
-
- 
-  
-  <div id="push"></div>
+    <div id="push"></div>
 </div>
 
 <div id="footer-container">
-   <div class="footer-component-left">
-      <a href="#!home"><i class="fa fa-times fa-2x icons"></i></a>
-      <i class="fas fa-plug fa-2x" ng-class="connected? 'icons-connected' : 'icons-notconnected'"></i>
+    <div class="footer-component-left">
+        <a href="#!home"><i class="fa fa-times fa-2x icons"></i></a>
+        <i class="fas fa-plug fa-2x" ng-class="connected? 'icons-connected' : 'icons-notconnected'"></i>
     </div>
-    <div class="footer-component-right"> 
-      <i class="far fa-user-circle fa-2x icons"></i>Non loggato
+    <div class="footer-component-right">
+        <i class="far fa-user-circle fa-2x icons"></i>Non loggato
     </div>
 </div>

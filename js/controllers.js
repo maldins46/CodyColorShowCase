@@ -145,7 +145,24 @@ app.controller('matchCtrl', function ($scope, rabbit, gameData) {
 			case 'G':
 				return 'gray-play-tile';
 		}
-	}
+	};
+    $scope.draggingRoby = false;
+    $scope.startDragging = function() {
+    	console.log("Start dragging");
+        $scope.draggingRoby = true;
+        $scope.robotImage = 'robot-dragging';
+        $scope.$apply();
+    };
+
+    $scope.endDragging = function() {
+		console.log("End dragging");
+        $scope.draggingRoby = false;
+		//$scope.robotImage = 'robotStop';
+		$scope.robotImage = 'robot';
+        $scope.$apply();
+    };
+
+    $scope.robotImage = 'robot';
 
 	$scope.playerPoints = gameData.getPlayerPoints();
 	$scope.enemyPoints = gameData.getEnemyPoints();
@@ -154,7 +171,7 @@ app.controller('matchCtrl', function ($scope, rabbit, gameData) {
 	$scope.matchInProgress = false;
 	var countdown = 3;
 	$scope.startCountdown = '3';
-	$scope.matchTimerText = '30:00'
+	$scope.matchTimerText = '30:00';
 
 	var matchTimer;
 	var matchTimerValue = 30000;
@@ -163,11 +180,11 @@ app.controller('matchCtrl', function ($scope, rabbit, gameData) {
 		matchTimerValue -= 10;
 
 		if(matchTimerValue >= 0) {
-			var seconds  = Math.floor(matchTimerValue / 1000);
-			var decimals = Math.floor((matchTimerValue - (seconds * 1000)) / 10).toString();
-			var decimals = decimals.toString();
-			var seconds = seconds.toString();
-			if(decimals.length == 1)
+			var secondsInt  = Math.floor(matchTimerValue / 1000);
+			var decimalsInt = Math.floor((matchTimerValue - (secondsInt * 1000)) / 10).toString();
+			var decimals = decimalsInt.toString();
+			var seconds = secondsInt.toString();
+			if(decimals.length === 1)
 				decimals = '0' + decimals;
 
 			$scope.matchTimerText = seconds + ':' + decimals; 
@@ -175,15 +192,15 @@ app.controller('matchCtrl', function ($scope, rabbit, gameData) {
 		} else {
 			clearInterval(matchTimer);
 		}
-	}
+	};
 	
 	var startCountdownTimer = setInterval(function() {
 		countdown--;
 		if(countdown > 0) {
 			$scope.startCountdown = countdown.toString();
 			$scope.$apply();
-		} else if (countdown == 0) {
-			$scope.startCountdown = "Let's Cody!"
+		} else if (countdown === 0) {
+			$scope.startCountdown = "Let's Cody!";
 			$scope.$apply();
 		} else {
 			$scope.matchInProgress = true;
