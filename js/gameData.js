@@ -4,27 +4,31 @@
  */
 angular.module('codyColor').factory('gameData', function () {
 
-    var gameData = {};
+    let gameData = {};
 
     // dati di riconoscimento e matchmaking
-    var playerNickname;
-    var enemyNickname;
-    var isPlayerReady;
-    var isEnemyReady;
+    let playerNickname;
+    let enemyNickname;
+    let isPlayerReady;
+    let isEnemyReady;
 
     // dati di riconoscimento utilizzati dal server 
     // per la partita corrente
-    var gameRoomId;
-    var playerId;
+    let gameRoomId;
+    let playerId;
 
     // dati sulla partita
-    var playerPoints;
-    var enemyPoints;
-    var currentMatchTiles;
-    var currentMatchTimerPlayer;
-    var currentMatchTimerEnemy;
+    let playerPoints;
+    let enemyPoints;
+    let currentMatchTiles;
+    let playerStartPosition;
+    let enemyStartPosition;
+    let playerMatchTimer;
+    let enemyMatchTimer;
+    let playerMatchTime;
+    let enemyMatchTime;
 
-    var matchCount;
+    let matchCount;
 
 
     gameData.setPlayerNickname = function (name) {
@@ -81,6 +85,9 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
     gameData.getGameRoomId = function () {
+        if(gameRoomId === undefined)
+            gameRoomId = -1;
+
         return gameRoomId;
     };
 
@@ -90,17 +97,20 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
     gameData.getPlayerId = function () {
+        if(playerId === undefined)
+            playerId = -1;
+
         return playerId;
     };
 
     gameData.setCurrentMatchTiles = function (tilesString) {
         // si ipotizza al momento una matrice 5x5
         currentMatchTiles = new Array(5);
-        var positionIndex = 0;
+        let positionIndex = 0;
 
-        for (var i = 0; i < 5; i++) {
+        for (let i = 0; i < 5; i++) {
             currentMatchTiles[i] = new Array(5);
-            for (var j = 0; j < 5; j++) {
+            for (let j = 0; j < 5; j++) {
                 currentMatchTiles[i][j] = tilesString.charAt(positionIndex);
                 positionIndex++;
             }
@@ -110,13 +120,11 @@ angular.module('codyColor').factory('gameData', function () {
     gameData.getCurrentMatchTiles = function () {
         if(currentMatchTiles === undefined) {
             currentMatchTiles = new Array(5);
-            var positionIndex = 0;
 
-            for (var i = 0; i < 5; i++) {
+            for (let i = 0; i < 5; i++) {
                 currentMatchTiles[i] = new Array(5);
-                for (var j = 0; j < 5; j++) {
+                for (let j = 0; j < 5; j++) {
                     currentMatchTiles[i][j] = 'R';
-                    positionIndex++;
                 }
             }
         }
@@ -146,6 +154,58 @@ angular.module('codyColor').factory('gameData', function () {
 
     gameData.setEnemyPoints = function (points) {
         enemyPoints = points;
+    };
+
+
+    gameData.getPlayerStartPosition = function () {
+        return playerStartPosition;
+    };
+
+    gameData.setPlayerStartPosition = function (position) {
+        playerStartPosition = position;
+    };
+
+
+    gameData.getEnemyStartPosition = function () {
+        return enemyStartPosition;
+    };
+
+    gameData.setEnemyStartPosition = function (position) {
+        enemyStartPosition = position;
+    };
+
+
+    gameData.getPlayerMatchTimer = function () {
+        return playerMatchTimer;
+    };
+
+    gameData.setPlayerMatchTimer = function (timer) {
+        playerMatchTimer = timer;
+    };
+
+    gameData.getEnemyMatchTimer = function () {
+        return enemyMatchTimer;
+    };
+
+    gameData.setEnemyMatchTimer = function (timer) {
+        enemyMatchTimer = timer;
+    };
+
+
+    gameData.getPlayerMatchTime = function () {
+        return playerMatchTime;
+    };
+
+    gameData.setPlayerMatchTime = function (time) {
+        playerMatchTime = time;
+    };
+
+    gameData.getEnemyMatchTime = function () {
+        return enemyMatchTime;
+    };
+
+    gameData.setEnemyMatchTime = function (time) {
+        enemyMatchTime = time;
     };
 
     return gameData;

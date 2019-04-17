@@ -1,35 +1,47 @@
 <div id="wrapper">
     <div id="page-body-container">
 
-        <div ng-hide="matchInProgress" class="start-countdown">
-            {{startCountdown}}
+        <div ng-show="countdownInProgress" class="start-countdown">
+            {{startCountdownText}}
         </div>
 
-        <div ng-show="matchInProgress">
-            <div class="playhead-container">
-                <div class="playhead">
-                    <div class="playhead-component">
+        <div ng-hide="countdownInProgress">
+            <div class="cc-container-group">
+                <div class="cc-container">
+                    <div class="centered-column">
                         <p class="points">{{playerPoints}}</p>
                     </div>
 
-                    <div class="playhead-component">
+                    <div class="centered-column">
                         <p class="points">{{enemyPoints}}</p>
                     </div>
                 </div>
 
-                <div class="playhead">
-                    <div class="playhead-component">
+                <div class="cc-container">
+                    <div class="centered-column">
                         {{playerNickname}}
                     </div>
 
-                    <div class="playhead-component">
+                    <div class="centered-column">
                         {{enemyNickname}}
+                    </div>
+                </div>
+
+                <div class="cc-container">
+                    <div class="centered-column" ng-class="{'timer-stop': robyPositioned}">
+                        <i class="far fa-clock" ng-class="robyPositioned? 'timer-icon-stop' : 'timer-icon'"></i>
+                        {{playerMatchTimerText}}
+                    </div>
+
+                    <div class="centered-column" ng-class="{'timer-stop': enemyPositioned}">
+                        <i class="far fa-clock" ng-class="enemyPositioned? 'timer-icon-stop' : 'timer-icon'"></i>
+                        {{enemyMatchTimerText}}
                     </div>
                 </div>
             </div>
 
-            <div id="playground-container">
-                <table class="playground-table" ng-hide="draggingRoby">
+            <div class="playground-container">
+                <table class="playground-table" ng-hide="showCompleteGrid">
                     <tr>
                         <td>
                             <div ng-class="getTileStyle(0,0)"></div>
@@ -121,180 +133,248 @@
                     </tr>
                 </table>
 
-
-                <table class="playground-table" ng-show="draggingRoby">
-                    <tr>
-                        <td></td>
-                        <td>
-                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"
-                                 jqyoui-droppable="{onDrop:'', onOver:'', onOut:'' }"/>
-                        </td>
-                        <td>
-                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                        </td>
-                        <td>
-                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                        </td>
-                        <td>
-                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                        </td>
-                        <td>
-                            <img src="img/arrow-top.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                        </td>
-                        <td></td>
-                    </tr>
-
+                <table class="playground-table" ng-show="showCompleteGrid">
                     <tr>
                         <td>
-                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                            <div class="placeholder-tile"></div>
+                        </td>
+                        <td id="start-00" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(0,0)', onOut:'robyOut(0,0)', onDrop:'robyDropped(0,0)'}">
+                            <i class="fas fa-angle-down"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[0][0] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td id="start-01" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(0,1)', onOut:'robyOut(0,1)', onDrop:'robyDropped(0,1)'}">
+                            <i class="fas fa-angle-down"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[0][1] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td id="start-02" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(0,2)', onOut:'robyOut(0,2)', onDrop:'robyDropped(0,2)'}">
+                            <i class="fas fa-angle-down"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[0][2] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td id="start-03" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(0,3)', onOut:'robyOut(0,3)', onDrop:'robyDropped(0,3)'}">
+                            <i class="fas fa-angle-down"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[0][3] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td id="start-04" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(0,4)', onOut:'robyOut(0,4)', onDrop:'robyDropped(0,4)'}">
+                            <i class="fas fa-angle-down"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[0][4] ? 'arrow-cell-over' : 'arrow-cell'"></i>
                         </td>
                         <td>
-                            <div ng-class="getTileStyle(0,0)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(0,1)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(0,2)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(0,3)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(0,4)"></div>
-                        </td>
-                        <td>
-                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                            <div class="placeholder-tile"></div>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>
-                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                        <td id="start-30" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(3,0)', onOut:'robyOut(3,0)', onDrop:'robyDropped(3,0)'}">
+                            <i class="fas fa-angle-right"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[3][0] ? 'arrow-cell-over' : 'arrow-cell'"></i>
                         </td>
                         <td>
-                            <div ng-class="getTileStyle(1,0)"></div>
+                            <div ng-class="getTileStyle(0,0)" id="tile-00"></div>
                         </td>
                         <td>
-                            <div ng-class="getTileStyle(1,1)"></div>
+                            <div ng-class="getTileStyle(0,1)" id="tile-01"></div>
                         </td>
                         <td>
-                            <div ng-class="getTileStyle(1,2)"></div>
+                            <div ng-class="getTileStyle(0,2)" id="tile-02"></div>
                         </td>
                         <td>
-                            <div ng-class="getTileStyle(1,3)"></div>
+                            <div ng-class="getTileStyle(0,3)" id="tile-03"></div>
                         </td>
                         <td>
-                            <div ng-class="getTileStyle(1,4)"></div>
+                            <div ng-class="getTileStyle(0,4)" id="tile-04"></div>
+                        </td>
+                        <td id="start-10" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(1,0)', onOut:'robyOut(1,0)',  onDrop:'robyDropped(1,0)'}">
+                            <i class="fas fa-angle-left"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[1][0] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td id="start-31" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(3,1)', onOut:'robyOut(3,1)', onDrop:'robyDropped(3,1)'}">
+                            <i class="fas fa-angle-right"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[3][1] ? 'arrow-cell-over' : 'arrow-cell'"></i>
                         </td>
                         <td>
-                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                            <div ng-class="getTileStyle(1,0)" id="tile-10"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,1)" id="tile-11"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,2)" id="tile-12"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,3)" id="tile-13"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(1,4)" id="tile-14"></div>
+                        </td>
+                        <td id="start-11" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(1,1)', onOut:'robyOut(1,1)',  onDrop:'robyDropped(1,1)'}">
+                            <i class="fas fa-angle-left"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[1][1] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td id="start-32" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(3,2)', onOut:'robyOut(3,2)',  onDrop:'robyDropped(3,2)'}">
+                            <i class="fas fa-angle-right"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[3][2] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,0)" id="tile-20"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,1)" id="tile-21"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,2)" id="tile-22"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,3)" id="tile-23"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(2,4)" id="tile-24"></div>
+                        </td>
+                        <td id="start-12" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(1,2)', onOut:'robyOut(1,2)', onDrop:'robyDropped(1,2)'}">
+                            <i class="fas fa-angle-left"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[1][2] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td id="start-33" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(3,3)', onOut:'robyOut(3,3)', onDrop:'robyDropped(3,3)'}">
+                            <i class="fas fa-angle-right"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[3][3] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,0)" id="tile-30"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,1)" id="tile-31"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,2)" id="tile-32"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,3)" id="tile-33"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(3,4)" id="tile-34"></div>
+                        </td>
+                        <td id="start-13" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(1,3)', onOut:'robyOut(1,3)', onDrop:'robyDropped(1,3)'}">
+                            <i class="fas fa-angle-left"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[1][3] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td id="start-34" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(3,4)', onOut:'robyOut(3,4)',  onDrop:'robyDropped(3,4)'}">
+                            <i class="fas fa-angle-right"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[3][4] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,0)" id="tile-40"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,1)" id="tile-41"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,2)" id="tile-42"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,3)" id="tile-43"></div>
+                        </td>
+                        <td>
+                            <div ng-class="getTileStyle(4,4)" id="tile-44"></div>
+                        </td>
+                        <td id="start-14" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(1,4)', onOut:'robyOut(1,4)', onDrop:'robyDropped(1,4)'}">
+                            <i class="fas fa-angle-left"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[1][4] ? 'arrow-cell-over' : 'arrow-cell'"></i>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                            <div class="placeholder-tile"></div>
+                        </td>
+                        <td id="start-20" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(2,0)', onOut:'robyOut(2,0)', onDrop:'robyDropped(2,0)'}">
+                            <i class="fas fa-angle-up"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[2][0] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td id="start-21" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(2,1)', onOut:'robyOut(2,1)', onDrop:'robyDropped(2,1)'}">
+                            <i class="fas fa-angle-up"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[2][1] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td id="start-22" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(2,2)', onOut:'robyOut(2,2)', onDrop:'robyDropped(2,2)'}">
+                            <i class="fas fa-angle-up"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[2][2] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td id="start-23" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(2,3)', onOut:'robyOut(2,3)', onDrop:'robyDropped(2,3)'}">
+                            <i class="fas fa-angle-up"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[2][3] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                        </td>
+                        <td id="start-24" data-drop="true"
+                            jqyoui-droppable="{onOver: 'robyOver(2,4)', onOut:'robyOut(2,4)', onDrop:'robyDropped(2,4)'}">
+                            <i class="fas fa-angle-up"
+                               ng-show="showArrows"
+                               ng-class="startPositionsOver[2][4] ? 'arrow-cell-over' : 'arrow-cell'"></i>
                         </td>
                         <td>
-                            <div ng-class="getTileStyle(2,0)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(2,1)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(2,2)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(2,3)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(2,4)"></div>
-                        </td>
-                        <td>
-                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
+                            <div class="placeholder-tile"></div>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td>
-                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(3,0)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(3,1)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(3,2)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(3,3)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(3,4)"></div>
-                        </td>
-                        <td>
-                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <img src="img/arrow-left.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(4,0)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(4,1)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(4,2)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(4,3)"></div>
-                        </td>
-                        <td>
-                            <div ng-class="getTileStyle(4,4)"></div>
-                        </td>
-                        <td>
-                            <img src="img/arrow-right.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                        </td>
-                    </tr>
-
-                    <td></td>
-                    <td>
-                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                    </td>
-                    <td>
-                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                    </td>
-                    <td>
-                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                    </td>
-                    <td>
-                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                    </td>
-                    <td>
-                        <img src="img/arrow-bottom.png" class="arrow-cell" alt="Roby starting point" data-drop="true"/>
-                    </td>
-                    <td></td>
                 </table>
+
+                <img id="enemy-roby" src="/img/enemy-positioned.png" alt="Enemy robot"
+                     class="roby-positioned"
+                     ng-show="enemyPositioned && robyPositioned"/>
+
+                <img id="player-roby" src="/img/roby-positioned.png" alt="Roby the robot"
+                     class="roby-positioned" ng-show="robyPositioned"/>
+
             </div>
 
-            <div class="playhead">
-                <div class="playhead-component">
-                    <img src="img/{{robotImage}}.png" id="robot-image" data-drag="true"
-                         data-jqyoui-options="{revert: 'invalid'}"
-                         jqyoui-draggable="{animate:true, onStart:'startDragging', onStop:'endDragging' }" alt="Roby the robot"/>
-                </div>
-
-                <div class="playhead-component">
-                    <i class="far fa-clock icons"></i>{{matchTimerText}}
-                </div>
-            </div>
+            <img alt="Roby the robot" src="img/{{robyImage}}.png" class="roby-draggable" ng-hide="robyPositioned"
+                 data-drag="{{!robyPositioned}}" data-jqyoui-options="{revert: 'invalid'}"
+                 jqyoui-draggable="{animate:true, onStart:'startDragging', onStop:'endDragging' }"/>
         </div>
     </div>
 
@@ -305,7 +385,7 @@
 <div id="footer-container">
     <div class="footer-component-left">
         <a href="#!home"><i class="fa fa-times fa-2x icons"></i></a>
-        <i class="fas fa-plug fa-2x" ng-class="connected? 'icons-connected' : 'icons-notconnected'"></i>
+        <i class="fas fa-plug fa-2x" ng-class="connected ? 'icons-connected' : 'icons-notconnected'"></i>
     </div>
     <div class="footer-component-right">
         <i class="far fa-user-circle fa-2x icons"></i>Non loggato
