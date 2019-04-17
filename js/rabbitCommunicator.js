@@ -72,7 +72,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // completata, sottoscrive il topic di controllo utilizzato per le risposte dal server
     rabbit.connect = function(extConnectedCallback, extErrorCallback) {
         //client = Stomp.client('ws://127.0.0.1:15674/ws');
-        client = Stomp.client('ws://botify.it:80/codycolor/ws');
+        client = Stomp.client('wss://botify.it:80/codycolor/ws');
         client.connect('guest', 'guest',                                       // credenziali 
                        function() { connectedCallback(extConnectedCallback) }, // onConnect
                        function() { errorCallback(extErrorCallback) },         // onError
