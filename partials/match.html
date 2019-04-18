@@ -9,11 +9,11 @@
             <div class="cc-container-group">
                 <div class="cc-container">
                     <div class="centered-column">
-                        <p class="points">{{playerPoints}}</p>
+                        <p class="big-text">{{playerPoints}}</p>
                     </div>
 
                     <div class="centered-column">
-                        <p class="points">{{enemyPoints}}</p>
+                        <p class="big-text">{{enemyPoints}}</p>
                     </div>
                 </div>
 
@@ -375,6 +375,7 @@
             <img alt="Roby the robot" src="img/{{robyImage}}.png" class="roby-draggable" ng-hide="robyPositioned"
                  data-drag="{{!robyPositioned}}" data-jqyoui-options="{revert: 'invalid'}"
                  jqyoui-draggable="{animate:true, onStart:'startDragging', onStop:'endDragging' }"/>
+            <p class="big-text" ng-show="endMatch">Fine!</p>
         </div>
     </div>
 

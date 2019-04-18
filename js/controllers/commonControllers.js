@@ -46,8 +46,12 @@ app.controller('pmmakingCtrl', function (/* $scope, $location, $http */) {
 });
 
 // controller partita con avversario casuale
-app.controller('aftermatchCtrl', function (/* $scope, $location, $http */) {
+app.controller('aftermatchCtrl', function ($scope, $location, gameData) {
 	console.log("Controller aftermatch ready.");
+	$scope.playerPoints = gameData.getPlayerPoints();
+	$scope.enemyPoints = gameData.getEnemyPoints();
+	$scope.playerNickname = gameData.getPlayerNickname();
+	$scope.enemyNickname = gameData.getEnemyNickname();
 });
 
 

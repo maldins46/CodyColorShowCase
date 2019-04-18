@@ -140,8 +140,8 @@ angular.module('codyColor').factory('gameData', function () {
         return playerPoints;
     };
 
-    gameData.setPlayerPoints = function (points) {
-        playerPoints = points;
+    gameData.addPlayerPoints = function (points) {
+        playerPoints += points;
     };
 
 
@@ -152,12 +152,16 @@ angular.module('codyColor').factory('gameData', function () {
         return enemyPoints;
     };
 
-    gameData.setEnemyPoints = function (points) {
-        enemyPoints = points;
+    gameData.addEnemyPoints = function (points) {
+        enemyPoints += points;
     };
 
 
     gameData.getPlayerStartPosition = function () {
+        if (playerStartPosition === undefined) {
+            playerStartPosition = { side: -1, distance: -1 };
+        }
+
         return playerStartPosition;
     };
 
@@ -167,6 +171,10 @@ angular.module('codyColor').factory('gameData', function () {
 
 
     gameData.getEnemyStartPosition = function () {
+        if (enemyStartPosition === undefined) {
+            enemyStartPosition = { side: -1, distance: -1 };
+        }
+
         return enemyStartPosition;
     };
 
@@ -193,6 +201,10 @@ angular.module('codyColor').factory('gameData', function () {
 
 
     gameData.getPlayerMatchTime = function () {
+        if (playerMatchTime === undefined) {
+            playerMatchTime = 30000;
+        }
+
         return playerMatchTime;
     };
 
@@ -201,11 +213,31 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
     gameData.getEnemyMatchTime = function () {
+        if (enemyMatchTime === undefined) {
+            enemyMatchTime = 30000;
+        }
+
         return enemyMatchTime;
     };
 
     gameData.setEnemyMatchTime = function (time) {
         enemyMatchTime = time;
+    };
+
+
+    gameData.getMatchCount = function () {
+        if(matchCount === undefined) {
+            matchCount = 1;
+        }
+        return matchCount;
+    };
+
+    gameData.addMatch = function() {
+        if(matchCount === undefined) {
+            matchCount = 2;
+        } else {
+            matchCount++;
+        }
     };
 
     return gameData;
