@@ -1,0 +1,1455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="terminato flusso partita; da completare animazioni">
+      <change afterPath="$PROJECT_DIR$/.idea/CodyColorClient.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/riccardomaldini.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-animate/.bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-animate/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-animate/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-animate/angular-animate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-animate/angular-animate.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-animate/angular-animate.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-animate/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-animate/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-animate/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-dragdrop/.bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-dragdrop/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-dragdrop/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-dragdrop/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-dragdrop/karma.conf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-dragdrop/src/angular-dragdrop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-dragdrop/src/angular-dragdrop.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-route/.bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-route/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-route/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-route/angular-route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-route/angular-route.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-route/angular-route.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-route/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-route/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular-route/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/.bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/angular-csp.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/angular.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/angular.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/angular.min.js.gzip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/angular.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/angular/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/.bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/component.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/jquery-ui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/accordion.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/all.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/autocomplete.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/button.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/checkboxradio.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/controlgroup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/core.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/datepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/dialog.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/draggable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/images/ui-icons_444444_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/images/ui-icons_555555_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/images/ui-icons_777620_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/images/ui-icons_777777_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/images/ui-icons_cc0000_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/menu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/progressbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/resizable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/selectable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/selectmenu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/slider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/sortable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/spinner.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/tabs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/base/tooltip.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-bg_diagonals-thick_8_333333_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-bg_glass_40_111111_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-bg_glass_55_1c1c1c_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-bg_highlight-hard_100_f9f9f9_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-bg_highlight-hard_40_aaaaaa_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-bg_highlight-soft_50_aaaaaa_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-bg_inset-hard_45_cd0a0a_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-bg_inset-hard_55_ffeb80_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-icons_222222_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-icons_4ca300_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-icons_bbbbbb_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-icons_ededed_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-icons_ffcf29_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/black-tie/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/images/ui-bg_diagonals-thick_75_f3d8d8_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/images/ui-bg_dots-small_65_a6a6a6_2x2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/images/ui-bg_glass_55_fbf8ee_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/images/ui-bg_highlight-hard_100_eeeeee_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/images/ui-bg_highlight-hard_100_f6f6f6_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/images/ui-bg_highlight-soft_15_cc0000_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/images/ui-icons_004276_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/images/ui-icons_cc0000_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/blitzer/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-bg_diagonals-thick_90_eeeeee_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-bg_glass_100_e4f1fb_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-bg_glass_50_3baae3_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-bg_glass_80_d7ebf9_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-bg_highlight-hard_70_000000_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-bg_highlight-soft_100_deedf7_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-bg_highlight-soft_25_ffef8f_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-icons_2694e8_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-icons_2e83ff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-icons_3d80b3_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-icons_72a7cf_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/cupertino/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-bg_glass_40_ffc73d_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-bg_highlight-hard_20_0972a5_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-bg_highlight-soft_33_003147_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-bg_highlight-soft_35_222222_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-bg_highlight-soft_44_444444_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-bg_highlight-soft_80_eeeeee_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-bg_loop_25_000000_21x21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-icons_222222_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-icons_4b8e0b_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-icons_a83300_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-icons_cccccc_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dark-hive/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-bg_diagonals-thick_15_0b3e6f_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-bg_dots-medium_30_0b58a2_4x4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-bg_dots-small_20_333333_2x2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-bg_dots-small_30_a32d00_2x2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-bg_dots-small_40_00498f_2x2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-bg_gloss-wave_20_111111_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-icons_00498f_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-icons_98d2fb_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-icons_9ccdfc_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/dot-luv/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-bg_gloss-wave_30_3d3644_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-bg_highlight-soft_100_dcd9de_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-bg_highlight-soft_100_eae6ea_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-bg_highlight-soft_25_30273a_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-bg_highlight-soft_45_5f5964_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-icons_454545_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-icons_734d99_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-icons_8d78a5_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-icons_a8a3ae_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-icons_ebccce_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/eggplant/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-bg_diagonals-small_25_c5ddfc_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-bg_diagonals-thick_20_e69700_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-bg_diagonals-thick_22_1484e6_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-bg_diagonals-thick_26_2293f7_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-bg_highlight-soft_100_f9f9f9_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-bg_inset-hard_100_eeeeee_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-icons_0a82eb_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-icons_0b54d5_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-icons_5fa5e3_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-icons_fcdd4a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/excite-bike/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/images/ui-bg_glass_65_ffffff_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/images/ui-bg_highlight-soft_100_f6f6f6_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/images/ui-bg_highlight-soft_25_0073ea_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/images/ui-bg_highlight-soft_50_dddddd_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/images/ui-icons_0073ea_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/images/ui-icons_454545_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/images/ui-icons_666666_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/images/ui-icons_ff0084_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/flick/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-bg_diagonals-small_40_db4865_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-bg_diagonals-small_50_93c3cd_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-bg_diagonals-small_50_ff3853_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-bg_diagonals-small_75_ccd232_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-bg_dots-medium_80_ffff38_4x4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-bg_dots-small_35_35414f_2x2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-bg_white-lines_85_f7f7ba_40x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-icons_454545_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-icons_88a206_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-icons_c02669_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-icons_e1e463_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-icons_ffeb33_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/hot-sneaks/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-bg_glass_100_f5f0e5_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-bg_glass_25_cb842e_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-bg_glass_70_ede4d4_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-bg_highlight-hard_100_f4f0ec_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-bg_highlight-hard_65_fee4bd_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-bg_highlight-hard_75_f5f5b5_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-bg_inset-soft_100_f4f0ec_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-icons_c47a23_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-icons_cb672b_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-icons_f08000_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-icons_f35f07_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-icons_ff7519_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/humanity/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-bg_diagonals-small_0_aaaaaa_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-bg_diagonals-thick_15_444444_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-bg_diagonals-thick_95_ffdc2e_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-bg_glass_55_fbf5d0_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-bg_highlight-hard_30_285c00_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-bg_highlight-soft_33_3a8104_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-bg_highlight-soft_50_4eb305_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-bg_highlight-soft_60_4ca20b_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-bg_inset-soft_10_285c00_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-icons_4eb305_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-icons_72b42d_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-icons_cd0a0a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/le-frog/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-bg_glass_15_5f391b_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-bg_gloss-wave_20_1c160d_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-bg_gloss-wave_25_453326_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-bg_gloss-wave_30_44372c_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-bg_highlight-soft_20_201913_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-bg_highlight-soft_20_619226_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-bg_inset-soft_10_201913_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-icons_222222_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-icons_9bcc60_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-icons_add978_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-icons_e3ddc9_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-icons_f1fd86_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/mint-choc/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-bg_glass_100_f8f8f8_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-bg_glass_35_dddddd_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-bg_glass_60_eeeeee_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-bg_inset-hard_75_999999_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-bg_inset-soft_50_c9c9c9_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-icons_3383bb_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-icons_454545_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-icons_70b2e1_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-icons_999999_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/images/ui-icons_fbc856_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/overcast/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-bg_diagonal-maze_20_6e4f1c_10x10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-bg_diagonal-maze_40_000000_10x10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-bg_fine-grain_10_eceadf_60x60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-bg_fine-grain_10_f8f7f6_60x60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-bg_fine-grain_15_eceadf_60x60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-bg_fine-grain_15_f7f3de_60x60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-bg_fine-grain_15_ffffff_60x60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-bg_fine-grain_65_654b24_60x60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-bg_fine-grain_68_b83400_60x60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-icons_222222_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-icons_3572ac_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-icons_8c291d_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-icons_b83400_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-icons_fbdb93_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/pepper-grinder/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-bg_glass_75_d0e5f5_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-bg_glass_85_dfeffc_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-bg_glass_95_fef1ec_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-bg_inset-hard_100_f5f8f9_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-bg_inset-hard_100_fcfdfd_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-icons_217bc0_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-icons_2e83ff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-icons_469bdd_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-icons_6da8d5_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-icons_cd0a0a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-icons_d8e7f3_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/images/ui-icons_f9bd01_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/redmond/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-bg_glass_55_fbf9ee_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-bg_glass_65_ffffff_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-bg_glass_75_dadada_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-bg_glass_95_fef1ec_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-icons_222222_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-icons_2e83ff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-icons_454545_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-icons_888888_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/images/ui-icons_cd0a0a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/smoothness/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-bg_glass_55_fcf0ba_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-bg_gloss-wave_100_ece8da_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-bg_highlight-hard_100_fafaf4_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-bg_highlight-hard_15_459e00_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-bg_highlight-hard_95_cccccc_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-bg_highlight-soft_25_67b021_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-bg_highlight-soft_95_ffedad_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-bg_inset-soft_15_2b2922_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-icons_808080_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-icons_847e71_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-icons_8DC262_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-icons_cd0a0a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-icons_eeeeee_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/south-street/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-bg_glass_45_0078ae_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-bg_glass_55_f8da4e_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-bg_glass_75_79c9ec_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-bg_gloss-wave_45_e14f1c_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-bg_gloss-wave_50_6eac2c_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-bg_gloss-wave_75_2191c0_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-bg_inset-hard_100_fcfdfd_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-icons_0078ae_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-icons_056b93_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-icons_d8e7f3_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-icons_e0fdff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-icons_f5e175_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-icons_f7a50d_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/images/ui-icons_fcd113_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/start/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-bg_diagonals-medium_20_d34d17_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-bg_gloss-wave_45_817865_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-bg_gloss-wave_60_fece2f_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-bg_gloss-wave_70_ffdd57_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-bg_gloss-wave_90_fff9e5_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-bg_highlight-soft_100_feeebd_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-bg_inset-soft_30_ffffff_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-icons_3d3d3d_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-icons_bd7b00_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-icons_d19405_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-icons_eb990f_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-icons_ed9f26_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-icons_fadc7a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/images/ui-icons_ffe180_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/sunny/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-bg_diamond_10_4f4221_10x8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-bg_diamond_20_372806_10x8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-bg_diamond_25_675423_10x8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-bg_diamond_25_d5ac5d_10x8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-bg_diamond_8_261803_10x8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-bg_diamond_8_443113_10x8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-bg_highlight-hard_65_fee4bd_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-icons_070603_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-icons_e8e2b5_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-icons_e9cd86_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-icons_efec9f_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-icons_f2ec64_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-icons_f9f2bd_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/images/ui-icons_ff7519_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/swanky-purse/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-bg_diagonals-small_50_262626_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-bg_glass_40_0a0a0a_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-bg_glass_55_f1fbe5_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-bg_glass_60_000000_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-bg_gloss-wave_55_000000_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-bg_gloss-wave_85_9fda58_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-bg_gloss-wave_95_f6ecd5_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-icons_000000_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-icons_1f1f1f_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-icons_9fda58_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-icons_b8ec79_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-icons_cd0a0a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/trontastic/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-bg_glass_20_555555_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-bg_glass_40_0078a3_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-bg_glass_40_ffc73d_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-bg_gloss-wave_25_333333_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-bg_highlight-soft_80_eeeeee_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-bg_inset-soft_25_000000_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-bg_inset-soft_30_f58400_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-icons_222222_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-icons_4b8e0b_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-icons_a83300_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-icons_cccccc_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-darkness/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-icons_222222_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-icons_228ef1_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-icons_ef8c08_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-icons_ffd27a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/ui-lightness/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-bg_glass_95_fef1ec_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-bg_gloss-wave_16_121212_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-bg_highlight-hard_15_888888_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-bg_highlight-hard_55_555555_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-bg_highlight-soft_35_adadad_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-bg_highlight-soft_60_dddddd_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-bg_inset-soft_15_121212_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-icons_666666_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-icons_aaaaaa_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-icons_bbbbbb_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-icons_c98000_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-icons_cccccc_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-icons_cd0a0a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/images/ui-icons_f29a00_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/themes/vader/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/disable-selection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-blind.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-bounce.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-clip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-drop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-explode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-fade.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-fold.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-highlight.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-puff.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-pulsate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-scale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-shake.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-size.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-slide.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/effects/effect-transfer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/escape-selector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/focusable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/form-reset-mixin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-af.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ar-DZ.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-az.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-be.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-bg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-bs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-cs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-cy-GB.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-de.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-el.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-en-AU.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-en-GB.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-en-NZ.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-eo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-es.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-et.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-eu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-fa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-fi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-fo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-fr-CA.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-fr-CH.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-fr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-gl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-he.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-hi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-hr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-hu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-hy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-it-CH.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-it.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ja.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ka.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-kk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-km.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ko.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ky.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-lb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-lt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-lv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-mk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ml.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-nb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-nl-BE.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-nl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-nn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-no.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-pl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-pt-BR.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-pt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-rm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ru.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-sk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-sl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-sq.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-sr-SR.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-sr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-sv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-ta.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-th.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-tj.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-tr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-uk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-vi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-zh-CN.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-zh-HK.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/i18n/datepicker-zh-TW.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/ie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/jquery-1-7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/keycode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/labels.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/disable-selection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/effect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/escape-selector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/focusable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/form-reset-mixin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-af.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ar-DZ.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-az.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-be.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-bg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-bs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-cs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-cy-GB.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-de.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-el.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-en-AU.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-en-GB.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-en-NZ.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-eo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-es.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-et.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-eu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-fa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-fi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-fo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-fr-CA.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-fr-CH.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-fr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-gl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-he.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-hi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-hr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-hu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-hy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-it-CH.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-it.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ja.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ka.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-kk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-km.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ko.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ky.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-lb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-lt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-lv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-mk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ml.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-nb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-nl-BE.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-nl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-nn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-no.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-pl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-pt-BR.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-pt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-rm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ru.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-sk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-sl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-sq.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-sr-SR.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-sr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-sv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-ta.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-th.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-tj.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-tr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-uk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-vi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-zh-CN.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-zh-HK.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/i18n/datepicker-zh-TW.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/ie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/jquery-1-7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/keycode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/labels.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/plugin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/position.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/safe-active-element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/safe-blur.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/scroll-parent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/tabbable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/unique-id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/version.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/minified/widget.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/plugin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/position.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/safe-active-element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/safe-blur.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/scroll-parent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/tabbable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/unique-id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/version.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widget.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/accordion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/autocomplete.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/checkboxradio.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/controlgroup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/datepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/dialog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/draggable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/droppable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/menu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/mouse.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/progressbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/resizable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/selectable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/selectmenu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/sortable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/spinner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/tabs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery-ui/ui/widgets/tooltip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/.bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/AUTHORS.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/dist/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.slim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.slim.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.slim.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/external/sizzle/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/external/sizzle/dist/sizzle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/external/sizzle/dist/sizzle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/external/sizzle/dist/sizzle.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/ajax.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/ajax/jsonp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/ajax/load.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/ajax/parseXML.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/ajax/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/ajax/var/location.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/ajax/var/nonce.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/ajax/var/rquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/ajax/xhr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/attributes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/attributes/attr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/attributes/classes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/attributes/prop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/attributes/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/attributes/val.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/callbacks.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/DOMEval.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/access.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/camelCase.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/init.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/isAttached.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/nodeName.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/parseHTML.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/ready-no-deferred.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/ready.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/readyException.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/stripAndCollapse.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/toType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/core/var/rsingleTag.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/addGetHookIf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/adjustCSS.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/curCSS.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/finalPropName.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/hiddenVisibleSelectors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/showHide.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/var/cssExpand.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/var/getStyles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/var/isHiddenWithinTree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/var/rboxStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/var/rnumnonpx.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/var/swap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/data/Data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/data/var/acceptData.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/data/var/dataPriv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/data/var/dataUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/deferred.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/deferred/exceptionHook.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/dimensions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/effects.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/effects/Tween.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/effects/animatedSelector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/event.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/event/ajax.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/event/alias.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/event/focusin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/event/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/event/trigger.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/exports/amd.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/exports/global.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/manipulation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/manipulation/_evalUrl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/manipulation/buildFragment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/manipulation/getAll.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/manipulation/setGlobalEval.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/manipulation/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/manipulation/var/rscriptType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/manipulation/var/rtagName.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/manipulation/wrapMap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/offset.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/queue.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/queue/delay.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/selector-native.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/selector-sizzle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/selector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/serialize.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/traversing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/traversing/findFilter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/traversing/var/dir.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/traversing/var/rneedsContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/traversing/var/siblings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/ObjectFunctionString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/arr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/class2type.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/concat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/document.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/documentElement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/fnToString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/getProto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/hasOwn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/indexOf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/isFunction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/isWindow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/pnum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/push.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/rcheckableType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/rcssNum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/rnothtmlwhite.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/slice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/toString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/wrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/enemy-walking-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/enemy-walking-2.png" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="229" column="7" lean-forward="true" selection-start-line="213" selection-end-line="229" selection-end-column="7" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="100" column="11" selection-start-line="100" selection-start-column="11" selection-end-line="100" selection-end-column="11" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/robyAnimator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="444">
+              <caret line="314" column="25" selection-start-line="314" selection-start-column="25" selection-end-line="314" selection-end-column="25" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="236" column="79" selection-start-line="236" selection-start-column="79" selection-end-line="236" selection-end-column="79" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partials/match.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="424">
+              <caret line="389" column="81" selection-start-line="389" selection-start-column="81" selection-end-line="389" selection-end-column="81" />
+              <folding>
+                <element signature="n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partials/aftermatch.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="583">
+              <caret line="50" column="13" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partials/mmaking.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>robot</find>
+      <find>arrow-</find>
+      <find>playgrount-t</find>
+      <find>.over</find>
+      <find>onDrop:'robyDropped</find>
+      <find>start-</find>
+      <find>start-10</find>
+      <find>animat</find>
+      <find>timer</find>
+      <find>bottom</find>
+      <find>ng-class=&quot;startPositionsOver</find>
+      <find>getgameroo</find>
+      <find>table</find>
+      <find>tile</find>
+      <find>playground-tab</find>
+      <find>roby-pos</find>
+      <find>robo</find>
+      <find>%</find>
+      <find>overflow</find>
+      <find>ellip</find>
+      <find>centered</find>
+      <find>footer-compone</find>
+      <find>splash-log</find>
+      <find>splash-lo</find>
+      <find>splash-h</find>
+      <find>btn-play</find>
+      <find>arrow</find>
+      <find>float</find>
+      <find>afterma</find>
+      <find>btn-</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>onOver: '  onDrop:'robyDropped</replace>
+      <replace>onOver: 'robyOver(0,0)', onOut:'robyOut(0,0)',  onDrop:'robyDropped</replace>
+      <replace>ng-show=&quot;showArrows&quot;</replace>
+      <replace>down</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/partials/404.html" />
+        <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/js/vendor/angular-1.7.8.min.js" />
+        <option value="$PROJECT_DIR$/js/vendor/angular-animate.1.7.8.min.js" />
+        <option value="$PROJECT_DIR$/js/vendor/angular-route.1.7.8.min.js" />
+        <option value="$PROJECT_DIR$/js/ScopeService.js" />
+        <option value="$PROJECT_DIR$/js/controllers.js" />
+        <option value="$PROJECT_DIR$/js/scopeService.js" />
+        <option value="$PROJECT_DIR$/js/robotHandler.js" />
+        <option value="$PROJECT_DIR$/js/robyHandler.js" />
+        <option value="$PROJECT_DIR$/js/robyMoveHandler.js" />
+        <option value="$PROJECT_DIR$/js/gameData.js" />
+        <option value="$PROJECT_DIR$/js/controllers/afterMatchController.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/partials/login.html" />
+        <option value="$PROJECT_DIR$/partials/splash.html" />
+        <option value="$PROJECT_DIR$/js/controllers/commonControllers.js" />
+        <option value="$PROJECT_DIR$/partials/home.html" />
+        <option value="$PROJECT_DIR$/js/baseRouting.js" />
+        <option value="$PROJECT_DIR$/css/main.css" />
+        <option value="$PROJECT_DIR$/partials/mmaking.html" />
+        <option value="$PROJECT_DIR$/partials/match.html" />
+        <option value="$PROJECT_DIR$/js/robyAnimator.js" />
+        <option value="$PROJECT_DIR$/partials/aftermatch.html" />
+        <option value="$PROJECT_DIR$/js/controllers/matchController.js" />
+        <option value="$PROJECT_DIR$/js/rabbitCommunicator.js" />
+        <option value="$PROJECT_DIR$/js/controllers/rmmakingController.js" />
+        <option value="$PROJECT_DIR$/js/controllers/aftermatchController.js" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/js/controllers" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js/controllers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js/vendor" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="$USER_HOME$/Documents" CustomDictionaries="1" CustomDictionary0="$USER_HOME$/Documents/it.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="" />
+      <created>1555064414039</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1555064414039</updated>
+      <workItem from="1555064416404" duration="1244000" />
+      <workItem from="1555067054584" duration="103000" />
+      <workItem from="1555313115462" duration="11806000" />
+      <workItem from="1555339869351" duration="241000" />
+      <workItem from="1555340157160" duration="64000" />
+      <workItem from="1555340235941" duration="2580000" />
+      <workItem from="1555399032193" duration="14557000" />
+      <workItem from="1555428163123" duration="1160000" />
+      <workItem from="1555486508789" duration="19794000" />
+      <workItem from="1555573037855" duration="16832000" />
+      <workItem from="1555669461798" duration="9373000" />
+      <workItem from="1555754023186" duration="8509000" />
+    </task>
+    <task id="LOCAL-00001" summary="Creata prima bozza schermata match">
+      <created>1555067124003</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1555067124004</updated>
+    </task>
+    <task id="LOCAL-00002" summary="preparando le funzionalità di drag n drop">
+      <created>1555339806371</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1555339806371</updated>
+    </task>
+    <task id="LOCAL-00003" summary="terminate le prime sezioni partita, configurato per interazione server">
+      <created>1555512618274</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1555512618275</updated>
+    </task>
+    <task id="LOCAL-00004" summary="prova https">
+      <created>1555513364257</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1555513364257</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Supporto Secured WebSocket stabile">
+      <created>1555514274954</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1555514274954</updated>
+    </task>
+    <task id="LOCAL-00006" summary="aggiornate risorse immagine">
+      <created>1555514775324</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1555514775324</updated>
+    </task>
+    <task id="LOCAL-00007" summary="terminato flusso partita; da completare animazioni">
+      <created>1555604452154</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1555604452154</updated>
+    </task>
+    <task id="LOCAL-00008" summary="completato funzionamento base match, aftermatch">
+      <created>1555765948328</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1555765948328</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="86263000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24543288" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3277311" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32913166" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24543288" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3277311" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32913166" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creata prima bozza schermata match" />
+    <MESSAGE value="preparando le funzionalità di drag n drop" />
+    <MESSAGE value="terminate le prime sezioni partita, configurato per interazione server" />
+    <MESSAGE value="prova https" />
+    <MESSAGE value="Supporto Secured WebSocket stabile" />
+    <MESSAGE value="aggiornate risorse immagine" />
+    <MESSAGE value="terminato flusso partita; da completare animazioni" />
+    <MESSAGE value="completato funzionamento base match, aftermatch" />
+    <option name="LAST_COMMIT_MESSAGE" value="completato funzionamento base match, aftermatch" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/partials/404.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="17" lean-forward="true" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="68" selection-start-line="3" selection-start-column="68" selection-end-line="3" selection-end-column="68" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vendor/angular-animate.1.7.8.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vendor/jquery.ui.touch-punch.0.2.3.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vendor/jquery-ui.1.12.1.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vendor/stomp.1.0.0.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vendor/angular-1.7.8.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1572">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vendor/jquery.3.4.0.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vendor/angular-route.1.7.8.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vendor/angular-dragdrop.1.0.13.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers.js" />
+    <entry file="file://$PROJECT_DIR$/js/scopeService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../CodyColorServer/serverScript.js" />
+    <entry file="file://$PROJECT_DIR$/js/gameData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="189" lean-forward="true" selection-start-line="189" selection-end-line="189" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/ranking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="64" lean-forward="true" selection-start-line="4" selection-start-column="8" selection-end-line="7" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1029">
+          <caret line="49" column="42" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/commonControllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/splash.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="54" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/baseRouting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="50" column="14" lean-forward="true" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="29" column="6" lean-forward="true" selection-start-line="23" selection-end-line="29" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="468" column="18" selection-start-line="468" selection-start-column="18" selection-end-line="468" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/mmaking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/match.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="389" column="81" selection-start-line="389" selection-start-column="81" selection-end-line="389" selection-end-column="81" />
+          <folding>
+            <element signature="n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/robyAnimator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="314" column="25" selection-start-line="314" selection-start-column="25" selection-end-line="314" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/aftermatch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="50" column="13" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="236" column="79" selection-start-line="236" selection-start-column="79" selection-end-line="236" selection-end-column="79" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="229" column="7" lean-forward="true" selection-start-line="213" selection-end-line="229" selection-end-column="7" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="100" column="11" selection-start-line="100" selection-start-column="11" selection-end-line="100" selection-end-column="11" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
