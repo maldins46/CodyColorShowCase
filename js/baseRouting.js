@@ -46,7 +46,7 @@ angular.module('codyColor')
 		// schermata custom match making
 		.when("/pmmaking", 
 			  { templateUrl: "partials/mmaking.html", 
-			    controller:  "pmmakingCtrl" 
+			    controller:  "rmmakingCtrl"
 			  })
 			  
 		// schermata match	  

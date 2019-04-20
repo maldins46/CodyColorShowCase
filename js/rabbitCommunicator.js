@@ -25,6 +25,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     let onHereMessage;
     let onReadyMessage;
     let onTilesMessage;
+    let onQuitGame;
 
     // callback match
     let onEnemyPositionedMessage;
@@ -54,10 +55,20 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     };
 
 
+    rabbit.setQuitCallback = function(onQuitGameM) {
+        onQuitGame = onQuitGameM;
+    };
+
     // passa i callback necessari per il matchmaking
     rabbit.setMMakingCallbacks = function(onGameRequestResponseMM, onHereMessageMM, onReadyMessageMM, onTilesMessageMM) {
         onGameRequestResponse = onGameRequestResponseMM;
         onHereMessage         = onHereMessageMM;
+        onReadyMessage        = onReadyMessageMM;
+        onTilesMessage        = onTilesMessageMM;
+    };
+
+    // passa i callback necessari per il matchmaking
+    rabbit.setAftermatchCallbacks = function(onReadyMessageMM, onTilesMessageMM) {
         onReadyMessage        = onReadyMessageMM;
         onTilesMessage        = onTilesMessageMM;
     };
@@ -206,8 +217,24 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
 
     // utilizzato nel momento in cui il game tra i due giocatori termina
-    let unsubscribeGameRoom = function() {
-        gameRoomSubscription.unsubscribe();
+    rabbit.unsubscribeGameRoom = function() {
+        if(gameRoomSubscription !== undefined)
+            gameRoomSubscription.unsubscribe();
+    };
+
+    // invia un messaggio per notificare l'abbandono della partita al server e agli altri client connessi alla gameRoom
+    rabbit.sendQuitGameMessages = function() {
+        let message = { msgType:     'quitGame',
+            gameRoomId:   gameData.getGameRoomId(),
+            playerId:     gameData.getPlayerId()   };
+
+        client.send(serverControlQueue,           // destination
+            { durable: false, exclusive: false }, // headers
+            JSON.stringify(message));             // message
+
+        client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
+            { durable: false, exclusive: false },                    // headers
+            JSON.stringify(message));                                // message
     };
 
 
@@ -244,10 +271,8 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
                     onEnemyPositionedMessage(responseObject);
                     break;
 
-                case "disconnect":
-                    // todo in caso di disconnessione dell'avversario, esci dalla partita
-                    unsubscribeGameRoom();
-                    clearInterval(heartbeatTimer);
+                case "quitGame":
+                    onQuitGame();
                     break;
             }
         }

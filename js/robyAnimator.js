@@ -48,36 +48,27 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         let coordinates = (identity === 'player' ? gameData.getPlayerStartPosition() : gameData.getEnemyStartPosition());
         let roby = (identity === 'player' ? playerRoby : enemyRoby);
 
+        // robottino non posizionato dall'utente: non muoverlo
         if (coordinates.distance === -1 && coordinates.side === -1)
             return;
 
         let startPosition = startPositions[coordinates.side][coordinates.distance].position();
-        let rotationValue;
-        switch (coordinates.side) {
-            case 0:
-                rotationValue = 'rotate(180deg)';
-                break;
-            case 1:
-                rotationValue = 'rotate(270deg)';
-                break;
-            case 2:
-                rotationValue = 'rotate(0deg)';
-                break;
-            case 3:
-                rotationValue = 'rotate(90deg)';
-                break;
-        }
+        let rotationValue =  'rotate(' + getAngle((coordinates.side + 2).mod(4)).toString() + 'deg)';
         roby.css({left: startPosition.left, top: startPosition.top, transform: rotationValue});
+    };
+
+
+    // calcola i percorsi fatti dai due robottini, e restituisce un oggetto che rappresenta i valori del risultato
+    // della partita
+    robyAnimator.calculateResults = function() {
+        let playerResultValue = calculatePath('player');
+        let enemyResultValue = calculatePath('enemy');
+        return { playerResult: playerResultValue, enemyResult: enemyResultValue };
     };
 
 
     // calcola il percorso di uno dei roby, salvandone un oggetto che lo descrive
     let calculatePath = function (identity) {
-        let startPosition = (identity === 'player' ? gameData.getPlayerStartPosition() : gameData.getEnemyStartPosition());
-
-        if (startPosition.distance === -1 && startPosition.side === -1)
-            return;
-
         let path = {tilesCoords: [],
             direction: [],
             startCoords: {},
@@ -85,10 +76,15 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
             length: 0,
             loop: false};
 
-        // start position
-        path.startCoords = startPosition;
+        // ottieni start position
+        path.startCoords = (identity === 'player' ? gameData.getPlayerStartPosition()
+                                                  : gameData.getEnemyStartPosition());
 
-        // elemento 0
+        // roby non posizionato entro il tempo limite
+        if (path.startCoords.distance === -1 && path.startCoords.side === -1)
+            return { length: 0, loop: false, time: 0, points:0 };
+
+        // ottieni primo elemento
         switch (path.startCoords.side) {
             case 0:
                 path.tilesCoords.push({ x: 0, y: path.startCoords.distance });
@@ -106,9 +102,9 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         path.direction.push((path.startCoords.side + 2).mod(4));
         path.length++;
 
-        // trova le tile successive
-        let endPath = false;
-        while (!endPath) {
+        // ottieni elementi successivi tramite while
+        let endOfThePath = false;
+        while (!endOfThePath) {
             let lastTileCoords = path.tilesCoords[path.length - 1];
             let lastTileDirection = path.direction[path.length - 1];
             let nextTileCoords = {x: -1, y: -1};
@@ -148,7 +144,7 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
                     nextTileCoords.y = lastTileCoords.y;
                     break;
                 case 3:
-                    // versi sinistra
+                    // verso sinistra
                     nextTileCoords.x = lastTileCoords.x;
                     nextTileCoords.y = lastTileCoords.y - 1;
                     break;
@@ -160,7 +156,7 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
                     path.tilesCoords[i].y === nextTileCoords.y &&
                     path.direction[i] === nextTileDirection) {
                     path.loop = true;
-                    endPath = true;
+                    endOfThePath = true;
                 }
             }
 
@@ -169,76 +165,82 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
                 // uscita dal lato in alto
                 path.endCoords.side = 0;
                 path.endCoords.distance = nextTileCoords.y;
-                endPath = true;
+                endOfThePath = true;
 
             } else if (nextTileDirection === 1 && nextTileCoords.y > 4) {
                 // uscita dal lato destro
                 path.endCoords.side = 1;
                 path.endCoords.distance = nextTileCoords.x;
-                endPath = true;
+                endOfThePath = true;
 
             } else if (nextTileDirection === 2 && nextTileCoords.x > 4) {
                 // uscita dal lato in basso
                 path.endCoords.side = 2;
                 path.endCoords.distance = nextTileCoords.y;
-                endPath = true;
+                endOfThePath = true;
 
             } else if (nextTileDirection === 3 && nextTileCoords.y < 0) {
                 // uscita dal lato sinistro
                 path.endCoords.side = 3;
                 path.endCoords.distance = nextTileCoords.x;
-                endPath = true;
+                endOfThePath = true;
             }
 
-            if (endPath === false) {
-                // la prossima tile è valida: aggiungila alla struttura dati
+            // la prossima tile è valida: aggiungila alla struttura dati
+            if (endOfThePath === false) {
                 path.length++;
                 path.direction.push(nextTileDirection);
                 path.tilesCoords.push(nextTileCoords);
             }
         }
 
+        // memorizza il path
         if (identity === 'player') {
             playerPath = path;
         } else {
             enemyPath = path;
         }
 
+        // restituisci un oggetto rappresentante il risultato del giocatore
         let timeValue = (identity === 'player' ? gameData.getPlayerMatchTime() : gameData.getEnemyMatchTime());
-
-        return { length: path.length, loop: path.loop, time: timeValue };
+        return { length: path.length, loop: path.loop, time: timeValue,
+                 points: calculatePoints(path.length, path.loop, timeValue) };
     };
 
-    robyAnimator.calculateResults = function() {
-        let playerResultValue = calculatePath('player');
-        let enemyResultValue = calculatePath('enemy');
-        return { playerResult: playerResultValue, enemyResult: enemyResultValue };
-    };
 
+    robyAnimator.animateAndFinish = function(endMatchCallback) {
+        animatePath('player', endMatchCallback);
+        animatePath('enemy', endMatchCallback);
+    };
 
     // anima il movimento di roby
     let animatePath = function (identity, endCallback) {
-        /*let roby = (identity === 'player' ? playerRoby : enemyRoby);
+        let roby = (identity === 'player' ? playerRoby : enemyRoby);
         let path = (identity === 'player' ? playerPath : enemyPath);
         let startPosition = (identity === 'player' ? gameData.getPlayerStartPosition()
             : gameData.getEnemyStartPosition());
 
-        if (startPosition.distance === -1 && startPosition.side === -1)
+        if (startPosition.distance === -1 && startPosition.side === -1) {
+            if (lastMovement) endCallback(); else lastMovement = true;
             return;
+        }
 
         roby.delay(1000);
         for (let i = 0; i < path.length; i++) {
             let currentTilePos = completeGridTiles[path.tilesCoords[i].x][path.tilesCoords[i].y].position();
-
             roby.animate({left: currentTilePos.left, top: currentTilePos.top}, { duration: 800 });
             roby.delay(200);
-            roby.queue(function (next) {
+            roby.queue(function(next) {
                 // rotation to the next direction
-                if (i > 0 && i > path.length) {
-                    roby.rotateRobot(path.direction[i], path.direction[i + 1]);
+                if ((i + 1) < path.length) {
+                    //roby.rotateRobot(path.direction[i], path.direction[i + 1], next);
+                    let rotationValue = 'rotate(' + getAngle(path.direction[i + 1]).toString() + 'deg)';
+                    roby.css({transform: rotationValue});
 
-                } else if (i > 0) {
-                    roby.rotateRobot(path.direction[i], path.endCoords.direction);
+                } else {
+                    //roby.rotateRobot(path.direction[i], path.endCoords.distance, next);
+                    let rotationValue = 'rotate(' + getAngle(path.endCoords.distance).toString() + 'deg)';
+                    roby.css({transform: rotationValue});
                 }
                 next();
             });
@@ -250,19 +252,38 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
             // fine animazione; esegui il callback se si è gli ultimi ad eseguire
             if (lastMovement) endCallback(); else lastMovement = true;
             next();
-        });*/
-        if (lastMovement) endCallback(); else lastMovement = true;
-
+        });
     };
 
-    // IL MODULO IN JAVASCRIPT E' BUGGATO: va risolto con questa funzione
+
+
+    /*
+     * FUNZIONI HELPER
+     */
+
+    // calcola il punteggio della partita in base ai parametri risultato
+    let calculatePoints = function (length, loop, time) {
+        let points = 0;
+        points += length * 2;
+
+        if (loop)
+            points += 20;
+
+        points += Math.floor(time / 1000);
+
+        return points;
+    };
+
+    // risolve il bug della funzione modulo di JavaScript
+    // (https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers)
     Number.prototype.mod = function(n) {
         return ((this % n) + n) % n;
     };
 
-    // jQuery plugin che consente la rotazione di roby
-    $.fn.rotateRobot = function(startDirection, endDirection) {
-        let args = $.speed(200, 'swing');
+
+    // jQuery plugin che consente la rotazione del robottino, dando come argomenti le direzioni di partenza e arrivo
+    $.fn.rotateRobot = function(startDirection, endDirection, complete) {
+        let args = $.speed(200, 'swing', complete);
         let step = args.step;
         return this.each(function(i, e) {
             args.complete = $.proxy(args.complete, e);
@@ -275,7 +296,7 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
     };
 
 
-    // ricava il valore in gradi dell'angolo descritto da roby in base alla direzione
+    // ricava il valore in gradi dell'angolo descritto da roby in base alla direzione data
     let getAngle = function (direction) {
         switch(direction) {
             case 0:
@@ -290,14 +311,11 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
             case 3:
                 // direzione verso sinistra
                 return 270;
+            default:
+                return 0;
         }
     };
 
-
-    robyAnimator.animateAndFinish = function(endMatchCallback) {
-        animatePath('player', endMatchCallback);
-        animatePath('enemy', endMatchCallback);
-    };
 
     return robyAnimator;
 });

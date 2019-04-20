@@ -60,10 +60,19 @@ angular.module('codyColor').controller('matchCtrl', function($scope, rabbit, gam
 
                 if (playerMatchTimerValue >= 0) {
                     scopeService.safeApply($scope, function () {
-                        $scope.playerMatchTimerText = getTimerText(playerMatchTimerValue);
+                        $scope.playerMatchTimerText = gameData.getTimerText(playerMatchTimerValue);
                     });
                 } else {
                     clearInterval(gameData.getPlayerMatchTimer());
+                    scopeService.safeApply($scope, function () {
+                        $scope.showCompleteGrid = true;
+                        $scope.robyPositioned = true;
+                    });
+                    clearInterval(gameData.getPlayerMatchTimer());
+
+                    if ($scope.enemyPositioned && $scope.robyPositioned) {
+                        endMatch();
+                    }
                 }
             }, 10));
 
@@ -73,27 +82,22 @@ angular.module('codyColor').controller('matchCtrl', function($scope, rabbit, gam
 
                 if (enemyMatchTimerValue >= 0) {
                     scopeService.safeApply($scope, function () {
-                        $scope.enemyMatchTimerText = getTimerText(enemyMatchTimerValue);
+                        $scope.enemyMatchTimerText = gameData.getTimerText(enemyMatchTimerValue);
                     });
                 } else {
+                    scopeService.safeApply($scope, function () {
+                        $scope.enemyPositioned = true;
+                    });
+
                     clearInterval(gameData.getEnemyMatchTimer());
+
+                    if ($scope.enemyPositioned && $scope.robyPositioned) {
+                        endMatch();
+                    }
                 }
             }, 10));
         }
     }, 1000);
-
-    // funzione che restituisce il valore leggibile del timer memorizzato
-    let getTimerText = function(timerValue) {
-        let secondsInt = Math.floor(timerValue / 1000);
-        let decimalsInt = Math.floor((timerValue - (secondsInt * 1000)) / 10).toString();
-        let decimals = decimalsInt.toString();
-        let seconds = secondsInt.toString();
-
-        if (decimals.length === 1)
-            decimals = '0' + decimals;
-
-        return seconds + ':' + decimals;
-    };
 
     // associa il colore ad ogni tile, a seconda di quanto memorizzato nei gameData
     $scope.getTileStyle = function (x, y) {
@@ -194,27 +198,34 @@ angular.module('codyColor').controller('matchCtrl', function($scope, rabbit, gam
             $scope.endMatch = true;
         });
         robyAnimator.positionRoby('enemy');
-        let results = robyAnimator.calculateResults();
 
-        // calcola e aggiungi al punteggio
-        gameData.addPlayerPoints(calculatePoints(results.playerResult));
-        gameData.addEnemyPoints(calculatePoints(results.enemyResult));
+        let results = robyAnimator.calculateResults();
+        gameData.setCurrentMatchResult(results);
+        gameData.addPlayerPoints(results.playerResult.points);
+        gameData.addEnemyPoints(results.enemyResult.points);
 
         robyAnimator.animateAndFinish(function () {
-            $location.path('/aftermatch');
+            scopeService.safeApply($scope, function(){
+                $location.path('/aftermatch');
+            });
         });
     };
 
 
-    let calculatePoints = function (result) {
-        let points = 0;
-        points += result.length * 2;
+    $scope.exitGame = function () {
+        if(confirm("Sei sicuro di voler abbandonare la partita?")) {
+            rabbit.sendQuitGameMessages();
+            rabbit.unsubscribeGameRoom();
+            $location.path('/home');
+            $scope.$apply();
+        }
+    };
 
-        if (result.loop)
-            points += 20;
-
-        points += Math.floor(result.time / 1000);
-
-        return points;
-    }
+    rabbit.setQuitCallback(function () {
+        rabbit.sendQuitGameMessages();
+        rabbit.unsubscribeGameRoom();
+        $location.path('/home');
+        $scope.$apply();
+        alert("L'avversario ha abbandonato la partita.");
+    });
 });

@@ -2,57 +2,53 @@
     <div id="page-body-container">
         <div class="cc-container-group">
             <div class="cc-container">
-                <div class="centered-column">
-                    <p class="big-text">{{playerPoints}}</p>
-                </div>
-
-                <div class="centered-column">
-                    <p class="big-text">{{enemyPoints}}</p>
-                </div>
+                <div class="centered-column"><p class="big-text">{{playerPoints}}</p></div>
+                <div class="centered-column"><p class="big-text">{{enemyPoints}}</p></div>
             </div>
 
             <div class="cc-container">
-                <div class="centered-column">
-                    {{playerNickname}}
-                </div>
-
-                <div class="centered-column">
-                    {{enemyNickname}}
-                </div>
+                <div class="centered-column">{{playerNickname}}</div>
+                <div class="centered-column">{{enemyNickname}}</div>
             </div>
         </div>
 
-        <h2>Vince giocatore 1!</h2>
-
+        <h2>Vince {{winner}}!</h2>
 
         <table id="aftermatch-table">
             <tr>
                 <th class="aftermatch-cell"></th>
-                <th class="aftermatch-cell">Lunghezza</th>
-                <th class="aftermatch-cell">Tempo</th>
-                <th class="aftermatch-cell">Partenza</th>
-                <th class="aftermatch-cell">Punteggio</th>
+                <th class="aftermatch-cell"><i class="fas fa-shoe-prints icon-aftermatch"></i></th>
+                <th class="aftermatch-cell"><i class="far fa-clock icon-aftermatch"></i></th>
+                <th class="aftermatch-cell"><i class="fas fa-sign-in-alt icon-aftermatch"></i></th>
+                <th class="aftermatch-cell"><i class="fas fa-robot icon-aftermatch"></i></th>
             </tr>
             <tr>
-                <td class="aftermatch-cell">Giocatore 1</td>
-                <td class="aftermatch-cell">24</td>
-                <td class="aftermatch-cell">20.32</td>
-                <td class="aftermatch-cell">D3</td>
-                <td class="aftermatch-cell">10</td>
+                <td class="aftermatch-cell"><img src="/img/roby-walking-1.png" alt="player icon"  class="robot-aftermatch"/> </td>
+                <td class="aftermatch-cell">{{results.playerResult.loop ? 'Loop!' : results.playerResult.length}}</td>
+                <td class="aftermatch-cell">{{formattedPlayerTime}}</td>
+                <td class="aftermatch-cell">{{formattedPlayerStart}}</td>
+                <td class="aftermatch-cell">{{results.playerResult.points}}</td>
             </tr>
             <tr>
-                <td class="aftermatch-cell">Giocatore 2</td>
-                <td class="aftermatch-cell">18</td>
-                <td class="aftermatch-cell">14.23</td>
-                <td class="aftermatch-cell">A1</td>
-                <td class="aftermatch-cell">23</td>
+                <td class="aftermatch-cell"><img src="/img/enemy-walking-1.png" alt="enemy icon" class="robot-aftermatch" /></td>
+                <td class="aftermatch-cell">{{results.enemyResult.loop ? 'Loop!' : results.enemyResult.length}}</td>
+                <td class="aftermatch-cell">{{formattedEnemyTime}}</td>
+                <td class="aftermatch-cell">{{formattedEnemyStart}}</td>
+                <td class="aftermatch-cell">{{results.enemyResult.points}}</td>
             </tr>
         </table>
-
-        <ul>
-            <li><a href="#!match" class="menu-link">Continua partita</a></li>
-        </ul>
-
+        <p></p>
+        <div ng-hide="newMatchClicked">
+            <button type="submit" ng-click="newMatch()">Continua partita</button>
+            <p ng-show="enemyRequestNewMatch">Il tuo avversario vuole continuare la partita!</p>
+        </div>
+        <div ng-show="newMatchClicked">
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
+            </div>
+            <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
+        </div>
 
     </div>
 
@@ -61,6 +57,10 @@
 
 <div id="footer-container">
     <div id="footer-content">
-        <div class="footer-component-left"><a href="#!home"><i class="fa fa-times fa-2x icons"></i></a></div>
+        <div class="footer-component-left">
+            <i class="fas fa-sign-out-alt fa-2x icons" ng-click="exitGame()"></i>
+            <i class="fas fa-plug fa-2x" ng-class="connected? 'icons-connected' : 'icons-notconnected'"></i>
+        </div>
         <div class="footer-component-right"><i class="far fa-user-circle fa-2x icons"></i>Non loggato</div>
     </div>
+</div>

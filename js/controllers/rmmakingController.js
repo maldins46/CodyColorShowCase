@@ -3,7 +3,7 @@
  * casuale dei giocatori
  */
 angular.module('codyColor').controller('rmmakingCtrl',
-    function ($scope, rabbit, gameData, $location) {
+    function ($scope, rabbit, gameData, $location, scopeService) {
         console.log("Controller random matchmaking ready.");
 
         // si assume che arrivati a questo punto, la connessione al broker è già avvenuta con successo
@@ -80,6 +80,24 @@ angular.module('codyColor').controller('rmmakingCtrl',
             $scope.mmReady = true;
             gameData.setPlayerReady(true);
             rabbit.sendReadyMessage();
-        }
+        };
+
+
+        $scope.exitGame = function () {
+            if(confirm("Sei sicuro di voler abbandonare la partita?")) {
+                rabbit.sendQuitGameMessages();
+                rabbit.unsubscribeGameRoom();
+                $location.path('/home');
+                $scope.$apply();
+            }
+        };
+
+        rabbit.setQuitCallback(function () {
+            rabbit.sendQuitGameMessages();
+            rabbit.unsubscribeGameRoom();
+            $location.path('/home');
+            $scope.$apply();
+            alert("L'avversario ha abbandonato la partita.");
+        });
     }
 );

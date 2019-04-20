@@ -12,6 +12,17 @@ app.controller('splashCtrl', function($scope, rabbit) {
 	console.log("Controller splash ready.");
 	rabbit.connect();
 
+	/*
+	var music = new Audio('/audio/music.wav');
+	music.loop = true;
+	music.play();
+	 */
+
+	/* gestione navigazione personalizzata; factory?
+	$scope.$on('$locationChangeStart', function(evnt, next, current){
+		alert("Utilizza i comandi interni alla pagina per navigare tra le schermate!");
+		evnt.preventDefault();
+	});*/
 });
 
 
@@ -20,6 +31,7 @@ app.controller('splashCtrl', function($scope, rabbit) {
  */
 app.controller('homeCtrl', function($scope, rabbit) {
 	console.log("Controller home ready.");
+
 
 	// perché lo scope? ***È UN SORPRENDENTE STRUMENTO CHE CI SERVIRA' DOPO***
 	$scope.connected = rabbit.getConnectionState();
@@ -40,18 +52,9 @@ app.controller('emptyCtrl', function($scope, rabbit) {
 });
 
 
-// controller partita con avversario casuale
+// controller partita con avversario custom
 app.controller('pmmakingCtrl', function (/* $scope, $location, $http */) {
 	console.log("Controller custom matchmaking ready.");
-});
-
-// controller partita con avversario casuale
-app.controller('aftermatchCtrl', function ($scope, $location, gameData) {
-	console.log("Controller aftermatch ready.");
-	$scope.playerPoints = gameData.getPlayerPoints();
-	$scope.enemyPoints = gameData.getEnemyPoints();
-	$scope.playerNickname = gameData.getPlayerNickname();
-	$scope.enemyNickname = gameData.getEnemyNickname();
 });
 
 

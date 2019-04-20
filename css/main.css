@@ -105,7 +105,7 @@ html {
 
 
 body {
-    background-color: #123d82;
+    background-color: #0c0c1b;
     height: 100%;
     margin: 0;
     color: white;
@@ -193,7 +193,55 @@ body {
     vertical-align: middle;
 }
 
+.floating-component {
+    transform: translateX(0px);
+    animation: float 4s ease-in-out infinite;
+}
 
+.floating-right-component {
+    transform: translateY(0px);
+    animation: float-right 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes float-right {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.flashing-component {
+    animation: flash 2s ease-in-out infinite;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 
 .mmaking-container {
@@ -225,6 +273,9 @@ body {
     width: 29%;
     text-align: left;
     padding-left: 1%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .footer-component-right {
@@ -326,6 +377,12 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 
+.ellipsize {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* 2. Stili splash */
 
 #splash-link {
@@ -368,9 +425,15 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 
-#splash-logo {
+.splash-logo {
     width: 100px;
     height: 100px;
+}
+
+.splash-hint {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 
@@ -385,7 +448,11 @@ input[type=text], input[type=email], input[type=password] {
 
 /* 4. stili matchmaking */
 
-#btn-player-ready {
+.nickform {
+    margin-top:20px;
+}
+
+.btn-player-ready {
     color: #f5f90c;
     text-decoration: none;
     text-align: center;
@@ -397,9 +464,9 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 
-#btn-player-ready:hover {
+.btn-player-ready:hover {
     background-color: #f5f90c;
-    color: #123d82;
+    color: #0c0c1b;
 }
 
 /* 5. stili match */
@@ -422,7 +489,7 @@ input[type=text], input[type=email], input[type=password] {
     float: left;
     width: 50%;
     white-space: nowrap;
-    overflow: visible;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -447,6 +514,16 @@ input[type=text], input[type=email], input[type=password] {
     max-width:90%;
     margin: 0 auto;
     color: white;
+}
+
+.icon-aftermatch {
+    color: white;
+}
+
+.robot-aftermatch {
+    width: 30px;
+    height: 30px;
+    transform: rotate(90deg);
 }
 
 .arrow-cell-over {

@@ -20,6 +20,8 @@ angular.module('codyColor').factory('gameData', function () {
     // dati sulla partita
     let playerPoints;
     let enemyPoints;
+
+    let currentMatchResult;
     let currentMatchTiles;
     let playerStartPosition;
     let enemyStartPosition;
@@ -182,6 +184,10 @@ angular.module('codyColor').factory('gameData', function () {
         enemyStartPosition = position;
     };
 
+    gameData.formatStartPosition = function(position) {
+      return position.side.toString() + ' ' + position.distance.toString();
+    };
+
 
     gameData.getPlayerMatchTimer = function () {
         return playerMatchTimer;
@@ -225,6 +231,20 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
+    // funzione che restituisce il valore leggibile di un timer
+    gameData.getTimerText = function(timerValue) {
+        let secondsInt = Math.floor(timerValue / 1000);
+        let decimalsInt = Math.floor((timerValue - (secondsInt * 1000)) / 10).toString();
+        let decimals = decimalsInt.toString();
+        let seconds = secondsInt.toString();
+
+        if (decimals.length === 1)
+            decimals = '0' + decimals;
+
+        return seconds + ':' + decimals;
+    };
+
+
     gameData.getMatchCount = function () {
         if(matchCount === undefined) {
             matchCount = 1;
@@ -238,6 +258,18 @@ angular.module('codyColor').factory('gameData', function () {
         } else {
             matchCount++;
         }
+    };
+
+    gameData.setCurrentMatchResult = function (result) {
+        currentMatchResult = result;
+    };
+
+    gameData.getCurrentMatchResult = function () {
+        if (currentMatchResult === undefined)
+            currentMatchResult = { playerResult: { points: 0, length: 0, loop: false, time: 0 },
+                                    enemyResult: { points: 0, length: 0, loop: false, time: 0 }};
+
+        return currentMatchResult;
     };
 
     return gameData;
