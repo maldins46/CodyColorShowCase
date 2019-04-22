@@ -4,7 +4,8 @@
             <p>Scegli il nickname con il quale apparire nella partita</p>
             <form name="nickForm">
                 <input type="text" name="nickname" ng-model="nickname" placeholder="Nickname" required autofocus/>
-                <button class="icons-margin floating-right-component" type="submit" ng-click="requestMMaking(nickForm.nickname.$viewValue)"
+                <button class="icons-margin floating-right-component" type="submit"
+                        ng-click="requestMMaking(nickForm.nickname.$viewValue)"
                         ng-disabled="nickForm.nickname.$invalid">
                     <i class="fas fa-play"></i>
                 </button>
@@ -12,23 +13,28 @@
         </div>
 
         <div ng-show="mmInProgress" class="mmaking-container">
-            <div class="lds-ripple">
-                <div></div>
-                <div></div>
+            <!-- Spinner -->
+            <div class="lds-grid">
+                <div></div><div></div><div></div>
+                <div></div><div></div><div></div>
+                <div></div><div></div><div></div>
             </div>
             <p class="flashing-component">In attesa di un avversario…</p>
         </div>
 
         <div ng-show="mmCompleted" class="mmaking-container">
             Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
-            <button class="btn-player-ready flashing-component" type="submit" ng-click="playerReady()">Iniziamo! <i class="fas fa-play"></i>
+            <button class="btn-player-ready flashing-component" type="submit" ng-click="playerReady()">Iniziamo! <i
+                    class="fas fa-play"></i>
             </button>
         </div>
 
         <div ng-show="mmReady" class="mmaking-container">
-            <div class="lds-ripple">
-                <div></div>
-                <div></div>
+            <!-- Spinner -->
+            <div class="lds-grid">
+                <div></div><div></div><div></div>
+                <div></div><div></div><div></div>
+                <div></div><div></div><div></div>
             </div>
             <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
         </div>
@@ -40,9 +46,10 @@
 <div id="footer-container">
     <div id="footer-content">
         <div class="footer-component-left">
-            <i class="fas fa-sign-out-alt fa-2x icons" ng-click="exitGame()"></i>
-            <i class="fas fa-plug fa-2x" ng-class="connected? 'icons-connected' : 'icons-notconnected'"></i>
+            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
+            <i class="fas fa-2x footer-icons" ng-class="basePlaying ?  'fa-volume-up' : 'fa-volume-mute'"
+               ng-click="toggleBase()"></i>
         </div>
-        <div class="footer-component-right"><i class="far fa-user-circle fa-2x icons"></i>Non loggato</div>
+        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
     </div>
 </div>

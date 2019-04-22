@@ -1,26 +1,35 @@
 <div id="wrapper">
-  <div id="page-body-container">    
-    <form class="form-signin">
-    <ul>
-     <li>Due righe di indicazioni sul login, 
-        lorem ipsum dolor sit amet, consectetur adipiscing; Due righe di indicazioni sul login, 
-        lorem ipsum dolor sit amet, consectetur adipiscing.</li>
-      <br/>    
-      <li><input type="email" id="inputEmail" placeholder="Email" required autofocus></li>
-      <li><input type="text" id="inputEmail" placeholder="Nickname" required></li>
-      <li><input type="password" id="inputPassword" class="form-control" placeholder="Password" required></li>
-      <li><input type="password" id="inputPassword" class="form-control" placeholder="Ripeti la password" required></li>
-      <br/>
-      <li><button type="submit">Registra utente</button></li>
-    </ul>
-  </form>
-  </div>
-  
-  <div id="push"></div>
+    <div id="page-body-container">
+        <form class="form-signin">
+            <ul>
+                <li>Due righe di indicazioni sul login,
+                    lorem ipsum dolor sit amet, consectetur adipiscing; Due righe di indicazioni sul login,
+                    lorem ipsum dolor sit amet, consectetur adipiscing.
+                </li>
+                <br/>
+                <li><input type="email" id="inputEmail" placeholder="Email" required autofocus></li>
+                <li><input type="text" id="inputNickname" placeholder="Nickname" required></li>
+                <li><input type="password" id="inputPassword" class="form-control" placeholder="Password" required></li>
+                <li><input type="password" id="inputPasswordRepeat" class="form-control" placeholder="Ripeti la password"
+                           required></li>
+                <br/>
+                <li>
+                    <button type="submit">Registra utente</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+
+    <div id="push"></div>
 </div>
 
 <div id="footer-container">
-  <div id="footer-content"> 
-      <div class="footer-component-left"><a href="#!home"><i class="fa fa-times fa-2x icons"></i></a></div>
-      <div class="footer-component-right"> <i class="far fa-user-circle fa-2x icons"></i>Non loggato</div>
+    <div id="footer-content">
+        <div class="footer-component-left">
+            <i class="fa fa-times fa-2x footer-icons" ng-click="goToHome()"></i>
+            <i class="fas fa-2x footer-icons" ng-class="basePlaying ?  'fa-volume-up' : 'fa-volume-mute'"
+               ng-click="toggleBase()"></i>
+        </div>
+        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
+    </div>
 </div>

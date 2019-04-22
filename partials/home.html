@@ -1,25 +1,32 @@
 <!-- Schermata principale dell'app. Contiene il menù principale di navigazione -->
 <div id="wrapper">
-  <div id="header-container">
-    <h1 class="floating-component">CodyColor</h1>
-  </div>
-  
-  <div id="page-body-container-home">    
-    <ul>
-      <li><a href="#!rules" class="menu-link">Come si gioca?</a></li>
-      <li><a href="#!rmmaking" class="menu-link">1vs1 Casuale</a></li>
-      <li><a href="#!pmmaking" class="menu-link">1vs1 Personalizzato</a></li>
-      <li><a href="#!ranking" class="menu-link">Classifiche</a></li>
-      <li><a href="#!profile" class="menu-link">Il tuo Profilo</a></li>
-      <li><a href="#!login" class="menu-link">Accedi</a></li>
-    </ul>
-  </div>
-  
-  <div id="push"></div>
+    <div id="header-container">
+        <h1 class="floating-component">CodyColor</h1>
+    </div>
+
+    <div id="page-body-container-home">
+        <ul>
+            <li><button type="submit" ng-click="goToRules()">Come si gioca?</button></li>
+            <li><button type="submit" ng-click="goToRMMaking()">Partita casuale</button></li>
+            <li><button type="submit" ng-click="goToPMMaking()">Partita custom</button></li>
+            <li><button type="submit" ng-click="goToRanking()">Classifiche</button></li>
+            <li><button type="submit" ng-click="goToProfile()">Il tuo profilo</button></li>
+            <li><button type="submit" ng-click="goToLogin()">Accedi</button></li>
+            <li>
+                <p class="flashing-component" ng-hide="connected">Solo un momento, mi sto connettendo al server…</p>
+            </li>
+        </ul>
+    </div>
+
+    <div id="push"></div>
 </div>
 
+
 <div id="footer-container">
-  <div id="footer-content"> 
-    <i class="far fa-user-circle fa-2x icons"></i>Non loggato
+    <div id="footer-content">
+        <div class="footer-component-left">
+            <i class="fas fa-2x footer-icons" ng-class="basePlaying ? 'fa-volume-up': 'fa-volume-mute'" ng-click="toggleBase()"></i>
+        </div>
+        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
     </div>
 </div>

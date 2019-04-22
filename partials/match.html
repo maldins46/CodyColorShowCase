@@ -387,9 +387,10 @@
 <div id="footer-container">
     <div id="footer-content">
         <div class="footer-component-left">
-            <i class="fas fa-sign-out-alt fa-2x icons" ng-click="exitGame()"></i>
-            <i class="fas fa-plug fa-2x" ng-class="connected? 'icons-connected' : 'icons-notconnected'"></i>
+            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
+            <i class="fas fa-2x footer-icons" ng-class="basePlaying ?  'fa-volume-up' : 'fa-volume-mute'"
+               ng-click="toggleBase()"></i>
         </div>
-        <div class="footer-component-right"><i class="far fa-user-circle fa-2x icons"></i>Non loggato</div>
+        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
     </div>
 </div>

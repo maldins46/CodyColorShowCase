@@ -7,45 +7,34 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     let rabbit = {};
 
-    // queue-baseTopic utilizzati per comunicare con il server
-    let serverControlQueue = "/queue/serverControl";
-    let clientControlTopic = "/topic/clientsControl";
-    let gameRoomsTopic     = "/topic/gameRooms";
+    // credenziali di comunicazione con il server
+    const rabbitUsername = "guest";
+    const rabbitPassword = "guest";
+    // /* SIMULAZIONI IN LOCALE */ const serverUrl = 'ws://127.0.0.1:15674/ws';
+    // /* SENZA HTTPS */           const serverUrl = 'ws://botify.it/codycolor/ws';
+    const serverUrl = "wss://botify.it/codycolor/ws";
+    const rabbitVHost = "/";
+
+    const serverControlQueue = "/queue/serverControl";
+    const clientControlTopic = "/topic/clientsControl";
+    const gameRoomsTopic     = "/topic/gameRooms";
 
     // crea il messaggio da utilizzare come richiesta di connessione
-    let uniqueClientId;
+    const uniqueClientId = (Math.floor(Math.random() * 100000)).toString();
 
     // riconosce se il client è connesso a rabbit al momento, oppure no
     let connected;
     let client;
 
-    // callback passati dal controller, utilizzati per eseguire del
-    // codice all'arrivo di nuovi messaggi
-    let onGameRequestResponse;
-    let onHereMessage;
-    let onReadyMessage;
-    let onTilesMessage;
-    let onQuitGame;
-
-    // callback match
-    let onEnemyPositionedMessage;
+    // callback passati dai vari controller, utilizzati per eseguire del codice all'arrivo di nuovi messaggi
+    let callbacks = {};
 
     // timer di heartbeat
     let heartbeatTimer;
 
     // riferimenti alle subscription
-    let serverInitialSubscription;
+    let serverDirectSubscription;
     let gameRoomSubscription;
-
-
-    // crea, solo se ancora non inizializzato, l'identificatore univoco del client utilizzato
-    // nella prima connessione al server
-    let getUniqueClientId = function() {
-        if (uniqueClientId === undefined)
-            uniqueClientId = (Math.floor(Math.random() * 100000)).toString();
-        return uniqueClientId;
-    };
-
 
     // ottiene lo stato attuale della connessione al broker
     rabbit.getConnectionState = function() {
@@ -55,74 +44,87 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     };
 
 
-    rabbit.setQuitCallback = function(onQuitGameM) {
-        onQuitGame = onQuitGameM;
+    // callback necessari per il matchmaking
+    rabbit.setMMakingCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
+                                          onQuitGameMessage, onConnectionLost) {
+        callbacks.onGameRequestResponse = onGameRequestResponse;
+        callbacks.onHereMessage         = onHereMessage;
+        callbacks.onReadyMessage        = onReadyMessage;
+        callbacks.onTilesMessage        = onTilesMessage;
+        callbacks.onQuitGameMessage     = onQuitGameMessage;
+        callbacks.onConnectionLost      = onConnectionLost;
     };
 
-    // passa i callback necessari per il matchmaking
-    rabbit.setMMakingCallbacks = function(onGameRequestResponseMM, onHereMessageMM, onReadyMessageMM, onTilesMessageMM) {
-        onGameRequestResponse = onGameRequestResponseMM;
-        onHereMessage         = onHereMessageMM;
-        onReadyMessage        = onReadyMessageMM;
-        onTilesMessage        = onTilesMessageMM;
-    };
-
-    // passa i callback necessari per il matchmaking
-    rabbit.setAftermatchCallbacks = function(onReadyMessageMM, onTilesMessageMM) {
-        onReadyMessage        = onReadyMessageMM;
-        onTilesMessage        = onTilesMessageMM;
+    // callback necessari per la schermata di aftermatch
+    rabbit.setAftermatchCallbacks = function(onReadyMessage, onTilesMessage, onQuitGameMessage, onConnectionLost) {
+        callbacks.onReadyMessage    = onReadyMessage;
+        callbacks.onTilesMessage    = onTilesMessage;
+        callbacks.onQuitGameMessage = onQuitGameMessage;
+        callbacks.onConnectionLost  = onConnectionLost;
     };
 
 
-    rabbit.setMatchCallbacks = function(onEnemyPositionedMessageM) {
-        onEnemyPositionedMessage = onEnemyPositionedMessageM;
+    // callback necessari per la schermata match
+    rabbit.setMatchCallbacks = function(onEnemyPositionedMessage, onQuitGameMessage, onConnectionLost) {
+        callbacks.onEnemyPositionedMessage = onEnemyPositionedMessage;
+        callbacks.onQuitGameMessage        = onQuitGameMessage;
+        callbacks.onConnectionLost         = onConnectionLost;
     };
 
 
     // effettua la richiesta di connessione al broker. In caso di connessione
     // completata, sottoscrive il topic di controllo utilizzato per le risposte dal server
-    rabbit.connect = function(extConnectedCallback, extErrorCallback) {
-        //client = Stomp.client('ws://127.0.0.1:15674/ws');
-        //client = Stomp.client('ws://botify.it/codycolor/ws');
-        client = Stomp.client('wss://botify.it/codycolor/ws');
-        client.connect('guest', 'guest',                                       // credenziali 
-                       function() { connectedCallback(extConnectedCallback) }, // onConnect
-                       function() { errorCallback(extErrorCallback) },         // onError
-                       '/');                                                   // vHost
+    rabbit.connect = function(onConnected, onError) {
+        callbacks.onConnected      = onConnected;
+        callbacks.onConnectionLost = onError;
+
+        // /* SIMULAZIONI IN LOCALE */ client = Stomp.client('ws://127.0.0.1:15674/ws');
+        // /* SENZA HTTPS */           client = Stomp.client('ws://botify.it/codycolor/ws');
+        client = Stomp.client(serverUrl);
+        client.connect(rabbitUsername, rabbitPassword, // credenziali
+                       connectedCallback,              // onConnect
+                       errorCallback,                  // onError
+                       rabbitVHost);                   // vHost
     };
 
 
     // una volta avvenuta la connessione con il broker, va sottoscritta la queue temporanea
     // utilizzata per intercettare la risposta del server, quando ancora non si è stati
     // identificati da esso
-    let connectedCallback = function(extConnectedCallback) {
+    let connectedCallback = function() {
         console.log("Connessione a RabbitMQ completata.");
         connected = true;
 
-        serverInitialSubscription = client.subscribe(clientControlTopic + '.' + getUniqueClientId(), // topic
-                                                     handleIncomingMessages);                        // callback
+        // sottoscrivi la queue per la conunicazione con il server
+        serverDirectSubscription = client.subscribe(clientControlTopic + '.' + uniqueClientId, // topic
+                                                    handleIncomingMessages);                   // callback
 
         // eventuali azioni addizionali da compiere a connessione completata
-        if(extConnectedCallback !== undefined)
-            extConnectedCallback();
+        if (callbacks.onConnected !== undefined)
+            callbacks.onConnected();
     };
 
 
-    // callback utilizzato in caso di errore di connessione. todo tentativo riconnessione?
-    let errorCallback = function(extErrorCallback) {
+    // callback utilizzato in caso di errore di connessione
+    let errorCallback = function() {
         console.log("Connessione a RabbitMQ non riuscita.");
         connected = false;
 
-        // eventuali azioni addizionali da compiere a connessione completata
-        if (extErrorCallback !== undefined)
-            extErrorCallback();
+        // ritenta connessione dopo 10 secondi
+        setTimeout(function () {
+            rabbit.connect();
+        }, 10000);
+
+        // eventuali azioni addizionali
+        if (callbacks.onConnectionLost !== undefined)
+            callbacks.onConnectionLost();
     };
 
 
     // invia al server una richiesta per iniziare una nuova partita
     rabbit.sendGameRequest = function() {
         let message = { msgType:      'gameRequest',
-                        correlationId: getUniqueClientId() };
+                        correlationId: uniqueClientId };
 
         // permette di creare una queue con nominativo univoco nel broker,
         // composto dal nome passato più una variabile di sessione.
@@ -190,16 +192,16 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // notifica all'avversario l'avvenuto posizionamento di roby
     rabbit.sendPlayerPositionedMessage = function() {
         let message = { msgType:  'playerPositioned',
-            gameRoomId: gameData.getGameRoomId(),
-            playerId:   gameData.getPlayerId(),
-            matchTime:  gameData.getPlayerMatchTime(),
-            side:       gameData.getPlayerStartPosition().side,
-            distance:   gameData.getPlayerStartPosition().distance };
+                        gameRoomId: gameData.getGameRoomId(),
+                        playerId:   gameData.getPlayerId(),
+                        matchTime:  gameData.getPlayerMatchTime(),
+                        side:       gameData.getPlayerStartPosition().side,
+                        distance:   gameData.getPlayerStartPosition().distance };
 
         if (client !== undefined)
         client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
-            { durable: false, exclusive: false },                    // headers
-            JSON.stringify(message));                                // message
+                    { durable: false, exclusive: false },                    // headers
+                    JSON.stringify(message));                                // message
     };
 
 
@@ -216,25 +218,33 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     };
 
 
-    // utilizzato nel momento in cui il game tra i due giocatori termina
-    rabbit.unsubscribeGameRoom = function() {
-        if(gameRoomSubscription !== undefined)
+    // chiude la connessione alla game room in modo sicuro
+    rabbit.quitGame = function() {
+        if (gameRoomSubscription !== undefined) {
             gameRoomSubscription.unsubscribe();
-    };
+            gameRoomSubscription = undefined;
+        }
 
-    // invia un messaggio per notificare l'abbandono della partita al server e agli altri client connessi alla gameRoom
-    rabbit.sendQuitGameMessages = function() {
+        if (heartbeatTimer !== undefined) {
+            clearInterval(heartbeatTimer);
+            heartbeatTimer = undefined;
+        }
+
+        callbacks = {};
+
         let message = { msgType:     'quitGame',
-            gameRoomId:   gameData.getGameRoomId(),
-            playerId:     gameData.getPlayerId()   };
+                        gameRoomId:   gameData.getGameRoomId(),
+                        playerId:     gameData.getPlayerId()   };
 
-        client.send(serverControlQueue,           // destination
-            { durable: false, exclusive: false }, // headers
-            JSON.stringify(message));             // message
+        // invia messaggi per notificare l'abbandono della partita,
+        // sia al server che agli altri client connessi alla gameRoom
+        client.send(serverControlQueue,                   // destination
+                    { durable: false, exclusive: false }, // headers
+                    JSON.stringify(message));             // message
 
         client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
-            { durable: false, exclusive: false },                    // headers
-            JSON.stringify(message));                                // message
+                    { durable: false, exclusive: false },            // headers
+                    JSON.stringify(message));                        // message
     };
 
 
@@ -243,8 +253,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         let responseObject = JSON.parse(responseMessage.body);
 
         if (responseObject.msgType === 'gameResponse') {
-            serverInitialSubscription.unsubscribe();
-            onGameRequestResponse(responseObject);
+            callbacks.onGameRequestResponse(responseObject);
             startHeartbeat();
 
         } else if (responseObject.playerId === gameData.getPlayerId()) {
@@ -256,23 +265,23 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
             switch(responseObject.msgType) {
 
                 case "here":
-                    onHereMessage(responseObject);
+                    callbacks.onHereMessage(responseObject);
                     break;
 
                 case "ready":
-                    onReadyMessage(responseObject);
+                    callbacks.onReadyMessage(responseObject);
                     break;
 
                 case "tilesResponse":
-                    onTilesMessage(responseObject);
+                    callbacks.onTilesMessage(responseObject);
                     break;
 
                 case "playerPositioned":
-                    onEnemyPositionedMessage(responseObject);
+                    callbacks.onEnemyPositionedMessage(responseObject);
                     break;
 
                 case "quitGame":
-                    onQuitGame();
+                    callbacks.onQuitGameMessage();
                     break;
             }
         }

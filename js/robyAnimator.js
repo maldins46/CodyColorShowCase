@@ -250,7 +250,12 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         roby.delay(1000);
         roby.queue(function (next) {
             // fine animazione; esegui il callback se si è gli ultimi ad eseguire
-            if (lastMovement) endCallback(); else lastMovement = true;
+            if (lastMovement) {
+                endCallback();
+                lastMovement = false;
+            } else {
+                lastMovement = true;
+            }
             next();
         });
     };
@@ -264,12 +269,15 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
     // calcola il punteggio della partita in base ai parametri risultato
     let calculatePoints = function (length, loop, time) {
         let points = 0;
+
+        // ogni passo vale 2 punti
         points += length * 2;
 
-        if (loop)
-            points += 20;
+        // un loop vale 20 punti
+        if (loop) points += 20;
 
-        points += Math.floor(time / 1000);
+        // 5 secondi valgono 1 punto
+        points += Math.floor(time / 5000);
 
         return points;
     };

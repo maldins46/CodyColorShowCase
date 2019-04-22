@@ -1,2 +1,16 @@
-<h1>Errore 404</h1>
-<h2>Page not found.</h2>
+<div id="wrapper">
+    <h1>Errore 404</h1>
+    <h2>Page not found.</h2>
+    <div id="push"></div>
+</div>
+
+<div id="footer-container">
+    <div id="footer-content">
+        <div class="footer-component-left">
+            <i class="fa fa-times fa-2x footer-icons" ng-click="goToHome()"></i>
+            <i class="fas fa-2x footer-icons" ng-class="basePlaying ?  'fa-volume-up' : 'fa-volume-mute'"
+               ng-click="toggleBase()"></i>
+        </div>
+        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
+    </div>
+</div>
