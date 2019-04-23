@@ -800,38 +800,6 @@
       <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/support.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/var/toString.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bower_components/jquery/src/wrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/audioHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/controllers/emptyController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/controllers/homeController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/controllers/loginController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/controllers/pmmakingController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/controllers/rankingController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/controllers/registerController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/controllers/splashController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/navigationHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/sessionHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/riccardomaldini.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/riccardomaldini.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/baseRouting.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/aftermatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/aftermatchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/commonControllers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/matchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/matchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/rmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/rabbitCommunicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/rabbitCommunicator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/robyAnimator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/robyAnimator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/aftermatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/aftermatch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/match.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/match.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/mmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/mmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/ranking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/ranking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/rules.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/rules.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/splash.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/splash.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -843,119 +811,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-134">
-              <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/aftermatch.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/navigationHandler.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="33" column="6" lean-forward="true" selection-start-line="24" selection-end-line="33" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/404.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/pmmakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/robyAnimator.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="278" column="36" selection-start-line="278" selection-start-column="36" selection-end-line="278" selection-end-column="36" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/gameData.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="228" column="24" lean-forward="true" selection-start-line="228" selection-start-column="24" selection-end-line="228" selection-end-column="24" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1158,7 +1014,7 @@
       <workItem from="1555754023186" duration="8711000" />
       <workItem from="1555783138894" duration="5613000" />
       <workItem from="1555858544854" duration="6294000" />
-      <workItem from="1555966152984" duration="5792000" />
+      <workItem from="1555966152984" duration="5923000" />
     </task>
     <task id="LOCAL-00001" summary="Creata prima bozza schermata match">
       <created>1555067124003</created>
@@ -1223,15 +1079,21 @@
       <option name="project" value="LOCAL" />
       <updated>1555766261919</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="implementate gestione sessioni e disconnessioni; aggiunti cookies per la gestione dell'audio; separati i controller; implementazione navigazione con gestione tasto back e refresh">
+      <created>1555973235953</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1555973235953</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104164000" />
+    <option name="totallyTimeSpent" value="104295000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24543288" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1284,7 +1146,8 @@
     <MESSAGE value="terminato flusso partita; da completare animazioni" />
     <MESSAGE value="completato funzionamento base match, aftermatch" />
     <MESSAGE value="problema risorse immagini" />
-    <option name="LAST_COMMIT_MESSAGE" value="problema risorse immagini" />
+    <MESSAGE value="implementate gestione sessioni e disconnessioni; aggiunti cookies per la gestione dell'audio; separati i controller; implementazione navigazione con gestione tasto back e refresh" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementate gestione sessioni e disconnessioni; aggiunti cookies per la gestione dell'audio; separati i controller; implementazione navigazione con gestione tasto back e refresh" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/vendor/angular-animate.1.7.8.min.js">
@@ -1618,7 +1481,7 @@
     <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-134">
-          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
