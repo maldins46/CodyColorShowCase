@@ -4,7 +4,7 @@
 angular.module('codyColor').factory("audioHandler", function($cookies) {
     let audioHandler = {};
     let musicBase = new Audio();
-    musicBase.src = '/audio/music.wav';
+    musicBase.src = 'audio/music.wav';
     musicBase.loop = true;
 
     audioHandler.getBaseState = function() {
