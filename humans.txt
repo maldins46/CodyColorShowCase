@@ -3,13 +3,13 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    <Riccardo Maldini> -- <Programmer@DigitSrl> -- <https://github.com/maldins46>
 
 # THANKS
 
-    <name>
+    <Prof. Alessandro Bogliolo>
 
 # TECHNOLOGY COLOPHON
 
-    CSS3, HTML5
-    Apache Server Configs, jQuery, Modernizr, Normalize.css
+    CSS3, HTML5, JavaScript
+    Apache Server Configs, jQuery, Modernizr, Normalize.css, angularJs
