@@ -37,7 +37,7 @@
         <p></p>
         <div ng-hide="newMatchClicked">
             <button type="submit" ng-click="newMatch()">Continua partita</button>
-            <p ng-show="enemyRequestNewMatch">Il tuo avversario vuole continuare la partita!</p>
+            <p ng-show="enemyRequestNewMatch" class="flashing-component">Il tuo avversario vuole continuare la partita!</p>
         </div>
         <div ng-show="newMatchClicked">
             <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>

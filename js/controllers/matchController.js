@@ -15,9 +15,19 @@ angular.module('codyColor').controller('matchCtrl',
         $scope.enemyPoints = gameData.getEnemyPoints();
         $scope.playerNickname = gameData.getPlayerNickname();
         $scope.enemyNickname = gameData.getEnemyNickname();
+        $scope.robyImageGrid = 'roby-positioned';
+        $scope.enemyImageGrid = 'enemy-positioned';
 
         // inizializzazione elementi griglia
-        robyAnimator.initializeElements();
+        robyAnimator.initializeElements(function (image) {
+            scopeService.safeApply($scope, function () {
+                $scope.robyImageGrid = image;
+            });
+        }, function (image) {
+            scopeService.safeApply($scope, function () {
+                $scope.enemyImageGrid = image;
+            });
+        });
 
         // array per la memorizzazioni di effetti sulle posizioni di partenza
         $scope.startPositionsOver = new Array(4);
@@ -50,6 +60,7 @@ angular.module('codyColor').controller('matchCtrl',
 
             } else {
                 clearInterval(startCountdownTimer);
+                startCountdownTimer = undefined;
 
                 // interrompi countdown e mostra schermata di gioco
                 scopeService.safeApply($scope, function () {
@@ -200,10 +211,24 @@ angular.module('codyColor').controller('matchCtrl',
             }
         }, function () {
             rabbit.quitGame();
+            if (gameData.getEnemyMatchTimer() !== undefined)
+                clearInterval(gameData.getEnemyMatchTimer());
+            if (gameData.getPlayerMatchTimer() !== undefined)
+                clearInterval(gameData.getPlayerMatchTimer());
+            if (startCountdownTimer !== undefined)
+                clearInterval(startCountdownTimer);
+            robyAnimator.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', true);
             alert("L'avversario ha abbandonato la partita.");
         }, function () {
             rabbit.quitGame();
+            if (gameData.getEnemyMatchTimer() !== undefined)
+                clearInterval(gameData.getEnemyMatchTimer());
+            if (gameData.getPlayerMatchTimer() !== undefined)
+                clearInterval(gameData.getPlayerMatchTimer());
+            if (startCountdownTimer !== undefined)
+                clearInterval(startCountdownTimer);
+            robyAnimator.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', true);
             alert("Si è verificato un errore nella connessione con il server. Partita terminata.");
         });
@@ -230,6 +255,13 @@ angular.module('codyColor').controller('matchCtrl',
         $scope.exitGame = function () {
             if (confirm("Sei sicuro di voler abbandonare la partita?")) {
                 rabbit.quitGame();
+                if (gameData.getEnemyMatchTimer() !== undefined)
+                    clearInterval(gameData.getEnemyMatchTimer());
+                if (gameData.getPlayerMatchTimer() !== undefined)
+                    clearInterval(gameData.getPlayerMatchTimer());
+                if (startCountdownTimer !== undefined)
+                    clearInterval(startCountdownTimer);
+                robyAnimator.quitGame();
                 navigationHandler.goToPage($location, $scope, '/home');
             }
         };

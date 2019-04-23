@@ -3,11 +3,13 @@
         <div ng-show="nicknameRequired" class="mmaking-container">
             <p>Scegli il nickname con il quale apparire nella partita</p>
             <form name="nickForm">
-                <input type="text" name="nickname" ng-model="nickname" placeholder="Nickname" required autofocus/>
-                <button class="icons-margin floating-right-component" type="submit"
+                <label>
+                    <input type="text" name="nickname" ng-model="nickname" placeholder="Nickname" required autofocus/>
+                </label>
+                <button class="icons-margin floating-right-component"
                         ng-click="requestMMaking(nickForm.nickname.$viewValue)"
                         ng-disabled="nickForm.nickname.$invalid">
-                    <i class="fas fa-play"></i>
+                    <i class="fas fa-angle-double-right"></i>
                 </button>
             </form>
         </div>
@@ -24,8 +26,7 @@
 
         <div ng-show="mmCompleted" class="mmaking-container">
             Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
-            <button class="btn-player-ready flashing-component" type="submit" ng-click="playerReady()">Iniziamo! <i
-                    class="fas fa-play"></i>
+            <button class="flashing-component" ng-click="playerReady()">Iniziamo! <i class="fas fa-angle-double-right floating-right-component"></i>
             </button>
         </div>
 

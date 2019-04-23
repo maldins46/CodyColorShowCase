@@ -16,8 +16,22 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
 
     let lastMovement = false;
 
+    let robyImageCallbacks = {};
+    let robyWalkingTimers = {};
 
-    robyAnimator.initializeElements = function () {
+    // in caso di interruzione del gioco, sospendi i timers
+    robyAnimator.quitGame = function() {
+        if (robyWalkingTimers.player !== undefined)
+            clearInterval((robyWalkingTimers.player));
+
+        if (robyWalkingTimers.enemy !== undefined)
+            clearInterval((robyWalkingTimers.enemy));
+    };
+
+    robyAnimator.initializeElements = function (changePlayerImage, changeEnemyImage) {
+        robyImageCallbacks.player = changePlayerImage;
+        robyImageCallbacks.enemy = changeEnemyImage;
+
         // riferimenti jQuery ad alcuni elementi dell'interfaccia. Utilizzato per fornire l'animazione di
         // movimento di roby; Inizializzati qua per motivi prestazionali
         playerRoby = $("#player-roby");
@@ -217,8 +231,12 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
     let animatePath = function (identity, endCallback) {
         let roby = (identity === 'player' ? playerRoby : enemyRoby);
         let path = (identity === 'player' ? playerPath : enemyPath);
+        let imageCallback = (identity === 'player' ? robyImageCallbacks.player : robyImageCallbacks.enemy);
+        let imageValues = (identity === 'player' ? ['roby-walking-1', 'roby-walking-2']
+            : ['enemy-walking-1', 'enemy-walking-2']);
         let startPosition = (identity === 'player' ? gameData.getPlayerStartPosition()
             : gameData.getEnemyStartPosition());
+        let imageTimer;
 
         if (startPosition.distance === -1 && startPosition.side === -1) {
             if (lastMovement) endCallback(); else lastMovement = true;
@@ -226,6 +244,14 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         }
 
         roby.delay(1000);
+        roby.queue(function (next) {
+            let changeValue = 0;
+            imageTimer = setInterval(function () {
+                imageCallback(changeValue === 0 ? imageValues[0] : imageValues[1]);
+                changeValue = (changeValue + 1).mod(2);
+            }, 500);
+            next();
+        });
         for (let i = 0; i < path.length; i++) {
             let currentTilePos = completeGridTiles[path.tilesCoords[i].x][path.tilesCoords[i].y].position();
             roby.animate({left: currentTilePos.left, top: currentTilePos.top}, { duration: 800 });
@@ -239,7 +265,7 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
 
                 } else {
                     //roby.rotateRobot(path.direction[i], path.endCoords.distance, next);
-                    let rotationValue = 'rotate(' + getAngle(path.endCoords.distance).toString() + 'deg)';
+                    let rotationValue = 'rotate(' + getAngle(path.endCoords.side).toString() + 'deg)';
                     roby.css({transform: rotationValue});
                 }
                 next();
@@ -247,6 +273,11 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         }
         let endPos = startPositions[path.endCoords.side][path.endCoords.distance].position();
         roby.animate({left: endPos.left, top: endPos.top}, { duration: 800 });
+        roby.queue(function (next) {
+            clearInterval(imageTimer);
+            imageCallback(identity === 'player'? 'roby-positioned' : 'enemy-positioned');
+            next()
+        });
         roby.delay(1000);
         roby.queue(function (next) {
             // fine animazione; esegui il callback se si è gli ultimi ad eseguire

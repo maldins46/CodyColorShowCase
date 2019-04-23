@@ -19,6 +19,10 @@ angular.module('codyColor').controller('aftermatchCtrl',
             $scope.winner = $scope.playerNickname;
         } else if ($scope.results.playerResult.points < $scope.results.enemyResult.points) {
             $scope.winner = $scope.enemyNickname;
+        } else if (gameData.getPlayerMatchTime() > gameData.getEnemyMatchTime()) {
+            $scope.winner = $scope.playerNickname;
+        } else if (gameData.getPlayerMatchTime() < gameData.getEnemyMatchTime()) {
+            $scope.winner = $scope.enemyNickname;
         } else {
             $scope.winner = "lo sport";
         }

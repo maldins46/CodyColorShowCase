@@ -1,17 +1,17 @@
 <!-- Schermata principale dell'app. Contiene il menù principale di navigazione -->
 <div id="wrapper">
     <div id="header-container">
-        <h1 class="floating-component">CodyColor</h1>
+        <h1 class="floating-top-component">CodyColor</h1>
     </div>
 
     <div id="page-body-container-home">
         <ul>
-            <li><button type="submit" ng-click="goToRules()">Come si gioca?</button></li>
-            <li><button type="submit" ng-click="goToRMMaking()">Partita casuale</button></li>
-            <li><button type="submit" ng-click="goToPMMaking()">Partita custom</button></li>
-            <li><button type="submit" ng-click="goToRanking()">Classifiche</button></li>
-            <li><button type="submit" ng-click="goToProfile()">Il tuo profilo</button></li>
-            <li><button type="submit" ng-click="goToLogin()">Accedi</button></li>
+            <li><button ng-click="goToRules()">Come si gioca?</button></li>
+            <li><button ng-click="goToRMMaking()">Partita casuale</button></li>
+            <li><button ng-click="goToPMMaking()">Partita custom</button></li>
+            <li><button ng-click="goToRanking()">Classifiche</button></li>
+            <li><button ng-click="goToProfile()">Il tuo profilo</button></li>
+            <li><button ng-click="goToLogin()">Accedi</button></li>
             <li>
                 <p class="flashing-component" ng-hide="connected">Solo un momento, mi sto connettendo al server…</p>
             </li>

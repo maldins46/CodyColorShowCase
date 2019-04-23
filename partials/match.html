@@ -140,33 +140,33 @@
                         </td>
                         <td id="start-00" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(0,0)', onOut:'robyOut(0,0)', onDrop:'robyDropped(0,0)'}">
-                            <i class="fas fa-angle-down"
+                            <i class="fas fa-angle-down arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[0][0] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-bottom-component' : ''"></i>
                         </td>
                         <td id="start-01" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(0,1)', onOut:'robyOut(0,1)', onDrop:'robyDropped(0,1)'}">
-                            <i class="fas fa-angle-down"
+                            <i class="fas fa-angle-down arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[0][1] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-bottom-component' : ''"></i>
                         </td>
                         <td id="start-02" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(0,2)', onOut:'robyOut(0,2)', onDrop:'robyDropped(0,2)'}">
-                            <i class="fas fa-angle-down"
+                            <i class="fas fa-angle-down arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[0][2] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-bottom-component' : ''"></i>
                         </td>
                         <td id="start-03" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(0,3)', onOut:'robyOut(0,3)', onDrop:'robyDropped(0,3)'}">
-                            <i class="fas fa-angle-down"
+                            <i class="fas fa-angle-down arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[0][3] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-bottom-component' : ''"></i>
                         </td>
                         <td id="start-04" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(0,4)', onOut:'robyOut(0,4)', onDrop:'robyDropped(0,4)'}">
-                            <i class="fas fa-angle-down"
+                            <i class="fas fa-angle-down arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[0][4] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-bottom-component' : ''"></i>
                         </td>
                         <td>
                             <div class="placeholder-tile"></div>
@@ -176,9 +176,9 @@
                     <tr>
                         <td id="start-30" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(3,0)', onOut:'robyOut(3,0)', onDrop:'robyDropped(3,0)'}">
-                            <i class="fas fa-angle-right"
+                            <i class="fas fa-angle-right arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[3][0] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-right-component' : ''"></i>
                         </td>
                         <td id="tile-00">
                             <div ng-class="getTileStyle(0,0)"></div>
@@ -197,18 +197,18 @@
                         </td>
                         <td id="start-10" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(1,0)', onOut:'robyOut(1,0)',  onDrop:'robyDropped(1,0)'}">
-                            <i class="fas fa-angle-left"
+                            <i class="fas fa-angle-left arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[1][0] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-left-component' : ''"></i>
                         </td>
                     </tr>
 
                     <tr>
                         <td id="start-31" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(3,1)', onOut:'robyOut(3,1)', onDrop:'robyDropped(3,1)'}">
-                            <i class="fas fa-angle-right"
+                            <i class="fas fa-angle-right arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[3][1] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-right-component' : ''"></i>
                         </td>
                         <td id="tile-10">
                             <div ng-class="getTileStyle(1,0)"></div>
@@ -227,18 +227,18 @@
                         </td>
                         <td id="start-11" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(1,1)', onOut:'robyOut(1,1)',  onDrop:'robyDropped(1,1)'}">
-                            <i class="fas fa-angle-left"
+                            <i class="fas fa-angle-left arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[1][1] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-left-component' : ''"></i>
                         </td>
                     </tr>
 
                     <tr>
                         <td id="start-32" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(3,2)', onOut:'robyOut(3,2)',  onDrop:'robyDropped(3,2)'}">
-                            <i class="fas fa-angle-right"
+                            <i class="fas fa-angle-right arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[3][2] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-right-component' : ''"></i>
                         </td>
                         <td id="tile-20">
                             <div ng-class="getTileStyle(2,0)"></div>
@@ -257,18 +257,18 @@
                         </td>
                         <td id="start-12" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(1,2)', onOut:'robyOut(1,2)', onDrop:'robyDropped(1,2)'}">
-                            <i class="fas fa-angle-left"
+                            <i class="fas fa-angle-left arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[1][2] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-left-component' : ''"></i>
                         </td>
                     </tr>
 
                     <tr>
                         <td id="start-33" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(3,3)', onOut:'robyOut(3,3)', onDrop:'robyDropped(3,3)'}">
-                            <i class="fas fa-angle-right"
+                            <i class="fas fa-angle-right arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[3][3] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-right-component' : ''"></i>
                         </td>
                         <td id="tile-30">
                             <div ng-class="getTileStyle(3,0)"></div>
@@ -287,18 +287,18 @@
                         </td>
                         <td id="start-13" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(1,3)', onOut:'robyOut(1,3)', onDrop:'robyDropped(1,3)'}">
-                            <i class="fas fa-angle-left"
+                            <i class="fas fa-angle-left arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[1][3] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-left-component' : ''"></i>
                         </td>
                     </tr>
 
                     <tr>
                         <td id="start-34" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(3,4)', onOut:'robyOut(3,4)',  onDrop:'robyDropped(3,4)'}">
-                            <i class="fas fa-angle-right"
+                            <i class="fas fa-angle-right arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[3][4] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-right-component' : ''"></i>
                         </td>
                         <td id="tile-40">
                             <div ng-class="getTileStyle(4,0)"></div>
@@ -317,9 +317,9 @@
                         </td>
                         <td id="start-14" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(1,4)', onOut:'robyOut(1,4)', onDrop:'robyDropped(1,4)'}">
-                            <i class="fas fa-angle-left"
+                            <i class="fas fa-angle-left arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[1][4] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-left-component' : ''"></i>
                         </td>
                     </tr>
 
@@ -329,33 +329,33 @@
                         </td>
                         <td id="start-20" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(2,0)', onOut:'robyOut(2,0)', onDrop:'robyDropped(2,0)'}">
-                            <i class="fas fa-angle-up"
+                            <i class="fas fa-angle-up arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[2][0] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-top-component' : ''"></i>
                         </td>
                         <td id="start-21" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(2,1)', onOut:'robyOut(2,1)', onDrop:'robyDropped(2,1)'}">
-                            <i class="fas fa-angle-up"
+                            <i class="fas fa-angle-up arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[2][1] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-top-component' : ''"></i>
                         </td>
                         <td id="start-22" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(2,2)', onOut:'robyOut(2,2)', onDrop:'robyDropped(2,2)'}">
-                            <i class="fas fa-angle-up"
+                            <i class="fas fa-angle-up arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[2][2] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-top-component' : ''"></i>
                         </td>
                         <td id="start-23" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(2,3)', onOut:'robyOut(2,3)', onDrop:'robyDropped(2,3)'}">
-                            <i class="fas fa-angle-up"
+                            <i class="fas fa-angle-up arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[2][3] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-top-component' : ''"></i>
                         </td>
                         <td id="start-24" data-drop="true"
                             jqyoui-droppable="{onOver: 'robyOver(2,4)', onOut:'robyOut(2,4)', onDrop:'robyDropped(2,4)'}">
-                            <i class="fas fa-angle-up"
+                            <i class="fas fa-angle-up arrow-cell"
                                ng-show="showArrows"
-                               ng-class="startPositionsOver[2][4] ? 'arrow-cell-over' : 'arrow-cell'"></i>
+                               ng-class="showArrows ? 'floating-top-component' : ''"></i>
                         </td>
                         <td>
                             <div class="placeholder-tile"></div>
@@ -363,11 +363,11 @@
                     </tr>
                 </table>
 
-                <img id="enemy-roby" src="img/enemy-positioned.png" alt="Enemy robot"
+                <img id="enemy-roby" src="img/{{enemyImageGrid}}.png" alt="Enemy robot"
                      class="roby-positioned"
                      ng-show="enemyPositioned && robyPositioned"/>
 
-                <img id="player-roby" src="img/roby-positioned.png" alt="Roby the robot"
+                <img id="player-roby" src="img/{{robyImageGrid}}.png" alt="Roby the robot"
                      class="roby-positioned" ng-show="robyPositioned"/>
 
             </div>
