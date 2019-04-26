@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/img/enemy-broken.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/roby-broken.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/roby-dragging-trasp.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/audioHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/audioHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/aftermatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/aftermatchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/emptyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/emptyController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/homeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/homeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/loginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/loginController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/matchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/matchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/pmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/pmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/rankingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rankingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/registerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/registerController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/rmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/splashController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/splashController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/gameData.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/gameData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/navigationHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/navigationHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/rabbitCommunicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/rabbitCommunicator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/robyAnimator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/robyAnimator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/sessionHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sessionHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/aftermatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/aftermatch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/match.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/match.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/mmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/mmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/rules.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/rules.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/splash.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/splash.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,21 +17,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/splashController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="273">
               <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -67,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="327" column="73" selection-start-line="327" selection-start-column="64" selection-end-line="327" selection-end-column="73" />
+            <state relative-caret-position="612">
+              <caret line="329" column="10" selection-start-line="329" selection-start-column="10" selection-end-line="329" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -79,10 +40,19 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/css/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="458">
+              <caret line="382" column="22" selection-start-line="382" selection-start-column="22" selection-end-line="382" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/rankingController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
+            <state relative-caret-position="210">
               <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -94,7 +64,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/registerController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
+            <state relative-caret-position="210">
               <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -118,7 +88,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/emptyController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
+            <state relative-caret-position="147">
               <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -130,7 +100,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/homeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
+            <state relative-caret-position="210">
               <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -142,7 +112,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/sessionHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
+            <state relative-caret-position="21">
               <caret line="4" column="63" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -154,7 +124,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/loginController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
+            <state relative-caret-position="210">
               <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -248,7 +218,6 @@
         <option value="$PROJECT_DIR$/partials/mmaking.html" />
         <option value="$PROJECT_DIR$/js/robyAnimator.js" />
         <option value="$PROJECT_DIR$/js/gameData.js" />
-        <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/partials/match.html" />
         <option value="$PROJECT_DIR$/partials/aftermatch.html" />
         <option value="$PROJECT_DIR$/partials/rules.html" />
@@ -263,6 +232,7 @@
         <option value="$PROJECT_DIR$/js/controllers/registerController.js" />
         <option value="$PROJECT_DIR$/js/sessionHandler.js" />
         <option value="$PROJECT_DIR$/js/controllers/matchController.js" />
+        <option value="$PROJECT_DIR$/css/main.css" />
       </list>
     </option>
   </component>
@@ -278,6 +248,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -325,7 +296,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -387,7 +357,8 @@
       <workItem from="1556016954037" duration="6249000" />
       <workItem from="1556028563756" duration="308000" />
       <workItem from="1556034785177" duration="10021000" />
-      <workItem from="1556267563225" duration="12033000" />
+      <workItem from="1556267563225" duration="12203000" />
+      <workItem from="1556285226517" duration="187000" />
     </task>
     <task id="LOCAL-00001" summary="Creata prima bozza schermata match">
       <created>1555067124003</created>
@@ -487,11 +458,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556028021177</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="prima versione stabile codyColor multiplayer">
+      <created>1556284155399</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1556284155399</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133200000" />
+    <option name="totallyTimeSpent" value="133557000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -553,7 +531,8 @@
     <MESSAGE value="compatibilità gitpages" />
     <MESSAGE value="aggiunte favicon, temi, alcune animazioni, bigfixes" />
     <MESSAGE value="correzioni manifest" />
-    <option name="LAST_COMMIT_MESSAGE" value="correzioni manifest" />
+    <MESSAGE value="prima versione stabile codyColor multiplayer" />
+    <option name="LAST_COMMIT_MESSAGE" value="prima versione stabile codyColor multiplayer" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/vendor/angular-animate.1.7.8.min.js">
@@ -750,13 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="595" column="24" selection-start-line="595" selection-start-column="24" selection-end-line="595" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/partials/aftermatch.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
@@ -798,19 +770,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/emptyController.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        <state relative-caret-position="273">
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/loginController.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/splashController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
+        <state relative-caret-position="273">
+          <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/rankingController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/registerController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
           <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -828,40 +820,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/rankingController.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/emptyController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/registerController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/splashController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
+        <state relative-caret-position="147">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -870,7 +832,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/homeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
+        <state relative-caret-position="210">
           <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -880,8 +842,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/sessionHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
+        <state relative-caret-position="21">
           <caret line="4" column="63" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/loginController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -890,11 +862,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="327" column="73" selection-start-line="327" selection-start-column="64" selection-end-line="327" selection-end-column="73" />
+        <state relative-caret-position="612">
+          <caret line="329" column="10" selection-start-line="329" selection-start-column="10" selection-end-line="329" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="382" column="22" selection-start-line="382" selection-start-column="22" selection-end-line="382" selection-end-column="22" />
         </state>
       </provider>
     </entry>

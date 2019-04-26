@@ -362,6 +362,7 @@ button {
     font-size: 30px;
     margin-bottom: 5px;
     transition-duration: 0.2s;
+    outline: none;
     -webkit-tap-highlight-color: Transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -373,6 +374,13 @@ button {
 
 button:hover {
     color: #818387;
+    outline: none;
+    -webkit-tap-highlight-color: Transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 
