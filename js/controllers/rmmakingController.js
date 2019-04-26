@@ -3,98 +3,92 @@
  * casuale dei giocatori
  */
 angular.module('codyColor').controller('rmmakingCtrl',
-    function ($scope, rabbit, gameData, $location, scopeService, navigationHandler, audioHandler, sessionHandler) {
+    function ($scope, rabbit, gameData, $location, scopeService,
+              navigationHandler, audioHandler, sessionHandler) {
         console.log("Controller random matchmaking ready.");
-        navigationHandler.initializeBackBlock($scope);
 
-        if (!sessionHandler.isSessionValid()) {
+        // inizializzazione sessione
+        navigationHandler.initializeBackBlock($scope);
+        if (sessionHandler.isSessionInvalid()) {
+            rabbit.quitGame();
+            gameData.clearGameData();
             navigationHandler.goToPage($location, $scope, '/');
+            return;
         }
 
-        // utilizzato per mostrare eventualmente la schermata di selezione nickname
-        // provvisoriamente settato incondizionatamente a true
-        $scope.nicknameRequired = true;
+        // tiene traccia dello stato del matchmaking, e di quale schermata deve essere visualizzata
+        $scope.mmakingState =  'nicknameSelection';
 
-        // mostra quando opportuno la schermata di caricamento. Provvisoriamente
-        // inizializzato incondizionatamente a false
-        $scope.mmInProgress = false;
-
-        // mostra il tasto start non appena l'accoppiamento viene completato
-        $scope.mmCompleted = false;
-
-        // mostra ila schermata di caricamento non appena viene premuto il tasto ready
-        $scope.mmReady = false;
-
-        // memorizza il nickname dell'avversario, appena disponibile
         $scope.enemyNickname = "";
 
-        rabbit.setMMakingCallbacks(function (response) {
-            gameData.setGameRoomId(response.gameRoomId);
-            gameData.setPlayerId(response.playerId);
-
+        rabbit.setMMakingCallbacks(function (message) {
+            // onGameRequestResponse
+            gameData.setGameRoomId(message.gameRoomId);
+            gameData.setPlayerId(message.playerId);
             rabbit.subscribeGameRoom();
             rabbit.sendHereMessage(true);
 
-        }, function (response) {
-            gameData.setEnemyNickname(response.nickname);
-            gameData.setEnemyReady(response.readyState);
+        }, function (message) {
+            // onHereMessage
+            gameData.setEnemyNickname(message.nickname);
+            gameData.setEnemyReady(message.readyState);
 
-            $scope.mmInProgress = false;
-            $scope.mmCompleted = true;
-            scopeService.safeApply($scope, function () {
-                $scope.enemyNickname = gameData.getEnemyNickname();
-            });
-
-            if (response.needResponse) {
+            if (message.needResponse) {
                 rabbit.sendHereMessage(false);
             }
 
+            scopeService.safeApply($scope, function () {
+                $scope.enemyNickname = gameData.getEnemyNickname();
+                $scope.mmakingState = 'enemyFound';
+            });
+
         }, function () {
+            // onReadyMessage
             gameData.setEnemyReady(true);
             if (gameData.isPlayerReady() && gameData.isEnemyReady())
                 rabbit.sendTilesRequest();
 
-        }, function (response) {
-            gameData.setCurrentMatchTiles(response['tiles']);
+        }, function (message) {
+            // onTilesMessage
+            gameData.setCurrentMatchTiles(message['tiles']);
             navigationHandler.goToPage($location, $scope, '/match', true);
 
         }, function () {
+            // onQuitGameMessage
             rabbit.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', true);
+            gameData.clearGameData();
             alert("L'avversario ha abbandonato la partita.");
+
         }, function () {
+            // onConnectionLost
             rabbit.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', true);
             alert("Si è verificato un errore nella connessione con il server. Partita terminata.");
+            gameData.clearGameData();
         });
 
-        // una volt che l'utente ha scelto un nickname, invia una richiesta di gioco al server
+        // una volta che l'utente ha scelto un nickname, invia una richiesta di gioco al server
         $scope.requestMMaking = function (nickname) {
-            $scope.mmInProgress = true;
-            $scope.nicknameRequired = false;
+            $scope.mmakingState = 'waitingEnemy';
             gameData.setPlayerNickname(nickname);
             rabbit.sendGameRequest();
         };
 
         // invocata una volta premuto il tasto 'iniziamo'
         $scope.playerReady = function () {
-            $scope.mmCompleted = false;
-            $scope.mmReady = true;
+            $scope.mmakingState = 'waitingConfirm';
             gameData.setPlayerReady(true);
             rabbit.sendReadyMessage();
         };
 
         // termina la partita in modo sicuro, alla pressione sul tasto corrispondente
         $scope.exitGame = function () {
-            if(confirm("Sei sicuro di voler abbandonare la partita?")) {
+            if (confirm("Sei sicuro di voler abbandonare la partita?")) {
                 rabbit.quitGame();
                 navigationHandler.goToPage($location, $scope, '/home');
+                gameData.clearGameData();
             }
-        };
-
-        $scope.basePlaying = audioHandler.basePlaying;
-        $scope.toggleBase = function () {
-            audioHandler.toggleBase();
         };
 
         // impostazioni audio

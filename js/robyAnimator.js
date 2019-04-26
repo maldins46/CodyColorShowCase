@@ -21,11 +21,14 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
 
     // in caso di interruzione del gioco, sospendi i timers
     robyAnimator.quitGame = function() {
-        if (robyWalkingTimers.player !== undefined)
+        if (robyWalkingTimers.player !== undefined) {
             clearInterval((robyWalkingTimers.player));
+        }
 
-        if (robyWalkingTimers.enemy !== undefined)
+        if (robyWalkingTimers.enemy !== undefined) {
             clearInterval((robyWalkingTimers.enemy));
+        }
+        robyWalkingTimers = {};
     };
 
     robyAnimator.initializeElements = function (changePlayerImage, changeEnemyImage) {
@@ -62,13 +65,17 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         let coordinates = (identity === 'player' ? gameData.getPlayerStartPosition() : gameData.getEnemyStartPosition());
         let roby = (identity === 'player' ? playerRoby : enemyRoby);
 
-        // robottino non posizionato dall'utente: non muoverlo
-        if (coordinates.distance === -1 && coordinates.side === -1)
-            return;
+        if (coordinates.distance === -1 && coordinates.side === -1) {
+            // robottino non posizionato dall'utente: mostralo nella posizione broken
+            let startPosition = (identity === 'player' ? startPositions[2][1].position() : startPositions[2][3].position());
+            let rotationValue =  'rotate(' + getAngle(2).toString() + 'deg)';
+            roby.css({ left: startPosition.left, top: startPosition.top, transform: rotationValue });
 
-        let startPosition = startPositions[coordinates.side][coordinates.distance].position();
-        let rotationValue =  'rotate(' + getAngle((coordinates.side + 2).mod(4)).toString() + 'deg)';
-        roby.css({left: startPosition.left, top: startPosition.top, transform: rotationValue});
+        } else {
+            let startPosition = startPositions[coordinates.side][coordinates.distance].position();
+            let rotationValue =  'rotate(' + getAngle((coordinates.side + 2).mod(4)).toString() + 'deg)';
+            roby.css({ left: startPosition.left, top: startPosition.top, transform: rotationValue });
+        }
     };
 
 
@@ -236,20 +243,37 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
             : ['enemy-walking-1', 'enemy-walking-2']);
         let startPosition = (identity === 'player' ? gameData.getPlayerStartPosition()
             : gameData.getEnemyStartPosition());
-        let imageTimer;
 
+        // roby non posizionato: mostra l'immagine corrispondente
         if (startPosition.distance === -1 && startPosition.side === -1) {
-            if (lastMovement) endCallback(); else lastMovement = true;
+            imageCallback(identity === 'player' ? 'roby-broken' : 'enemy-broken');
+            roby.delay(1000);
+            roby.queue(function (next) {
+                if (lastMovement) {
+                    lastMovement = false;
+                    endCallback();
+                } else {
+                    lastMovement = true;
+                }
+                next();
+            });
             return;
         }
 
         roby.delay(1000);
         roby.queue(function (next) {
             let changeValue = 0;
-            imageTimer = setInterval(function () {
-                imageCallback(changeValue === 0 ? imageValues[0] : imageValues[1]);
-                changeValue = (changeValue + 1).mod(2);
-            }, 500);
+            if (identity === 'player') {
+                robyWalkingTimers.player = setInterval(function () {
+                    imageCallback(changeValue === 0 ? imageValues[0] : imageValues[1]);
+                    changeValue = (changeValue + 1).mod(2);
+                }, 500);
+            } else {
+                robyWalkingTimers.enemy = setInterval(function () {
+                    imageCallback(changeValue === 0 ? imageValues[0] : imageValues[1]);
+                    changeValue = (changeValue + 1).mod(2);
+                }, 500);
+            }
             next();
         });
         for (let i = 0; i < path.length; i++) {
@@ -274,16 +298,20 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         let endPos = startPositions[path.endCoords.side][path.endCoords.distance].position();
         roby.animate({left: endPos.left, top: endPos.top}, { duration: 800 });
         roby.queue(function (next) {
-            clearInterval(imageTimer);
-            imageCallback(identity === 'player'? 'roby-positioned' : 'enemy-positioned');
-            next()
+            if (identity === 'player')
+                clearInterval(robyWalkingTimers.player);
+            else
+                clearInterval(robyWalkingTimers.enemy);
+
+            imageCallback (identity === 'player'? 'roby-positioned' : 'enemy-positioned');
+            next();
         });
         roby.delay(1000);
         roby.queue(function (next) {
             // fine animazione; esegui il callback se si è gli ultimi ad eseguire
             if (lastMovement) {
-                endCallback();
                 lastMovement = false;
+                endCallback();
             } else {
                 lastMovement = true;
             }

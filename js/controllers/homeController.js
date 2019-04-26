@@ -2,32 +2,35 @@
  * Controller Home, il menù principale, dal quale è possibile accedere alle varie sezioni del gioco
  */
 angular.module('codyColor').controller('homeCtrl',
-    function ($scope, rabbit, navigationHandler, audioHandler, $location, sessionHandler, scopeService) {
+    function ($scope, rabbit, navigationHandler, audioHandler,
+              $location, sessionHandler, scopeService) {
         console.log("Controller home ready.");
 
-        // impostazioni navigazione
+        // inizializzazione sessione
         navigationHandler.initializeBackBlock($scope);
-
-        if (!sessionHandler.isSessionValid()) {
+        if (sessionHandler.isSessionInvalid()) {
             navigationHandler.goToPage($location, $scope, '/');
+            return;
         }
 
-        // impostazioni connessione server
+        // impostazioni connessione server; implementa dei callback che permettono di mostrare se necessario
+        // un messaggio per notificare all'utente che la connessione al server è in corso
         $scope.connected = rabbit.getConnectionState();
-        if (!$scope.connected)
+        if (!$scope.connected) {
             rabbit.connect(function () {
                 // onConnected
                 scopeService.safeApply($scope, function () {
-                    $scope.connected = rabbit.getConnectionState();
+                    $scope.connected = true;
                 });
             }, function () {
                 // onErrorConnection
                 scopeService.safeApply($scope, function () {
-                    $scope.connected = rabbit.getConnectionState();
+                    $scope.connected = false;
                 });
             });
+        }
 
-
+        // inizializzazione menù di navigazione
         $scope.goToRules = function () {
             navigationHandler.goToPage($location, $scope, "/rules");
         };
@@ -39,18 +42,18 @@ angular.module('codyColor').controller('homeCtrl',
         };
         $scope.goToPMMaking = function () {
             if ($scope.connected)
-                navigationHandler.goToPage($location, $scope, "/pmmaking");
+                navigationHandler.goToPage($location, $scope, "/404");
             else
                 alert('Solo un momento, mi sto connettendo al server…');
         };
         $scope.goToRanking = function () {
-            navigationHandler.goToPage($location, $scope, "/ranking");
+            navigationHandler.goToPage($location, $scope, "/404");
         };
         $scope.goToProfile = function () {
-            navigationHandler.goToPage($location, $scope, "/profile");
+            navigationHandler.goToPage($location, $scope, "/404");
         };
         $scope.goToLogin = function () {
-            navigationHandler.goToPage($location, $scope, "/login");
+            navigationHandler.goToPage($location, $scope, "/404");
         };
 
         // impostazioni audio

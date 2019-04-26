@@ -5,10 +5,11 @@ angular.module('codyColor').controller('loginCtrl',
     function (navigationHandler, $scope, audioHandler, $location, sessionHandler) {
         console.log("Controller login ready.");
 
+        // inizializzazione sessione
         navigationHandler.initializeBackBlock($scope);
-
-        if (!sessionHandler.isSessionValid()) {
+        if (sessionHandler.isSessionInvalid()) {
             navigationHandler.goToPage($location, $scope, '/');
+            return;
         }
 
         $scope.goToHome = function () {

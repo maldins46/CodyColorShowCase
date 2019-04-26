@@ -193,7 +193,7 @@ body {
     vertical-align: middle;
 }
 
-.floating-top-component {
+.floating-up-component {
     transform: translateX(0px);
     animation: float-top 4s ease-in-out infinite;
 }
@@ -208,7 +208,7 @@ body {
     animation: float-left 4s ease-in-out infinite;
 }
 
-.floating-bottom-component {
+.floating-down-component {
     transform: translateY(0px);
     animation: float-bottom 4s ease-in-out infinite;
 }
@@ -218,7 +218,7 @@ body {
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(-5px);
+        transform: translateY(-10px);
     }
     100% {
         transform: translateY(0px);
@@ -230,7 +230,7 @@ body {
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(5px);
+        transform: translateY(10px);
     }
     100% {
         transform: translateY(0px);
@@ -242,7 +242,7 @@ body {
         transform: translateX(0px);
     }
     50% {
-        transform: translateX(5px);
+        transform: translateX(10px);
     }
     100% {
         transform: translateY(0px);
@@ -254,7 +254,7 @@ body {
         transform: translateX(0px);
     }
     50% {
-        transform: translateX(-5px);
+        transform: translateX(-10px);
     }
     100% {
         transform: translateY(0px);
@@ -277,27 +277,9 @@ body {
     }
 }
 
-
-.mmaking-container {
-    margin-top: 40px;
-}
-
 .icons-margin {
     color: white;
     margin: 10px;
-    vertical-align: middle;
-}
-
-.icons-connected {
-    color: green;
-    margin-left: 10px;
-    vertical-align: middle;
-}
-
-
-.icons-notconnected {
-    color: red;
-    margin-left: 10px;
     vertical-align: middle;
 }
 
@@ -380,12 +362,16 @@ button {
     font-size: 30px;
     margin-bottom: 5px;
     transition-duration: 0.2s;
+    -webkit-tap-highlight-color: Transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 
 button:hover {
-    background-color: Transparent;
-    border: none;
     color: #818387;
 }
 
@@ -588,6 +574,72 @@ input[type=text], input[type=email], input[type=password] {
     }
 }
 
+.mmaking-container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.mmaking-component {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 40px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+
+
+.lowaftermatch-component {
+    margin-top: 20px;
+}
+
+
+.override-container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.override-component {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.aftermatch-height {
+    height: 400px;
+}
+
+.match-height {
+    height: 520px;
+}
+
+
+.match-container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.match-component {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+
 .roby-positioned {
     width: 36px;
     height: 36px;
@@ -762,6 +814,17 @@ input[type=text], input[type=email], input[type=password] {
     }
 }
 
+
+.ng-show {
+    animation: fadein 0.2s both ease-in;
+    z-index: 8888;
+}
+
+
+.ng-hide {
+    animation: fadeout 0.2s both ease-in;
+    z-index: 9999;
+}
 
 
 .ng-enter {

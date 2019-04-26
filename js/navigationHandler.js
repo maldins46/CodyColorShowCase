@@ -34,10 +34,10 @@ angular.module('codyColor').config(function ($routeProvider) {
         .when("/rules", {templateUrl: "partials/rules.html", controller: "emptyCtrl"})
         .when("/register", {templateUrl: "partials/register.html", controller: "registerCtrl"})
         .when("/rmmaking", {templateUrl: "partials/mmaking.html", controller: "rmmakingCtrl"})
-        .when("/pmmaking", {templateUrl: "partials/404.html", controller: "emptyCtrl"})
+        .when("/pmmaking", {templateUrl: "partials/mmaking.html", controller: "pmmakingCtrl"})
         .when("/match", {templateUrl: "partials/match.html", controller: "matchCtrl"})
         .when("/aftermatch", {templateUrl: "partials/aftermatch.html", controller: "aftermatchCtrl"})
         .when("/ranking", {templateUrl: "partials/ranking.html", controller: "rankingCtrl"})
         .when("/profile", {templateUrl: "partials/ranking.html", controller: "rankingCtrl"})
-        .otherwise({template: "partials/404.html", controller: "emptyCtrl"});
+        .otherwise({templateUrl: "partials/404.html", controller: "emptyCtrl"});
 });

@@ -65,10 +65,11 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
 
     // callback necessari per la schermata match
-    rabbit.setMatchCallbacks = function(onEnemyPositionedMessage, onQuitGameMessage, onConnectionLost) {
+    rabbit.setMatchCallbacks = function(onEnemyPositionedMessage, onQuitGameMessage, onConnectionLost, onSkipMessage) {
         callbacks.onEnemyPositionedMessage = onEnemyPositionedMessage;
         callbacks.onQuitGameMessage        = onQuitGameMessage;
         callbacks.onConnectionLost         = onConnectionLost;
+        callbacks.onSkipMessage            = onSkipMessage;
     };
 
 
@@ -135,7 +136,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
 
     // avvia un interval che invia ogni 5 secondi un segnale di heartbeat al server
-    let startHeartbeat = function() {
+    let startHeartbeatSender = function() {
         heartbeatTimer = setInterval(function() {
             let message = { msgType:     'heartbeat',
                             gameRoomId:   gameData.getGameRoomId(),
@@ -198,10 +199,21 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
                         side:       gameData.getPlayerStartPosition().side,
                         distance:   gameData.getPlayerStartPosition().distance };
 
-        if (client !== undefined)
+
         client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
-                    { durable: false, exclusive: false },                    // headers
-                    JSON.stringify(message));                                // message
+                    { durable: false, exclusive: false },            // headers
+                    JSON.stringify(message));                        // message
+    };
+
+    // notifica all'avversario la volontà di skippare l'animazione
+    rabbit.sendSkipMessage = function() {
+        let message = { msgType:  'skip',
+                        gameRoomId: gameData.getGameRoomId(),
+                        playerId:   gameData.getPlayerId() };
+
+        client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
+                    { durable: false, exclusive: false },            // headers
+                    JSON.stringify(message));                        // message
     };
 
 
@@ -232,6 +244,9 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
         callbacks = {};
 
+        if (gameData.getGameRoomId() === -1 || gameData.getPlayerId() === -1)
+            return;
+
         let message = { msgType:     'quitGame',
                         gameRoomId:   gameData.getGameRoomId(),
                         playerId:     gameData.getPlayerId()   };
@@ -254,22 +269,20 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
         if (responseObject.msgType === 'gameResponse') {
             callbacks.onGameRequestResponse(responseObject);
-            startHeartbeat();
+            startHeartbeatSender();
 
         } else if (responseObject.playerId === gameData.getPlayerId()) {
             // si è intercettato il proprio messaggio: non fare niente
 
         } else {
-
             // agisci in maniera diversa a seconda della tipologia di messaggio
             switch(responseObject.msgType) {
-
                 case "here":
                     callbacks.onHereMessage(responseObject);
                     break;
 
                 case "ready":
-                    callbacks.onReadyMessage(responseObject);
+                    callbacks.onReadyMessage();
                     break;
 
                 case "tilesResponse":
@@ -282,6 +295,10 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
                 case "quitGame":
                     callbacks.onQuitGameMessage();
+                    break;
+
+                case "skip":
+                    callbacks.onSkipMessage();
                     break;
             }
         }

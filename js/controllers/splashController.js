@@ -1,15 +1,22 @@
 /*
  * Controller Splash Screen, la schermata mostrata non appena si accede al sito
  */
-angular.module('codyColor').controller('splashCtrl', function($scope, rabbit, navigationHandler, audioHandler, $location, sessionHandler) {
-    console.log("Controller splash ready.");
-    navigationHandler.initializeBackBlock($scope);
-    sessionHandler.validateSession();
+angular.module('codyColor').controller('splashCtrl',
+    function ($scope, rabbit, navigationHandler, audioHandler,
+              $location, sessionHandler) {
+        console.log("Controller splash ready.");
 
-    rabbit.connect();
+        // validazione sessione
+        navigationHandler.initializeBackBlock($scope);
+        sessionHandler.validateSession();
 
-    $scope.goToHome = function () {
-        navigationHandler.goToPage($location, $scope, '/home');
-        audioHandler.splashStartBase();
+        // tenta subito la connessione al broker
+        rabbit.connect();
+
+        // vai alla schermata home al click e avvia la base musicale
+        $scope.goToHome = function () {
+            navigationHandler.goToPage($location, $scope, '/home');
+            audioHandler.splashStartBase();
+        }
     }
-});
+);

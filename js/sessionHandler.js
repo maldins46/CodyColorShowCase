@@ -10,13 +10,8 @@ angular.module('codyColor').factory("sessionHandler", function() {
         isSessionValid = true;
     };
 
-    sessionHandler.isSessionValid = function () {
-        if (isSessionValid === undefined) {
-            console.log('Session not valid anymore. Return to splash page.');
-            isSessionValid = false;
-            return false;
-
-        } else return isSessionValid;
+    sessionHandler.isSessionInvalid = function () {
+        return isSessionValid === undefined || isSessionValid === false;
     };
 
     return sessionHandler;

@@ -1,11 +1,10 @@
 <div id="wrapper">
     <div id="page-body-container">
-        <div ng-show="nicknameRequired" class="mmaking-container">
+        <div class="mmaking-container">
+        <div ng-show="mmakingState === 'nicknameSelection'" class="mmaking-component">
             <p>Scegli il nickname con il quale apparire nella partita</p>
             <form name="nickForm">
-                <label>
-                    <input type="text" name="nickname" ng-model="nickname" placeholder="Nickname" required autofocus/>
-                </label>
+                <label><input type="text" name="nickname" ng-model="nickname" placeholder="Nickname" required autofocus/></label>
                 <button class="icons-margin floating-right-component"
                         ng-click="requestMMaking(nickForm.nickname.$viewValue)"
                         ng-disabled="nickForm.nickname.$invalid">
@@ -14,7 +13,7 @@
             </form>
         </div>
 
-        <div ng-show="mmInProgress" class="mmaking-container">
+        <div ng-show="mmakingState === 'waitingEnemy'" class="mmaking-component">
             <!-- Spinner -->
             <div class="lds-grid">
                 <div></div><div></div><div></div>
@@ -24,13 +23,13 @@
             <p class="flashing-component">In attesa di un avversario…</p>
         </div>
 
-        <div ng-show="mmCompleted" class="mmaking-container">
+        <div ng-show="mmakingState === 'enemyFound'" class="mmaking-component">
             Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
             <button class="flashing-component" ng-click="playerReady()">Iniziamo! <i class="fas fa-angle-double-right floating-right-component"></i>
             </button>
         </div>
 
-        <div ng-show="mmReady" class="mmaking-container">
+        <div ng-show="mmakingState === 'waitingConfirm'" class="mmaking-component">
             <!-- Spinner -->
             <div class="lds-grid">
                 <div></div><div></div><div></div>
@@ -38,6 +37,8 @@
                 <div></div><div></div><div></div>
             </div>
             <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
+        </div>
+
         </div>
 
     </div>
