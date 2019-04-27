@@ -371,6 +371,20 @@ button {
     user-select: none;
 }
 
+.disabled-button-text {
+    border: none;
+    color: #818387;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+a {
+    color: White;
+}
+
 
 button:hover {
     color: #818387;
