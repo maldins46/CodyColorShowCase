@@ -27,6 +27,7 @@ angular.module('codyColor').controller('aftermatchCtrl',
         $scope.winner = gameData.getMatchWinner();
         $scope.formattedPlayerTime = gameData.formatTimerText($scope.results.playerResult.time);
         $scope.formattedEnemyTime  = gameData.formatTimerText($scope.results.enemyResult.time);
+        $scope.matchCount = gameData.getMatchCount();
 
         // inizializzazione componenti per iniziare un nuovo match
         $scope.newMatchClicked = false;
@@ -57,6 +58,7 @@ angular.module('codyColor').controller('aftermatchCtrl',
         }, function (response) {
             // onTilesMessage
             gameData.clearMatchData();
+            gameData.addMatch();
             gameData.setCurrentMatchTiles(response['tiles']);
             navigationHandler.goToPage($location, $scope, '/match',  true);
 

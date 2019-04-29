@@ -47,6 +47,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // callback necessari per il matchmaking
     rabbit.setMMakingCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
                                           onQuitGameMessage, onConnectionLost) {
+        callbacks = {};
         callbacks.onGameRequestResponse = onGameRequestResponse;
         callbacks.onHereMessage         = onHereMessage;
         callbacks.onReadyMessage        = onReadyMessage;
@@ -57,6 +58,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // callback necessari per la schermata di aftermatch
     rabbit.setAftermatchCallbacks = function(onReadyMessage, onTilesMessage, onQuitGameMessage, onConnectionLost) {
+        callbacks = {};
         callbacks.onReadyMessage    = onReadyMessage;
         callbacks.onTilesMessage    = onTilesMessage;
         callbacks.onQuitGameMessage = onQuitGameMessage;
@@ -66,6 +68,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // callback necessari per la schermata match
     rabbit.setMatchCallbacks = function(onEnemyPositionedMessage, onQuitGameMessage, onConnectionLost, onSkipMessage) {
+        callbacks = {};
         callbacks.onEnemyPositionedMessage = onEnemyPositionedMessage;
         callbacks.onQuitGameMessage        = onQuitGameMessage;
         callbacks.onConnectionLost         = onConnectionLost;
@@ -278,27 +281,33 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
             // agisci in maniera diversa a seconda della tipologia di messaggio
             switch(responseObject.msgType) {
                 case "here":
-                    callbacks.onHereMessage(responseObject);
+                    if (callbacks.onHereMessage !== undefined)
+                        callbacks.onHereMessage(responseObject);
                     break;
 
                 case "ready":
-                    callbacks.onReadyMessage();
+                    if (callbacks.onReadyMessage !== undefined)
+                        callbacks.onReadyMessage();
                     break;
 
                 case "tilesResponse":
-                    callbacks.onTilesMessage(responseObject);
+                    if (callbacks.onTilesMessage !== undefined)
+                        callbacks.onTilesMessage(responseObject);
                     break;
 
                 case "playerPositioned":
-                    callbacks.onEnemyPositionedMessage(responseObject);
+                    if (callbacks.onEnemyPositionedMessage !== undefined)
+                        callbacks.onEnemyPositionedMessage(responseObject);
                     break;
 
                 case "quitGame":
-                    callbacks.onQuitGameMessage();
+                    if (callbacks.onQuitGameMessage !== undefined)
+                        callbacks.onQuitGameMessage();
                     break;
 
                 case "skip":
-                    callbacks.onSkipMessage();
+                    if (callbacks.onSkipMessage !== undefined)
+                        callbacks.onSkipMessage();
                     break;
             }
         }

@@ -28,6 +28,7 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         if (robyWalkingTimers.enemy !== undefined) {
             clearInterval((robyWalkingTimers.enemy));
         }
+
         robyWalkingTimers = {};
     };
 
@@ -102,8 +103,15 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
                                                   : gameData.getEnemyStartPosition());
 
         // roby non posizionato entro il tempo limite
-        if (path.startCoords.distance === -1 && path.startCoords.side === -1)
-            return { length: 0, loop: false, time: 0, points:0 };
+        if (path.startCoords.distance === -1 && path.startCoords.side === -1) {
+            // memorizza il path
+            if (identity === 'player') {
+                playerPath = path;
+            } else {
+                enemyPath = path;
+            }
+            return {length: 0, loop: false, time: 0, points: 0};
+        }
 
         // ottieni primo elemento
         switch (path.startCoords.side) {
@@ -239,10 +247,8 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         let roby = (identity === 'player' ? playerRoby : enemyRoby);
         let path = (identity === 'player' ? playerPath : enemyPath);
         let imageCallback = (identity === 'player' ? robyImageCallbacks.player : robyImageCallbacks.enemy);
-        let imageValues = (identity === 'player' ? ['roby-walking-1', 'roby-walking-2']
-            : ['enemy-walking-1', 'enemy-walking-2']);
-        let startPosition = (identity === 'player' ? gameData.getPlayerStartPosition()
-            : gameData.getEnemyStartPosition());
+        let imageValues = (identity === 'player' ? ['roby-walking-1', 'roby-walking-2'] : ['enemy-walking-2', 'enemy-walking-1']);
+        let startPosition = (identity === 'player' ? gameData.getPlayerStartPosition() : gameData.getEnemyStartPosition());
 
         // roby non posizionato: mostra l'immagine corrispondente
         if (startPosition.distance === -1 && startPosition.side === -1) {
@@ -261,6 +267,11 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         }
 
         roby.delay(1000);
+
+        // aggiunge un leggero ritardo al movimento dell'avversario, per non sovrapporre i robottini
+        if (identity !== 'player')
+            roby.delay(100);
+
         roby.queue(function (next) {
             let changeValue = 0;
             if (identity === 'player') {
@@ -333,13 +344,14 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         points += length * 2;
 
         // un loop vale 20 punti
-        if (loop) points += 20;
+        if (loop) points += 100;
 
         // 5 secondi valgono 1 punto
         points += Math.floor(time / 5000);
 
         return points;
     };
+
 
     // risolve il bug della funzione modulo di JavaScript
     // (https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers)

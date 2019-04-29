@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <h2>Vince {{winner}}!</h2>
+        <h2 class="capitalize">{{winner}} vince la {{matchCount}}° partita!!</h2>
 
         <table id="aftermatch-table">
             <tr>
@@ -39,9 +39,8 @@
 
         <div class="override-container">
             <div ng-hide="newMatchClicked" class="override-component lowaftermatch-component">
-                <button ng-click="newMatch()">Continua partita</button>
-                <p ng-show="enemyRequestNewMatch" class="flashing-component">Il tuo avversario vuole continuare la
-                    partita!</p>
+                <button ng-click="newMatch()">Gioca ancora</button>
+                <p ng-show="enemyRequestNewMatch" class="flashing-component">Il tuo avversario vuole continuare a giocare!</p>
             </div>
             <div ng-show="newMatchClicked" class="override-component lowaftermatch-component">
                 <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>

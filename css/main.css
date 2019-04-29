@@ -599,6 +599,7 @@ input[type=text], input[type=email], input[type=password] {
 .mmaking-container {
     width: 100%;
     margin: 0 auto;
+    height: 250px;
     position: relative;
 }
 
@@ -607,7 +608,6 @@ input[type=text], input[type=email], input[type=password] {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
-    margin-top: 40px;
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
@@ -661,6 +661,15 @@ input[type=text], input[type=email], input[type=password] {
     transform: translate(-50%, 0);
 }
 
+.capitalize {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.capitalize:first-letter {
+    text-transform: capitalize;
+}
 
 .roby-positioned {
     width: 36px;

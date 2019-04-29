@@ -45,7 +45,7 @@ angular.module('codyColor').controller('matchCtrl',
             scopeService.safeApply($scope, function () { $scope.enemyRobyImage = image; });
         });
 
-
+        // inizializzazione start positions
         let setArrowCss = function(side, distance, over) {
             let finalResult = '';
 
@@ -79,6 +79,7 @@ angular.module('codyColor').controller('matchCtrl',
         };
 
         let calculateAllStartPositionCss = function(over) {
+            $scope.startPositionsCss = new Array(4);
             for (let side = 0; side < 4; side++) {
                 $scope.startPositionsCss[side] = new Array(5);
                 for (let distance = 0; distance < 5; distance++) {
@@ -87,10 +88,26 @@ angular.module('codyColor').controller('matchCtrl',
             }
         };
 
-        // utilizzato nell'animazione delle arrow nelle posizioni di partenza,
-        // nel momento in cui roby viene trascinato sopra la posizione
-        $scope.startPositionsCss = new Array(4);
         calculateAllStartPositionCss(false);
+
+        // inizializzazione tiles
+        $scope.tilesCss = new Array(5);
+        for (let x = 0; x < 5; x++) {
+            $scope.tilesCss[x] = new Array(5);
+            for (let y = 0; y < 5; y++) {
+                switch (gameData.getCurrentMatchTiles()[x][y]) {
+                    case 'Y':
+                        $scope.tilesCss[x][y] = 'yellow-play-tile';
+                        break;
+                    case 'R':
+                        $scope.tilesCss[x][y] = 'red-play-tile';
+                        break;
+                    case 'G':
+                        $scope.tilesCss[x][y] = 'gray-play-tile';
+                        break;
+                }
+            }
+        }
 
 
         // inizializzazione timers
@@ -141,6 +158,7 @@ angular.module('codyColor').controller('matchCtrl',
                     });
 
                 } else {
+                    // timer esaurito: ferma tempo giocatore, avvia movimento giocatore-avversario
                     clearInterval(playerMatchTimer);
                     playerMatchTimer = undefined;
 
@@ -153,6 +171,8 @@ angular.module('codyColor').controller('matchCtrl',
                     });
 
                     gameData.setPlayerMatchTime(0);
+                    rabbit.sendPlayerPositionedMessage();
+
                     if ($scope.enemyPositioned && $scope.playerPositioned) {
                         endMatch();
                     }
@@ -169,6 +189,7 @@ angular.module('codyColor').controller('matchCtrl',
                     });
 
                 } else {
+                    // timer esaurito: ferma tempo avversario
                     clearInterval(enemyMatchTimer);
                     enemyMatchTimer = undefined;
 
@@ -178,23 +199,8 @@ angular.module('codyColor').controller('matchCtrl',
                     });
 
                     gameData.setEnemyMatchTime(0);
-                    if ($scope.enemyPositioned && $scope.playerPositioned) {
-                        endMatch();
-                    }
                 }
             }, 10);
-        };
-
-        // associa il colore ad ogni tile, a seconda di quanto memorizzato in gameData
-        $scope.getTileStyle = function (x, y) {
-            switch (gameData.getCurrentMatchTiles()[x][y]) {
-                case 'Y':
-                    return 'yellow-play-tile';
-                case 'R':
-                    return 'red-play-tile';
-                case 'G':
-                    return 'gray-play-tile';
-            }
         };
 
         // inizializzazione draggable roby
@@ -203,6 +209,7 @@ angular.module('codyColor').controller('matchCtrl',
         $scope.showCompleteGrid = false;
         $scope.showArrows = false;
         $scope.endMatch = false;
+        $scope.dragging = false;
         $scope.draggableRobyImage = 'roby-idle';
 
         // quando roby viene trascinato, viene mostrata la griglia completa (con le posizioni di partenza), e
@@ -213,6 +220,7 @@ angular.module('codyColor').controller('matchCtrl',
                 $scope.playerPositioned = false;
                 $scope.showCompleteGrid = true;
                 $scope.draggableRobyImage = 'roby-dragging-trasp';
+                $scope.dragging = true;
                 $scope.showArrows = true;
                 calculateAllStartPositionCss(false);
             });
@@ -240,6 +248,7 @@ angular.module('codyColor').controller('matchCtrl',
                     $scope.showArrows = false;
                     $scope.playerPositioned = false;
                     $scope.showCompleteGrid = false;
+                    $scope.dragging = false;
                     $scope.draggableRobyImage = 'roby-idle';
                     calculateAllStartPositionCss(false);
                 });
@@ -311,22 +320,24 @@ angular.module('codyColor').controller('matchCtrl',
 
         // cosa fare una volta terminata senza intoppi la partita; mostra la schermata aftermatch
         let endMatch = function () {
-            scopeService.safeApply($scope, function () {
-                $scope.endMatch = true;
-            });
+            if (!$scope.endMatch) {
+                robyAnimator.positionRoby('player');
+                robyAnimator.positionRoby('enemy');
 
-            robyAnimator.positionRoby('player');
-            robyAnimator.positionRoby('enemy');
+                scopeService.safeApply($scope, function () {
+                    $scope.endMatch = true;
+                });
 
-            let results = robyAnimator.calculateResults();
-            gameData.setCurrentMatchResult(results);
-            gameData.addPlayerPoints(results.playerResult.points);
-            gameData.addEnemyPoints(results.enemyResult.points);
+                let results = robyAnimator.calculateResults();
+                gameData.setCurrentMatchResult(results);
+                gameData.addPlayerPoints(results.playerResult.points);
+                gameData.addEnemyPoints(results.enemyResult.points);
 
-            robyAnimator.animateAndFinish(function () {
-                robyAnimator.quitGame();
-                navigationHandler.goToPage($location, $scope, '/aftermatch', true);
-            });
+                robyAnimator.animateAndFinish(function () {
+                    robyAnimator.quitGame();
+                    navigationHandler.goToPage($location, $scope, '/aftermatch', true);
+                });
+            }
         };
 
         // termina la partita alla pressione sul tasto corrispondente
@@ -338,15 +349,14 @@ angular.module('codyColor').controller('matchCtrl',
 
         $scope.askedForSkip = false;
         $scope.skip = function() {
-          rabbit.sendSkipMessage();
-          gameData.setPlayerWantSkip(true);
-          $scope.askedForSkip = true;
+            rabbit.sendSkipMessage();
+            gameData.setPlayerWantSkip(true);
+            $scope.askedForSkip = true;
 
-          if (gameData.getPlayerWantSkip() && gameData.getEnemyWantSkip()) {
-              robyAnimator.quitGame();
-              navigationHandler.goToPage($location, $scope, '/aftermatch');
-          }
-
+            if (gameData.getPlayerWantSkip() && gameData.getEnemyWantSkip()) {
+                robyAnimator.quitGame();
+                navigationHandler.goToPage($location, $scope, '/aftermatch');
+            }
         };
 
         // metodo per terminare la partita in modo sicuro, disattivando i timer, interrompendo animazioni e connessioni
@@ -385,4 +395,5 @@ angular.module('codyColor').controller('matchCtrl',
             audioHandler.toggleBase();
             $scope.basePlaying = audioHandler.getBaseState();
         };
-    });
+    }
+);
