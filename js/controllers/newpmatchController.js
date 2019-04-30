@@ -1,7 +1,7 @@
 /*
  * Controller partita con avversario custom
  */
-angular.module('codyColor').controller('pmmakingCtrl',
+angular.module('codyColor').controller('newpmatchCtrl',
     function ($scope, rabbit, navigationHandler,
               audioHandler, $location, sessionHandler, gameData) {
         console.log("Empty controller ready.");
@@ -19,10 +19,7 @@ angular.module('codyColor').controller('pmmakingCtrl',
             rabbit.connect();
         }
 
-        $scope.mmakingState = 'joinMatch';
-        $scope.goToCreateMatch = function() {
-            navigationHandler.goToPage($location, $scope, "/newpmatch");
-        };
+        $scope.mmakingState = 'createMatch';
 
         // termina la partita in modo sicuro, alla pressione sul tasto corrispondente
         $scope.exitGame = function () {

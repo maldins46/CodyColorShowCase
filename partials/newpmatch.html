@@ -1,32 +1,34 @@
 <div id="wrapper">
     <div id="page-body-container">
-        <div id="initializeMatch" ng-show="mmakingState === 'joinMatch'" class="centered-component">
+        <div id="createMatch" ng-show="mmakingState === 'createMatch'" class="centered-component">
             <form name="customMatchForm">
                 <ul class="menu-list">
                     <li class="menu-list-element">
-                        Un tuo amico ti ha mandato il codice per unirti alla sua partita? Inseriscilo qua, assieme
-                        al tuo nickname, per iniziare a giocare!
+                        Scegli il nickname con il quale apparire all'avversario, e le varie opzioni di
+                        gioco. CodyColor genererà una nuova partita privata alla quale potrai invitare i tuoi amici.
                     </li>
-                    <li class="menu-list-element">
-                        <input type="text" name="code" ng-model="code" placeholder="Codice partita" required
-                               autofocus/>
-                    </li>
+
                     <li class="menu-list-element">
                         <input type="text" name="nickname" ng-model="nickname" placeholder="Nickname"/>
                     </li>
+
+                    <li class="menu-list-element">
+                        Durata partita
+                    </li>
+                    <li class="menu-list-element">
+                        <div class="selector">
+                            <button class="selector-button">-</button>
+                            <div class="selector-text">30 secondi</div>
+                            <button class="selector-button">+</button>
+                        </div>
+                        <br>
+                    </li>
+
                     <li class="menu-list-element">
                         <button class="icons-margin"
                                 ng-click="requestMMaking(customMatchForm.nickname.$viewValue)"
                                 ng-disabled="customMatchForm.nickname.$invalid">
-                            Unisciti alla partita!
-                        </button>
-                    </li>
-                    <li class="menu-list-element"><p>- oppure -</p></li>
-                    <li class="menu-list-element">
-                        <button class="icons-margin"
-                                ng-click="goToCreateMatch()"
-                                ng-disabled="customMatchForm.nickname.$invalid">
-                            Nuova partita personalizzata
+                            Genera partita <i class="fas fa-angle-double-right floating-right-component"></i>
                         </button>
                     </li>
                 </ul>

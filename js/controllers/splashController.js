@@ -6,6 +6,7 @@ angular.module('codyColor').controller('splashCtrl',
               $location, sessionHandler) {
         console.log("Controller splash ready.");
 
+
         // validazione sessione
         navigationHandler.initializeBackBlock($scope);
         sessionHandler.validateSession();

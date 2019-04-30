@@ -362,13 +362,13 @@
                      data-drag="{{!playerPositioned}}" data-jqyoui-options="{revert: 'invalid'}"
                      jqyoui-draggable="{animate:true, onStart:'startDragging', onStop:'endDragging' }"/>
 
-                <div class="override-container" ng-show="endMatch">
-                    <div class="override-component" ng-hide="askedForSkip">
+                <div id="end-match-container" class="ccomponents-container" ng-show="endMatch">
+                    <div class="centered-component" ng-hide="askedForSkip">
                         <button class="flashing-component" ng-click="skip()">Skip
                             <i class="fas fa-angle-double-right floating-right-component"></i></button>
                     </div>
 
-                    <div class="override-component flashing-component" ng-show="askedForSkip">
+                    <div class="centered-component flashing-component" ng-show="askedForSkip">
                         Attendi che l'avversario confermi lo skip…
                     </div>
                 </div>

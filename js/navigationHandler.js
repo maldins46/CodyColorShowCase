@@ -28,16 +28,17 @@ angular.module('codyColor').factory("navigationHandler", function () {
 
 angular.module('codyColor').config(function ($routeProvider) {
     $routeProvider
-        .when("/", {templateUrl: "partials/splash.html", controller: "splashCtrl"})
-        .when("/home", {templateUrl: "partials/home.html", controller: "homeCtrl"})
-        .when("/login", {templateUrl: "partials/login.html", controller: "loginCtrl"})
-        .when("/rules", {templateUrl: "partials/rules.html", controller: "emptyCtrl"})
-        .when("/register", {templateUrl: "partials/register.html", controller: "registerCtrl"})
-        .when("/rmmaking", {templateUrl: "partials/rmmaking.html", controller: "rmmakingCtrl"})
-        .when("/pmmaking", {templateUrl: "partials/pmmaking.html", controller: "pmmakingCtrl"})
-        .when("/match", {templateUrl: "partials/match.html", controller: "matchCtrl"})
-        .when("/aftermatch", {templateUrl: "partials/aftermatch.html", controller: "aftermatchCtrl"})
-        .when("/ranking", {templateUrl: "partials/ranking.html", controller: "rankingCtrl"})
-        .when("/profile", {templateUrl: "partials/ranking.html", controller: "rankingCtrl"})
-        .otherwise({templateUrl: "partials/404.html", controller: "emptyCtrl"});
+        .when("/", {templateUrl: "partials/splash.html?v=1.0.3", controller: "splashCtrl"})
+        .when("/home", {templateUrl: "partials/home.html?v=1.0.3", controller: "homeCtrl"})
+        .when("/login", {templateUrl: "partials/login.html?v=1.0.3", controller: "loginCtrl"})
+        .when("/rules", {templateUrl: "partials/rules.html?v=1.0.3", controller: "emptyCtrl"})
+        .when("/register", {templateUrl: "partials/register.html?v=1.0.3", controller: "registerCtrl"})
+        .when("/rmmaking", {templateUrl: "partials/rmmaking.html?v=1.0.3", controller: "rmmakingCtrl"})
+        .when("/pmmaking", {templateUrl: "partials/pmmaking.html?v=1.0.3", controller: "pmmakingCtrl"})
+        .when("/newpmatch", {templateUrl: "partials/newpmatch.html?v=1.0.3", controller: "newpmatchCtrl"})
+        .when("/match", {templateUrl: "partials/match.html?v=1.0.3", controller: "matchCtrl"})
+        .when("/aftermatch", {templateUrl: "partials/aftermatch.html?v=1.0.3", controller: "aftermatchCtrl"})
+        .when("/ranking", {templateUrl: "partials/ranking.html?v=1.0.3", controller: "rankingCtrl"})
+        .when("/profile", {templateUrl: "partials/ranking.html?v=1.0.3", controller: "rankingCtrl"})
+        .otherwise({templateUrl: "partials/404.html", controller: "emptyCtrl?v=1.0.3"});
 });
