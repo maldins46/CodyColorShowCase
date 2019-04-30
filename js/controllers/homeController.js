@@ -13,6 +13,9 @@ angular.module('codyColor').controller('homeCtrl',
             return;
         }
 
+        $scope.totalMatches = 0;
+        $scope.connectedPlayers = 0;
+
         // impostazioni connessione server; implementa dei callback che permettono di mostrare se necessario
         // un messaggio per notificare all'utente che la connessione al server è in corso
         $scope.connected = rabbit.getConnectionState();
@@ -26,9 +29,32 @@ angular.module('codyColor').controller('homeCtrl',
                 // onErrorConnection
                 scopeService.safeApply($scope, function () {
                     $scope.connected = false;
+                    $scope.generalInfoReady = false;
                 });
+
+            });
+
+        } else {
+            let totalMatches = sessionHandler.getTotalMatches();
+            let connectedPlayers = sessionHandler.getConnectedPlayers();
+            scopeService.safeApply($scope, function () {
+                $scope.totalMatches = (totalMatches + 100).toString();
+                $scope.connectedPlayers = connectedPlayers.toString();
             });
         }
+
+        rabbit.setHomeCallbacks(function (response) {
+            // onTotalMatchMessage
+            sessionHandler.setTotalMatches(response.totalMatches);
+            sessionHandler.setConnectedPlayers(response.connectedPlayers);
+
+            scopeService.safeApply($scope, function () {
+                $scope.totalMatches = (sessionHandler.getTotalMatches() + 100).toString();
+                $scope.connectedPlayers = sessionHandler.getConnectedPlayers().toString();
+            });
+        });
+
+
 
         // inizializzazione menù di navigazione
         $scope.goToRules = function () {
@@ -42,18 +68,18 @@ angular.module('codyColor').controller('homeCtrl',
         };
         $scope.goToPMMaking = function () {
             if ($scope.connected)
-                navigationHandler.goToPage($location, $scope, "/404");
+                navigationHandler.goToPage($location, $scope, "/pmmaking");
             else
                 alert('Solo un momento, mi sto connettendo al server…');
         };
         $scope.goToRanking = function () {
-            navigationHandler.goToPage($location, $scope, "/404");
+            navigationHandler.goToPage($location, $scope, "/ranking");
         };
         $scope.goToProfile = function () {
-            navigationHandler.goToPage($location, $scope, "/404");
+            navigationHandler.goToPage($location, $scope, "/profile");
         };
         $scope.goToLogin = function () {
-            navigationHandler.goToPage($location, $scope, "/404");
+            navigationHandler.goToPage($location, $scope, "/login");
         };
 
         // impostazioni audio

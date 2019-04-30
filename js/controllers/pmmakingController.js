@@ -20,8 +20,11 @@ angular.module('codyColor').controller('pmmakingCtrl',
 
         // tenta la connessione, se necessario
         $scope.connected = rabbit.getConnectionState();
-        if (!$scope.connected)
+        if (!$scope.connected) {
             rabbit.connect();
+        }
+
+        $scope.mmakingState = 'initializeMatch';
 
         // impostazioni audio
         $scope.basePlaying = audioHandler.getBaseState();

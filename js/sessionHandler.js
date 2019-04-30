@@ -1,10 +1,13 @@
 /*
  * SessionHandler: sfrutta una variabile per stabilire se la sessione corrente
- * è valida; eventualmente rimanda alla splash page
+ * è valida; eventualmente rimanda alla splash page. Memorizza inoltre alcuni dati di sessione
  */
 angular.module('codyColor').factory("sessionHandler", function() {
     let sessionHandler = {};
     let isSessionValid;
+
+    let totalMatches;
+    let connectedPlayers;
 
     sessionHandler.validateSession = function() {
         isSessionValid = true;
@@ -12,6 +15,29 @@ angular.module('codyColor').factory("sessionHandler", function() {
 
     sessionHandler.isSessionInvalid = function () {
         return isSessionValid === undefined || isSessionValid === false;
+    };
+
+    sessionHandler.setTotalMatches = function (matches) {
+        totalMatches = matches;
+    };
+
+    sessionHandler.getTotalMatches = function () {
+        if (totalMatches === undefined)
+            totalMatches = 0;
+
+        return totalMatches;
+    };
+
+
+    sessionHandler.setConnectedPlayers = function (players) {
+        connectedPlayers = players;
+    };
+
+    sessionHandler.getConnectedPlayers = function () {
+        if (connectedPlayers === undefined)
+            connectedPlayers = 0;
+
+        return connectedPlayers;
     };
 
     return sessionHandler;

@@ -17,6 +17,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     const serverControlQueue = "/queue/serverControl";
     const clientControlTopic = "/topic/clientsControl";
+    const generalTopic = "/topic/general";
     const gameRoomsTopic     = "/topic/gameRooms";
 
     // crea il messaggio da utilizzare come richiesta di connessione
@@ -34,6 +35,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // riferimenti alle subscription
     let serverDirectSubscription;
+    let generalSubscription;
     let gameRoomSubscription;
 
     // ottiene lo stato attuale della connessione al broker
@@ -43,6 +45,18 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         return connected;
     };
 
+
+    // callback dalla schermata home
+    rabbit.setHomeCallbacks = function(onGeneralInfoMessage) {
+        callbacks = {};
+        callbacks.onGeneralInfoMessage = onGeneralInfoMessage;
+    };
+
+    // callback della splash
+    rabbit.setSplashCallbacks = function(onGeneralInfoMessage) {
+        callbacks = {};
+        callbacks.onGeneralInfoMessage = onGeneralInfoMessage;
+    };
 
     // callback necessari per il matchmaking
     rabbit.setMMakingCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
@@ -100,8 +114,10 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         connected = true;
 
         // sottoscrivi la queue per la conunicazione con il server
-        serverDirectSubscription = client.subscribe(clientControlTopic + '.' + uniqueClientId, // topic
-                                                    handleIncomingMessages);                   // callback
+        serverDirectSubscription = client.subscribe(clientControlTopic + '.' + uniqueClientId, handleDirectMessages);
+        generalSubscription = client.subscribe(generalTopic, handleGeneralMessages);
+
+        sendConnectedSignal();
 
         // eventuali azioni addizionali da compiere a connessione completata
         if (callbacks.onConnected !== undefined)
@@ -155,7 +171,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // pone il client in ascolto di messaggi sulla game room
     rabbit.subscribeGameRoom = function() {
         gameRoomSubscription = client.subscribe(gameRoomsTopic + '.' + gameData.getGameRoomId(),
-                                                handleIncomingMessages);
+                                                handleDirectMessages);
     };
 
 
@@ -195,7 +211,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // notifica all'avversario l'avvenuto posizionamento di roby
     rabbit.sendPlayerPositionedMessage = function() {
-        let message = { msgType:  'playerPositioned',
+        let message = { msgType:   'playerPositioned',
                         gameRoomId: gameData.getGameRoomId(),
                         playerId:   gameData.getPlayerId(),
                         matchTime:  gameData.getPlayerMatchTime(),
@@ -210,7 +226,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // notifica all'avversario la volontà di skippare l'animazione
     rabbit.sendSkipMessage = function() {
-        let message = { msgType:  'skip',
+        let message = { msgType:   'skip',
                         gameRoomId: gameData.getGameRoomId(),
                         playerId:   gameData.getPlayerId() };
 
@@ -230,6 +246,18 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         client.send(serverControlQueue,                    // destination
                     { durable: false, exclusive: false },  // headers
                     JSON.stringify(message));              // message
+    };
+
+    // notifica al server la connessione di un nuovo client al sistema
+    let sendConnectedSignal = function() {
+        let message = { msgType:      'connectedSignal',
+                        correlationId: uniqueClientId };
+
+        // permette di creare una queue con nominativo univoco nel broker,
+        // composto dal nome passato più una variabile di sessione.
+        client.send(serverControlQueue,            // destination
+            { durable: false, exclusive: false },  // headers
+            JSON.stringify(message));              // message
     };
 
 
@@ -266,19 +294,37 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     };
 
 
+    let handleGeneralMessages = function(responseMessage) {
+        let responseObject = JSON.parse(responseMessage.body);
+
+        if (responseObject.msgType === 'generalInfo') {
+            if (callbacks.onGeneralInfoMessage !== undefined) {
+                callbacks.onGeneralInfoMessage(responseObject);
+            }
+        }
+    };
+
+
     // gestisce le risposte del broker, provenienti dal server o dalla game room
-    let handleIncomingMessages = function(responseMessage) {
+    let handleDirectMessages = function(responseMessage) {
         let responseObject = JSON.parse(responseMessage.body);
 
         if (responseObject.msgType === 'gameResponse') {
-            callbacks.onGameRequestResponse(responseObject);
-            startHeartbeatSender();
+            if (callbacks.onGameRequestResponse !== undefined) {
+                callbacks.onGameRequestResponse(responseObject);
+                startHeartbeatSender();
+            }
+
+        } else if (responseObject.msgType === 'generalInfo') {
+            if (callbacks.onGeneralInfoMessage !== undefined) {
+                callbacks.onGeneralInfoMessage(responseObject);
+            }
 
         } else if (responseObject.playerId === gameData.getPlayerId()) {
             // si è intercettato il proprio messaggio: non fare niente
 
         } else {
-            // agisci in maniera diversa a seconda della tipologia di messaggio
+            // agisci in maniera diversa a seconda della tipologia di messaggio game room
             switch(responseObject.msgType) {
                 case "here":
                     if (callbacks.onHereMessage !== undefined)

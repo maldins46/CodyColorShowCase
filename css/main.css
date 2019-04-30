@@ -96,7 +96,7 @@ textarea {
   ========================================================================== */
 
 
-/* 1. Stili comuni a tutte le pagine */
+/* Struttura di base delle pagine */
 
 html {
     height: 100%;
@@ -315,17 +315,15 @@ h1 {
 h2 {
     font-size: 30px;
     margin: 0;
-    padding-bottom: 30px;
-    padding-top: 30px;
 }
 
 
-ul {
+ul.menu-list {
     padding: 0;
     margin: 0;
 }
 
-li {
+li.menu-list-element {
     list-style-type: none;
     margin-bottom: 10px;
 }
@@ -417,6 +415,40 @@ input[type=text], input[type=email], input[type=password] {
         box-sizing: border-box;
         border-radius: 4px;
     }
+}
+
+
+.selector {
+    width: 90%;
+    padding: 12px 20px;
+    height:50px;
+    margin: 0 auto;
+}
+
+/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
+@media only screen and (min-width: 320px) {
+    .selector {
+        width: 280px;
+        height:50px;
+        margin: 0 auto;
+    }
+}
+
+.selector-button {
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    float: left;
+}
+
+.selector-text {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    text-align: center;
+    float: left;
 }
 
 
@@ -619,6 +651,9 @@ input[type=text], input[type=email], input[type=password] {
     margin-top: 20px;
 }
 
+.pmmaking-height {
+    height: 800px;
+}
 
 .override-container {
     width: 100%;
