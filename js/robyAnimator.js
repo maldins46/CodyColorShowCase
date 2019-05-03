@@ -346,8 +346,14 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         // un loop vale 20 punti
         if (loop) points += 100;
 
-        // 5 secondi valgono 1 punto
-        points += Math.floor(time / 5000);
+        // il tempo viene diviso in 4 parti. Ogni 'quarto' rimasto vale 2 punti
+        let totalTime = gameData.getTimerSetting();
+        let quarter = totalTime / 4;
+
+        while (time > quarter) {
+            points += 2;
+            time -= quarter;
+        }
 
         return points;
     };

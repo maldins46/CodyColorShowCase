@@ -128,7 +128,7 @@ using a polyfill CDN service, like [cdn.polyfill.io](https://cdn.polyfill.io/),
 just put it before the other scripts in the bottom of the page:
 
 ```html
-    <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="js/vendor/modernizr.min.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>

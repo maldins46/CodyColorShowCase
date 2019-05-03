@@ -1,0 +1,88 @@
+<div id="wrapper">
+    <div id="page-body-container">
+        <div id="joinMatch" ng-show="mmakingState === 'joinMatch'" class="centered-component">
+            <form name="customMatchForm">
+                <ul class="menu-list">
+                    <li class="menu-list-element">
+                        Un tuo amico ti ha mandato il codice per unirti alla sua partita? Inseriscilo qua
+                        per iniziare a giocare!
+                    </li>
+                    <li class="menu-list-element">
+                        <input type="text" name="code" maxlength="4" ng-model="code" placeholder="Codice partita"
+                               required autofocus/>
+                    </li>
+                    <li class="menu-list-element">
+                        <button class="icons-margin"
+                                ng-click="joinGame(customMatchForm.code.$viewValue)"
+                                ng-disabled="customMatchForm.code.$invalid">
+                            Unisciti alla partita!
+                        </button>
+                    </li>
+                    <li class="menu-list-element"
+                        ng-class="joinMessage === 'Cercando informazioni sulla partita…' ? 'flashing-component' : ''"
+                        ng-show="joinMessage !== ''">
+                        {{joinMessage}}
+                    </li>
+                </ul>
+            </form>
+            <ul class="menu-list">
+                <li class="menu-list-element"><p>- oppure -</p></li>
+                <li class="menu-list-element">
+                    <button class="icons-margin"
+                            ng-click="goToCreateMatch()"
+                            ng-disabled="customMatchForm.nickname.$invalid">
+                        Nuova partita personalizzata
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="centered-component">
+            <form name="landingMatchForm">
+                <ul class="menu-list">
+                    <li class="menu-list-element">
+                        Benvenuto nella partita di {{enemyNickname}}! In questa partita, ogni match durerà {{totTime}}.
+                        Scegli il tuo nickname e premi 'Iniziamo' per avviare la partita.
+                    </li>
+                    <li class="menu-list-element">
+                        <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="Nickname" required/>
+                    </li>
+                    <li class="menu-list-element">
+                        <button class="flashing-component" ng-click="playerReady(landingMatchForm.nickname.$viewValue)"
+                                ng-disabled="landingMatchForm.nickname.$invalid">Iniziamo!
+                            <i class="fas fa-angle-double-right floating-right-component"></i>
+                        </button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+        <div id="waiting-confirm" ng-show="mmakingState === 'waitingConfirm'" class="centered-component">
+            <!-- Spinner -->
+            <div class="lds-grid">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
+        </div>
+    </div>
+    <div id="push"></div>
+</div>
+
+<div id="footer-container">
+    <div id="footer-content">
+        <div class="footer-component-left">
+            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
+            <i class="fas fa-2x footer-icons" ng-class="basePlaying ? 'fa-volume-up' : 'fa-volume-mute'"
+               ng-click="toggleBase()"></i>
+        </div>
+        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
+    </div>
+</div>

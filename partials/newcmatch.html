@@ -1,0 +1,100 @@
+<div id="wrapper">
+    <div id="page-body-container">
+        <div id="createMatch" ng-show="mmakingState === 'createMatch'" class="centered-component">
+            <form name="customMatchForm">
+                <ul class="menu-list">
+                    <li class="menu-list-element">
+                        Scegli il nickname con il quale apparire all'avversario, e le varie opzioni di
+                        gioco. CodyColor genererà una nuova partita privata alla quale potrai invitare i tuoi amici.
+                    </li>
+
+                    <li class="menu-list-element">
+                        <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="Nickname"
+                               required autofocus/>
+                    </li>
+
+                    <li class="menu-list-element">
+                        Durata partita
+                    </li>
+                    <li class="menu-list-element">
+                        <div class="selector">
+                            <div class="selector-button" ng-click="decrementTime()">-</div>
+                            <div class="selector-text">{{timerSettings[currentIndex].text}}</div>
+                            <div class="selector-button" ng-click="incrementTime()">+</div>
+                        </div>
+                        <br>
+                    </li>
+                    <li class="menu-list-element">
+                        <button class="icons-margin" type="submit"
+                                ng-click="requestMMaking(customMatchForm.nickname.$viewValue)"
+                                ng-disabled="customMatchForm.nickname.$invalid">
+                            Genera partita <i class="fas fa-angle-double-right floating-right-component"></i>
+                        </button>
+                    </li>
+                    <li class="menu-list-element" ng-show="creatingMatch">
+                        <p class="flashing-component">Preparando la partita…</p>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+        <div id="enemyInvitation" ng-show="mmakingState === 'enemyInvitation'" class="centered-component">
+            <ul class="menu-list">
+                <li class="menu-list-element">
+                    La tua partita è pronta! Puoi invitare l'avversario inviandogli il codice sottostante, da inserire
+                    nella schermata "partita custom" del gioco. Premi il codice per copiarlo negli appunti.
+                </li>
+
+                <li class="menu-list-element">
+                    <div class="copyable-area" ng-click="copyCode()">
+                        <div class="button-text">{{gameCode}}</div>
+                        <div class="copy-font"  ng-show="codeCopied"><i class="far fa-copy copy-icon"></i> Codice copiato negli appunti!</div>
+                    </div>
+                </li>
+
+                <li class="menu-list-element">
+                    In alternativa, puoi inviare l'avversario tramite il seguente link. Basterà accedervi per entrare nella
+                    partita. Premi il link per copiarlo negli appunti.
+                </li>
+
+                <li class="menu-list-element">
+                    <div class="copyable-area" ng-click="copyLink()">
+                        https://codycolor.codemooc.net/#!?match={{gameCode}}
+                        <div class="copy-font" ng-show="linkCopied"><i class="far fa-copy copy-icon"></i> Link copiato negli appunti!</div>
+                    </div>
+                </li>
+
+                <li class="menu-list-element flashing-component">
+                    Attendi che l'avversario confermi la sua partecipazione…
+                </li>
+            </ul>
+        </div>
+        <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="centered-component">
+            Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
+            <button class="flashing-component" ng-click="playerReady()">Iniziamo! <i class="fas fa-angle-double-right floating-right-component"></i>
+            </button>
+        </div>
+
+        <div id="waiting-confirm" ng-show="mmakingState === 'waitingConfirm'" class="centered-component">
+            <!-- Spinner -->
+            <div class="lds-grid">
+                <div></div><div></div><div></div>
+                <div></div><div></div><div></div>
+                <div></div><div></div><div></div>
+            </div>
+            <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
+        </div>
+    </div>
+    <div id="push"></div>
+</div>
+
+<div id="footer-container">
+    <div id="footer-content">
+        <div class="footer-component-left">
+            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
+            <i class="fas fa-2x footer-icons" ng-class="basePlaying ? 'fa-volume-up' : 'fa-volume-mute'"
+               ng-click="toggleBase()"></i>
+        </div>
+        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
+    </div>
+</div>

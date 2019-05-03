@@ -1,42 +1,62 @@
 <div id="wrapper">
     <div id="page-body-container">
         <div id="nickname-selection" ng-show="mmakingState === 'nicknameSelection'" class="centered-component">
-            <p>
-                Scegli il nickname con il quale apparire nella prossima partita; CodyColor provvederà a trovare un
-                avversario casuale tra quelli in attesa di giocare.
-            </p>
             <form name="nickForm">
-                <label><input type="text" name="nickname" ng-model="nickname" placeholder="Nickname" required autofocus/></label>
-                <button class="icons-margin floating-right-component"
-                        ng-click="requestMMaking(nickForm.nickname.$viewValue)"
-                        ng-disabled="nickForm.nickname.$invalid">
-                    <i class="fas fa-angle-double-right"></i>
-                </button>
+                <ul class="menu-list">
+                    <li class="menu-list-element">
+                        Scegli il nickname con il quale apparire nella prossima partita; CodyColor provvederà a trovare
+                        un
+                        avversario casuale tra quelli in attesa di giocare.
+                    </li>
+                    <li class="menu-list-element">
+
+                        <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="Nickname"
+                               required autofocus/>
+                        <button class="icons-margin floating-right-component"
+                                ng-click="requestMMaking(nickForm.nickname.$viewValue)"
+                                ng-disabled="nickForm.nickname.$invalid">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </li>
+                </ul>
             </form>
         </div>
 
         <div id="waiting-enemy" ng-show="mmakingState === 'waitingEnemy'" class="centered-component">
             <!-- Spinner -->
             <div class="lds-grid">
-                <div></div><div></div><div></div>
-                <div></div><div></div><div></div>
-                <div></div><div></div><div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
             <p class="flashing-component">In attesa di un avversario…</p>
         </div>
 
         <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="centered-component">
             Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
-            <button class="flashing-component" ng-click="playerReady()">Iniziamo! <i class="fas fa-angle-double-right floating-right-component"></i>
+            <button class="flashing-component" ng-click="playerReady()">Iniziamo! <i
+                    class="fas fa-angle-double-right floating-right-component"></i>
             </button>
         </div>
 
         <div id="waiting-confirm" ng-show="mmakingState === 'waitingConfirm'" class="centered-component">
             <!-- Spinner -->
             <div class="lds-grid">
-                <div></div><div></div><div></div>
-                <div></div><div></div><div></div>
-                <div></div><div></div><div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
             <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
         </div>

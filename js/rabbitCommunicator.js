@@ -10,7 +10,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // credenziali di comunicazione con il server
     const rabbitUsername = "guest";
     const rabbitPassword = "guest";
-    // /* SIMULAZIONI IN LOCALE */ const serverUrl = 'ws://127.0.0.1:15674/ws';
+    ///* SIMULAZIONI IN LOCALE */ const serverUrl = 'ws://127.0.0.1:15674/ws';
     // /* SENZA HTTPS */           const serverUrl = 'ws://botify.it/codycolor/ws';
     const serverUrl = "wss://botify.it/codycolor/ws";
     const rabbitVHost = "/";
@@ -18,7 +18,10 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     const serverControlQueue = "/queue/serverControl";
     const clientControlTopic = "/topic/clientsControl";
     const generalTopic = "/topic/general";
-    const gameRoomsTopic     = "/topic/gameRooms";
+    const randGameRoomsTopic     = "/topic/gameRooms";
+    const custGameRoomsTopic     = "/topic/custGameRooms";
+    const random = 'random';
+    const custom = 'custom';
 
     // crea il messaggio da utilizzare come richiesta di connessione
     const uniqueClientId = (Math.floor(Math.random() * 100000)).toString();
@@ -58,9 +61,39 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         callbacks.onGeneralInfoMessage = onGeneralInfoMessage;
     };
 
+
+    rabbit.cleanCallbacks = function() {
+        callbacks = {};
+    };
+
     // callback necessari per il matchmaking
-    rabbit.setMMakingCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
-                                          onQuitGameMessage, onConnectionLost) {
+    rabbit.setRMMakingCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
+                                           onQuitGameMessage, onConnectionLost) {
+        callbacks = {};
+        callbacks.onGameRequestResponse = onGameRequestResponse;
+        callbacks.onHereMessage         = onHereMessage;
+        callbacks.onReadyMessage        = onReadyMessage;
+        callbacks.onTilesMessage        = onTilesMessage;
+        callbacks.onQuitGameMessage     = onQuitGameMessage;
+        callbacks.onConnectionLost      = onConnectionLost;
+    };
+
+    // callback necessari per il matchmaking
+    rabbit.setCMMakingCallbacks = function(connectedCallback, onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
+                                           onQuitGameMessage, onConnectionLost) {
+        callbacks = {};
+        callbacks.onConnected           = connectedCallback;
+        callbacks.onGameRequestResponse = onGameRequestResponse;
+        callbacks.onHereMessage         = onHereMessage;
+        callbacks.onReadyMessage        = onReadyMessage;
+        callbacks.onTilesMessage        = onTilesMessage;
+        callbacks.onQuitGameMessage     = onQuitGameMessage;
+        callbacks.onConnectionLost      = onConnectionLost;
+    };
+
+    // callback necessari per il matchmaking
+    rabbit.setNewCMatchCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
+                                           onQuitGameMessage, onConnectionLost) {
         callbacks = {};
         callbacks.onGameRequestResponse = onGameRequestResponse;
         callbacks.onHereMessage         = onHereMessage;
@@ -142,9 +175,30 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
 
     // invia al server una richiesta per iniziare una nuova partita
-    rabbit.sendGameRequest = function() {
-        let message = { msgType:      'gameRequest',
-                        correlationId: uniqueClientId };
+    rabbit.sendGameRequest = function(newCustomRequest, invitationCode) {
+        let message;
+        if (newCustomRequest !== undefined && newCustomRequest === true && invitationCode === undefined) {
+            // richiesta di nuovo custom match
+            message = { msgType:      'gameRequest',
+                        correlationId: uniqueClientId,
+                        gameOptions:   { timerSetting: gameData.getTimerSetting() },
+                        gameType:      custom,
+                        code:         '0000'};
+
+        } else if (newCustomRequest !== undefined && newCustomRequest === false && invitationCode !== undefined) {
+            // richiesta di partecipazione a custom match da invito
+            message = { msgType:      'gameRequest',
+                        correlationId: uniqueClientId,
+                        gameType:      custom,
+                        code:          invitationCode.toString() };
+
+        } else {
+            // richiesta match casuale
+            message = { msgType:      'gameRequest',
+                        correlationId: uniqueClientId,
+                        gameType:      random };
+        }
+
 
         // permette di creare una queue con nominativo univoco nel broker,
         // composto dal nome passato più una variabile di sessione.
@@ -154,35 +208,39 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     };
 
 
-    // avvia un interval che invia ogni 5 secondi un segnale di heartbeat al server
-    let startHeartbeatSender = function() {
-        heartbeatTimer = setInterval(function() {
-            let message = { msgType:     'heartbeat',
-                            gameRoomId:   gameData.getGameRoomId(),
-                            playerId:     gameData.getPlayerId()   };
-
-            client.send(serverControlQueue,                   // destination
-                        { durable: false, exclusive: false }, // headers
-                        JSON.stringify(message));             // message
-        }, 5000);
-    };
-
-
     // pone il client in ascolto di messaggi sulla game room
     rabbit.subscribeGameRoom = function() {
+        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
+                              randGameRoomsTopic : custGameRoomsTopic);
         gameRoomSubscription = client.subscribe(gameRoomsTopic + '.' + gameData.getGameRoomId(),
                                                 handleDirectMessages);
+
+        heartbeatTimer = setInterval(function() {
+            let message = { msgType:     'heartbeat',
+                gameRoomId:   gameData.getGameRoomId(),
+                playerId:     gameData.getPlayerId(),
+                gameType:     gameData.getGameType() };
+
+            client.send(serverControlQueue,                   // destination
+                { durable: false, exclusive: false }, // headers
+                JSON.stringify(message));             // message
+        }, 5000);
     };
 
 
     // invia un messaggio nella game room, utilizzato per notificare all'avversario,
     // se presente, la propria presenza
     rabbit.sendHereMessage = function(needResponseValue) {
+        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
+                              randGameRoomsTopic : custGameRoomsTopic);
+
         let message = { msgType:     'here',
                         gameRoomId:   gameData.getGameRoomId(),
                         playerId:     gameData.getPlayerId(),
                         nickname:     gameData.getPlayerNickname(),
                         needResponse: needResponseValue,
+                        timerSetting: gameData.getTimerSetting(),
+                        gameType:     gameData.getGameType(),
                         readyState:   gameData.isPlayerReady() };
 
         // permette di creare una queue con nominativo univoco nel broker,
@@ -196,9 +254,13 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // invia messaggio alla game room, utilizzato per notificare all'avversario che si
     // è pronti a giocare
     rabbit.sendReadyMessage = function() {
+        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
+                              randGameRoomsTopic : custGameRoomsTopic);
         let message = { msgType:     'ready',
                         gameRoomId:   gameData.getGameRoomId(),
                         playerId:     gameData.getPlayerId(),
+                        nickname:     gameData.getPlayerNickname(),
+                        gameType:     gameData.getGameType(),
                         readyState:   true };
 
         // permette di creare una queue con nominativo univoco nel broker,
@@ -211,9 +273,12 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // notifica all'avversario l'avvenuto posizionamento di roby
     rabbit.sendPlayerPositionedMessage = function() {
+        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
+                              randGameRoomsTopic : custGameRoomsTopic);
         let message = { msgType:   'playerPositioned',
                         gameRoomId: gameData.getGameRoomId(),
                         playerId:   gameData.getPlayerId(),
+                        gameType:   gameData.getGameType(),
                         matchTime:  gameData.getPlayerMatchTime(),
                         side:       gameData.getPlayerStartPosition().side,
                         distance:   gameData.getPlayerStartPosition().distance };
@@ -226,9 +291,12 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // notifica all'avversario la volontà di skippare l'animazione
     rabbit.sendSkipMessage = function() {
+        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
+            randGameRoomsTopic : custGameRoomsTopic);
         let message = { msgType:   'skip',
                         gameRoomId: gameData.getGameRoomId(),
-                        playerId:   gameData.getPlayerId() };
+                        playerId:   gameData.getPlayerId(),
+                        gameType:   gameData.getGameType() };
 
         client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
                     { durable: false, exclusive: false },            // headers
@@ -239,7 +307,8 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // invia messaggio al server, per richiedere una nuova disposizione tiles
     rabbit.sendTilesRequest = function() {
         let message = { msgType:     'tilesRequest',
-                        gameRoomId:   gameData.getGameRoomId() };
+                        gameRoomId:   gameData.getGameRoomId(),
+                        gameType:     gameData.getGameType()};
 
         // permette di creare una queue con nominativo univoco nel broker,
         // composto dal nome passato più una variabile di sessione.
@@ -263,6 +332,9 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // chiude la connessione alla game room in modo sicuro
     rabbit.quitGame = function() {
+        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
+                              randGameRoomsTopic : custGameRoomsTopic);
+
         if (gameRoomSubscription !== undefined) {
             gameRoomSubscription.unsubscribe();
             gameRoomSubscription = undefined;
@@ -280,7 +352,8 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
         let message = { msgType:     'quitGame',
                         gameRoomId:   gameData.getGameRoomId(),
-                        playerId:     gameData.getPlayerId()   };
+                        playerId:     gameData.getPlayerId(),
+                        gameType:     gameData.getGameType() };
 
         // invia messaggi per notificare l'abbandono della partita,
         // sia al server che agli altri client connessi alla gameRoom
@@ -312,7 +385,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         if (responseObject.msgType === 'gameResponse') {
             if (callbacks.onGameRequestResponse !== undefined) {
                 callbacks.onGameRequestResponse(responseObject);
-                startHeartbeatSender();
+
             }
 
         } else if (responseObject.msgType === 'generalInfo') {
@@ -333,7 +406,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
                 case "ready":
                     if (callbacks.onReadyMessage !== undefined)
-                        callbacks.onReadyMessage();
+                        callbacks.onReadyMessage(responseObject);
                     break;
 
                 case "tilesResponse":

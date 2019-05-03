@@ -111,12 +111,11 @@ angular.module('codyColor').controller('matchCtrl',
 
 
         // inizializzazione timers
-        let playerMatchTimerValue = 30000;
-        $scope.playerMatchTimerText = '30:00';
+        let playerMatchTimerValue = gameData.getTimerSetting();
+        $scope.playerMatchTimerText = gameData.formatTimerText(playerMatchTimerValue);
 
-        let enemyMatchTimerValue = 30000;
-        $scope.enemyMatchTimerText = '30:00';
-
+        let enemyMatchTimerValue = gameData.getTimerSetting();
+        $scope.enemyMatchTimerText =  gameData.formatTimerText(enemyMatchTimerValue);
 
         let startCountdownValue = 3;
         $scope.startCountdownText = startCountdownValue.toString();

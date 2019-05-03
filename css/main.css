@@ -169,7 +169,7 @@ body {
 }
 
 /* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
-@media only screen and (min-width: 320px) {
+@media only screen and (min-width: 340px) {
     #footer-container {
         width: 280px;
         height: 60px;
@@ -371,12 +371,20 @@ button {
 
 .disabled-button-text {
     border: none;
-    color: #818387;
+    color: #66686c;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 30px;
-    margin-bottom: 5px;
+}
+
+.button-text {
+    border: none;
+    color: White;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
 }
 
 a {
@@ -396,7 +404,7 @@ button:hover {
 }
 
 
-input[type=text], input[type=email], input[type=password] {
+input[type=text], input[type=email], input[type=password], input[type=number] {
     width: 90%;
     padding: 12px 20px;
     margin: 0 auto;
@@ -406,8 +414,8 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 /* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
-@media only screen and (min-width: 320px) {
-    input[type=text], input[type=email], input[type=password] {
+@media only screen and (min-width: 340px) {
+    input[type=text], input[type=email], input[type=password], input[type=number] {
         width: 280px;
         padding: 12px 20px;
         margin: 0 auto;
@@ -429,7 +437,7 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 /* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
-@media only screen and (min-width: 320px) {
+@media only screen and (min-width: 340px) {
     .selector {
         width: 280px;
         height:50px;
@@ -441,8 +449,20 @@ input[type=text], input[type=email], input[type=password] {
     width: 19%;
     height: 100%;
     text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    font-size: 30px;
     float: left;
     margin: 0;
+    transition-duration: 0.2s;
+    background-color: transparent;
+}
+
+.selector-button:hover {
+    transition-duration: 0.2s;
+    background-color: rgba(255, 255, 255, 0.09);
 }
 
 .selector-text {
@@ -456,6 +476,32 @@ input[type=text], input[type=email], input[type=password] {
     border-left: solid 1px;
     border-right: solid 1px;
     border-color: White;
+}
+
+
+.copyable-area {
+    width: 90%;
+    margin: 10px auto 20px;
+    padding: 10px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: White;
+    transition-duration: 0.2s;
+    background-color: transparent;
+}
+
+.copyable-area:hover {
+    transition-duration: 0.2s;
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
+@media only screen and (min-width: 340px) {
+    .copyable-area {
+        width: 280px;
+    }
 }
 
 
@@ -560,6 +606,20 @@ input[type=text], input[type=email], input[type=password] {
 
 .timer-icon {
     color: white;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+
+.copy-font {
+    color: white;
+    font-size: small;
+    vertical-align: middle;
+    margin-top: 5px;
+}
+.copy-icon {
+    color: white;
+    font-size: small;
     margin-right: 5px;
     vertical-align: middle;
 }
@@ -797,6 +857,7 @@ input[type=text], input[type=email], input[type=password] {
 
 /* Spinner */
 .lds-grid {
+    margin-top: 20px;
     display: inline-block;
     position: relative;
     width: 64px;

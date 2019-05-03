@@ -13,6 +13,9 @@ angular.module('codyColor').factory('gameData', function () {
     let playerPoints;
     let enemyPoints;
     let matchCount;
+    let timerSetting;
+    let gameType;
+    let gameCode;
 
     // dati partita corrente
     let isPlayerReady;
@@ -122,6 +125,39 @@ angular.module('codyColor').factory('gameData', function () {
         }
     };
 
+    gameData.setTimerSetting = function(timer) {
+        timerSetting = timer;
+    };
+
+    gameData.getTimerSetting = function() {
+        if (timerSetting === undefined)
+            timerSetting = 30000;
+
+        return timerSetting;
+    };
+
+    gameData.setGameCode = function(code) {
+        gameCode = code;
+    };
+
+    gameData.getGameCode = function() {
+        if (gameCode === undefined)
+            gameCode = '0000';
+
+        return gameCode;
+    };
+
+    gameData.setGameType = function(type) {
+        gameType = type;
+    };
+
+    gameData.getGameType = function() {
+        if (gameType === undefined)
+            gameType = 'random';
+
+        return gameType;
+    };
+
 
     // --- getter-setter dati match corrente --- //
 
@@ -147,8 +183,6 @@ angular.module('codyColor').factory('gameData', function () {
     gameData.setEnemyReady = function (state) {
         isEnemyReady = state;
     };
-
-
 
 
     gameData.setCurrentMatchTiles = function (tilesString) {
@@ -179,8 +213,6 @@ angular.module('codyColor').factory('gameData', function () {
 
         return matchTiles;
     };
-
-
 
     gameData.getPlayerStartPosition = function () {
         if (matchPlayerStartPosition === undefined) {
@@ -307,6 +339,9 @@ angular.module('codyColor').factory('gameData', function () {
         playerPoints = undefined;
         enemyPoints = undefined;
         matchCount = undefined;
+        timerSetting = undefined;
+        gameType = undefined;
+        gameCode = undefined;
     };
 
 
@@ -314,16 +349,34 @@ angular.module('codyColor').factory('gameData', function () {
 
     // funzione che restituisce una stringa leggibile dato il valore di un timer
     gameData.formatTimerText = function(timerValue) {
-        let secondsInt = Math.floor(timerValue / 1000);
-        let decimalsInt = Math.floor((timerValue - (secondsInt * 1000)) / 10).toString();
-        let decimals = decimalsInt.toString();
-        let seconds = secondsInt.toString();
+        let decimals = Math.floor((timerValue / 10) % 100).toString();
+        let seconds = Math.floor((timerValue / 1000) % 60).toString();
+        let minutes = Math.floor((timerValue / (1000 * 60)) % 60).toString();
 
-        if (decimals.length === 1)
-            decimals = '0' + decimals;
+        decimals = (decimals.length < 2) ? "0" + decimals : decimals;
 
-        return seconds + ':' + decimals;
+        if (minutes !== '0') {
+            return minutes + ':' + seconds + ':' + decimals;
+        } else {
+            return seconds + ':' + decimals;
+        }
     };
+
+    // funzione che restituisce una stringa leggibile dato il valore di un timer
+    gameData.formatTimeEnemyFoundText = function(timerValue) {
+        switch(timerValue) {
+            case 15000:
+                return '15 secondi';
+            case 30000:
+                return '30 secondi';
+            case 60000:
+                return '1 minuto';
+            case 120000:
+                return '2 minuti';
+        }
+    };
+
+
 
 
     // restituisce il vincitore della partita corrente in base ai dati memorizzati

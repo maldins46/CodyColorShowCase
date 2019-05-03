@@ -38,7 +38,7 @@ angular.module('codyColor').controller('homeCtrl',
             let totalMatches = sessionHandler.getTotalMatches();
             let connectedPlayers = sessionHandler.getConnectedPlayers();
             scopeService.safeApply($scope, function () {
-                $scope.totalMatches = (totalMatches + 100).toString();
+                $scope.totalMatches = (totalMatches).toString();
                 $scope.connectedPlayers = connectedPlayers.toString();
             });
         }
@@ -49,7 +49,7 @@ angular.module('codyColor').controller('homeCtrl',
             sessionHandler.setConnectedPlayers(response.connectedPlayers);
 
             scopeService.safeApply($scope, function () {
-                $scope.totalMatches = (sessionHandler.getTotalMatches() + 100).toString();
+                $scope.totalMatches = (sessionHandler.getTotalMatches()).toString();
                 $scope.connectedPlayers = sessionHandler.getConnectedPlayers().toString();
             });
         });
@@ -58,27 +58,34 @@ angular.module('codyColor').controller('homeCtrl',
 
         // inizializzazione menù di navigazione
         $scope.goToRules = function () {
+            rabbit.cleanCallbacks();
             navigationHandler.goToPage($location, $scope, "/rules");
         };
         $scope.goToRMMaking = function () {
-            if ($scope.connected)
+            if ($scope.connected) {
+                rabbit.cleanCallbacks();
                 navigationHandler.goToPage($location, $scope, "/rmmaking");
-            else
+            } else
                 alert('Solo un momento, mi sto connettendo al server…');
         };
         $scope.goToPMMaking = function () {
-            if ($scope.connected)
-                navigationHandler.goToPage($location, $scope, "/pmmaking");
+            if ($scope.connected) {
+                rabbit.cleanCallbacks();
+                navigationHandler.goToPage($location, $scope, "/cmmaking");
+            }
             else
                 alert('Solo un momento, mi sto connettendo al server…');
         };
         $scope.goToRanking = function () {
+            rabbit.cleanCallbacks();
             navigationHandler.goToPage($location, $scope, "/ranking");
         };
         $scope.goToProfile = function () {
+            rabbit.cleanCallbacks();
             navigationHandler.goToPage($location, $scope, "/profile");
         };
         $scope.goToLogin = function () {
+            rabbit.cleanCallbacks();
             navigationHandler.goToPage($location, $scope, "/login");
         };
 

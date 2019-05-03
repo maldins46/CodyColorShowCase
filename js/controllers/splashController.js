@@ -3,9 +3,8 @@
  */
 angular.module('codyColor').controller('splashCtrl',
     function ($scope, rabbit, navigationHandler, audioHandler,
-              $location, sessionHandler) {
+              $location, sessionHandler, $routeParams, gameData) {
         console.log("Controller splash ready.");
-
 
         // validazione sessione
         navigationHandler.initializeBackBlock($scope);
@@ -13,6 +12,13 @@ angular.module('codyColor').controller('splashCtrl',
 
         // tenta subito la connessione al broker
         rabbit.connect();
+
+        let customMatch = $routeParams.match;
+        if (customMatch !== undefined && customMatch.length > 0) {
+            gameData.setGameCode(customMatch.toString());
+            console.log("Custom match! " + gameData.getGameCode());
+            navigationHandler.goToPage($location, $scope, '/cmmaking');
+        }
 
         rabbit.setSplashCallbacks(function (response) {
             sessionHandler.setTotalMatches(response.totalMatches);

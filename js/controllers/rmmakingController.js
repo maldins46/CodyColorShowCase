@@ -18,10 +18,10 @@ angular.module('codyColor').controller('rmmakingCtrl',
 
         // tiene traccia dello stato del matchmaking, e di quale schermata deve essere visualizzata
         $scope.mmakingState =  'nicknameSelection';
-
         $scope.enemyNickname = "";
+        gameData.setGameType('random');
 
-        rabbit.setMMakingCallbacks(function (message) {
+        rabbit.setRMMakingCallbacks(function (message) {
             // onGameRequestResponse
             gameData.setGameRoomId(message.gameRoomId);
             gameData.setPlayerId(message.playerId);
