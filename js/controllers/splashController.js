@@ -20,9 +20,10 @@ angular.module('codyColor').controller('splashCtrl',
             navigationHandler.goToPage($location, $scope, '/cmmaking');
         }
 
-        rabbit.setSplashCallbacks(function (response) {
+        rabbit.setBaseCallbacks(function (response) {
             sessionHandler.setTotalMatches(response.totalMatches);
             sessionHandler.setConnectedPlayers(response.connectedPlayers);
+            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
         });
 
         // vai alla schermata home al click e avvia la base musicale

@@ -10,16 +10,14 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // credenziali di comunicazione con il server
     const rabbitUsername = "guest";
     const rabbitPassword = "guest";
-    ///* SIMULAZIONI IN LOCALE */ const serverUrl = 'ws://127.0.0.1:15674/ws';
-    // /* SENZA HTTPS */           const serverUrl = 'ws://botify.it/codycolor/ws';
-    const serverUrl = "wss://botify.it/codycolor/ws";
+    const serverUrl = "ws://127.0.0.1:15674/ws";   /* LOCALE */
+    //const serverUrl = "wss://botify.it/codycolor/ws"; /* SERVER */
     const rabbitVHost = "/";
-
     const serverControlQueue = "/queue/serverControl";
     const clientControlTopic = "/topic/clientsControl";
-    const generalTopic = "/topic/general";
-    const randGameRoomsTopic     = "/topic/gameRooms";
-    const custGameRoomsTopic     = "/topic/custGameRooms";
+    const generalTopic       = "/topic/general";
+    const randGameRoomsTopic = "/topic/gameRooms";
+    const custGameRoomsTopic = "/topic/custGameRooms";
     const random = 'random';
     const custom = 'custom';
 
@@ -56,7 +54,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     };
 
     // callback della splash
-    rabbit.setSplashCallbacks = function(onGeneralInfoMessage) {
+    rabbit.setBaseCallbacks = function(onGeneralInfoMessage) {
         callbacks = {};
         callbacks.onGeneralInfoMessage = onGeneralInfoMessage;
     };
@@ -67,9 +65,10 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     };
 
     // callback necessari per il matchmaking
-    rabbit.setRMMakingCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
+    rabbit.setRMMakingCallbacks = function(onGeneralInfoMessage, onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
                                            onQuitGameMessage, onConnectionLost) {
         callbacks = {};
+        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
         callbacks.onGameRequestResponse = onGameRequestResponse;
         callbacks.onHereMessage         = onHereMessage;
         callbacks.onReadyMessage        = onReadyMessage;
@@ -80,7 +79,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // callback necessari per il matchmaking
     rabbit.setCMMakingCallbacks = function(connectedCallback, onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
-                                           onQuitGameMessage, onConnectionLost) {
+                                           onQuitGameMessage, onConnectionLost, onGeneralInfoMessage) {
         callbacks = {};
         callbacks.onConnected           = connectedCallback;
         callbacks.onGameRequestResponse = onGameRequestResponse;
@@ -89,11 +88,12 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         callbacks.onTilesMessage        = onTilesMessage;
         callbacks.onQuitGameMessage     = onQuitGameMessage;
         callbacks.onConnectionLost      = onConnectionLost;
+        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
     };
 
     // callback necessari per il matchmaking
     rabbit.setNewCMatchCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
-                                           onQuitGameMessage, onConnectionLost) {
+                                           onQuitGameMessage, onConnectionLost, onGeneralInfoMessage) {
         callbacks = {};
         callbacks.onGameRequestResponse = onGameRequestResponse;
         callbacks.onHereMessage         = onHereMessage;
@@ -101,25 +101,28 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         callbacks.onTilesMessage        = onTilesMessage;
         callbacks.onQuitGameMessage     = onQuitGameMessage;
         callbacks.onConnectionLost      = onConnectionLost;
+        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
     };
 
     // callback necessari per la schermata di aftermatch
-    rabbit.setAftermatchCallbacks = function(onReadyMessage, onTilesMessage, onQuitGameMessage, onConnectionLost) {
+    rabbit.setAftermatchCallbacks = function(onReadyMessage, onTilesMessage, onQuitGameMessage, onConnectionLost, onGeneralInfoMessage) {
         callbacks = {};
         callbacks.onReadyMessage    = onReadyMessage;
         callbacks.onTilesMessage    = onTilesMessage;
         callbacks.onQuitGameMessage = onQuitGameMessage;
         callbacks.onConnectionLost  = onConnectionLost;
+        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
     };
 
 
     // callback necessari per la schermata match
-    rabbit.setMatchCallbacks = function(onEnemyPositionedMessage, onQuitGameMessage, onConnectionLost, onSkipMessage) {
+    rabbit.setMatchCallbacks = function(onEnemyPositionedMessage, onQuitGameMessage, onConnectionLost, onSkipMessage, onGeneralInfoMessage) {
         callbacks = {};
         callbacks.onEnemyPositionedMessage = onEnemyPositionedMessage;
         callbacks.onQuitGameMessage        = onQuitGameMessage;
         callbacks.onConnectionLost         = onConnectionLost;
         callbacks.onSkipMessage            = onSkipMessage;
+        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
     };
 
 

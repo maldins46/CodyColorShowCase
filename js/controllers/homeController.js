@@ -44,9 +44,10 @@ angular.module('codyColor').controller('homeCtrl',
         }
 
         rabbit.setHomeCallbacks(function (response) {
-            // onTotalMatchMessage
+            // onGeneralInfoMessage
             sessionHandler.setTotalMatches(response.totalMatches);
             sessionHandler.setConnectedPlayers(response.connectedPlayers);
+            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
 
             scopeService.safeApply($scope, function () {
                 $scope.totalMatches = (sessionHandler.getTotalMatches()).toString();

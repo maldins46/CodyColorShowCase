@@ -1,7 +1,7 @@
 /*
  * NavigationHandler: permette la navigazione tra le pagine, ed applica un blocco al tasto back
  */
-angular.module('codyColor').factory("navigationHandler", function() {
+angular.module('codyColor').factory("navigationHandler", function () {
     let navigationHandler = {};
     let backBlock = true;
 

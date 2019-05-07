@@ -19,9 +19,20 @@ angular.module('codyColor').controller('rmmakingCtrl',
         // tiene traccia dello stato del matchmaking, e di quale schermata deve essere visualizzata
         $scope.mmakingState =  'nicknameSelection';
         $scope.enemyNickname = "";
+        $scope.randomWaitingPlayers = sessionHandler.getRandomWaitingPlayers().toString();
         gameData.setGameType('random');
 
-        rabbit.setRMMakingCallbacks(function (message) {
+        rabbit.setRMMakingCallbacks(function(response) {
+            // onGeneralInfoMessage
+            sessionHandler.setTotalMatches(response.totalMatches);
+            sessionHandler.setConnectedPlayers(response.connectedPlayers);
+            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
+
+            scopeService.safeApply($scope, function () {
+                $scope.randomWaitingPlayers = sessionHandler.getRandomWaitingPlayers().toString();
+            });
+
+            },function (message) {
             // onGameRequestResponse
             gameData.setGameRoomId(message.gameRoomId);
             gameData.setPlayerId(message.playerId);

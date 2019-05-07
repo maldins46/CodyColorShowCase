@@ -75,6 +75,11 @@ angular.module('codyColor').controller('aftermatchCtrl',
             navigationHandler.goToPage($location, $scope, '/home', true);
             gameData.clearGameData();
             alert("Si è verificato un errore nella connessione con il server. Partita terminata.");
+        }, function (response) {
+            // onGeneralInfoMessage
+            sessionHandler.setTotalMatches(response.totalMatches);
+            sessionHandler.setConnectedPlayers(response.connectedPlayers);
+            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
         });
 
         // termina la partita in modo sicuro, alla pressione sul tasto corrispondente

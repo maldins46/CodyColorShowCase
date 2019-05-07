@@ -5,18 +5,24 @@
                 <ul class="menu-list">
                     <li class="menu-list-element">
                         Scegli il nickname con il quale apparire nella prossima partita; CodyColor provvederà a trovare
-                        un
-                        avversario casuale tra quelli in attesa di giocare.
+                        un avversario casuale tra quelli in attesa di giocare.
                     </li>
                     <li class="menu-list-element">
-
                         <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="Nickname"
                                required autofocus/>
-                        <button class="icons-margin floating-right-component"
+                    </li>
+                    <li class="menu-list-element">
+                        <button class="flashing-component"
                                 ng-click="requestMMaking(nickForm.nickname.$viewValue)"
                                 ng-disabled="nickForm.nickname.$invalid">
-                            <i class="fas fa-angle-double-right"></i>
+                            Trova un avversario
+                            <i class="fas fa-angle-double-right floating-right-component"></i>
                         </button>
+                    </li>
+                    <li class="menu-list-element">
+                        <p class="flashing-component">Al momento, {{randomWaitingPlayers}}
+                            giocator{{randomWaitingPlayers === '1' ? 'e è': 'i sono'}} in attesa di
+                            un avversario</p>
                     </li>
                 </ul>
             </form>

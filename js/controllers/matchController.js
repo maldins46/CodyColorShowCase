@@ -315,6 +315,11 @@ angular.module('codyColor').controller('matchCtrl',
                 robyAnimator.quitGame();
                 navigationHandler.goToPage($location, $scope, '/aftermatch', true);
             }
+        }, function (response) {
+            // onGeneralInfoMessage
+            sessionHandler.setTotalMatches(response.totalMatches);
+            sessionHandler.setConnectedPlayers(response.connectedPlayers);
+            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
         });
 
         // cosa fare una volta terminata senza intoppi la partita; mostra la schermata aftermatch

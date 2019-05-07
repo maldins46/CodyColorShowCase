@@ -8,6 +8,7 @@ angular.module('codyColor').factory("sessionHandler", function() {
 
     let totalMatches;
     let connectedPlayers;
+    let randomWaitingPlayers;
 
     sessionHandler.validateSession = function() {
         isSessionValid = true;
@@ -38,6 +39,17 @@ angular.module('codyColor').factory("sessionHandler", function() {
             connectedPlayers = 0;
 
         return connectedPlayers;
+    };
+
+    sessionHandler.setRandomWaitingPlayers = function (players) {
+        randomWaitingPlayers = players;
+    };
+
+    sessionHandler.getRandomWaitingPlayers = function () {
+        if (randomWaitingPlayers === undefined)
+            randomWaitingPlayers = 0;
+
+        return randomWaitingPlayers;
     };
 
     return sessionHandler;
