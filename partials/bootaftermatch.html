@@ -1,0 +1,74 @@
+<div id="wrapper">
+    <div id="page-body-container">
+        <div class="cc-container-group" ng-show="withEnemy">
+            <div class="cc-container">
+                <div class="centered-column">
+                    <p class="big-text">{{playerPoints}}</p>
+                </div>
+
+                <div class="centered-column">
+                    <p class="big-text">{{enemyPoints}}</p>
+                </div>
+            </div>
+
+            <div class="cc-container">
+                <div class="centered-column">
+                    {{playerNickname}}
+                </div>
+
+                <div class="centered-column">
+                    {{enemyNickname}}
+                </div>
+            </div>
+        </div>
+
+        <div class="cc-container-group" ng-hide="withEnemy">
+            <p class="big-text">{{playerPoints}}</p>
+            {{playerNickname}}
+        </div>
+
+        <h2 class="capitalize aftermatch-winner" ng-show="withEnemy">{{winner}} vince la {{matchCount}}° partita!!</h2>
+
+        <table id="aftermatch-table">
+            <tr>
+                <th class="aftermatch-cell"></th>
+                <th class="aftermatch-cell"><i class="fas fa-shoe-prints icon-aftermatch"></i></th>
+                <th class="aftermatch-cell"><i class="far fa-clock icon-aftermatch"></i></th>
+                <th class="aftermatch-cell"><i class="fas fa-robot icon-aftermatch"></i></th>
+            </tr>
+            <tr>
+                <td class="aftermatch-cell"><img src="img/roby-walking-1.png" alt="player icon"
+                                                 class="robot-aftermatch"/></td>
+                <td class="aftermatch-cell">{{results.playerResult.loop ? 'Loop!' : results.playerResult.length}}</td>
+                <td class="aftermatch-cell">{{formattedPlayerTime}}</td>
+                <td class="aftermatch-cell">{{results.playerResult.points}}</td>
+            </tr>
+            <tr ng-show="withEnemy">
+                <td class="aftermatch-cell"><img src="img/enemy-walking-1.png" alt="enemy icon"
+                                                 class="robot-aftermatch"/></td>
+                <td class="aftermatch-cell">{{enemyLength}}</td>
+                <td class="aftermatch-cell">{{formattedEnemyTime}}</td>
+                <td class="aftermatch-cell">{{enemyPoints}}</td>
+            </tr>
+        </table>
+
+        <div id="aftermatch-options" class="ccomponents-container">
+            <div class="centered-component lowaftermatch-component">
+                <button ng-click="newMatch()">Gioca ancora</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="push"></div>
+</div>
+
+<div id="footer-container">
+    <div id="footer-content">
+        <div class="footer-component-left">
+            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
+            <i class="fas fa-2x footer-icons" ng-class="basePlaying ?  'fa-volume-up' : 'fa-volume-mute'"
+               ng-click="toggleBase()"></i>
+        </div>
+        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
+    </div>
+</div>

@@ -31,6 +31,7 @@ angular.module('codyColor').controller('cmmakingCtrl',
         }
 
         $scope.goToCreateMatch = function() {
+            audioHandler.playSound('menu-click');
             navigationHandler.goToPage($location, $scope, "/newcmatch");
         };
 
@@ -68,6 +69,7 @@ angular.module('codyColor').controller('cmmakingCtrl',
                 rabbit.sendHereMessage(false);
             }
 
+            audioHandler.playSound('enemy-found');
             scopeService.safeApply($scope, function () {
                 $scope.enemyNickname = gameData.getEnemyNickname();
                 $scope.totTime = gameData.formatTimeEnemyFoundText(gameData.getTimerSetting());
@@ -106,12 +108,16 @@ angular.module('codyColor').controller('cmmakingCtrl',
         });
 
         $scope.joinMessage = '';
+        // click su 'unisciti'
         $scope.joinGame = function(code) {
+            audioHandler.playSound('menu-click');
             $scope.joinMessage = 'Cercando informazioni sulla partita…';
             rabbit.sendGameRequest(false, code);
         };
 
+        // click su 'iniziamo'
         $scope.playerReady = function(nickname) {
+            audioHandler.playSound('menu-click');
             $scope.mmakingState = 'waitingConfirm';
             gameData.setPlayerNickname(nickname);
             gameData.setPlayerReady(true);
@@ -120,6 +126,7 @@ angular.module('codyColor').controller('cmmakingCtrl',
 
         // termina la partita in modo sicuro, alla pressione sul tasto corrispondente
         $scope.exitGame = function () {
+            audioHandler.playSound('menu-click');
             if (confirm("Sei sicuro di voler abbandonare la partita?")) {
                 rabbit.quitGame();
                 navigationHandler.goToPage($location, $scope, '/home');
@@ -128,10 +135,11 @@ angular.module('codyColor').controller('cmmakingCtrl',
         };
 
         // impostazioni audio
-        $scope.basePlaying = audioHandler.getBaseState();
+        $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            $scope.basePlaying = audioHandler.getBaseState();
+            audioHandler.playSound('menu-click');
+            $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
 );

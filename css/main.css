@@ -193,6 +193,10 @@ body {
     vertical-align: middle;
 }
 
+.footer-icons:hover {
+    cursor: pointer;
+}
+
 .floating-up-component {
     transform: translateX(0px);
     animation: float-top 4s ease-in-out infinite;
@@ -401,6 +405,7 @@ button:hover {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    cursor: pointer;
 }
 
 
@@ -445,6 +450,8 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     }
 }
 
+
+
 .selector-button {
     width: 19%;
     height: 100%;
@@ -453,7 +460,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     display: flex;
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
-    font-size: 30px;
+    font-size: 20px;
     float: left;
     margin: 0;
     transition-duration: 0.2s;
@@ -462,6 +469,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
 
 .selector-button:hover {
     transition-duration: 0.2s;
+    cursor: pointer;
     background-color: rgba(255, 255, 255, 0.09);
 }
 

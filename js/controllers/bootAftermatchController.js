@@ -2,7 +2,7 @@
  * Controller responsabile della schermata post partita. Mostra dati sull'esito della partita e dà la possibilità di
  * portarne avanti una con lo stesso avversario
  */
-angular.module('codyColor').controller('aftermatchCtrl',
+angular.module('codyColor').controller('bootAftermatchCtrl',
     function ($scope, rabbit, gameData, scopeService, $location,
               navigationHandler, audioHandler, sessionHandler) {
         console.log("Controller aftermatch ready.");
@@ -16,17 +16,32 @@ angular.module('codyColor').controller('aftermatchCtrl',
             return;
         }
 
+        rabbit.setBaseCallbacks(function (response) {
+            sessionHandler.setTotalMatches(response.totalMatches);
+            sessionHandler.setConnectedPlayers(response.connectedPlayers);
+            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
+        });
+
+
         // oggetto contenente informazioni sul risultato della partita
         $scope.results = gameData.getCurrentMatchResult();
 
+        $scope.withEnemy = gameData.getBootEnemySetting() !== 0;
+
         // inizializzazione schermata informativa
         $scope.playerPoints = gameData.getPlayerPoints();
-        $scope.enemyPoints = gameData.getEnemyPoints();
         $scope.playerNickname = gameData.getPlayerNickname();
-        $scope.enemyNickname = gameData.getEnemyNickname();
-        $scope.winner = gameData.getMatchWinner();
         $scope.formattedPlayerTime = gameData.formatTimerText($scope.results.playerResult.time);
-        $scope.formattedEnemyTime  = gameData.formatTimerText($scope.results.enemyResult.time);
+
+        $scope.enemyLength = '';
+        if (gameData.getBootEnemySetting() !== 0) {
+            $scope.enemyLength = ($scope.results.enemyResult.loop ? 'Loop!' :$scope.results.enemyResult.length )
+        }
+        $scope.enemyPoints = (gameData.getBootEnemySetting() !== 0 ? $scope.results.enemyResult.points : '');
+        $scope.enemyNickname = gameData.getEnemyNickname();
+        $scope.winner = gameData.getBootEnemySetting() !== 0 ?gameData.getMatchWinner() : '';
+        $scope.formattedEnemyTime  = (gameData.getBootEnemySetting() !== 0 ?
+                                      gameData.formatTimerText($scope.results.enemyResult.time) : '0.00');
         $scope.matchCount = gameData.getMatchCount();
 
         if ($scope.winner === gameData.getPlayerNickname()) {
@@ -35,65 +50,33 @@ angular.module('codyColor').controller('aftermatchCtrl',
             audioHandler.playSound('lost');
         }
 
-        // inizializzazione componenti per iniziare un nuovo match
-        $scope.newMatchClicked = false;
-        $scope.enemyRequestNewMatch = false;
-
-        gameData.setPlayerReady(false);
-        gameData.setEnemyReady(false);
-
         // richiede all'avversario l'avvio di una nuova partita tra i due
         $scope.newMatch = function () {
             audioHandler.playSound('menu-click');
-            rabbit.sendReadyMessage();
-            gameData.setPlayerReady(true);
-            scopeService.safeApply($scope, function () {
-                $scope.newMatchClicked = true;
-            })
-        };
-
-        rabbit.setAftermatchCallbacks(function () {
-            // onReadyMessage
-            gameData.setEnemyReady(true);
-            scopeService.safeApply($scope, function () {
-                $scope.enemyRequestNewMatch = true;
-            });
-
-            if (gameData.isPlayerReady() && gameData.isEnemyReady())
-                rabbit.sendTilesRequest();
-
-        }, function (response) {
-            // onTilesMessage
             gameData.clearMatchData();
             gameData.addMatch();
-            gameData.setCurrentMatchTiles(response['tiles']);
-            navigationHandler.goToPage($location, $scope, '/match',  true);
-
-        }, function () {
-            // onQuitGameMessage
-            rabbit.quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', true);
-            gameData.clearGameData();
-            alert("L'avversario ha abbandonato la partita.");
-
-        }, function () {
-            // onConnectionLost
-            rabbit.quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', true);
-            gameData.clearGameData();
-            alert("Si è verificato un errore nella connessione con il server. Partita terminata.");
-        }, function (response) {
-            // onGeneralInfoMessage
-            sessionHandler.setTotalMatches(response.totalMatches);
-            sessionHandler.setConnectedPlayers(response.connectedPlayers);
-            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
-        });
+            let bootTiles = '';
+            for (let i = 0; i < 25; i++) {
+                switch (Math.floor(Math.random() * 3)) {
+                    case 0:
+                        bootTiles += 'R';
+                        break;
+                    case 1:
+                        bootTiles += 'Y';
+                        break;
+                    case 2:
+                        bootTiles += 'G';
+                        break;
+                }
+            }
+            gameData.setCurrentMatchTiles(bootTiles);
+            navigationHandler.goToPage($location, $scope, '/bootcamp');
+        };
 
         // termina la partita in modo sicuro, alla pressione sul tasto corrispondente
         $scope.exitGame = function () {
             audioHandler.playSound('menu-click');
             if (confirm("Sei sicuro di voler abbandonare la partita?")) {
-                rabbit.quitGame();
                 navigationHandler.goToPage($location, $scope, '/home');
                 gameData.clearGameData();
             }

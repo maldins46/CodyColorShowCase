@@ -1,11 +1,10 @@
 /*
- * Controller responsabile della schermata partita
+ * Controller Empty, gestisce le schermate che non necessitano di funzioni specifiche.
  */
-
-angular.module('codyColor').controller('matchCtrl',
-    function ($scope, rabbit, gameData, scopeService, robyAnimator, $location,
-              navigationHandler, audioHandler, sessionHandler) {
-        console.log("Controller match ready.");
+angular.module('codyColor').controller('bootCampCtrl',
+    function ($scope, gameData, scopeService, robyAnimator, $location,
+              navigationHandler, audioHandler, sessionHandler, rabbit) {
+        console.log("Bootcamp controller ready.");
 
         let enemyMatchTimer;
         let playerMatchTimer;
@@ -23,18 +22,26 @@ angular.module('codyColor').controller('matchCtrl',
             if (startCountdownTimer !== undefined)
                 clearInterval(startCountdownTimer);
 
-            rabbit.quitGame();
             robyAnimator.quitGame();
             navigationHandler.goToPage($location, $scope, '/');
             gameData.clearGameData();
             return;
         }
 
+        rabbit.setBaseCallbacks(function (response) {
+            sessionHandler.setTotalMatches(response.totalMatches);
+            sessionHandler.setConnectedPlayers(response.connectedPlayers);
+            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
+        });
+
+
         // inizializzazione componenti generali interfaccia
         $scope.playerPoints = gameData.getPlayerPoints();
         $scope.enemyPoints  = gameData.getEnemyPoints();
         $scope.playerNickname = gameData.getPlayerNickname();
         $scope.enemyNickname  = gameData.getEnemyNickname();
+        $scope.withEnemy = gameData.getBootEnemySetting() !== 0;
+
 
         // inizializzazione riferimenti agli elementi della griglia
         $scope.playerRobyImage = 'roby-positioned';
@@ -83,7 +90,7 @@ angular.module('codyColor').controller('matchCtrl',
             for (let side = 0; side < 4; side++) {
                 $scope.startPositionsCss[side] = new Array(5);
                 for (let distance = 0; distance < 5; distance++) {
-                   setArrowCss(side, distance, over);
+                    setArrowCss(side, distance, over);
                 }
             }
         };
@@ -118,8 +125,8 @@ angular.module('codyColor').controller('matchCtrl',
         $scope.enemyMatchTimerText =  gameData.formatTimerText(enemyMatchTimerValue);
 
         let startCountdownValue = 3;
-        audioHandler.playSound('countdown');
         $scope.startCountdownText = startCountdownValue.toString();
+        audioHandler.playSound('countdown');
         $scope.countdownInProgress = true;
         startCountdownTimer = setInterval(function () {
             startCountdownValue--;
@@ -173,36 +180,68 @@ angular.module('codyColor').controller('matchCtrl',
                     });
 
                     gameData.setPlayerMatchTime(0);
-                    rabbit.sendPlayerPositionedMessage();
 
-                    if ($scope.enemyPositioned && $scope.playerPositioned) {
+                    if ($scope.enemyPositioned && $scope.playerPositioned && gameData.getBootEnemySetting() !== 0) {
+                        endMatch();
+                    } else if ($scope.playerPositioned && gameData.getBootEnemySetting() === 0) {
                         endMatch();
                     }
                 }
             }, 10);
 
             // avvia timer partita avversario
-            enemyMatchTimer = setInterval(function () {
-                enemyMatchTimerValue -= 10;
+            if(gameData.getBootEnemySetting() !== 0) {
+                let positionEnemyTrigger = gameData.getTimerSetting() / 2;
+                switch(gameData.getBootEnemySetting()) {
+                    case 1:
+                        positionEnemyTrigger = gameData.getTimerSetting() / 2;
+                        break;
 
-                if (enemyMatchTimerValue > 0) {
-                    scopeService.safeApply($scope, function () {
-                        $scope.enemyMatchTimerText = gameData.formatTimerText(enemyMatchTimerValue);
-                    });
+                    case 2:
+                        positionEnemyTrigger = gameData.getTimerSetting() / 3 * 2;
+                        break;
 
-                } else {
-                    // timer esaurito: ferma tempo avversario
-                    clearInterval(enemyMatchTimer);
-                    enemyMatchTimer = undefined;
-
-                    scopeService.safeApply($scope, function () {
-                        $scope.enemyPositioned = true;
-                        $scope.enemyMatchTimerText = gameData.formatTimerText(0);
-                    });
-
-                    gameData.setEnemyMatchTime(0);
+                    case 3:
+                        positionEnemyTrigger = gameData.getTimerSetting() / 4 * 3;
+                        break;
                 }
-            }, 10);
+
+                enemyMatchTimer = setInterval(function () {
+                    enemyMatchTimerValue -= 10;
+
+                    if (enemyMatchTimerValue > 0 && enemyMatchTimerValue > positionEnemyTrigger) {
+                        scopeService.safeApply($scope, function () {
+                            $scope.enemyMatchTimerText = gameData.formatTimerText(enemyMatchTimerValue);
+                        });
+
+                    } else if (enemyMatchTimerValue <= positionEnemyTrigger) {
+                        // posiziona l'avversario se si supera il limite di tempo stabilito
+                        if(gameData.getBootEnemySetting() !== 0 && !$scope.enemyPositioned) {
+                            gameData.setEnemyMatchTime(enemyMatchTimerValue);
+                            let enemyPath = robyAnimator.getBootEnemyPath(gameData.getBootEnemySetting());
+                            gameData.setEnemyStartPosition(enemyPath.startCoords);
+
+                            clearInterval(enemyMatchTimer);
+                            enemyMatchTimer = undefined;
+                            scopeService.safeApply($scope, function () {
+                                $scope.enemyPositioned = true;
+                                $scope.enemyMatchTimerText = gameData.formatTimerText(enemyMatchTimerValue);
+                            });
+                        }
+                    } else {
+                        // timer esaurito: ferma tempo avversario
+                        clearInterval(enemyMatchTimer);
+                        enemyMatchTimer = undefined;
+
+                        scopeService.safeApply($scope, function () {
+                            $scope.enemyPositioned = true;
+                            $scope.enemyMatchTimerText = gameData.formatTimerText(0);
+                        });
+
+                        gameData.setEnemyMatchTime(0);
+                    }
+                }, 10);
+            }
         };
 
         // inizializzazione draggable roby
@@ -271,7 +310,6 @@ angular.module('codyColor').controller('matchCtrl',
                 gameData.setPlayerMatchTime(playerMatchTimerValue);
 
                 clearInterval(playerMatchTimer);
-                rabbit.sendPlayerPositionedMessage();
 
                 // l'esecuzione avviene subito dopo endDragging(), e va quindi gestito in modo sicuro l'$apply
                 scopeService.safeApply($scope, function () {
@@ -279,75 +317,62 @@ angular.module('codyColor').controller('matchCtrl',
                     $scope.showCompleteGrid = true;
                 });
 
+                // posiziona l'avversario non appena viene posizionato roby
+                if(gameData.getBootEnemySetting() !== 0 && !$scope.enemyPositioned) {
+                    gameData.setEnemyMatchTime(enemyMatchTimerValue);
+                    let enemyPath = robyAnimator.getBootEnemyPath(gameData.getBootEnemySetting());
+                    gameData.setEnemyStartPosition(enemyPath.startCoords);
+
+                    clearInterval(enemyMatchTimer);
+                    enemyMatchTimer = undefined;
+                    scopeService.safeApply($scope, function () {
+                        $scope.enemyPositioned = true;
+                        $scope.enemyMatchTimerText = gameData.formatTimerText(enemyMatchTimerValue);
+                    });
+                }
+
                 robyAnimator.positionRoby('player');
 
-                if ($scope.enemyPositioned && $scope.playerPositioned) {
+                if ($scope.enemyPositioned && $scope.playerPositioned && gameData.getBootEnemySetting() !== 0) {
+                    endMatch();
+                } else if ($scope.playerPositioned && gameData.getBootEnemySetting() === 0) {
                     endMatch();
                 }
             }
         };
 
-        // callback passati alla classe responsabile della comunicazione con il broker.
-        // Invocati all'arrivo di nuovi messaggi
-        rabbit.setMatchCallbacks(function (response) {
-            // onEnemyPositionedMessage
-            gameData.setEnemyStartPosition({ side: response.side, distance: response.distance });
-            gameData.setEnemyMatchTime(response.matchTime);
-
-            clearInterval(enemyMatchTimer);
-            enemyMatchTimer = undefined;
-            scopeService.safeApply($scope, function () {
-                $scope.enemyPositioned = true;
-                $scope.enemyMatchTimerText = gameData.formatTimerText(response.matchTime);
-            });
-
-            if ($scope.enemyPositioned && $scope.playerPositioned) {
-                endMatch();
-            }
-        }, function () {
-            // onQuitGameMessage
-            let errorMessageValue = "L'avversario ha abbandonato la partita.";
-            quitGame({ notFromClick: true, errorMessage: errorMessageValue });
-
-        }, function () {
-            // onConnectionLost
-            let errorMessageValue = "Si è verificato un errore nella connessione con il server. Partita terminata.";
-            quitGame({ notFromClick: true, errorMessage: errorMessageValue });
-
-        }, function () {
-            // onSkipMessage
-            gameData.setEnemyWantSkip(true);
-
-            if (gameData.getPlayerWantSkip() && gameData.getEnemyWantSkip()) {
-                robyAnimator.quitGame();
-                navigationHandler.goToPage($location, $scope, '/aftermatch', true);
-            }
-        }, function (response) {
-            // onGeneralInfoMessage
-            sessionHandler.setTotalMatches(response.totalMatches);
-            sessionHandler.setConnectedPlayers(response.connectedPlayers);
-            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
-        });
-
         // cosa fare una volta terminata senza intoppi la partita; mostra la schermata aftermatch
         let endMatch = function () {
             if (!$scope.endMatch) {
                 robyAnimator.positionRoby('player');
-                robyAnimator.positionRoby('enemy');
+
+                if (enemyMatchTimer !== undefined)
+                    clearInterval(enemyMatchTimer);
+
+                if (playerMatchTimer !== undefined)
+                    clearInterval(playerMatchTimer);
+
+                if (startCountdownTimer !== undefined)
+                    clearInterval(startCountdownTimer);
+
+                if (gameData.getBootEnemySetting() !== 0)
+                    robyAnimator.positionRoby('enemy');
 
                 scopeService.safeApply($scope, function () {
                     $scope.endMatch = true;
                 });
 
-                let results = robyAnimator.calculateResults();
+                let results = robyAnimator.calculateResults(gameData.getBootEnemySetting());
                 gameData.setCurrentMatchResult(results);
                 gameData.addPlayerPoints(results.playerResult.points);
-                gameData.addEnemyPoints(results.enemyResult.points);
+
+                if (gameData.getBootEnemySetting() !== 0)
+                    gameData.addEnemyPoints(results.enemyResult.points);
 
                 robyAnimator.animateAndFinish(function () {
                     robyAnimator.quitGame();
-                    navigationHandler.goToPage($location, $scope, '/aftermatch', true);
-                });
+                    navigationHandler.goToPage($location, $scope, '/bootaftermatch', true);
+                }, gameData.getBootEnemySetting());
             }
         };
 
@@ -359,17 +384,11 @@ angular.module('codyColor').controller('matchCtrl',
             }
         };
 
-        $scope.askedForSkip = false;
         $scope.skip = function() {
             audioHandler.playSound('menu-click');
-            rabbit.sendSkipMessage();
-            gameData.setPlayerWantSkip(true);
-            $scope.askedForSkip = true;
+            robyAnimator.quitGame();
 
-            if (gameData.getPlayerWantSkip() && gameData.getEnemyWantSkip()) {
-                robyAnimator.quitGame();
-                navigationHandler.goToPage($location, $scope, '/aftermatch');
-            }
+            navigationHandler.goToPage($location, $scope, '/bootaftermatch');
         };
 
         // metodo per terminare la partita in modo sicuro, disattivando i timer, interrompendo animazioni e connessioni
@@ -385,14 +404,13 @@ angular.module('codyColor').controller('matchCtrl',
             if (startCountdownTimer !== undefined)
                 clearInterval(startCountdownTimer);
 
-            rabbit.quitGame();
             robyAnimator.quitGame();
 
             if (arguments.notFromClick === undefined) {
                 arguments.notFromClick = true;
             }
 
-            if(arguments.isSessionInvalid !== undefined && arguments.isSessionInvalid === true) {
+            if (arguments.isSessionInvalid !== undefined && arguments.isSessionInvalid === true) {
                 navigationHandler.goToPage($location, $scope, '/');
             } else {
                 navigationHandler.goToPage($location, $scope, '/home', arguments.notFromClick);

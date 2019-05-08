@@ -22,6 +22,7 @@ angular.module('codyColor').controller('emptyCtrl',
         // inizializzazione tasto home
         $scope.goToHome = function () {
             navigationHandler.goToPage($location, $scope, '/home');
+            audioHandler.playSound('menu-click');
         };
 
         // tenta la connessione, se necessario
@@ -30,10 +31,11 @@ angular.module('codyColor').controller('emptyCtrl',
             rabbit.connect();
 
         // impostazioni audio
-        $scope.basePlaying = audioHandler.getBaseState();
+        $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            $scope.basePlaying = audioHandler.getBaseState();
+            audioHandler.playSound('menu-click');
+            $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
 );

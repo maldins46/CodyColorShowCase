@@ -61,11 +61,13 @@ angular.module('codyColor').controller('homeCtrl',
         $scope.goToRules = function () {
             rabbit.cleanCallbacks();
             navigationHandler.goToPage($location, $scope, "/rules");
+            audioHandler.playSound('menu-click');
         };
         $scope.goToRMMaking = function () {
             if ($scope.connected) {
                 rabbit.cleanCallbacks();
                 navigationHandler.goToPage($location, $scope, "/rmmaking");
+                audioHandler.playSound('menu-click');
             } else
                 alert('Solo un momento, mi sto connettendo al server…');
         };
@@ -73,28 +75,38 @@ angular.module('codyColor').controller('homeCtrl',
             if ($scope.connected) {
                 rabbit.cleanCallbacks();
                 navigationHandler.goToPage($location, $scope, "/cmmaking");
+                audioHandler.playSound('menu-click');
             }
             else
                 alert('Solo un momento, mi sto connettendo al server…');
         };
+        $scope.goToBootcamp = function () {
+            rabbit.cleanCallbacks();
+            navigationHandler.goToPage($location, $scope, "/bcampmaking");
+            audioHandler.playSound('menu-click');
+        };
         $scope.goToRanking = function () {
             rabbit.cleanCallbacks();
             navigationHandler.goToPage($location, $scope, "/ranking");
+            audioHandler.playSound('menu-click');
         };
         $scope.goToProfile = function () {
             rabbit.cleanCallbacks();
             navigationHandler.goToPage($location, $scope, "/profile");
+            audioHandler.playSound('menu-click');
         };
         $scope.goToLogin = function () {
             rabbit.cleanCallbacks();
             navigationHandler.goToPage($location, $scope, "/login");
+            audioHandler.playSound('menu-click');
         };
 
         // impostazioni audio
-        $scope.basePlaying = audioHandler.getBaseState();
+        $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            $scope.basePlaying = audioHandler.getBaseState();
+            audioHandler.playSound('menu-click');
+            $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
 );

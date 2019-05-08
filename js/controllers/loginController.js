@@ -14,16 +14,19 @@ angular.module('codyColor').controller('loginCtrl',
 
         $scope.goToHome = function () {
             navigationHandler.goToPage($location, $scope, '/home');
+            audioHandler.playSound('menu-click');
         };
         $scope.goToRegister = function () {
             navigationHandler.goToPage($location, $scope, '/register');
+            audioHandler.playSound('menu-click');
         };
 
         // impostazioni audio
-        $scope.basePlaying = audioHandler.getBaseState();
+        $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            $scope.basePlaying = audioHandler.getBaseState();
+            audioHandler.playSound('menu-click');
+            $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
 );

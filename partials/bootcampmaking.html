@@ -1,0 +1,63 @@
+<div id="wrapper">
+    <div id="page-body-container">
+        <div class="centered-component">
+            <form name="customMatchForm">
+                <ul class="menu-list">
+                    <li class="menu-list-element">
+                        In questa modalità di gioco puoi allenarti tramite partite a CodyColor in single player. Puoi
+                        scegliere la durata di ogni partita, ed eventualmente, se utilizzare un bot come avversario.
+                    </li>
+
+                    <li class="menu-list-element">
+                        <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="Nickname"
+                               required autofocus/>
+                    </li>
+
+                    <li class="menu-list-element">
+                        <br>
+                       Avversario
+                    </li>
+                    <li class="menu-list-element">
+                        <div class="selector">
+                            <div class="selector-button" ng-click="enemyLeft()"><i class="fas fa-chevron-left"></i></div>
+                            <div class="selector-text">{{enemySettings[currentEnemyIndex].text}}</div>
+                            <div class="selector-button" ng-click="enemyRight()"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                    </li>
+
+                    <li class="menu-list-element">
+                        <br>
+                        Durata partita
+                    </li>
+                    <li class="menu-list-element">
+                        <div class="selector">
+                            <div class="selector-button" ng-click="decrementTime()"><i class="fas fa-minus"></i></div>
+                            <div class="selector-text">{{timerSettings[currentTimerIndex].text}}</div>
+                            <div class="selector-button" ng-click="incrementTime()"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <br>
+                    </li>
+                    <li class="menu-list-element">
+                        <button class="icons-margin" type="submit"
+                                ng-click="createBootcamp(customMatchForm.nickname.$viewValue)"
+                                ng-disabled="customMatchForm.nickname.$invalid">
+                            Genera partita <i class="fas fa-angle-double-right floating-right-component"></i>
+                        </button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <div id="push"></div>
+</div>
+
+<div id="footer-container">
+    <div id="footer-content">
+        <div class="footer-component-left">
+            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
+            <i class="fas fa-2x footer-icons" ng-class="basePlaying ? 'fa-volume-up' : 'fa-volume-mute'"
+               ng-click="toggleBase()"></i>
+        </div>
+        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
+    </div>
+</div>

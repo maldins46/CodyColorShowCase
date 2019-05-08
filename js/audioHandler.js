@@ -9,7 +9,7 @@ angular.module('codyColor').factory("audioHandler", function($cookies) {
     musicBase.src = 'audio/music.wav';
     musicBase.loop = true;
 
-    audioHandler.getBaseState = function() {
+    audioHandler.isAudioEnabled = function() {
         let cookiesBaseValue = $cookies.get('baseState');
         return !(cookiesBaseValue === undefined || cookiesBaseValue === 'pause');
     };
@@ -30,6 +30,14 @@ angular.module('codyColor').factory("audioHandler", function($cookies) {
         if (cookiesBaseValue === undefined || cookiesBaseValue === 'play') {
             musicBase.play();
             $cookies.put('baseState', 'play');
+        }
+    };
+
+    audioHandler.playSound = function(soundName) {
+        if (audioHandler.isAudioEnabled()) {
+            let sound = new Audio();
+            sound.src = 'audio/' + soundName + '.wav';
+            sound.play();
         }
     };
 

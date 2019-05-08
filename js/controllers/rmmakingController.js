@@ -48,6 +48,7 @@ angular.module('codyColor').controller('rmmakingCtrl',
                 rabbit.sendHereMessage(false);
             }
 
+            audioHandler.playSound('enemy-found');
             scopeService.safeApply($scope, function () {
                 $scope.enemyNickname = gameData.getEnemyNickname();
                 $scope.mmakingState = 'enemyFound';
@@ -81,6 +82,7 @@ angular.module('codyColor').controller('rmmakingCtrl',
 
         // una volta che l'utente ha scelto un nickname, invia una richiesta di gioco al server
         $scope.requestMMaking = function (nickname) {
+            audioHandler.playSound('menu-click');
             $scope.mmakingState = 'waitingEnemy';
             gameData.setPlayerNickname(nickname);
             rabbit.sendGameRequest();
@@ -88,6 +90,7 @@ angular.module('codyColor').controller('rmmakingCtrl',
 
         // invocata una volta premuto il tasto 'iniziamo'
         $scope.playerReady = function () {
+            audioHandler.playSound('menu-click');
             $scope.mmakingState = 'waitingConfirm';
             gameData.setPlayerReady(true);
             rabbit.sendReadyMessage();
@@ -95,6 +98,7 @@ angular.module('codyColor').controller('rmmakingCtrl',
 
         // termina la partita in modo sicuro, alla pressione sul tasto corrispondente
         $scope.exitGame = function () {
+            audioHandler.playSound('menu-click');
             if (confirm("Sei sicuro di voler abbandonare la partita?")) {
                 rabbit.quitGame();
                 navigationHandler.goToPage($location, $scope, '/home');
@@ -103,10 +107,11 @@ angular.module('codyColor').controller('rmmakingCtrl',
         };
 
         // impostazioni audio
-        $scope.basePlaying = audioHandler.getBaseState();
+        $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            $scope.basePlaying = audioHandler.getBaseState();
+            audioHandler.playSound('menu-click');
+            $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
 );

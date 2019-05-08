@@ -29,6 +29,7 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
             clearInterval((robyWalkingTimers.enemy));
         }
 
+        robyImageCallbacks = {};
         robyWalkingTimers = {};
     };
 
@@ -82,15 +83,47 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
 
     // calcola i percorsi fatti dai due robottini, e restituisce un oggetto che rappresenta i valori del risultato
     // della partita
-    robyAnimator.calculateResults = function() {
+    robyAnimator.calculateResults = function(bootSetting) {
         let playerResultValue = calculatePath('player');
-        let enemyResultValue = calculatePath('enemy');
-        return { playerResult: playerResultValue, enemyResult: enemyResultValue };
+
+        if (bootSetting === undefined || bootSetting === 1 || bootSetting === 2 || bootSetting === 3) {
+            let enemyResultValue = calculatePath('enemy');
+            return { playerResult: playerResultValue, enemyResult: enemyResultValue };
+        } else {
+            return { playerResult: playerResultValue };
+        }
+    };
+
+
+    robyAnimator.getBootEnemyPath = function(enemySetting) {
+        let allPaths = [];
+        for (let side = 0; side < 4; side++) {
+            for (let distance = 0; distance < 5; distance++) {
+                allPaths.push(calculatePath(undefined, {'side': side, 'distance': distance}));
+            }
+        }
+        allPaths.sort(function(a, b){
+            return a.length - b.length;
+        });
+
+        switch (enemySetting) {
+            case 1:
+                // facile: seleziona un percorso casuale tra i più corti
+                return allPaths[Math.floor(Math.random() * 10)];
+
+            case 2:
+                // medio: seleziona il percorso mediano
+                return allPaths[9];
+
+            case 3:
+                // difficile: seleziona il percorso più lungo
+                return allPaths[19];
+        }
     };
 
 
     // calcola il percorso di uno dei roby, salvandone un oggetto che lo descrive
-    let calculatePath = function (identity) {
+    let calculatePath = function (identity, customStart) {
         let path = {tilesCoords: [],
             direction: [],
             startCoords: {},
@@ -99,18 +132,23 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
             loop: false};
 
         // ottieni start position
-        path.startCoords = (identity === 'player' ? gameData.getPlayerStartPosition()
-                                                  : gameData.getEnemyStartPosition());
+        if (customStart !== undefined) {
+            path.startCoords = customStart;
+        } else if (identity === 'player') {
+            path.startCoords = gameData.getPlayerStartPosition();
+        } else if (identity === 'enemy') {
+            path.startCoords = gameData.getEnemyStartPosition();
+        }
 
         // roby non posizionato entro il tempo limite
         if (path.startCoords.distance === -1 && path.startCoords.side === -1) {
             // memorizza il path
             if (identity === 'player') {
                 playerPath = path;
-            } else {
+            } else if (identity === 'enemy') {
                 enemyPath = path;
             }
-            return {length: 0, loop: false, time: 0, points: 0};
+            return {length: 0, loop: false, time: 0, points: 0, startCoords: path.startCoords };
         }
 
         // ottieni primo elemento
@@ -226,24 +264,32 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         // memorizza il path
         if (identity === 'player') {
             playerPath = path;
-        } else {
+        } else if (identity === 'enemy') {
             enemyPath = path;
         }
 
         // restituisci un oggetto rappresentante il risultato del giocatore
+        if (identity === 'player') {
+            playerPath = path;
+        } else if (identity === 'enemy') {
+            enemyPath = path;
+        }
+
         let timeValue = (identity === 'player' ? gameData.getPlayerMatchTime() : gameData.getEnemyMatchTime());
         return { length: path.length, loop: path.loop, time: timeValue,
-                 points: calculatePoints(path.length, path.loop, timeValue) };
+                 points: calculatePoints(path.length, path.loop, timeValue), startCoords: path.startCoords };
     };
 
 
-    robyAnimator.animateAndFinish = function(endMatchCallback) {
-        animatePath('player', endMatchCallback);
-        animatePath('enemy', endMatchCallback);
+    robyAnimator.animateAndFinish = function(endMatchCallback, bootSetting) {
+        animatePath('player', endMatchCallback, bootSetting);
+
+        if (bootSetting === undefined || bootSetting === 1 || bootSetting === 2 || bootSetting === 3)
+            animatePath('enemy', endMatchCallback, bootSetting);
     };
 
     // anima il movimento di roby
-    let animatePath = function (identity, endCallback) {
+    let animatePath = function (identity, endCallback, bootSetting) {
         let roby = (identity === 'player' ? playerRoby : enemyRoby);
         let path = (identity === 'player' ? playerPath : enemyPath);
         let imageCallback = (identity === 'player' ? robyImageCallbacks.player : robyImageCallbacks.enemy);
@@ -320,7 +366,8 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         roby.delay(1000);
         roby.queue(function (next) {
             // fine animazione; esegui il callback se si è gli ultimi ad eseguire
-            if (lastMovement) {
+
+        if (lastMovement || bootSetting === 0) {
                 lastMovement = false;
                 endCallback();
             } else {

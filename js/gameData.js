@@ -14,6 +14,7 @@ angular.module('codyColor').factory('gameData', function () {
     let enemyPoints;
     let matchCount;
     let timerSetting;
+    let bootEnemySetting;
     let gameType;
     let gameCode;
 
@@ -134,6 +135,17 @@ angular.module('codyColor').factory('gameData', function () {
             timerSetting = 30000;
 
         return timerSetting;
+    };
+
+    gameData.setBootEnemySetting = function(setting) {
+        bootEnemySetting = setting;
+    };
+
+    gameData.getBootEnemySetting = function() {
+        if (bootEnemySetting === undefined)
+            bootEnemySetting = -1;
+
+        return bootEnemySetting;
     };
 
     gameData.setGameCode = function(code) {
@@ -340,6 +352,7 @@ angular.module('codyColor').factory('gameData', function () {
         enemyPoints = undefined;
         matchCount = undefined;
         timerSetting = undefined;
+        bootEnemySetting = undefined;
         gameType = undefined;
         gameCode = undefined;
     };

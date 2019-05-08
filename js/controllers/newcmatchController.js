@@ -24,7 +24,9 @@ angular.module('codyColor').controller('newcmatchCtrl',
         $scope.timerSettings = [ { text: '15 secondi', value: 15000 }, { text: '30 secondi', value: 30000 },
                                  { text: '1 minuto', value: 60000 }, { text: '2 minuti', value: 120000 } ];
         $scope.currentIndex = 1;
+
         $scope.incrementTime = function() {
+            audioHandler.playSound('menu-click');
             if ($scope.currentIndex < 3)
                 $scope.currentIndex++;
             else
@@ -32,7 +34,9 @@ angular.module('codyColor').controller('newcmatchCtrl',
 
             gameData.setTimerSetting($scope.timerSettings[$scope.currentIndex].value);
         };
+
         $scope.decrementTime = function() {
+            audioHandler.playSound('menu-click');
             if ($scope.currentIndex > 0)
                 $scope.currentIndex--;
             else
@@ -68,6 +72,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
                 rabbit.sendHereMessage(false);
             }
 
+            audioHandler.playSound('enemy-found');
             scopeService.safeApply($scope, function () {
                 $scope.enemyNickname = gameData.getEnemyNickname();
                 $scope.mmakingState = 'enemyFound';
@@ -99,6 +104,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
 
         // tasto iniziamo
         $scope.playerReady = function() {
+            audioHandler.playSound('menu-click');
             $scope.mmakingState = 'waitingConfirm';
             gameData.setPlayerReady(true);
             rabbit.sendReadyMessage();
@@ -106,6 +112,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
 
         $scope.creatingMatch = false;
         $scope.requestMMaking = function(nickname) {
+            audioHandler.playSound('menu-click');
             gameData.setPlayerNickname(nickname);
             rabbit.sendGameRequest(true);
             $scope.creatingMatch = true;
@@ -114,11 +121,13 @@ angular.module('codyColor').controller('newcmatchCtrl',
         $scope.linkCopied = false;
         $scope.codeCopied = false;
         $scope.copyLink = function() {
+            audioHandler.playSound('menu-click');
             copyStringToClipboard('https://codycolor.codemooc.net/#!?match=' + gameData.getGameCode());
             $scope.linkCopied = true;
             $scope.codeCopied = false;
         };
         $scope.copyCode = function() {
+            audioHandler.playSound('menu-click');
             copyStringToClipboard(gameData.getGameCode());
             $scope.linkCopied = false;
             $scope.codeCopied = true;
@@ -126,6 +135,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
 
         // termina la partita in modo sicuro, alla pressione sul tasto corrispondente
         $scope.exitGame = function () {
+            audioHandler.playSound('menu-click');
             if (confirm("Sei sicuro di voler abbandonare la partita?")) {
                 rabbit.quitGame();
                 navigationHandler.goToPage($location, $scope, '/home');
@@ -134,10 +144,11 @@ angular.module('codyColor').controller('newcmatchCtrl',
         };
 
         // impostazioni audio
-        $scope.basePlaying = audioHandler.getBaseState();
+        $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            $scope.basePlaying = audioHandler.getBaseState();
+            audioHandler.playSound('menu-click');
+            $scope.basePlaying = audioHandler.isAudioEnabled();
         };
 
 
@@ -148,7 +159,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
             el.value = text;
             // Set non-editable to avoid focus and move outside of view
             el.setAttribute('readonly', '');
-            el.style = {position: 'absolute', left: '-9999px'};
+            el.style = { position: 'absolute', left: '-9999px' };
             document.body.appendChild(el);
             // Select text inside element
             el.select();
