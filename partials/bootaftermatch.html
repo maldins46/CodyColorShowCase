@@ -39,9 +39,9 @@
             <tr>
                 <td class="aftermatch-cell"><img src="img/roby-walking-1.png" alt="player icon"
                                                  class="robot-aftermatch"/></td>
-                <td class="aftermatch-cell">{{results.playerResult.loop ? 'Loop!' : results.playerResult.length}}</td>
+                <td class="aftermatch-cell">{{playerLength}}</td>
                 <td class="aftermatch-cell">{{formattedPlayerTime}}</td>
-                <td class="aftermatch-cell">{{results.playerResult.points}}</td>
+                <td class="aftermatch-cell">{{playerMatchPoints}}</td>
             </tr>
             <tr ng-show="withEnemy">
                 <td class="aftermatch-cell"><img src="img/enemy-walking-1.png" alt="enemy icon"

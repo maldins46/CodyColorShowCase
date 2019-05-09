@@ -3,8 +3,7 @@
  * portarne avanti una con lo stesso avversario
  */
 angular.module('codyColor').controller('bootAftermatchCtrl',
-    function ($scope, rabbit, gameData, scopeService, $location,
-              navigationHandler, audioHandler, sessionHandler) {
+    function ($scope, rabbit, gameData, scopeService, $location, navigationHandler, audioHandler, sessionHandler) {
         console.log("Controller aftermatch ready.");
 
         // inizializzazione sessione
@@ -22,32 +21,38 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
             sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
         });
 
+        // informazioni sul risultato della partita
+        let results                = gameData.getCurrentMatchResult();
+        $scope.withEnemy           = gameData.getBootEnemySetting() !== 0;
+        $scope.playerPoints        = gameData.getPlayerPoints();
+        $scope.playerMatchPoints   = results.playerResult.points;
+        $scope.playerNickname      = gameData.getPlayerNickname();
+        $scope.playerLength        = ( results.playerResult.loop ? 'Loop!' : results.playerResult.length );
+        $scope.formattedPlayerTime = gameData.formatTimerText(results.playerResult.time);
 
-        // oggetto contenente informazioni sul risultato della partita
-        $scope.results = gameData.getCurrentMatchResult();
-        $scope.withEnemy = gameData.getBootEnemySetting() !== 0;
+        if ($scope.withEnemy) {
+            $scope.enemyLength        = ( results.enemyResult.loop ? 'Loop!' : results.enemyResult.length );
+            $scope.enemyPoints        = gameData.getEnemyPoints();
+            $scope.enemyMatchPoints   = results.enemyResult.points;
+            $scope.enemyNickname      = gameData.getEnemyNickname();
+            $scope.winner             = gameData.getMatchWinner();
+            $scope.formattedEnemyTime = gameData.formatTimerText(results.enemyResult.time);
+            $scope.matchCount         = gameData.getMatchCount();
 
-        // inizializzazione schermata informativa
-        $scope.playerPoints = gameData.getPlayerPoints();
-        $scope.playerNickname = gameData.getPlayerNickname();
-        $scope.formattedPlayerTime = gameData.formatTimerText($scope.results.playerResult.time);
+            if ($scope.winner === gameData.getPlayerNickname()) {
+                audioHandler.playSound('win');
+            } else if ($scope.winner === gameData.getEnemyNickname()) {
+                audioHandler.playSound('lost');
+            }
 
-        $scope.enemyLength = '';
-        if (gameData.getBootEnemySetting() !== 0) {
-            $scope.enemyLength = ($scope.results.enemyResult.loop ? 'Loop!' :$scope.results.enemyResult.length )
-        }
-        $scope.enemyPoints = (gameData.getBootEnemySetting() !== 0 ? gameData.getEnemyPoints() : '');
-        $scope.enemyMatchPoints = (gameData.getBootEnemySetting() !== 0 ? $scope.results.enemyResult.points : '');
-        $scope.enemyNickname = gameData.getEnemyNickname();
-        $scope.winner = gameData.getBootEnemySetting() !== 0 ? gameData.getMatchWinner() : '';
-        $scope.formattedEnemyTime  = (gameData.getBootEnemySetting() !== 0 ?
-                                      gameData.formatTimerText($scope.results.enemyResult.time) : '0.00');
-        $scope.matchCount = gameData.getMatchCount();
-
-        if ($scope.winner === gameData.getPlayerNickname()) {
-            audioHandler.playSound('win');
-        } else if ($scope.winner === gameData.getEnemyNickname()) {
-            audioHandler.playSound('lost');
+        } else {
+            $scope.enemyLength         = '';
+            $scope.enemyPoints         = '';
+            $scope.enemyMatchPoints    = '';
+            $scope.enemyNickname       = '';
+            $scope.winner              = '';
+            $scope.formattedEnemyTime  = '';
+            $scope.matchCount          = '';
         }
 
         // richiede all'avversario l'avvio di una nuova partita tra i due
@@ -78,11 +83,13 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
             audioHandler.playSound('menu-click');
             $scope.exitGameModal = true;
         };
+
         $scope.continueExitGame = function() {
             audioHandler.playSound('menu-click');
             gameData.clearGameData();
             navigationHandler.goToPage($location, $scope, '/home');
         };
+
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
             $scope.exitGameModal = false;
