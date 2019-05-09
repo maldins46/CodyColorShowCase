@@ -25,7 +25,6 @@ angular.module('codyColor').controller('loginCtrl',
         $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            audioHandler.playSound('menu-click');
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }

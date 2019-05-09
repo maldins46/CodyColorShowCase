@@ -306,13 +306,18 @@ angular.module('codyColor').controller('matchCtrl',
             }
         }, function () {
             // onQuitGameMessage
-            let errorMessageValue = "L'avversario ha abbandonato la partita.";
-            quitGame({ notFromClick: true, errorMessage: errorMessageValue });
+            scopeService.safeApply($scope, function () {
+                $scope.forceExitText = "L'avversario ha abbandonato la partita.";
+                $scope.forceExitModal = true;
+            });
 
         }, function () {
             // onConnectionLost
-            let errorMessageValue = "Si è verificato un errore nella connessione con il server. Partita terminata.";
-            quitGame({ notFromClick: true, errorMessage: errorMessageValue });
+            scopeService.safeApply($scope, function () {
+                $scope.forceExitText = "Si è verificato un errore nella connessione con il server. Partita terminata.";
+                $scope.forceExitModal = true;
+            });
+
 
         }, function () {
             // onSkipMessage
@@ -352,11 +357,25 @@ angular.module('codyColor').controller('matchCtrl',
         };
 
         // termina la partita alla pressione sul tasto corrispondente
+        $scope.exitGameModal = false;
         $scope.exitGame = function () {
             audioHandler.playSound('menu-click');
-            if (confirm("Sei sicuro di voler abbandonare la partita?")) {
-                quitGame({ notFromClick: false });
-            }
+            $scope.exitGameModal = true;
+        };
+        $scope.continueExitGame = function() {
+            audioHandler.playSound('menu-click');
+            quitGame({ notFromClick: false });
+        };
+        $scope.stopExitGame = function() {
+            audioHandler.playSound('menu-click');
+            $scope.exitGameModal = false;
+        };
+
+        $scope.forceExitModal = false;
+        $scope.forceExitText = '';
+        $scope.continueForceExit = function() {
+            audioHandler.playSound('menu-click');
+            quitGame({ notFromClick: false });
         };
 
         $scope.askedForSkip = false;
@@ -398,16 +417,12 @@ angular.module('codyColor').controller('matchCtrl',
                 navigationHandler.goToPage($location, $scope, '/home', arguments.notFromClick);
             }
             gameData.clearGameData();
-
-            if (arguments.errorMessage !== undefined)
-                alert(arguments.errorMessage);
         };
 
         // impostazioni audio
         $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            audioHandler.playSound('menu-click');
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }

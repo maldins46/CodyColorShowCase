@@ -37,9 +37,10 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
         if (gameData.getBootEnemySetting() !== 0) {
             $scope.enemyLength = ($scope.results.enemyResult.loop ? 'Loop!' :$scope.results.enemyResult.length )
         }
-        $scope.enemyPoints = (gameData.getBootEnemySetting() !== 0 ? $scope.results.enemyResult.points : '');
+        $scope.enemyPoints = (gameData.getBootEnemySetting() !== 0 ? gameData.getEnemyPoints() : '');
+        $scope.enemyMatchPoints = (gameData.getBootEnemySetting() !== 0 ? $scope.results.enemyResult.points : '');
         $scope.enemyNickname = gameData.getEnemyNickname();
-        $scope.winner = gameData.getBootEnemySetting() !== 0 ?gameData.getMatchWinner() : '';
+        $scope.winner = gameData.getBootEnemySetting() !== 0 ? gameData.getMatchWinner() : '';
         $scope.formattedEnemyTime  = (gameData.getBootEnemySetting() !== 0 ?
                                       gameData.formatTimerText($scope.results.enemyResult.time) : '0.00');
         $scope.matchCount = gameData.getMatchCount();
@@ -73,20 +74,26 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
             navigationHandler.goToPage($location, $scope, '/bootcamp');
         };
 
-        // termina la partita in modo sicuro, alla pressione sul tasto corrispondente
+        // termina la partita alla pressione sul tasto corrispondente
+        $scope.exitGameModal = false;
         $scope.exitGame = function () {
             audioHandler.playSound('menu-click');
-            if (confirm("Sei sicuro di voler abbandonare la partita?")) {
-                navigationHandler.goToPage($location, $scope, '/home');
-                gameData.clearGameData();
-            }
+            $scope.exitGameModal = true;
+        };
+        $scope.continueExitGame = function() {
+            audioHandler.playSound('menu-click');
+            gameData.clearGameData();
+            navigationHandler.goToPage($location, $scope, '/home');
+        };
+        $scope.stopExitGame = function() {
+            audioHandler.playSound('menu-click');
+            $scope.exitGameModal = false;
         };
 
         // impostazioni audio
         $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            audioHandler.playSound('menu-click');
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }

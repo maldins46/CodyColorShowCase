@@ -38,7 +38,7 @@
                         <br>
                     </li>
                     <li class="menu-list-element">
-                        <button class="icons-margin" type="submit"
+                        <button class="menu-button icons-margin" type="submit"
                                 ng-click="createBootcamp(customMatchForm.nickname.$viewValue)"
                                 ng-disabled="customMatchForm.nickname.$invalid">
                             Genera partita <i class="fas fa-angle-double-right floating-right-component"></i>
@@ -61,3 +61,15 @@
         <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
     </div>
 </div>
+
+
+<div id="exitGameModal" class="modal" ng-show="exitGameModal">
+    <div class="modal-content">
+        <p>Sei sicuro di voler abbandonare la partita?</p>
+        <div class="modal-button-container">
+            <button class="modal-button-secondary" ng-click="stopExitGame()">Annulla</button>
+            <button class="modal-button-primary" ng-click="continueExitGame()">Ok</button>
+        </div>
+    </div>
+</div>
+

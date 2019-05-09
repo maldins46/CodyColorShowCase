@@ -71,7 +71,6 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
         };
 
         $scope.createBootcamp = function(nickname) {
-            audioHandler.playSound('menu-click');
             gameData.setPlayerNickname(nickname);
             gameData.setEnemyNickname('CodyColor');
             let bootTiles = '';
@@ -92,14 +91,20 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
             navigationHandler.goToPage($location, $scope, '/bootcamp');
         };
 
-
-        // inizializzazione tasto home
+        // termina la partita alla pressione sul tasto corrispondente
+        $scope.exitGameModal = false;
         $scope.exitGame = function () {
             audioHandler.playSound('menu-click');
-            if (confirm("Sei sicuro di voler abbandonare la partita?")) {
-                gameData.clearGameData();
-                navigationHandler.goToPage($location, $scope, '/home');
-            }
+            $scope.exitGameModal = true;
+        };
+        $scope.continueExitGame = function() {
+            audioHandler.playSound('menu-click');
+            gameData.clearGameData();
+            navigationHandler.goToPage($location, $scope, '/home');
+        };
+        $scope.stopExitGame = function() {
+            audioHandler.playSound('menu-click');
+            $scope.exitGameModal = false;
         };
 
         // tenta la connessione, se necessario
@@ -111,7 +116,6 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
         $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            audioHandler.playSound('menu-click');
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }

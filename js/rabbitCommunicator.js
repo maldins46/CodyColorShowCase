@@ -10,8 +10,8 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // credenziali di comunicazione con il server
     const rabbitUsername = "guest";
     const rabbitPassword = "guest";
-    //const serverUrl = "ws://127.0.0.1:15674/ws";   /* LOCALE */
-    const serverUrl = "wss://botify.it/codycolor/ws"; /* SERVER */
+    const serverUrl = "ws://127.0.0.1:15674/ws";   /* LOCALE */
+    //const serverUrl = "wss://botify.it/codycolor/ws"; /* SERVER */
     const rabbitVHost = "/";
     const serverControlQueue = "/queue/serverControl";
     const clientControlTopic = "/topic/clientsControl";

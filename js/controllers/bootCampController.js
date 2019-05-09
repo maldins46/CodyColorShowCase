@@ -155,6 +155,22 @@ angular.module('codyColor').controller('bootCampCtrl',
             }
         }, 1000);
 
+        // il tempo di gioco dell'avversario, che viene fissato a seconda della difficoltà
+        let positionEnemyTrigger = gameData.getTimerSetting() / 2;
+        switch(gameData.getBootEnemySetting()) {
+            case 1:
+                positionEnemyTrigger = gameData.getTimerSetting() / 2;
+                break;
+
+            case 2:
+                positionEnemyTrigger = gameData.getTimerSetting() / 3 * 2;
+                break;
+
+            case 3:
+                positionEnemyTrigger = gameData.getTimerSetting() / 4 * 3;
+                break;
+        }
+
         // avvia i timer per visualizzare tempo rimanente di giocatore e avversario
         let startMatchTimers = function() {
             // avvia timer partita giocatore
@@ -191,21 +207,6 @@ angular.module('codyColor').controller('bootCampCtrl',
 
             // avvia timer partita avversario
             if(gameData.getBootEnemySetting() !== 0) {
-                let positionEnemyTrigger = gameData.getTimerSetting() / 2;
-                switch(gameData.getBootEnemySetting()) {
-                    case 1:
-                        positionEnemyTrigger = gameData.getTimerSetting() / 2;
-                        break;
-
-                    case 2:
-                        positionEnemyTrigger = gameData.getTimerSetting() / 3 * 2;
-                        break;
-
-                    case 3:
-                        positionEnemyTrigger = gameData.getTimerSetting() / 4 * 3;
-                        break;
-                }
-
                 enemyMatchTimer = setInterval(function () {
                     enemyMatchTimerValue -= 10;
 
@@ -319,7 +320,7 @@ angular.module('codyColor').controller('bootCampCtrl',
 
                 // posiziona l'avversario non appena viene posizionato roby
                 if(gameData.getBootEnemySetting() !== 0 && !$scope.enemyPositioned) {
-                    gameData.setEnemyMatchTime(enemyMatchTimerValue);
+                    gameData.setEnemyMatchTime(positionEnemyTrigger);
                     let enemyPath = robyAnimator.getBootEnemyPath(gameData.getBootEnemySetting());
                     gameData.setEnemyStartPosition(enemyPath.startCoords);
 
@@ -327,7 +328,7 @@ angular.module('codyColor').controller('bootCampCtrl',
                     enemyMatchTimer = undefined;
                     scopeService.safeApply($scope, function () {
                         $scope.enemyPositioned = true;
-                        $scope.enemyMatchTimerText = gameData.formatTimerText(enemyMatchTimerValue);
+                        $scope.enemyMatchTimerText = gameData.formatTimerText(positionEnemyTrigger);
                     });
                 }
 
@@ -377,17 +378,24 @@ angular.module('codyColor').controller('bootCampCtrl',
         };
 
         // termina la partita alla pressione sul tasto corrispondente
+        // termina la partita alla pressione sul tasto corrispondente
+        $scope.exitGameModal = false;
         $scope.exitGame = function () {
             audioHandler.playSound('menu-click');
-            if (confirm("Sei sicuro di voler abbandonare la partita?")) {
-                quitGame({ notFromClick: false });
-            }
+            $scope.exitGameModal = true;
+        };
+        $scope.continueExitGame = function() {
+            audioHandler.playSound('menu-click');
+            quitGame({notFromClick: false});
+        };
+        $scope.stopExitGame = function() {
+            audioHandler.playSound('menu-click');
+            $scope.exitGameModal = false;
         };
 
         $scope.skip = function() {
             audioHandler.playSound('menu-click');
-            robyAnimator.quitGame();
-
+            quitGame({notFromClick: false});
             navigationHandler.goToPage($location, $scope, '/bootaftermatch');
         };
 
@@ -416,16 +424,12 @@ angular.module('codyColor').controller('bootCampCtrl',
                 navigationHandler.goToPage($location, $scope, '/home', arguments.notFromClick);
             }
             gameData.clearGameData();
-
-            if (arguments.errorMessage !== undefined)
-                alert(arguments.errorMessage);
         };
 
         // impostazioni audio
         $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            audioHandler.playSound('menu-click');
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }

@@ -112,8 +112,8 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
                 return allPaths[Math.floor(Math.random() * 10)];
 
             case 2:
-                // medio: seleziona il percorso mediano
-                return allPaths[9];
+                // medio: seleziona un percorso casuale tra i più lunghi
+                return allPaths[Math.floor(Math.random() * 10) + 10];
 
             case 3:
                 // difficile: seleziona il percorso più lungo

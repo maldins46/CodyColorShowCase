@@ -12,7 +12,7 @@
                                required autofocus/>
                     </li>
                     <li class="menu-list-element">
-                        <button class="flashing-component"
+                        <button class="menu-button flashing-component"
                                 ng-click="requestMMaking(nickForm.nickname.$viewValue)"
                                 ng-disabled="nickForm.nickname.$invalid">
                             Trova un avversario
@@ -46,7 +46,7 @@
 
         <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="centered-component">
             Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
-            <button class="flashing-component" ng-click="playerReady()">Iniziamo! <i
+            <button class="menu-button flashing-component" ng-click="playerReady()">Iniziamo! <i
                     class="fas fa-angle-double-right floating-right-component"></i>
             </button>
         </div>
@@ -80,3 +80,24 @@
         <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
     </div>
 </div>
+
+
+<div id="exitGameModal" class="modal" ng-show="exitGameModal">
+    <div class="modal-content">
+        <p>Sei sicuro di voler abbandonare la partita?</p>
+        <div class="modal-button-container">
+            <button class="modal-button-secondary" ng-click="stopExitGame()">Annulla</button>
+            <button class="modal-button-primary" ng-click="continueExitGame()">Ok</button>
+        </div>
+    </div>
+</div>
+
+<div id="forceExitModal" class="modal" ng-show="forceExitModal">
+    <div class="modal-content">
+        <p>{{forceExitText}}</p>
+        <div class="modal-button-container">
+            <button class="modal-button-primary" ng-click="continueForceExit()">Ok</button>
+        </div>
+    </div>
+</div>
+

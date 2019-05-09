@@ -48,13 +48,13 @@
                                                  class="robot-aftermatch"/></td>
                 <td class="aftermatch-cell">{{enemyLength}}</td>
                 <td class="aftermatch-cell">{{formattedEnemyTime}}</td>
-                <td class="aftermatch-cell">{{enemyPoints}}</td>
+                <td class="aftermatch-cell">{{enemyMatchPoints}}</td>
             </tr>
         </table>
 
         <div id="aftermatch-options" class="ccomponents-container">
             <div class="centered-component lowaftermatch-component">
-                <button ng-click="newMatch()">Gioca ancora</button>
+                <button class="menu-button" ng-click="newMatch()">Gioca ancora</button>
             </div>
         </div>
     </div>
@@ -72,3 +72,15 @@
         <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
     </div>
 </div>
+
+
+<div id="exitGameModal" class="modal" ng-show="exitGameModal">
+    <div class="modal-content">
+        <p>Sei sicuro di voler abbandonare la partita?</p>
+        <div class="modal-button-container">
+            <button class="modal-button-secondary" ng-click="stopExitGame()">Annulla</button>
+            <button class="modal-button-primary" ng-click="continueExitGame()">Ok</button>
+        </div>
+    </div>
+</div>
+

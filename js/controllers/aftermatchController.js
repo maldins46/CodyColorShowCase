@@ -69,19 +69,19 @@ angular.module('codyColor').controller('aftermatchCtrl',
             gameData.setCurrentMatchTiles(response['tiles']);
             navigationHandler.goToPage($location, $scope, '/match',  true);
 
-        }, function () {
+        },  function () {
             // onQuitGameMessage
-            rabbit.quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', true);
-            gameData.clearGameData();
-            alert("L'avversario ha abbandonato la partita.");
+            scopeService.safeApply($scope, function () {
+                $scope.forceExitText = "L'avversario ha abbandonato la partita.";
+                $scope.forceExitModal = true;
+            });
 
         }, function () {
             // onConnectionLost
-            rabbit.quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', true);
-            gameData.clearGameData();
-            alert("Si è verificato un errore nella connessione con il server. Partita terminata.");
+            scopeService.safeApply($scope, function () {
+                $scope.forceExitText = "Si è verificato un errore nella connessione con il server. Partita terminata.";
+                $scope.forceExitModal = true;
+            });
         }, function (response) {
             // onGeneralInfoMessage
             sessionHandler.setTotalMatches(response.totalMatches);
@@ -89,21 +89,36 @@ angular.module('codyColor').controller('aftermatchCtrl',
             sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
         });
 
-        // termina la partita in modo sicuro, alla pressione sul tasto corrispondente
+        // termina la partita alla pressione sul tasto corrispondente
+        $scope.exitGameModal = false;
         $scope.exitGame = function () {
             audioHandler.playSound('menu-click');
-            if (confirm("Sei sicuro di voler abbandonare la partita?")) {
-                rabbit.quitGame();
-                navigationHandler.goToPage($location, $scope, '/home');
-                gameData.clearGameData();
-            }
+            $scope.exitGameModal = true;
+        };
+        $scope.continueExitGame = function() {
+            audioHandler.playSound('menu-click');
+            rabbit.quitGame();
+            navigationHandler.goToPage($location, $scope, '/home', false);
+            gameData.clearGameData();
+        };
+        $scope.stopExitGame = function() {
+            audioHandler.playSound('menu-click');
+            $scope.exitGameModal = false;
+        };
+
+        $scope.forceExitModal = false;
+        $scope.forceExitText = '';
+        $scope.continueForceExit = function() {
+            audioHandler.playSound('menu-click');
+            rabbit.quitGame();
+            navigationHandler.goToPage($location, $scope, '/home', false);
+            gameData.clearGameData();
         };
 
         // impostazioni audio
         $scope.basePlaying = audioHandler.isAudioEnabled();
         $scope.toggleBase = function () {
             audioHandler.toggleBase();
-            audioHandler.playSound('menu-click');
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
