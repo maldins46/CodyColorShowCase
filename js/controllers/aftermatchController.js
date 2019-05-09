@@ -44,7 +44,6 @@ angular.module('codyColor').controller('aftermatchCtrl',
 
         // richiede all'avversario l'avvio di una nuova partita tra i due
         $scope.newMatch = function () {
-            audioHandler.playSound('menu-click');
             rabbit.sendReadyMessage();
             gameData.setPlayerReady(true);
             scopeService.safeApply($scope, function () {
