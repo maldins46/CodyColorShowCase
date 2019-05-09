@@ -46,21 +46,26 @@
                 </li>
 
                 <li class="menu-list-element">
-                    <div class="copyable-area" ng-click="copyCode()">
-                        <div class="button-text">{{gameCode}}</div>
-                        <div class="copy-font"  ng-show="codeCopied"><i class="far fa-copy copy-icon"></i> Codice copiato negli appunti!</div>
+                    <div class="copyable-container" ng-click="copyCode()">
+                        <div class="copyable-container-primary-text">{{gameCode}}</div>
+                        <div class="copyable-container-secondary-text" ng-show="codeCopied">
+                            <i class="far fa-copy copyable-container-icon"></i> Codice copiato negli appunti!
+                        </div>
                     </div>
                 </li>
 
                 <li class="menu-list-element">
-                    In alternativa, puoi inviare l'avversario tramite il seguente link. Basterà accedervi per entrare nella
+                    In alternativa, puoi inviare l'avversario tramite il seguente link. Basterà accedervi per entrare
+                    nella
                     partita. Premi il link per copiarlo negli appunti.
                 </li>
 
                 <li class="menu-list-element">
-                    <div class="copyable-area" ng-click="copyLink()">
+                    <div class="copyable-container" ng-click="copyLink()">
                         https://codycolor.codemooc.net/#!?match={{gameCode}}
-                        <div class="copy-font" ng-show="linkCopied"><i class="far fa-copy copy-icon"></i> Link copiato negli appunti!</div>
+                        <div class="copyable-container-secondary-text" ng-show="linkCopied"><i
+                                class="far fa-copy copyable-container-icon"></i> Link copiato negli appunti!
+                        </div>
                     </div>
                 </li>
 
@@ -71,16 +76,23 @@
         </div>
         <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="centered-component">
             Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
-            <button class="menu-button flashing-component" ng-click="playerReady()">Iniziamo! <i class="fas fa-angle-double-right floating-right-component"></i>
+            <button class="menu-button flashing-component" ng-click="playerReady()">Iniziamo! <i
+                    class="fas fa-angle-double-right floating-right-component"></i>
             </button>
         </div>
 
         <div id="waiting-confirm" ng-show="mmakingState === 'waitingConfirm'" class="centered-component">
             <!-- Spinner -->
             <div class="lds-grid">
-                <div></div><div></div><div></div>
-                <div></div><div></div><div></div>
-                <div></div><div></div><div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
             <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
         </div>
@@ -100,7 +112,7 @@
 </div>
 
 
-<div id="exitGameModal" class="modal" ng-show="exitGameModal">
+<div id="exitGameModal" class="modal-container" ng-show="exitGameModal">
     <div class="modal-content">
         <p>Sei sicuro di voler abbandonare la partita?</p>
         <div class="modal-button-container">
@@ -110,7 +122,7 @@
     </div>
 </div>
 
-<div id="forceExitModal" class="modal" ng-show="forceExitModal">
+<div id="forceExitModal" class="modal-container" ng-show="forceExitModal">
     <div class="modal-content">
         <p>{{forceExitText}}</p>
         <div class="modal-button-container">

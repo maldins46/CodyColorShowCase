@@ -11,5 +11,7 @@
 
 # TECHNOLOGY COLOPHON
 
-    CSS3, HTML5, JavaScript
-    Apache Server Configs, jQuery, Modernizr, Normalize.css, angularJs
+    Technologies: CSS3, HTML5, JavaScript
+    Framework:    AngularJs
+    Libraries:    Angular-dragdrop, Angilar-animate, angular-cookies, Stomp.js, 
+                  Apache Server Configs, jQuery, Modernizr, Normalize.css

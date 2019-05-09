@@ -95,19 +95,13 @@ textarea {
   Author's custom styles
   ========================================================================== */
 
+/* Struttura di base */
 
-/* Struttura di base delle pagine */
 
-html {
+html, body {
     height: 100%;
     margin: 0;
-}
-
-
-body {
     background-color: #0c0c1b;
-    height: 100%;
-    margin: 0;
     color: white;
     font-family: 'Play', sans-serif;
 }
@@ -168,15 +162,13 @@ body {
     margin: 0 auto;
 }
 
-/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
+
 @media only screen and (min-width: 340px) {
     #footer-container {
         width: 280px;
-        height: 60px;
-        position: relative;
-        margin: 0 auto;
     }
 }
+
 
 #footer-content {
     position: absolute;
@@ -193,93 +185,11 @@ body {
     vertical-align: middle;
 }
 
+
 .footer-icons:hover {
     cursor: pointer;
 }
 
-.floating-up-component {
-    transform: translateX(0px);
-    animation: float-top 4s ease-in-out infinite;
-}
-
-.floating-right-component {
-    transform: translateY(0px);
-    animation: float-right 4s ease-in-out infinite;
-}
-
-.floating-left-component {
-    transform: translateX(0px);
-    animation: float-left 4s ease-in-out infinite;
-}
-
-.floating-down-component {
-    transform: translateY(0px);
-    animation: float-bottom 4s ease-in-out infinite;
-}
-
-@keyframes float-top {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-@keyframes float-bottom {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-@keyframes float-right {
-    0% {
-        transform: translateX(0px);
-    }
-    50% {
-        transform: translateX(10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-@keyframes float-left {
-    0% {
-        transform: translateX(0px);
-    }
-    50% {
-        transform: translateX(-10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.flashing-component {
-    animation: flash 2s ease-in-out infinite;
-}
-
-@keyframes flash {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.4;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
 .icons-margin {
     color: white;
@@ -297,6 +207,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 
 .footer-component-right {
     float: right;
@@ -322,10 +233,33 @@ h2 {
 }
 
 
+a {
+    color: White;
+}
+
+
+input[type=text], input[type=email], input[type=password], input[type=number] {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 0 auto;
+    font-size: 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+
+@media only screen and (min-width: 340px) {
+    input[type=text], input[type=email], input[type=password], input[type=number] {
+        width: 280px;
+    }
+}
+
+
 ul.menu-list {
     padding: 0;
     margin: 0;
 }
+
 
 li.menu-list-element {
     list-style-type: none;
@@ -333,26 +267,6 @@ li.menu-list-element {
 }
 
 
-.menu-link {
-    text-decoration: none;
-    font-size: 30px;
-    color: white;
-    transition-duration: 0.2s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-
-.menu-link:hover {
-    color: #818387;
-    text-decoration: none;
-    font-size: 30px;
-    transition-duration: 0.2s;
-}
-
-
-/* Rende i button generici uguali a i menu links */
 .menu-button {
     background-color: Transparent;
     border: none;
@@ -385,74 +299,8 @@ li.menu-list-element {
     cursor: pointer;
 }
 
-.modal-button-container {
-    text-align: right;
-    padding-top:10px;
-}
 
-.modal-button-primary {
-    color: white;
-    background-color: #bc241c;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    margin-left: 5px;
-    padding: 10px 20px;
-    border-radius: 8px;
-    transition-duration: 0.2s;
-    outline: none;
-    -webkit-tap-highlight-color: Transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.modal-button-primary:hover {
-    background-color: #bf4a44;
-    color: white;
-    -webkit-tap-highlight-color: Transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
-}
-
-.modal-button-secondary {
-    background-color: Transparent;
-    color: black;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    transition-duration: 0.2s;
-    outline: none;
-    -webkit-tap-highlight-color: Transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.modal-button-secondary:hover {
-    background-color: rgba(85, 113, 233, 0.11);
-    color: black;
-    -webkit-tap-highlight-color: Transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
-}
-
-
-.disabled-button-text {
+.disabled-menu-button-text {
     border: none;
     color: #66686c;
     text-align: center;
@@ -461,120 +309,91 @@ li.menu-list-element {
     font-size: 30px;
 }
 
-.button-text {
+
+.modal-button-container {
+    text-align: right;
+    padding-top: 10px;
+}
+
+
+.modal-button-primary, .modal-button-secondary {
     border: none;
-    color: White;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 30px;
-}
-
-a {
-    color: White;
-}
-
-
-input[type=text], input[type=email], input[type=password], input[type=number] {
-    width: 90%;
-    padding: 12px 20px;
-    margin: 0 auto;
-    font-size: 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-}
-
-/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
-@media only screen and (min-width: 340px) {
-    input[type=text], input[type=email], input[type=password], input[type=number] {
-        width: 280px;
-        padding: 12px 20px;
-        margin: 0 auto;
-        font-size: 20px;
-        box-sizing: border-box;
-        border-radius: 4px;
-    }
-}
-
-
-.selector {
-    width: 90%;
-    height:50px;
-    margin: 0 auto;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 4px;
-    border-color: White;
-}
-
-/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
-@media only screen and (min-width: 340px) {
-    .selector {
-        width: 280px;
-        height:50px;
-        margin: 0 auto;
-    }
-}
-
-
-
-.selector-button {
-    width: 19%;
-    height: 100%;
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    justify-content: center; /* align horizontal */
-    align-items: center; /* align vertical */
-    font-size: 20px;
-    float: left;
-    margin: 0;
-    transition-duration: 0.2s;
-    background-color: transparent;
-}
-
-.selector-button:hover {
-    transition-duration: 0.2s;
+    margin-left: 5px;
+    padding: 10px 20px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    transition-duration: 0.2s;
+    outline: none;
+    -webkit-tap-highlight-color: Transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.selector-text {
-    width: 60%;
+
+.modal-button-primary:hover, .modal-button-secondary:hover {
+    -webkit-tap-highlight-color: Transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.modal-button-primary {
+    color: White;
+    background-color: #bc241c;
+}
+
+
+.modal-button-primary:hover {
+    background-color: #bf4a44;
+}
+
+
+.modal-button-secondary {
+    color: Black;
+    background-color: Transparent;
+}
+
+
+.modal-button-secondary:hover {
+    background-color: rgba(85, 113, 233, 0.11);
+}
+
+
+.modal-container {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center; /* align horizontal */
-    align-items: center; /* align vertical */
-    text-align: center;
-    float: left;
-    border-left: solid 1px;
-    border-right: solid 1px;
-    border-color: White;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 
-.copyable-area {
-    width: 90%;
-    margin: 10px auto 20px;
-    padding: 10px;
-    text-align: center;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 4px;
-    border-color: White;
-    transition-duration: 0.2s;
-    background-color: transparent;
+.modal-content {
+    background-color: #ffffff;
+    color: Black;
+    margin: 20% auto;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    width: 80%;
 }
 
-.copyable-area:hover {
-    transition-duration: 0.2s;
-    background-color: rgba(255, 255, 255, 0.09);
-}
 
-/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
-@media only screen and (min-width: 340px) {
-    .copyable-area {
-        width: 280px;
+@media only screen and (min-width: 780px) {
+    .modal-content {
+        width: 40%;
     }
 }
 
@@ -585,7 +404,45 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     text-overflow: ellipsis;
 }
 
-/* 2. Stili splash */
+
+.capitalize {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+.capitalize:first-letter {
+    text-transform: capitalize;
+}
+
+
+.big-text {
+    font-size: 60px;
+    font-family: 'Baloo Chettan', cursive;
+    margin: -20px;
+}
+
+
+.override-container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.override-component {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+
+/* Stili splash */
+
 
 #splash-link {
     text-decoration: none;
@@ -599,6 +456,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     width: 90%;
     margin: 0 auto;
 }
+
 
 #wrapper-splash {
     min-height: 100%;
@@ -618,6 +476,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     margin: 0 auto;
 }
 
+
 #footer-content-splash {
     position: absolute;
     top: 50%;
@@ -632,6 +491,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     height: 100px;
 }
 
+
 .splash-hint {
     margin-top: 50px;
     margin-left: 50px;
@@ -639,65 +499,141 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
 }
 
 
-/* 3. stili home */
-
-
 #page-body-container-home {
     width: 90%;
     margin: 0 auto;
 }
 
-/* The Modal (background) */
-.modal {
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+/* Stili matchmaking */
+
+
+.pmmaking-height {
+    height: 800px;
 }
 
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    color: Black;
-    font-size: 20px;
-    border-radius: 8px;
-    width: 80%; /* Could be more or less, depending on screen size */
+
+.nickform {
+    margin-top: 20px;
 }
 
-@media only screen and (min-width: 780px) {
-    .modal-content {
-        width: 40%; /* Could be more or less, depending on screen size */
+
+.selector {
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: White;
+}
+
+
+@media only screen and (min-width: 340px) {
+    .selector {
+        width: 280px;
     }
 }
 
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+
+.selector-button {
+    width: 19%;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    float: left;
+    margin: 0;
+    transition-duration: 0.2s;
+    background-color: transparent;
 }
 
-/* 4. stili matchmaking */
 
-.nickform {
-    margin-top:20px;
+.selector-button:hover {
+    transition-duration: 0.2s;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.09);
 }
 
-/* 5. stili match */
+
+.selector-text {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: left;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-color: White;
+}
+
+
+.copyable-container-primary-text {
+    border: none;
+    color: White;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+}
+
+
+.copyable-container-secondary-text {
+    color: white;
+    font-size: small;
+    vertical-align: middle;
+    margin-top: 5px;
+}
+
+
+.copyable-container-icon {
+    color: white;
+    font-size: small;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+
+.copyable-container {
+    width: 90%;
+    margin: 10px auto 20px;
+    padding: 10px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: White;
+    transition-duration: 0.2s;
+    background-color: transparent;
+}
+
+
+.copyable-container:hover {
+    transition-duration: 0.2s;
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+
+@media only screen and (min-width: 340px) {
+    .copyable-container {
+        width: 280px;
+    }
+}
+
+
+/* Stili match */
 
 
 .cc-container-group {
     width: 90%;
     margin: 0 auto 20px;
 }
+
 
 .cc-container {
     width: 100%;
@@ -707,6 +643,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     font-size: 20px;
 }
 
+
 .centered-column {
     float: left;
     width: 50%;
@@ -715,6 +652,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     text-overflow: ellipsis;
 }
 
+
 .timer-icon {
     color: white;
     margin-right: 5px;
@@ -722,49 +660,29 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
 }
 
 
-.copy-font {
-    color: white;
-    font-size: small;
-    vertical-align: middle;
-    margin-top: 5px;
-}
-.copy-icon {
-    color: white;
-    font-size: small;
-    margin-right: 5px;
-    vertical-align: middle;
-}
-
 .timer-icon-stop {
     color: red;
     margin-right: 5px;
     vertical-align: middle;
 }
 
+
 .timer-stop {
     color: red;
 }
 
+
 .arrow-cell {
-    max-height:90%;
-    max-width:90%;
+    max-height: 90%;
+    max-width: 90%;
     margin: 0 auto;
     color: white;
 }
 
-.icon-aftermatch {
-    color: white;
-}
-
-.robot-aftermatch {
-    width: 30px;
-    height: 30px;
-    transform: rotate(90deg);
-}
 
 .arrow-cell-over {
-    max-height:90%;
-    max-width:90%;
+    max-height: 90%;
+    max-width: 90%;
     margin: 0 auto;
     color: yellow;
 }
@@ -783,9 +701,9 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
 @media only screen and (min-width: 320px) {
     .playground-container {
         width: 280px;
-        margin: 0 auto;
     }
 }
+
 
 .playground-table {
     width: 100%;
@@ -797,39 +715,10 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
 }
 
 
-/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
 @media only screen and (min-width: 320px) {
     .playground-table {
         width: 280px;
-        table-layout: fixed;
-        margin: 0 auto;
     }
-}
-
-
-
-.lowaftermatch-component {
-    margin-top: 20px;
-}
-
-.pmmaking-height {
-    height: 800px;
-}
-
-.override-container {
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-}
-
-
-.override-component {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
 }
 
 
@@ -837,14 +726,12 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     width: 100%;
 }
 
+
 .centered-component {
     margin: 0 auto;
     text-align: center;
 }
 
-.aftermatch-height {
-    height: 400px;
-}
 
 .match-height {
     height: 520px;
@@ -867,29 +754,6 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     transform: translate(-50%, 0);
 }
 
-.capitalize {
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.capitalize:first-letter {
-    text-transform: capitalize;
-}
-
-.roby-positioned {
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.big-text {
-    font-size: 60px;
-    font-family: 'Baloo Chettan', cursive;
-    margin: -20px;
-}
 
 .roby-draggable {
     width: 100px;
@@ -898,12 +762,13 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     max-height: 100px;
 }
 
-.roby-image-end {
-    width: 50px;
-    height: 50px;
-    max-width: 50px;
-    max-height: 50px;
-    margin: 0 auto;
+
+.roby-positioned {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 
@@ -916,7 +781,6 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
 }
 
 
-
 .red-play-tile {
     width: 100%;
     padding-bottom: 100%;
@@ -924,11 +788,13 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     border-radius: 4px;
 }
 
+
 .placeholder-tile {
     width: 100%;
     padding-bottom: 100%;
     border-radius: 4px;
 }
+
 
 .yellow-play-tile {
     width: 100%;
@@ -937,6 +803,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     border-radius: 4px;
 }
 
+
 .gray-play-tile {
     width: 100%;
     padding-bottom: 100%;
@@ -944,7 +811,14 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     border-radius: 4px;
 }
 
+
 /* Aftermatch */
+
+
+.aftermatch-winner {
+    margin-bottom: 20px;
+}
+
 
 #aftermatch-table {
     width: 90%;
@@ -952,6 +826,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     margin: 0 auto;
     padding-bottom: 30px;
 }
+
 
 .aftermatch-cell {
     max-width: 0;
@@ -961,12 +836,31 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
 }
 
 
-.aftermatch-winner {
-    margin-bottom: 20px;
+.icon-aftermatch {
+    color: white;
+}
+
+
+.robot-aftermatch {
+    width: 30px;
+    height: 30px;
+    transform: rotate(90deg);
+}
+
+
+.lowaftermatch-component {
+    margin-top: 20px;
+}
+
+
+.aftermatch-height {
+    height: 400px;
 }
 
 
 /* Spinner */
+
+
 .lds-grid {
     margin-top: 20px;
     display: inline-block;
@@ -974,6 +868,8 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     width: 64px;
     height: 64px;
 }
+
+
 .lds-grid div {
     position: absolute;
     width: 13px;
@@ -982,51 +878,71 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     background: #fff;
     animation: lds-grid 1.2s linear infinite;
 }
+
+
 .lds-grid div:nth-child(1) {
     top: 6px;
     left: 6px;
     animation-delay: 0s;
 }
+
+
 .lds-grid div:nth-child(2) {
     top: 6px;
     left: 26px;
     animation-delay: -0.4s;
 }
+
+
 .lds-grid div:nth-child(3) {
     top: 6px;
     left: 45px;
     animation-delay: -0.8s;
 }
+
+
 .lds-grid div:nth-child(4) {
     top: 26px;
     left: 6px;
     animation-delay: -0.4s;
 }
+
+
 .lds-grid div:nth-child(5) {
     top: 26px;
     left: 26px;
     animation-delay: -0.8s;
 }
+
+
 .lds-grid div:nth-child(6) {
     top: 26px;
     left: 45px;
     animation-delay: -1.2s;
 }
+
+
 .lds-grid div:nth-child(7) {
     top: 45px;
     left: 6px;
     animation-delay: -0.8s;
 }
+
+
 .lds-grid div:nth-child(8) {
     top: 45px;
     left: 26px;
     animation-delay: -1.2s;
 }
+
+
 .lds-grid div:nth-child(9) {
     top: 45px;
     left: 45px;
     animation-delay: -1.6s;
 }
+
+
 @keyframes lds-grid {
     0%, 100% {
         opacity: 1;
@@ -1037,7 +953,117 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
 }
 
 
+/* Animations */
+
+
+.floating-up-component {
+    transform: translateX(0px);
+    animation: float-top 4s ease-in-out infinite;
+}
+
+
+@keyframes float-top {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+.floating-right-component {
+    transform: translateY(0px);
+    animation: float-right 4s ease-in-out infinite;
+}
+
+
+@keyframes float-right {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+.floating-left-component {
+    transform: translateX(0px);
+    animation: float-left 4s ease-in-out infinite;
+}
+
+
+@keyframes float-left {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+.floating-down-component {
+    transform: translateY(0px);
+    animation: float-bottom 4s ease-in-out infinite;
+}
+
+
+@keyframes float-bottom {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+.flashing-component {
+    animation: flash 2s ease-in-out infinite;
+}
+
+
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
 /* AngularJS cross-page animations */
+
+
+.ng-enter {
+    animation: fadein 0.2s both ease-in;
+    z-index: 8888;
+}
+
+
+.ng-leave {
+    animation: fadeout 0.2s both ease-in;
+    z-index: 9999;
+}
+
 
 @keyframes fadein {
     from {
@@ -1048,6 +1074,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     }
 }
 
+
 @keyframes fadeout {
     from {
         opacity: 1;
@@ -1056,6 +1083,7 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
         opacity: 0;
     }
 }
+
 
 /*
 .ng-show {
@@ -1069,17 +1097,6 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     z-index: 9999;
 }
 */
-
-
-.ng-enter {
-    animation: fadein 0.2s both ease-in;
-    z-index: 8888;
-}
-
-.ng-leave {
-    animation: fadeout 0.2s both ease-in;
-    z-index: 9999;
-}
 
 
 /* ==========================================================================
