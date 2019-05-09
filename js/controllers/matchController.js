@@ -351,7 +351,8 @@ angular.module('codyColor').controller('matchCtrl',
 
                 robyAnimator.animateAndFinish(function () {
                     robyAnimator.quitGame();
-                    navigationHandler.goToPage($location, $scope, '/aftermatch', true);
+                    if ($scope.forceExitModal === false)
+                        navigationHandler.goToPage($location, $scope, '/aftermatch', true);
                 });
             }
         };
