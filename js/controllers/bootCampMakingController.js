@@ -24,8 +24,11 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
 
 
         // timer set
-        $scope.timerSettings = [ { text: '15 secondi', value: 15000 }, { text: '30 secondi', value: 30000 },
-            { text: '1 minuto', value: 60000 }, { text: '2 minuti', value: 120000 } ];
+        $scope.timerSettings = [ { text: '15 secondi', value: 15000 },
+                                 { text: '30 secondi', value: 30000 },
+                                 { text: '1 minuto', value: 60000 },
+                                 { text: '2 minuti', value: 120000 } ];
+
         $scope.currentTimerIndex = 1;
         gameData.setTimerSetting($scope.timerSettings[$scope.currentTimerIndex].value);
         $scope.incrementTime = function() {
@@ -47,8 +50,10 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
             gameData.setTimerSetting($scope.timerSettings[$scope.currentTimerIndex].value);
         };
 
-        $scope.enemySettings = [ { text: 'Nessun avversario', value: 0 }, { text: 'IA facile', value: 1 },
-            { text: 'IA medio', value: 2 }, { text: 'IA difficile', value: 3 } ];
+        $scope.enemySettings = [ { text: 'Nessun avversario', value: 0 },
+                                 { text: 'IA facile', value: 1 },
+                                 { text: 'IA medio', value: 2 },
+                                 { text: 'IA difficile', value: 3 } ];
         $scope.currentEnemyIndex = 0;
         gameData.setBootEnemySetting($scope.enemySettings[$scope.currentEnemyIndex].value);
         $scope.enemyRight = function() {
@@ -73,21 +78,7 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
         $scope.createBootcamp = function(nickname) {
             gameData.setPlayerNickname(nickname);
             gameData.setEnemyNickname('CodyColor');
-            let bootTiles = '';
-            for (let i = 0; i < 25; i++) {
-                switch (Math.floor(Math.random() * 3)) {
-                    case 0:
-                        bootTiles += 'R';
-                        break;
-                    case 1:
-                        bootTiles += 'Y';
-                        break;
-                    case 2:
-                        bootTiles += 'G';
-                        break;
-                }
-            }
-            gameData.setCurrentMatchTiles(bootTiles);
+            gameData.generateNewMatchTiles();
             navigationHandler.goToPage($location, $scope, '/bootcamp');
         };
 

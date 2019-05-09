@@ -9,27 +9,36 @@ angular.module('codyColor').factory("audioHandler", function($cookies) {
     musicBase.src = 'audio/music.wav';
     musicBase.loop = true;
 
+    let isAudioEnabled;
+
     audioHandler.isAudioEnabled = function() {
-        let cookiesBaseValue = $cookies.get('baseState');
-        return !(cookiesBaseValue === undefined || cookiesBaseValue === 'pause');
+        if (isAudioEnabled === undefined) {
+            let cookiesAudioEnabled = $cookies.get('audioEnabled');
+            if (cookiesAudioEnabled === undefined) {
+                $cookies.put('audioEnabled', 'true');
+                isAudioEnabled = true;
+            } else {
+                isAudioEnabled = (cookiesAudioEnabled === 'true');
+            }
+        }
+        return isAudioEnabled;
     };
 
     audioHandler.toggleBase = function () {
-        let cookiesBaseValue = $cookies.get('baseState');
-        if (cookiesBaseValue === undefined || cookiesBaseValue === 'pause') {
+        if (!audioHandler.isAudioEnabled()) {
+            isAudioEnabled = true;
+            $cookies.put('audioEnabled', 'true');
             musicBase.play();
-            $cookies.put('baseState', 'play');
         } else {
+            isAudioEnabled = false;
+            $cookies.put('audioEnabled', 'false');
             musicBase.pause();
-            $cookies.put('baseState', 'pause');
         }
     };
 
     audioHandler.splashStartBase = function () {
-        let cookiesBaseValue = $cookies.get('baseState');
-        if (cookiesBaseValue === undefined || cookiesBaseValue === 'play') {
+        if (audioHandler.isAudioEnabled()) {
             musicBase.play();
-            $cookies.put('baseState', 'play');
         }
     };
 

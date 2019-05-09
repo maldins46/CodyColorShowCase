@@ -59,21 +59,7 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
         $scope.newMatch = function () {
             gameData.clearMatchData();
             gameData.addMatch();
-            let bootTiles = '';
-            for (let i = 0; i < 25; i++) {
-                switch (Math.floor(Math.random() * 3)) {
-                    case 0:
-                        bootTiles += 'R';
-                        break;
-                    case 1:
-                        bootTiles += 'Y';
-                        break;
-                    case 2:
-                        bootTiles += 'G';
-                        break;
-                }
-            }
-            gameData.setCurrentMatchTiles(bootTiles);
+            gameData.generateNewMatchTiles();
             navigationHandler.goToPage($location, $scope, '/bootcamp');
         };
 

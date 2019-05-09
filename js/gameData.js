@@ -196,6 +196,23 @@ angular.module('codyColor').factory('gameData', function () {
         isEnemyReady = state;
     };
 
+    gameData.generateNewMatchTiles = function() {
+        let bootTiles = '';
+        for (let i = 0; i < 25; i++) {
+            switch (Math.floor(Math.random() * 3)) {
+                case 0:
+                    bootTiles += 'R';
+                    break;
+                case 1:
+                    bootTiles += 'Y';
+                    break;
+                case 2:
+                    bootTiles += 'G';
+                    break;
+            }
+        }
+        gameData.setCurrentMatchTiles(bootTiles);
+    };
 
     gameData.setCurrentMatchTiles = function (tilesString) {
         // si ipotizza al momento una matrice 5x5
