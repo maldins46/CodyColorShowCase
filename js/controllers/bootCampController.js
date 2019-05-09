@@ -395,7 +395,7 @@ angular.module('codyColor').controller('bootCampCtrl',
 
         $scope.skip = function() {
             audioHandler.playSound('menu-click');
-            quitGame({notFromClick: false});
+            robyAnimator.quitGame();
             navigationHandler.goToPage($location, $scope, '/bootaftermatch');
         };
 

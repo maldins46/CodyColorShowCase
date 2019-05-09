@@ -3,33 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/aftermatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/aftermatchController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/roby-dragging-trasp.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-dragging-trasp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/roby-dragging.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/roby-idle.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-idle.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/controllers/bootAftermatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/bootAftermatchController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/controllers/bootCampController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/bootCampController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/cmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/cmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/emptyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/emptyController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/homeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/homeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/loginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/loginController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/matchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/matchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/newcmatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/newcmatchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/rankingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rankingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/registerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/registerController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/rmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rmmakingController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/rabbitCommunicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/rabbitCommunicator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/robyAnimator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/robyAnimator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/aftermatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/aftermatch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/bootaftermatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/bootaftermatch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/bootcamp.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/bootcamp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/bootcampmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/bootcampmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/cmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/cmmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/match.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/match.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/newcmatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/newcmatch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/rmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/rmmaking.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,44 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/bootCampMakingController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-286">
+            <state relative-caret-position="21">
               <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="120" column="72" selection-start-line="120" selection-start-column="72" selection-end-line="120" selection-end-column="72" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/cmmakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="149" column="72" selection-start-line="149" selection-start-column="72" selection-end-line="149" selection-end-column="72" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/newcmatchController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="143" column="72" selection-start-line="143" selection-start-column="72" selection-end-line="143" selection-end-column="72" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -93,8 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/bootCampController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="388" column="42" selection-start-line="388" selection-start-column="42" selection-end-line="388" selection-end-column="42" />
+            <state relative-caret-position="41">
+              <caret line="397" column="36" selection-start-line="397" selection-start-column="36" selection-end-line="397" selection-end-column="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -103,34 +46,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
+        <entry file="file://$PROJECT_DIR$/partials/match.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="371" column="10" lean-forward="true" selection-start-line="358" selection-start-column="8" selection-end-line="371" selection-end-column="10" />
+            <state relative-caret-position="105">
+              <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/bootAftermatchController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="90" column="10" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -147,11 +69,47 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/bootcampmaking.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="189">
+              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/gameData.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="343" lean-forward="true" selection-start-line="343" selection-end-line="343" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/bootAftermatchController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="390" column="77" lean-forward="true" selection-start-line="389" selection-start-column="16" selection-end-line="390" selection-end-column="77" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -167,7 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gamecode</find>
       <find>1.0.3</find>
       <find>enemyin</find>
       <find>copy</find>
@@ -184,7 +141,6 @@
       <find>facil</find>
       <find>bootene</find>
       <find>animatea</find>
-      <find>skip</find>
       <find>quitgame</find>
       <find>drag</find>
       <find>bootafte</find>
@@ -197,6 +153,8 @@
       <find>exitG</find>
       <find>enemylef</find>
       <find>cc-cont</find>
+      <find>roby-dragging</find>
+      <find>skip</find>
     </findStrings>
     <replaceStrings>
       <replace>onOver: '  onDrop:'robyDropped</replace>
@@ -241,7 +199,6 @@
         <option value="$PROJECT_DIR$/js/navigationHandler.js" />
         <option value="$PROJECT_DIR$/js/gameData.js" />
         <option value="$PROJECT_DIR$/js/controllers/splashController.js" />
-        <option value="$PROJECT_DIR$/js/rabbitCommunicator.js" />
         <option value="$PROJECT_DIR$/partials/login.html" />
         <option value="$PROJECT_DIR$/partials/register.html" />
         <option value="$PROJECT_DIR$/js/controllers/emptyController.js" />
@@ -252,22 +209,23 @@
         <option value="$PROJECT_DIR$/js/robyAnimator.js" />
         <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/partials/home.html" />
-        <option value="$PROJECT_DIR$/partials/match.html" />
         <option value="$PROJECT_DIR$/partials/rmmaking.html" />
         <option value="$PROJECT_DIR$/partials/aftermatch.html" />
         <option value="$PROJECT_DIR$/partials/cmmaking.html" />
         <option value="$PROJECT_DIR$/partials/newcmatch.html" />
-        <option value="$PROJECT_DIR$/js/controllers/matchController.js" />
         <option value="$PROJECT_DIR$/partials/bootaftermatch.html" />
         <option value="$PROJECT_DIR$/partials/bootcamp.html" />
-        <option value="$PROJECT_DIR$/partials/bootcampmaking.html" />
-        <option value="$PROJECT_DIR$/js/controllers/bootAftermatchController.js" />
         <option value="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" />
-        <option value="$PROJECT_DIR$/js/controllers/bootCampController.js" />
         <option value="$PROJECT_DIR$/js/controllers/rmmakingController.js" />
         <option value="$PROJECT_DIR$/js/controllers/aftermatchController.js" />
         <option value="$PROJECT_DIR$/js/controllers/newcmatchController.js" />
         <option value="$PROJECT_DIR$/js/controllers/cmmakingController.js" />
+        <option value="$PROJECT_DIR$/partials/bootcampmaking.html" />
+        <option value="$PROJECT_DIR$/js/controllers/matchController.js" />
+        <option value="$PROJECT_DIR$/partials/match.html" />
+        <option value="$PROJECT_DIR$/js/controllers/bootAftermatchController.js" />
+        <option value="$PROJECT_DIR$/js/controllers/bootCampController.js" />
+        <option value="$PROJECT_DIR$/js/rabbitCommunicator.js" />
       </list>
     </option>
   </component>
@@ -395,7 +353,7 @@
       <workItem from="1557170016839" duration="28000" />
       <workItem from="1557235709183" duration="4930000" />
       <workItem from="1557300418246" duration="15382000" />
-      <workItem from="1557386370522" duration="5989000" />
+      <workItem from="1557386370522" duration="7865000" />
     </task>
     <task id="LOCAL-00001" summary="Creata prima bozza schermata match">
       <created>1555067124003</created>
@@ -572,11 +530,25 @@
       <option name="project" value="LOCAL" />
       <updated>1557331650312</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="aggiunti dialog modali, perfezionata modalità allenamento">
+      <created>1557393380688</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1557393380688</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix minori">
+      <created>1557394980036</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1557394980036</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228241000" />
+    <option name="totallyTimeSpent" value="230117000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -633,8 +605,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Creata prima bozza schermata match" />
-    <MESSAGE value="preparando le funzionalità di drag n drop" />
     <MESSAGE value="terminate le prime sezioni partita, configurato per interazione server" />
     <MESSAGE value="prova https" />
     <MESSAGE value="Supporto Secured WebSocket stabile" />
@@ -658,7 +628,9 @@
     <MESSAGE value="Aggiunta modalità partita custom" />
     <MESSAGE value="Aggiunto contatore giocatori in attesa, aggiunto callback generalInfo in tutti i controller" />
     <MESSAGE value="Aggiunta modalità allenamento, effetti sonori" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta modalità allenamento, effetti sonori" />
+    <MESSAGE value="aggiunti dialog modali, perfezionata modalità allenamento" />
+    <MESSAGE value="fix minori" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix minori" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/vendor/angular.min.js">
@@ -756,26 +728,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="516">
           <caret line="45" column="118" selection-start-line="45" selection-start-column="118" selection-end-line="45" selection-end-column="118" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/gameData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7392">
-          <caret line="354" column="37" selection-start-line="354" selection-start-column="37" selection-end-line="354" selection-end-column="37" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="49" lean-forward="true" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -936,37 +888,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/match.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="402" lean-forward="true" selection-start-line="392" selection-end-line="402" />
-          <folding>
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/partials/bootaftermatch.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="633">
           <caret line="85" selection-start-line="85" selection-end-line="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/bootcamp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="407" selection-start-line="407" selection-end-line="407" />
-          <folding>
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/bootcampmaking.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
         </state>
       </provider>
     </entry>
@@ -990,16 +915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="371" column="10" lean-forward="true" selection-start-line="358" selection-start-column="8" selection-end-line="371" selection-end-column="10" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/cmmakingController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -1010,9 +925,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/bootcampmaking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="70" column="48" selection-start-line="70" selection-start-column="48" selection-end-line="70" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/bootcamp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="407" selection-start-line="407" selection-end-line="407" />
+          <folding>
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/match.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding>
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/bootCampMakingController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-286">
+        <state relative-caret-position="21">
           <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -1020,10 +972,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/bootCampController.js">
+    <entry file="file://$PROJECT_DIR$/js/gameData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="388" column="42" selection-start-line="388" selection-start-column="42" selection-end-line="388" selection-end-column="42" />
+        <state relative-caret-position="295">
+          <caret line="343" lean-forward="true" selection-start-line="343" selection-end-line="343" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -1032,15 +984,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/bootAftermatchController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="90" column="10" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+        <state relative-caret-position="504">
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+        <state relative-caret-position="404">
+          <caret line="390" column="77" lean-forward="true" selection-start-line="389" selection-start-column="16" selection-end-line="390" selection-end-column="77" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/bootCampController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="397" column="36" selection-start-line="397" selection-start-column="36" selection-end-line="397" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

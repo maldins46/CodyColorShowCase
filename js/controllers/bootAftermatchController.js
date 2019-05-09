@@ -25,7 +25,6 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
 
         // oggetto contenente informazioni sul risultato della partita
         $scope.results = gameData.getCurrentMatchResult();
-
         $scope.withEnemy = gameData.getBootEnemySetting() !== 0;
 
         // inizializzazione schermata informativa
