@@ -10,7 +10,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     // credenziali di comunicazione con il server
     const rabbitUsername = "guest";
     const rabbitPassword = "guest";
-    // const serverUrl = "ws://127.0.0.1:15674/ws";   /* LOCALE */
+    //const serverUrl = "ws://127.0.0.1:15674/ws";   /* LOCALE */
     const serverUrl = "wss://botify.it/codycolor/ws"; /* SERVER */
     const rabbitVHost = "/";
     const serverControlQueue = "/queue/serverControl";
@@ -65,8 +65,8 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
     };
 
     // callback necessari per il matchmaking
-    rabbit.setRMMakingCallbacks = function(onGeneralInfoMessage, onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
-                                           onQuitGameMessage, onConnectionLost) {
+    rabbit.setRMMakingCallbacks = function(onGeneralInfoMessage, onGameRequestResponse, onHereMessage, onReadyMessage,
+                                           onTilesMessage, onQuitGameMessage, onConnectionLost, onChatMessage) {
         callbacks = {};
         callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
         callbacks.onGameRequestResponse = onGameRequestResponse;
@@ -75,11 +75,13 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         callbacks.onTilesMessage        = onTilesMessage;
         callbacks.onQuitGameMessage     = onQuitGameMessage;
         callbacks.onConnectionLost      = onConnectionLost;
+        callbacks.onChatMessage         = onChatMessage;
     };
 
     // callback necessari per il matchmaking
-    rabbit.setCMMakingCallbacks = function(connectedCallback, onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
-                                           onQuitGameMessage, onConnectionLost, onGeneralInfoMessage) {
+    rabbit.setCMMakingCallbacks = function(connectedCallback, onGameRequestResponse, onHereMessage, onReadyMessage,
+                                           onTilesMessage, onQuitGameMessage, onConnectionLost, onGeneralInfoMessage,
+                                           onChatMessage) {
         callbacks = {};
         callbacks.onConnected           = connectedCallback;
         callbacks.onGameRequestResponse = onGameRequestResponse;
@@ -89,11 +91,12 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         callbacks.onQuitGameMessage     = onQuitGameMessage;
         callbacks.onConnectionLost      = onConnectionLost;
         callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
+        callbacks.onChatMessage         = onChatMessage;
     };
 
     // callback necessari per il matchmaking
     rabbit.setNewCMatchCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
-                                           onQuitGameMessage, onConnectionLost, onGeneralInfoMessage) {
+                                           onQuitGameMessage, onConnectionLost, onGeneralInfoMessage, onChatMessage) {
         callbacks = {};
         callbacks.onGameRequestResponse = onGameRequestResponse;
         callbacks.onHereMessage         = onHereMessage;
@@ -102,16 +105,19 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         callbacks.onQuitGameMessage     = onQuitGameMessage;
         callbacks.onConnectionLost      = onConnectionLost;
         callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
+        callbacks.onChatMessage         = onChatMessage;
     };
 
     // callback necessari per la schermata di aftermatch
-    rabbit.setAftermatchCallbacks = function(onReadyMessage, onTilesMessage, onQuitGameMessage, onConnectionLost, onGeneralInfoMessage) {
+    rabbit.setAftermatchCallbacks = function(onReadyMessage, onTilesMessage, onQuitGameMessage, onConnectionLost,
+                                             onGeneralInfoMessage, onChatMessage) {
         callbacks = {};
         callbacks.onReadyMessage    = onReadyMessage;
         callbacks.onTilesMessage    = onTilesMessage;
         callbacks.onQuitGameMessage = onQuitGameMessage;
         callbacks.onConnectionLost  = onConnectionLost;
         callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
+        callbacks.onChatMessage      = onChatMessage;
     };
 
 
@@ -306,6 +312,26 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
                     JSON.stringify(message));                        // message
     };
 
+    // invia messaggio di chat
+    rabbit.sendChatMessage = function(messageBody) {
+        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
+            randGameRoomsTopic : custGameRoomsTopic);
+        let message = { msgType:     'chat',
+            gameRoomId:   gameData.getGameRoomId(),
+            playerId:     gameData.getPlayerId(),
+            body:         messageBody,
+            date:         (new Date()).getTime(),
+            gameType:     gameData.getGameType() };
+
+        // permette di creare una queue con nominativo univoco nel broker,
+        // composto dal nome passato più una variabile di sessione.
+        client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
+            { durable: false, exclusive: false },            // headers
+            JSON.stringify(message));                        // message
+
+        return message;
+    };
+
 
     // invia messaggio al server, per richiedere una nuova disposizione tiles
     rabbit.sendTilesRequest = function() {
@@ -420,6 +446,11 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
                 case "playerPositioned":
                     if (callbacks.onEnemyPositionedMessage !== undefined)
                         callbacks.onEnemyPositionedMessage(responseObject);
+                    break;
+
+                case "chat":
+                    if (callbacks.onChatMessage !== undefined)
+                        callbacks.onChatMessage(responseObject);
                     break;
 
                 case "quitGame":

@@ -4,7 +4,7 @@
  */
 angular.module('codyColor').controller('rmmakingCtrl',
     function ($scope, rabbit, gameData, $location, scopeService,
-              navigationHandler, audioHandler, sessionHandler) {
+              navigationHandler, audioHandler, sessionHandler, chatHandler) {
         console.log("Controller random matchmaking ready.");
 
         // inizializzazione sessione
@@ -12,6 +12,7 @@ angular.module('codyColor').controller('rmmakingCtrl',
         if (sessionHandler.isSessionInvalid()) {
             rabbit.quitGame();
             gameData.clearGameData();
+            chatHandler.clearChat();
             navigationHandler.goToPage($location, $scope, '/');
             return;
         }
@@ -78,7 +79,30 @@ angular.module('codyColor').controller('rmmakingCtrl',
                 $scope.forceExitText = "Si è verificato un errore nella connessione con il server. Partita terminata.";
                 $scope.forceExitModal = true;
             });
+        }, function (message) {
+            // onChatMessage
+            audioHandler.playSound('roby-over');
+            chatHandler.enqueueChatMessage(message);
+            scopeService.safeApply($scope, function () {
+                $scope.chatBubbles = chatHandler.getChatMessages();
+            });
         });
+
+        // chat
+        $scope.chatBubbles = chatHandler.getChatMessages();
+        $scope.getBubbleStyle = function(chatMessage) {
+            if (chatMessage.playerId === gameData.getPlayerId())
+                return 'chat-bubble-player';
+            else
+                return 'chat-bubble-enemy';
+        };
+        $scope.chatHints = chatHandler.getChatHints();
+        $scope.sendChatMessage = function(messageBody) {
+            audioHandler.playSound('menu-click');
+            let chatMessage = rabbit.sendChatMessage(messageBody);
+            chatHandler.enqueueChatMessage(chatMessage);
+            $scope.chatBubbles = chatHandler.getChatMessages();
+        };
 
         // una volta che l'utente ha scelto un nickname, invia una richiesta di gioco al server
         $scope.requestMMaking = function (nickname) {
@@ -107,6 +131,7 @@ angular.module('codyColor').controller('rmmakingCtrl',
             rabbit.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
             gameData.clearGameData();
+            chatHandler.clearChat();
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -120,6 +145,7 @@ angular.module('codyColor').controller('rmmakingCtrl',
             rabbit.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
             gameData.clearGameData();
+            chatHandler.clearChat();
         };
 
         // impostazioni audio

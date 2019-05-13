@@ -47,6 +47,22 @@
                 <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
             </div>
         </div>
+
+        <div class="chat-container">
+            <div class="chat-bubbles-container">
+                <div class="chat-bubbles-header">Chat</div>
+                <div id="chat-bubbles-sub-container" ng-repeat="bubble in chatBubbles">
+                    <div class="chat-bubble-container"><div ng-class="getBubbleStyle(bubble)">{{bubble.body}}</div></div>
+                </div>
+            </div>
+
+            <div class="chat-hint-container">
+                <div class="chat-hint-header">Invia un messaggio all'avversario</div>
+                <div id="chat-hints-sub-container" ng-repeat="hint in chatHints">
+                    <button class="chat-hint" ng-click="sendChatMessage(hint)">{{hint}}</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="push"></div>

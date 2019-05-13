@@ -407,6 +407,14 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
+    gameData.formatChatDate = function(millis) {
+        let date = new Date(millis);
+
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        return hours + ':' + minutes;
+    };
 
 
     // restituisce il vincitore della partita corrente in base ai dati memorizzati

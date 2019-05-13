@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('cmmakingCtrl',
     function ($scope, rabbit, navigationHandler,
-              audioHandler, $location, sessionHandler, gameData, scopeService) {
+              audioHandler, $location, sessionHandler, gameData, scopeService, chatHandler) {
         console.log("Cmmaking controller ready.");
 
         // inizializzazione sessione
@@ -11,6 +11,7 @@ angular.module('codyColor').controller('cmmakingCtrl',
         if (sessionHandler.isSessionInvalid()) {
             rabbit.quitGame();
             gameData.clearGameData();
+            chatHandler.clearChat();
             navigationHandler.goToPage($location, $scope, '/');
             return;
         }
@@ -107,7 +108,30 @@ angular.module('codyColor').controller('cmmakingCtrl',
             sessionHandler.setTotalMatches(response.totalMatches);
             sessionHandler.setConnectedPlayers(response.connectedPlayers);
             sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
+        },function (message) {
+            // onChatMessage
+            audioHandler.playSound('roby-over');
+            chatHandler.enqueueChatMessage(message);
+            scopeService.safeApply($scope, function () {
+                $scope.chatBubbles = chatHandler.getChatMessages();
+            });
         });
+
+        // chat
+        $scope.chatBubbles = chatHandler.getChatMessages();
+        $scope.getBubbleStyle = function(chatMessage) {
+            if (chatMessage.playerId === gameData.getPlayerId())
+                return 'chat-bubble-player';
+            else
+                return 'chat-bubble-enemy';
+        };
+        $scope.chatHints = chatHandler.getChatHints();
+        $scope.sendChatMessage = function(messageBody) {
+            audioHandler.playSound('menu-click');
+            let chatMessage = rabbit.sendChatMessage(messageBody);
+            chatHandler.enqueueChatMessage(chatMessage);
+            $scope.chatBubbles = chatHandler.getChatMessages();
+        };
 
         $scope.joinMessage = '';
         // click su 'unisciti'
@@ -136,6 +160,7 @@ angular.module('codyColor').controller('cmmakingCtrl',
             rabbit.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
             gameData.clearGameData();
+            chatHandler.clearChat();
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -149,6 +174,7 @@ angular.module('codyColor').controller('cmmakingCtrl',
             rabbit.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
             gameData.clearGameData();
+            chatHandler.clearChat();
         };
 
         // impostazioni audio

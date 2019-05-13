@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('newcmatchCtrl',
     function ($scope, rabbit, navigationHandler, scopeService,
-              audioHandler, $location, sessionHandler, gameData) {
+              audioHandler, $location, sessionHandler, gameData, chatHandler) {
         console.log("Empty controller ready.");
 
         // inizializzazione sessione
@@ -100,7 +100,35 @@ angular.module('codyColor').controller('newcmatchCtrl',
                 $scope.forceExitText = "Si è verificato un errore nella connessione con il server. Partita terminata.";
                 $scope.forceExitModal = true;
             });
+        },  function (response) {
+            // onGeneralInfoMessage
+            sessionHandler.setTotalMatches(response.totalMatches);
+            sessionHandler.setConnectedPlayers(response.connectedPlayers);
+            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
+        },function (message) {
+            // onChatMessage
+            audioHandler.playSound('roby-over');
+            chatHandler.enqueueChatMessage(message);
+            scopeService.safeApply($scope, function () {
+                $scope.chatBubbles = chatHandler.getChatMessages();
+            });
         });
+
+        // chat
+        $scope.chatBubbles = chatHandler.getChatMessages();
+        $scope.getBubbleStyle = function(chatMessage) {
+            if (chatMessage.playerId === gameData.getPlayerId())
+                return 'chat-bubble-player';
+            else
+                return 'chat-bubble-enemy';
+        };
+        $scope.chatHints = chatHandler.getChatHints();
+        $scope.sendChatMessage = function(messageBody) {
+            audioHandler.playSound('menu-click');
+            let chatMessage = rabbit.sendChatMessage(messageBody);
+            chatHandler.enqueueChatMessage(chatMessage);
+            $scope.chatBubbles = chatHandler.getChatMessages();
+        };
 
         // tasto iniziamo
         $scope.playerReady = function() {
@@ -143,6 +171,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
             rabbit.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
             gameData.clearGameData();
+            chatHandler.clearChat();
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -156,6 +185,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
             rabbit.quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
             gameData.clearGameData();
+            chatHandler.clearChat();
         };
 
         // impostazioni audio
