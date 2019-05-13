@@ -125,7 +125,7 @@ angular.module('codyColor').controller('cmmakingCtrl',
             else
                 return 'chat-bubble-enemy';
         };
-        $scope.chatHints = chatHandler.getChatHints();
+        $scope.chatHints = chatHandler.getChatHintsPreMatch();
         $scope.sendChatMessage = function(messageBody) {
             audioHandler.playSound('menu-click');
             let chatMessage = rabbit.sendChatMessage(messageBody);

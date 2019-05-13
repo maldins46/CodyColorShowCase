@@ -162,12 +162,12 @@ html, body {
     margin: 0 auto;
 }
 
-
-@media only screen and (min-width: 340px) {
+/*
+@media only screen and (min-width: 425px) {
     #footer-container {
-        width: 280px;
+        width: 375px;
     }
-}
+}*/
 
 
 #footer-content {
@@ -318,13 +318,13 @@ button.menu-button:hover {
 }
 
 
-.chat-container {
+.chat-container-aftermatch {
     width: 100%;
     overflow: auto;
 }
 
 .chat-container-mmaking {
-    width: 90%;
+    width: 100%;
     margin: 20px auto 0 auto;
     overflow: auto;
 }
@@ -339,9 +339,10 @@ button.menu-button:hover {
     border-radius: 8px;
     border-color: White;
     display: inline-block;
-    background-color: rgba(255, 255, 255, 0.19);
+    background-color: rgba(255, 255, 255, 0.11);
     overflow: scroll;
 }
+
 
 #chat-bubbles-sub-container, #chat-hints-sub-container {
     width: 100%;
@@ -349,13 +350,14 @@ button.menu-button:hover {
 }
 
 
+
+
 @media only screen and (min-width: 716px) {
     .chat-hint-container, .chat-bubbles-container {
         width: 300px;
-        margin: 10px 20px;
+        margin: 10px;
     }
 }
-
 
 .chat-hint-container {
     padding: 10px 10px 0 10px;
@@ -363,7 +365,7 @@ button.menu-button:hover {
 
 
 .chat-bubbles-container {
-    padding: 10px 20px;
+    padding: 10px 0;
 }
 
 
@@ -925,28 +927,53 @@ button.modal-button-secondary:hover {
 /* Aftermatch */
 
 
+
+.aftermatch-stats {
+    width: 100%;
+    margin: 20px 0 10px 0;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    border-color: White;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.11);
+    padding: 10px;
+    overflow: auto;
+}
+
+
+@media only screen and (min-width: 716px) {
+    .aftermatch-stats {
+        width: 620px;
+    }
+}
+
+.aftermatch-stats-line {
+    margin: 10px 0 0 0;
+}
+
+
+
+
 .aftermatch-winner {
     margin-bottom: 20px;
 }
 
+.stats-header {
 
-#aftermatch-table {
-    width: 90%;
-    table-layout: fixed;
-    margin: 0 auto;
 }
 
-
-.aftermatch-cell {
-    max-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-
-.icon-aftermatch {
+.white-icon {
     color: white;
+}
+
+.player-text-style {
+    color: #48af9b;
+}
+
+.enemy-text-style {
+    color: #ba793a;
 }
 
 

@@ -6,8 +6,11 @@ angular.module('codyColor').factory("chatHandler", function(rabbit, gameData) {
     let chatHandler = {};
 
     let chatMessages = [];
-    const chatHints = [ "Bella partita!", "Che sfortuna!", "Devo andare", "Ciao!", "Giochiamo ancora?",
-                        "Sei un grande!", "No", "Sì", "😄", "😂", "😘", "😎", "😭", "😱", "🤬", "🤖"];
+    const chatHintsPreMatch = [  "Ciao!", "Tutto bene?", "No", "Sì", "Sei pronto?", "Ci sei?", "Iniziamo!",
+        "Sono fortissimo!", "😄", "😂", "😘", "😎", "😭", "😱", "🤬", "🤖"];
+
+    const chatHintsAfterMatch = ["Bella partita!", "Che sfortuna!", "Devo andare", "Giochiamo ancora?",
+        "Sei un grande!", "No", "Sì", "Sei pronto?", "Ci sei?", "Iniziamo!", "😄", "😂", "😘", "😎", "😭", "😱", "🤬", "🤖"];
 
 
     chatHandler.getChatMessages = function() {
@@ -15,8 +18,12 @@ angular.module('codyColor').factory("chatHandler", function(rabbit, gameData) {
     };
 
 
-    chatHandler.getChatHints = function () {
-        return chatHints;
+    chatHandler.getChatHintsPreMatch = function () {
+        return chatHintsPreMatch;
+    };
+
+    chatHandler.getChatHintsAfterMatch = function () {
+        return chatHintsAfterMatch;
     };
 
 
