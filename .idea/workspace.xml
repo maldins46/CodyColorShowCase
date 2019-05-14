@@ -1,102 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="aggiunti bower components,">
-      <change afterPath="$PROJECT_DIR$/js/chatHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/vendor/angular-animate.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/vendor/angular-cookies.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/vendor/angular-route.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/vendor/angular.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/vendor/jquery.min.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CodyColorClient.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CodyColorClient.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/riccardomaldini.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/riccardomaldini.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android-icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/android-icon-144x144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android-icon-192x192.png" beforeDir="false" afterPath="$PROJECT_DIR$/android-icon-192x192.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android-icon-36x36.png" beforeDir="false" afterPath="$PROJECT_DIR$/android-icon-36x36.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android-icon-48x48.png" beforeDir="false" afterPath="$PROJECT_DIR$/android-icon-48x48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android-icon-72x72.png" beforeDir="false" afterPath="$PROJECT_DIR$/android-icon-72x72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android-icon-96x96.png" beforeDir="false" afterPath="$PROJECT_DIR$/android-icon-96x96.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-114x114.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-114x114.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-120x120.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-120x120.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-144x144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-152x152.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-152x152.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-180x180.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-180x180.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-57x57.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-57x57.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-60x60.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-60x60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-72x72.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-72x72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-76x76.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-76x76.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon-precomposed.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon-precomposed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apple-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/apple-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/countdown.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/countdown.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/enemy-found.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/enemy-found.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/lost.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/lost.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/menu-click.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/menu-click.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/music.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/music.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/roby-drag.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/roby-drag.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/roby-drop.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/roby-drop.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/roby-over.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/roby-over.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/roby-positioned.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/roby-positioned.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/start.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/start.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/win.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/win.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserconfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserconfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon-16x16.png" beforeDir="false" afterPath="$PROJECT_DIR$/favicon-16x16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon-32x32.png" beforeDir="false" afterPath="$PROJECT_DIR$/favicon-32x32.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon-96x96.png" beforeDir="false" afterPath="$PROJECT_DIR$/favicon-96x96.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/enemy-broken.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/enemy-broken.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/enemy-positioned.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/enemy-positioned.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/enemy-walking-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/enemy-walking-1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/enemy-walking-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/enemy-walking-2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/roby-broken.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-broken.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/roby-dragging-trasp.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-dragging-trasp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/roby-idle.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-idle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/roby-positioned.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-positioned.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/roby-walking-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-walking-1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/roby-walking-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-walking-2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/audioHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/audioHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/aftermatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/aftermatchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/bootCampController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/bootCampController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/cmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/cmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/emptyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/emptyController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/homeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/homeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/loginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/loginController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/newcmatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/newcmatchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/rankingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rankingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/registerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/registerController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/rmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/splashController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/splashController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/gameData.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/gameData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/navigationHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/navigationHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/rabbitCommunicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/rabbitCommunicator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/robyAnimator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/robyAnimator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/scopeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/scopeService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/sessionHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sessionHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vendor/angular-animate.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-animate.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vendor/angular-cookies.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-cookies.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vendor/angular-dragdrop.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-dragdrop.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vendor/angular-route.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-route.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vendor/angular.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vendor/jquery-ui.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/jquery-ui.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vendor/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/jquery.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vendor/jquery.ui.touch-punch.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/jquery.ui.touch-punch.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/ms-icon-144x144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-icon-150x150.png" beforeDir="false" afterPath="$PROJECT_DIR$/ms-icon-150x150.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-icon-310x310.png" beforeDir="false" afterPath="$PROJECT_DIR$/ms-icon-310x310.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-icon-70x70.png" beforeDir="false" afterPath="$PROJECT_DIR$/ms-icon-70x70.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/aftermatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/aftermatch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/cmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/cmmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/newcmatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/newcmatch.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/partials/rmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/rmmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/site.webmanifest" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -108,119 +15,34 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/rmmaking.html">
+        <entry file="file://$PROJECT_DIR$/partials/newcmatch.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="86" column="10" lean-forward="true" selection-start-line="70" selection-start-column="4" selection-end-line="86" selection-end-column="10" />
+            <state relative-caret-position="210">
+              <caret line="100" column="81" selection-start-line="100" selection-start-column="81" selection-end-line="100" selection-end-column="81" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#div#0;n#!!top" />
                 <element signature="n#div#1;n#div#0;n#div#0;n#!!top" />
                 <element signature="n#div#2;n#div#0;n#div#0;n#!!top" />
                 <element signature="n#div#3;n#div#0;n#div#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/cmmaking.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="91" column="14" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="91" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/newcmatch.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="100" column="81" selection-start-line="100" selection-start-column="81" selection-end-line="100" selection-end-column="81" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="147" column="36" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="36" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="107" column="56" selection-start-line="107" selection-start-column="56" selection-end-line="107" selection-end-column="56" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/emptyController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/cmmakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="110" column="9" selection-start-line="105" selection-start-column="10" selection-end-line="110" selection-end-column="9" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/newcmatchController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#div#4;n#div#0;n#div#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/chatHandler.js">
+        <entry file="file://$PROJECT_DIR$/partials/rmmaking.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="210">
+              <caret line="85" column="10" selection-start-line="85" selection-start-column="10" selection-end-line="85" selection-end-column="10" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="139" column="36" selection-start-line="139" selection-start-column="36" selection-end-line="139" selection-end-column="36" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#div#2;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#div#3;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -237,18 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rabb</find>
-      <find>cc-conta</find>
-      <find>getcurrentmatchre</find>
-      <find>calculateres</find>
-      <find>quitga</find>
-      <find>facil</find>
-      <find>bootene</find>
-      <find>animatea</find>
-      <find>quitgame</find>
-      <find>drag</find>
-      <find>bootafte</find>
-      <find>count</find>
       <find>countdo</find>
       <find>startcountdowntimer =</find>
       <find>1.0.4</find>
@@ -266,7 +76,19 @@
       <find>ccomponents-</find>
       <find>chat-bubbles</find>
       <find>sendchat</find>
+      <find>chat-co</find>
+      <find>chat-con</find>
+      <find>start-cou</find>
+      <find>aftermatch-ta</find>
+      <find>icon-af</find>
+      <find>table</find>
+      <find>aftermatch</find>
+      <find>header</find>
       <find>chat</find>
+      <find>stats</find>
+      <find>chat-cont</find>
+      <find>quitg</find>
+      <find>after</find>
     </findStrings>
     <replaceStrings>
       <replace>onOver: '  onDrop:'robyDropped</replace>
@@ -321,23 +143,23 @@
         <option value="$PROJECT_DIR$/js/controllers/matchController.js" />
         <option value="$PROJECT_DIR$/partials/match.html" />
         <option value="$PROJECT_DIR$/js/controllers/bootCampController.js" />
-        <option value="$PROJECT_DIR$/partials/bootaftermatch.html" />
         <option value="$PROJECT_DIR$/js/controllers/bootAftermatchController.js" />
         <option value="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" />
         <option value="$PROJECT_DIR$/js/audioHandler.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/gameData.js" />
-        <option value="$PROJECT_DIR$/partials/aftermatch.html" />
-        <option value="$PROJECT_DIR$/partials/rmmaking.html" />
-        <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/partials/cmmaking.html" />
         <option value="$PROJECT_DIR$/partials/newcmatch.html" />
-        <option value="$PROJECT_DIR$/js/controllers/aftermatchController.js" />
         <option value="$PROJECT_DIR$/js/controllers/cmmakingController.js" />
         <option value="$PROJECT_DIR$/js/controllers/rmmakingController.js" />
-        <option value="$PROJECT_DIR$/js/rabbitCommunicator.js" />
         <option value="$PROJECT_DIR$/js/controllers/newcmatchController.js" />
+        <option value="$PROJECT_DIR$/js/rabbitCommunicator.js" />
         <option value="$PROJECT_DIR$/js/chatHandler.js" />
+        <option value="$PROJECT_DIR$/js/controllers/aftermatchController.js" />
+        <option value="$PROJECT_DIR$/partials/aftermatch.html" />
+        <option value="$PROJECT_DIR$/partials/bootaftermatch.html" />
+        <option value="$PROJECT_DIR$/css/main.css" />
+        <option value="$PROJECT_DIR$/partials/rmmaking.html" />
       </list>
     </option>
   </component>
@@ -353,17 +175,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
-              <item name="audio" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
@@ -390,7 +208,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -476,7 +293,8 @@
       <workItem from="1557474382321" duration="7652000" />
       <workItem from="1557578223611" duration="474000" />
       <workItem from="1557671201841" duration="371000" />
-      <workItem from="1557731620838" duration="10872000" />
+      <workItem from="1557731620838" duration="17184000" />
+      <workItem from="1557844826363" duration="461000" />
     </task>
     <task id="LOCAL-00001" summary="Creata prima bozza schermata match">
       <created>1555067124003</created>
@@ -702,11 +520,25 @@
       <option name="project" value="LOCAL" />
       <updated>1557415444335</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="aggiunta funzionalità di chat, aggiustamenti vari">
+      <created>1557745421885</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1557745421886</updated>
+    </task>
+    <task id="LOCAL-00034" summary="correzioni d'interfaccia per chat e stats aftermatch, suggerimenti chat personalizzati a seconda della schermata">
+      <created>1557762218540</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1557762218540</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="257308000" />
+    <option name="totallyTimeSpent" value="264081000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -721,12 +553,11 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2406672" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2613185" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32633054" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32633054" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -736,6 +567,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32913166" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32913166" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -764,8 +596,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="completato funzionamento base match, aftermatch" />
-    <MESSAGE value="problema risorse immagini" />
     <MESSAGE value="implementate gestione sessioni e disconnessioni; aggiunti cookies per la gestione dell'audio; separati i controller; implementazione navigazione con gestione tasto back e refresh" />
     <MESSAGE value="aggiunti file music e modulo cookies" />
     <MESSAGE value="compatibilità gitpages" />
@@ -789,7 +619,9 @@
     <MESSAGE value="refactoring css" />
     <MESSAGE value="refactoring codice bootaftermatch" />
     <MESSAGE value="migliorata gestione dei cookies audio, refactoring bootcamp" />
-    <option name="LAST_COMMIT_MESSAGE" value="migliorata gestione dei cookies audio, refactoring bootcamp" />
+    <MESSAGE value="aggiunta funzionalità di chat, aggiustamenti vari" />
+    <MESSAGE value="correzioni d'interfaccia per chat e stats aftermatch, suggerimenti chat personalizzati a seconda della schermata" />
+    <option name="LAST_COMMIT_MESSAGE" value="correzioni d'interfaccia per chat e stats aftermatch, suggerimenti chat personalizzati a seconda della schermata" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/vendor/jquery.min.js">
@@ -949,16 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/robyAnimator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="114" column="63" lean-forward="true" selection-start-line="114" selection-start-column="63" selection-end-line="114" selection-end-column="63" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/partials/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
@@ -970,16 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
           <caret line="70" column="48" selection-start-line="70" selection-start-column="48" selection-end-line="70" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/bootCampController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8295">
-          <caret line="397" column="36" selection-start-line="397" selection-start-column="36" selection-end-line="397" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -999,17 +811,6 @@
           <caret line="390" column="77" lean-forward="true" selection-start-line="389" selection-start-column="16" selection-end-line="390" selection-end-column="77" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/match.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-512">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding>
-            <element signature="n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#table#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
           </folding>
         </state>
       </provider>
@@ -1041,13 +842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/bootaftermatch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
-          <caret line="43" column="63" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/gameData.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
@@ -1068,37 +862,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/aftermatch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="65" column="10" lean-forward="true" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="327" column="29" selection-start-line="327" selection-start-column="29" selection-end-line="327" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="64" column="30" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/rmmaking.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="86" column="10" lean-forward="true" selection-start-line="70" selection-start-column="4" selection-end-line="86" selection-end-column="10" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#div#3;n#div#0;n#div#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1109,57 +876,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/newcmatch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="100" column="81" selection-start-line="100" selection-start-column="81" selection-end-line="100" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/emptyController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
           <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="139" column="36" selection-start-line="139" selection-start-column="36" selection-end-line="139" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="147" column="36" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="107" column="56" selection-start-line="107" selection-start-column="56" selection-end-line="107" selection-end-column="56" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/cmmakingController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="110" column="9" selection-start-line="105" selection-start-column="10" selection-end-line="110" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -1176,12 +896,132 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/chatHandler.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/cmmakingController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        <state relative-caret-position="2415">
+          <caret line="115" column="30" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/chatHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="108" column="49" lean-forward="true" selection-start-line="108" selection-start-column="49" selection-end-line="108" selection-end-column="49" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/match.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="73" selection-start-line="3" selection-start-column="73" selection-end-line="3" selection-end-column="73" />
+          <folding>
+            <element signature="n#table#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#table#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="147" column="36" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/aftermatch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1133">
+          <caret line="58" column="14" lean-forward="true" selection-start-line="15" selection-end-line="58" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/bootaftermatch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/bootCampController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="397" column="36" selection-start-line="397" selection-start-column="36" selection-end-line="397" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/robyAnimator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6010">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="943" lean-forward="true" selection-start-line="943" selection-end-line="943" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/newcmatch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="100" column="81" selection-start-line="100" selection-start-column="81" selection-end-line="100" selection-end-column="81" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#3;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#4;n#div#0;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/rmmaking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="85" column="10" selection-start-line="85" selection-start-column="10" selection-end-line="85" selection-end-column="10" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#3;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#!!top" />
           </folding>
         </state>
       </provider>
