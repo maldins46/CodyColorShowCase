@@ -1,113 +1,139 @@
-<div id="wrapper">
-    <div id="page-body-container">
-        <div class="cc-container-group">
-            <div class="cc-container">
-                <div class="centered-column"><p class="big-text">{{playerPoints}}</p></div>
-                <div class="centered-column"><p class="big-text">{{enemyPoints}}</p></div>
-            </div>
+<div id="aftermatch" class="page">
+    <div class="page--wrapper">
+        <div class="page--body">
+            <ul class="list">
+                <!-- Player-Enemy total points -->
+                <li class="list--spaced-element">
+                    <div class="centered-columns">
+                        <div class="centered-columns-pair">
+                            <div class="centered-columns--column">
+                                <div class="big-text ellipsize">{{playerPoints}}</div>
+                            </div>
+                            <div class="centered-columns--column">
+                                <div class="big-text ellipsize">{{enemyPoints}}</div>
+                            </div>
+                        </div>
 
-            <div class="cc-container">
-                <div class="centered-column">{{playerNickname}}</div>
-                <div class="centered-column">{{enemyNickname}}</div>
-            </div>
-        </div>
-
-        <h2 class="capitalize aftermatch-winner">{{winner}} vince la {{matchCount}}° partita!!</h2>
-
-        <div id="aftermatch-options" class="ccomponents-container">
-            <div ng-hide="newMatchClicked" class="centered-component lowaftermatch-component">
-                <button class="menu-button flashing-component" ng-click="newMatch()">
-                    Gioca ancora <i class="fas fa-angle-double-right floating-right-component"></i>
-                </button>
-                <p ng-show="enemyRequestNewMatch" class="flashing-component">Il tuo avversario vuole continuare a
-                    giocare!</p>
-            </div>
-            <div ng-show="newMatchClicked" class="centered-component lowaftermatch-component">
-                <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
-            </div>
-        </div>
-
-        <div class="aftermatch-stats">
-            <span class>Stats partita</span>
-            <p class="aftermatch-stats-line"><i class="fas fa-shoe-prints"></i> Passi effettuati:
-                <span class="player-text-style">
-                    {{results.playerResult.loop ? 'Loop!' : results.playerResult.length}}
-                </span>
-                -
-                <span class="enemy-text-style">
-                    {{results.enemyResult.loop ? 'Loop!' : results.enemyResult.length}}
-                </span>
-            </p>
-            <p class="aftermatch-stats-line"><i class="far fa-clock"></i> Tempo impiegato:
-                <span class="player-text-style">
-                    {{formattedPlayerTime}}
-                </span>
-                -
-                <span class="enemy-text-style">
-                    {{formattedEnemyTime}}
-                </span>
-            </p>
-            <p class="aftermatch-stats-line"> <i class="fas fa-robot"></i> Punti:
-                <span class="player-text-style">
-                    {{results.playerResult.points}}
-                </span>
-                -
-                <span class="enemy-text-style">
-                    {{results.enemyResult.points}}
-                </span>
-            </p>
-        </div>
-
-        <div class="chat-container-aftermatch">
-            <div class="chat-bubbles-container">
-                <div class="chat-bubbles-header">Chat</div>
-                <div id="chat-bubbles-sub-container" ng-repeat="bubble in chatBubbles">
-                    <div class="chat-bubble-container">
-                        <div ng-class="getBubbleStyle(bubble)">{{bubble.body}}</div>
+                        <div class="centered-columns-pair">
+                            <div class="centered-columns--column ellipsize">{{playerNickname}}</div>
+                            <div class="centered-columns--column ellipsize">{{enemyNickname}}</div>
+                        </div>
                     </div>
-                </div>
+                </li>
+
+                <!-- Match winner -->
+                <li class="list--spaced-element">
+                    <h2 class="capitalize">{{winner}} vince la {{matchCount}}° partita!!</h2>
+                </li>
+
+                <!-- New match options -->
+                <li id="aftermatch-options" class="list--spaced-element">
+                    <div ng-hide="newMatchClicked">
+                        <button class="navigation--button flashing-animation" ng-click="newMatch()">
+                            Gioca ancora <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
+                        </button>
+                    </div>
+                    <div ng-show="enemyRequestNewMatch">
+                        <div class="flashing-animation">Il tuo avversario vuole continuare a giocare!</div>
+                    </div>
+                    <div ng-show="newMatchClicked">
+                        <div class="flashing-animation">Attendi che l'avversario confermi la sua partecipazione…</div>
+                    </div>
+                </li>
+
+                <!-- Match stats module-->
+                <li class="list--simple-element">
+                    <div class="stats">
+                        <span class>Statistiche partita</span>
+                        <p class="stats--line"><i class="fas fa-shoe-prints"></i> Passi effettuati:
+                            <span class="stats--player-text">
+                                {{results.playerResult.loop ? 'Loop!' : results.playerResult.length}}
+                            </span>
+                            -
+                            <span class="stats--enemy-text">
+                                {{results.enemyResult.loop ? 'Loop!' : results.enemyResult.length}}
+                            </span>
+                        </p>
+                        <p class="stats--line"><i class="far fa-clock"></i> Tempo impiegato:
+                            <span class="stats--player-text">
+                                {{formattedPlayerTime}}
+                            </span>
+                            -
+                            <span class="stats--enemy-text">
+                                {{formattedEnemyTime}}
+                            </span>
+                        </p>
+                        <p class="stats--line"><i class="fas fa-robot"></i> Punti:
+                            <span class="stats--player-text">
+                                {{results.playerResult.points}}
+                            </span>
+                            -
+                            <span class="stats--enemy-text">
+                                {{results.enemyResult.points}}
+                            </span>
+                        </p>
+                    </div>
+                </li>
+
+                <!-- Chat module -->
+                <li class="list--spaced-element">
+                    <div class="chat">
+                        <div class="chat--bubbles-container">
+                            Chat
+                            <div class="chat--bubbles-sub-container" ng-repeat="bubble in chatBubbles">
+                                <div class="chat--bubble-row">
+                                    <div ng-class="getBubbleStyle(bubble)">{{bubble.body}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat--hints-container">
+                            Invia un messaggio all'avversario
+                            <div class="chat--hints-sub-container" ng-repeat="hint in chatHints">
+                                <button class="chat--hint" ng-click="sendChatMessage(hint)">{{hint}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="page--push"></div>
+    </div>
+
+
+    <!-- Footer module -->
+    <div class="page--footer">
+        <div class="page--footer-column-left ellipsize">
+            <button class="page--footer-button" ng-click="toggleBase()">
+                <i class="page--footer-icons" ng-class="basePlaying ? 'fas fa-volume-up': 'fas fa-volume-mute'"></i>
+            </button>
+            <button class="page--footer-button" ng-click="exitGame()">
+                <i class="fa fa-sign-out-alt page--footer-icons"></i>
+            </button>
+        </div>
+        <div class="page--footer-column-right ellipsize">
+            <i class="far fa-user-circle page--footer-icons"></i> Non loggato
+        </div>
+    </div>
+
+    <!-- Exit game modal -->
+    <div class="modal" ng-show="exitGameModal">
+        <div class="modal--content">
+            <p>Sei sicuro di voler abbandonare la partita?</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-secondary" ng-click="stopExitGame()">Annulla</button>
+                <button class="modal--button-primary" ng-click="continueExitGame()">Ok</button>
             </div>
+        </div>
+    </div>
 
-            <div class="chat-hint-container">
-                <div class="chat-hint-header">Invia un messaggio all'avversario</div>
-                <div id="chat-hints-sub-container" ng-repeat="hint in chatHints">
-                    <button class="chat-hint" ng-click="sendChatMessage(hint)">{{hint}}</button>
-                </div>
+    <!-- Force exit modal -->
+    <div class="modal" ng-show="forceExitModal">
+        <div class="modal--content">
+            <p>{{forceExitText}}</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-primary" ng-click="continueForceExit()">Ok</button>
             </div>
         </div>
     </div>
-
-    <div id="push"></div>
 </div>
-
-<div id="footer-container">
-    <div id="footer-content">
-        <div class="footer-component-left">
-            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
-            <i class="fas fa-2x footer-icons" ng-class="basePlaying ?  'fa-volume-up' : 'fa-volume-mute'"
-               ng-click="toggleBase()"></i>
-        </div>
-        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
-    </div>
-</div>
-
-
-<div id="exitGameModal" class="modal-container" ng-show="exitGameModal">
-    <div class="modal-content">
-        <p>Sei sicuro di voler abbandonare la partita?</p>
-        <div class="modal-button-container">
-            <button class="modal-button-secondary" ng-click="stopExitGame()">Annulla</button>
-            <button class="modal-button-primary" ng-click="continueExitGame()">Ok</button>
-        </div>
-    </div>
-</div>
-
-<div id="forceExitModal" class="modal-container" ng-show="forceExitModal">
-    <div class="modal-content">
-        <p>{{forceExitText}}</p>
-        <div class="modal-button-container">
-            <button class="modal-button-primary" ng-click="continueForceExit()">Ok</button>
-        </div>
-    </div>
-</div>
-

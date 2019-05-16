@@ -21,13 +21,8 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
 
     // in caso di interruzione del gioco, sospendi i timers
     robyAnimator.quitGame = function() {
-        if (robyWalkingTimers.player !== undefined) {
-            clearInterval((robyWalkingTimers.player));
-        }
-
-        if (robyWalkingTimers.enemy !== undefined) {
-            clearInterval((robyWalkingTimers.enemy));
-        }
+        clearInterval((robyWalkingTimers.player));
+        clearInterval((robyWalkingTimers.enemy));
 
         robyImageCallbacks = {};
         robyWalkingTimers = {};

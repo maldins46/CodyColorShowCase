@@ -1,38 +1,55 @@
 <!-- Schermata principale dell'app. Contiene il menù principale di navigazione -->
-<div id="wrapper">
-    <div id="header-container">
-        <h1 class="floating-up-component">CodyColor</h1>
-    </div>
-
-    <div id="page-body-container-home">
-        <ul class="menu-list">
-            <li class="menu-list-element"><button class="menu-button" ng-click="goToRules()">Come si gioca?</button></li>
-            <li class="menu-list-element"><button class="menu-button" ng-click="goToRMMaking()">Partita casuale</button></li>
-            <li class="menu-list-element"><button class="menu-button" ng-click="goToPMMaking()">Partita custom</button></li>
-            <li class="menu-list-element"><button class="menu-button" ng-click="goToBootcamp()">Allenamento</button></li>
-            <li class="menu-list-element"><div class="disabled-menu-button-text">Classifiche</div></li>
-            <li class="menu-list-element"><div class="disabled-menu-button-text">Accedi</div></li>
-            <li class="menu-list-element" ng-show="connected">
-                <p class="flashing-component">{{totalMatches}} partite giocate dal lancio,
-                    {{connectedPlayers}} giocator{{(connectedPlayers === '1'? 'e':'i')}}
-                    collegat{{(connectedPlayers === '1'? 'o':'i')}} ora</p>
-            </li>
-            <li class="menu-list-element" ng-hide="connected">
-                <p class="flashing-component">Solo un momento, mi sto connettendo al server…</p>
-            </li>
-        </ul>
-    </div>
-
-    <div id="push"></div>
-</div>
-
-
-<div id="footer-container">
-    <div id="footer-content">
-        <div class="footer-component-left">
-            <i class="fas fa-2x footer-icons" ng-class="basePlaying ? 'fa-volume-up': 'fa-volume-mute'"
-               ng-click="toggleBase()"></i>
+<div id="home" class="page">
+    <div class="page--wrapper">
+        <div class="page--header">
+            <h1 class="floating-up-animation ellipsize">CodyColor</h1>
         </div>
-        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
+
+        <div class="page--body">
+            <ul class="list">
+                <li class="list--simple-element">
+                    <button class="navigation--button" ng-click="goToRules()">Come si gioca?</button>
+                </li>
+                <li class="list--simple-element">
+                    <button class="navigation--button" ng-click="goToRMMaking()">Partita casuale</button>
+                </li>
+                <li class="list--simple-element">
+                    <button class="navigation--button" ng-click="goToPMMaking()">Partita custom</button>
+                </li>
+                <li class="list--simple-element">
+                    <button class="navigation--button" ng-click="goToBootcamp()">Allenamento</button>
+                </li>
+                <li class="list--simple-element">
+                    <button class="navigation--disabled-button">Classifiche</button>
+                </li>
+                <li class="list--spaced-element">
+                    <button class="navigation--disabled-button">Accedi</button>
+                </li>
+                <li class="list--simple-element" ng-show="connected">
+                    <div class="flashing-animation">{{totalMatches}} partite giocate dal lancio,
+                        {{connectedPlayers}} giocator{{(connectedPlayers === '1'? 'e':'i')}}
+                        collegat{{(connectedPlayers === '1'? 'o':'i')}} ora</div>
+                </li>
+                <li class="list--simple-element" ng-hide="connected">
+                    <div class="flashing-animation">Solo un momento, mi sto connettendo al server…</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="page--push"></div>
+    </div>
+
+
+    <div class="page--footer">
+        <div class="page--footer-column-left ellipsize">
+            <button class="page--footer-button" ng-click="toggleBase()">
+                <i class="page--footer-icons" ng-class="basePlaying ? 'fas fa-volume-up': 'fas fa-volume-mute'"></i>
+            </button>
+        </div>
+        <div class="page--footer-column-right ellipsize">
+            <button class="page--footer-button" ng-click="">
+                <i class="far fa-user-circle page--footer-icons"></i>Non loggato
+            </button>
+        </div>
     </div>
 </div>

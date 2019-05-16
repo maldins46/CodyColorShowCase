@@ -66,13 +66,13 @@ angular.module('codyColor').controller('matchCtrl',
             }
 
             if (over) {
-                finalResult += 'fas fa-chevron-circle-' + arrowSide + ' arrow-cell-over';
+                finalResult += 'fas fa-chevron-circle-' + arrowSide + ' playground--arrow-over';
             } else {
-                finalResult += 'fas fa-angle-' + arrowSide + ' arrow-cell';
+                finalResult += 'fas fa-angle-' + arrowSide + ' playground--arrow';
             }
 
             if ($scope.showArrows) {
-                finalResult += ' floating-' + arrowSide + '-component';
+                finalResult += ' floating-' + arrowSide + '-animation';
             }
 
             $scope.startPositionsCss[side][distance] = finalResult;
@@ -97,13 +97,13 @@ angular.module('codyColor').controller('matchCtrl',
             for (let y = 0; y < 5; y++) {
                 switch (gameData.getCurrentMatchTiles()[x][y]) {
                     case 'Y':
-                        $scope.tilesCss[x][y] = 'yellow-play-tile';
+                        $scope.tilesCss[x][y] = 'playground--tile-yellow';
                         break;
                     case 'R':
-                        $scope.tilesCss[x][y] = 'red-play-tile';
+                        $scope.tilesCss[x][y] = 'playground--tile-red';
                         break;
                     case 'G':
-                        $scope.tilesCss[x][y] = 'gray-play-tile';
+                        $scope.tilesCss[x][y] = 'playground--tile-gray';
                         break;
                 }
             }

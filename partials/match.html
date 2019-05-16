@@ -1,47 +1,50 @@
-<div id="wrapper">
-    <div id="page-body-container" class="match-height">
-        <div class="match-container">
-            <div ng-show="countdownInProgress" class="start-countdown match-component">
+<div id="match" class="page">
+    <div class="page--wrapper">
+        <div class="page--body">
+            <!-- countdown component -->
+            <div id="countdown" ng-show="countdownInProgress" class="page--component">
                 {{startCountdownText}}
             </div>
 
-            <div ng-hide="countdownInProgress" class="match-component">
-                <div class="cc-container-group">
-                    <div class="cc-container">
-                        <div class="centered-column">
-                            <p class="big-text">{{playerPoints}}</p>
+            <!-- match component -->
+            <div id="match-in-progress" ng-hide="countdownInProgress" class="page--component">
+                <!-- Top centered columns with player-enemy data-->
+                <div class="centered-columns">
+                    <div class="centered-columns-pair">
+                        <div class="centered-columns--column">
+                            <div class="big-text ellipsize">{{playerPoints}}</div>
                         </div>
-
-                        <div class="centered-column">
-                            <p class="big-text">{{enemyPoints}}</p>
+                        <div class="centered-columns--column">
+                            <div class="big-text ellipsize">{{enemyPoints}}</div>
                         </div>
                     </div>
 
-                    <div class="cc-container">
-                        <div class="centered-column">
+                    <div class="centered-columns-pair">
+                        <div class="centered-columns--column ellipsize">
                             {{playerNickname}}
                         </div>
-
-                        <div class="centered-column">
+                        <div class="centered-columns--column ellipsize">
                             {{enemyNickname}}
                         </div>
                     </div>
 
-                    <div class="cc-container">
-                        <div class="centered-column" ng-class="{'timer-stop': playerPositioned}">
-                            <i class="far fa-clock" ng-class="playerPositioned? 'timer-icon-stop' : 'timer-icon'"></i>
+                    <div class="centered-columns-pair">
+                        <div class="centered-columns--column ellipsize" ng-class="{'timer--stop': playerPositioned}">
+                            <i class="far fa-clock" ng-class="playerPositioned ? 'timer--stop' : 'timer--normal'"></i>
                             {{playerMatchTimerText}}
                         </div>
 
-                        <div class="centered-column" ng-class="{'timer-stop': enemyPositioned}">
-                            <i class="far fa-clock" ng-class="enemyPositioned? 'timer-icon-stop' : 'timer-icon'"></i>
+                        <div class="centered-columns--column ellipsize" ng-class="{'timer--stop': enemyPositioned}">
+                            <i class="far fa-clock" ng-class="enemyPositioned? 'timer--stop' : 'timer--normal'"></i>
                             {{enemyMatchTimerText}}
                         </div>
                     </div>
                 </div>
 
-                <div id="bigGrid" class="playground-container">
-                    <table class="playground-table" ng-hide="showCompleteGrid">
+                <!-- Playground module -->
+                <div class="playground">
+                    <!-- Big grid (reduced) -->
+                    <table class="playground--table" ng-hide="showCompleteGrid">
                         <tr>
                             <td>
                                 <div ng-class="tilesCss[0][0]"></div>
@@ -133,10 +136,11 @@
                         </tr>
                     </table>
 
-                    <table class="playground-table" ng-show="showCompleteGrid">
+                    <!-- Small grid (complete) -->
+                    <table class="playground--table" ng-show="showCompleteGrid">
                         <tr>
                             <td>
-                                <div class="placeholder-tile"></div>
+                                <div class="playground--tile-placeholder"></div>
                             </td>
                             <td id="start-00" data-drop="true"
                                 jqyoui-droppable="{onOver: 'robyOver(0,0)', onOut:'robyOut(0,0)', onDrop:'robyDropped(0,0)'}">
@@ -164,14 +168,14 @@
                                    ng-class="startPositionsCss[0][4]"></i>
                             </td>
                             <td>
-                                <div class="placeholder-tile"></div>
+                                <div class="playground--tile-placeholder"></div>
                             </td>
                         </tr>
 
                         <tr>
                             <td id="start-30" data-drop="true"
                                 jqyoui-droppable="{onOver: 'robyOver(3,0)', onOut:'robyOut(3,0)', onDrop:'robyDropped(3,0)'}">
-                                <i class="fas fa-angle-right arrow-cell"
+                                <i class="fas fa-angle-right playground--arrow"
                                    ng-show="showArrows"
                                    ng-class="startPositionsCss[3][0]"></i>
                             </td>
@@ -200,7 +204,7 @@
                         <tr>
                             <td id="start-31" data-drop="true"
                                 jqyoui-droppable="{onOver: 'robyOver(3,1)', onOut:'robyOut(3,1)', onDrop:'robyDropped(3,1)'}">
-                                <i class="fas fa-angle-right arrow-cell"
+                                <i class="fas fa-angle-right playground--arrow"
                                    ng-show="showArrows"
                                    ng-class="startPositionsCss[3][1]"></i>
                             </td>
@@ -229,7 +233,7 @@
                         <tr>
                             <td id="start-32" data-drop="true"
                                 jqyoui-droppable="{onOver: 'robyOver(3,2)', onOut:'robyOut(3,2)',  onDrop:'robyDropped(3,2)'}">
-                                <i class="fas fa-angle-right arrow-cell"
+                                <i class="fas fa-angle-right playground--arrow"
                                    ng-show="showArrows"
                                    ng-class="startPositionsCss[3][2]"></i>
                             </td>
@@ -258,7 +262,7 @@
                         <tr>
                             <td id="start-33" data-drop="true"
                                 jqyoui-droppable="{onOver: 'robyOver(3,3)', onOut:'robyOut(3,3)', onDrop:'robyDropped(3,3)'}">
-                                <i class="fas fa-angle-right arrow-cell"
+                                <i class="fas fa-angle-right playground--arrow"
                                    ng-show="showArrows"
                                    ng-class="startPositionsCss[3][3]"></i>
                             </td>
@@ -287,7 +291,7 @@
                         <tr>
                             <td id="start-34" data-drop="true"
                                 jqyoui-droppable="{onOver: 'robyOver(3,4)', onOut:'robyOut(3,4)',  onDrop:'robyDropped(3,4)'}">
-                                <i class="fas fa-angle-right arrow-cell"
+                                <i class="fas fa-angle-right playground--arrow"
                                    ng-show="showArrows"
                                    ng-class="startPositionsCss[3][4]"></i>
                             </td>
@@ -315,7 +319,7 @@
 
                         <tr>
                             <td>
-                                <div class="placeholder-tile"></div>
+                                <div class="playground--tile-placeholder"></div>
                             </td>
                             <td id="start-20" data-drop="true"
                                 jqyoui-droppable="{onOver: 'robyOver(2,0)', onOut:'robyOut(2,0)', onDrop:'robyDropped(2,0)'}">
@@ -343,69 +347,78 @@
                                    ng-class="startPositionsCss[2][4]"></i>
                             </td>
                             <td>
-                                <div class="placeholder-tile"></div>
+                                <div class="playground--tile-placeholder"></div>
                             </td>
                         </tr>
                     </table>
 
+                    <!-- Enemy roby in automatic movement-->
                     <img id="enemy-roby" src="img/{{enemyRobyImage}}.png" alt="Enemy roby"
-                         class="roby-positioned"
+                         class="roby-automove"
                          ng-show="enemyPositioned && playerPositioned"/>
 
+                    <!-- Player roby in automatic movement-->
                     <img id="player-roby" src="img/{{playerRobyImage}}.png" alt="Player roby"
-                         class="roby-positioned" ng-show="playerPositioned"/>
+                         class="roby-automove" ng-show="playerPositioned"/>
                 </div>
 
-                <img id="draggable-roby" src="img/{{draggableRobyImage}}.png" alt="Draggable roby"
-                     ng-hide="playerPositioned"
-                     ng-class="showCompleteGrid ? 'roby-draggable' : 'roby-draggable floating-up-component'"
+                <!-- Draggable player roby image -->
+                <img src="img/{{draggableRobyImage}}.png" alt="Draggable roby" ng-hide="playerPositioned"
+                     ng-class="showCompleteGrid ? 'roby-draggable' : 'roby-draggable floating-up-animation'"
                      data-drag="{{!playerPositioned}}" data-jqyoui-options="{revert: 'invalid'}"
-                     jqyoui-draggable="{animate:true, onStart:'startDragging', onStop:'endDragging' }"/>
+                     jqyoui-draggable="{ animate:true, onStart:'startDragging', onStop:'endDragging' }"/>
 
-                <div id="end-match-container" class="ccomponents-container" ng-show="endMatch">
-                    <div class="centered-component" ng-hide="askedForSkip">
-                        <button class="menu-button flashing-component" ng-click="skip()">Skip
-                            <i class="fas fa-angle-double-right floating-right-component"></i></button>
-                    </div>
-
-                    <div class="centered-component flashing-component" ng-show="askedForSkip">
-                        Attendi che l'avversario confermi lo skip…
-                    </div>
+                <!-- Skip button -->
+                <div class="centered-container" ng-show="endMatch && !askedForSkip">
+                    <button class="navigation--button flashing-animation" ng-click="skip()">Skip
+                        <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
+                    </button>
                 </div>
+
+                <!-- Wait enemy skip-->
+                <div class="centered-container flashing-animation" ng-show="endMatch && askedForSkip">
+                    Attendi che l'avversario confermi lo skip…
+                </div>
+            </div>
+        </div>
+
+        <div class="page--push"></div>
+    </div>
+
+
+    <!-- Footer module -->
+    <div class="page--footer">
+        <div class="page--footer-column-left ellipsize">
+            <button class="page--footer-button" ng-click="toggleBase()">
+                <i class="page--footer-icons" ng-class="basePlaying ? 'fas fa-volume-up': 'fas fa-volume-mute'"></i>
+            </button>
+            <button class="page--footer-button" ng-click="exitGame()">
+                <i class="fa fa-sign-out-alt page--footer-icons"></i>
+            </button>
+        </div>
+        <div class="page--footer-column-right ellipsize">
+            <i class="far fa-user-circle page--footer-icons"></i> Non loggato
+        </div>
+    </div>
+
+    <!-- Exit game modal -->
+    <div class="modal" ng-show="exitGameModal">
+        <div class="modal--content">
+            <p>Sei sicuro di voler abbandonare la partita?</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-secondary" ng-click="stopExitGame()">Annulla</button>
+                <button class="modal--button-primary" ng-click="continueExitGame()">Ok</button>
             </div>
         </div>
     </div>
 
-    <div id="push"></div>
-</div>
-
-<div id="footer-container">
-    <div id="footer-content">
-        <div class="footer-component-left">
-            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
-            <i class="fas fa-2x footer-icons" ng-class="basePlaying ?  'fa-volume-up' : 'fa-volume-mute'"
-               ng-click="toggleBase()"></i>
-        </div>
-        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
-    </div>
-</div>
-
-
-<div id="exitGameModal" class="modal-container" ng-show="exitGameModal">
-    <div class="modal-content">
-        <p>Sei sicuro di voler abbandonare la partita?</p>
-        <div class="modal-button-container">
-            <button class="modal-button-secondary" ng-click="stopExitGame()">Annulla</button>
-            <button class="modal-button-primary" ng-click="continueExitGame()">Ok</button>
-        </div>
-    </div>
-</div>
-
-<div id="forceExitModal" class="modal-container" ng-show="forceExitModal">
-    <div class="modal-content">
-        <p>{{forceExitText}}</p>
-        <div class="modal-button-container">
-            <button class="modal-button-primary" ng-click="continueForceExit()">Ok</button>
+    <!-- Force exit modal -->
+    <div class="modal" ng-show="forceExitModal">
+        <div class="modal--content">
+            <p>{{forceExitText}}</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-primary" ng-click="continueForceExit()">Ok</button>
+            </div>
         </div>
     </div>
 </div>

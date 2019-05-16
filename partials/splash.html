@@ -1,19 +1,23 @@
 <!-- Schermata principale dell'app. Contiene il menù principale di navigazione -->
-<div id="wrapper-splash" ng-click="goToHome()">
-    <div id="body-splash">
-        <img class="splash-logo floating-up-component" src="img/logo.png" alt="Game logo">
-        <h1>CodyColor</h1>
-        Un mini gioco multiplayer.
-        <p class="splash-hint flashing-component">Premi per continuare</p>
+<div id="splash" class="page">
+    <div class="page--wrapper" ng-click="goToHome()">
+        <div class="page--body">
+            <img class="big-image floating-up-animation" src="img/logo.png" alt="Game logo">
+            <h1 class="ellipsize">CodyColor</h1>
+            <div class="ellipsize">Un mini gioco multiplayer.</div>
+            <div class="press-to-continue flashing-animation ellipsize">
+                Premi per continuare
+            </div>
+        </div>
+        <div class="page--push"></div>
     </div>
-    <div id="push-splash"></div>
-</div>
 
-<div id="footer-container-splash">
-    <div id="footer-content-splash">
-        Versione Beta 1.0.5<br/>
-        Sviluppato da <a href="https://www.riccardomaldini.it/">Riccardo Maldini</a><br/>
-        Music by <a href="https://www.instagram.com/el.favelas">ElFavelas</a><br/>
-        © Digit S.r.l. 2019 per <a href="https://codemooc.net">CodeMOOC.net</a>
+    <div class="page--footer">
+        <div class="page--footer-single-column ellipsize">
+            Versione Beta 1.0.6<br/>
+            Sviluppato da <a href="https://www.riccardomaldini.it/">Riccardo Maldini</a><br/>
+            Music by <a href="https://www.instagram.com/el.favelas">ElFavelas</a><br/>
+            © Digit S.r.l. 2019 per <a href="https://codemooc.net">CodeMOOC.net</a>
+        </div>
     </div>
 </div>

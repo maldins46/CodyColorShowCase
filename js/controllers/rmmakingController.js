@@ -70,7 +70,7 @@ angular.module('codyColor').controller('rmmakingCtrl',
             // onQuitGameMessage
             scopeService.safeApply($scope, function () {
                 $scope.forceExitText = "L'avversario ha abbandonato la partita.";
-                $scope.forceExitModal = true;
+                $scope.forceExitx = true;
             });
 
         }, function () {
@@ -92,9 +92,9 @@ angular.module('codyColor').controller('rmmakingCtrl',
         $scope.chatBubbles = chatHandler.getChatMessages();
         $scope.getBubbleStyle = function(chatMessage) {
             if (chatMessage.playerId === gameData.getPlayerId())
-                return 'chat-bubble-player';
+                return 'chat--bubble-player';
             else
-                return 'chat-bubble-enemy';
+                return 'chat--bubble-enemy';
         };
         $scope.chatHints = chatHandler.getChatHintsPreMatch();
         $scope.sendChatMessage = function(messageBody) {

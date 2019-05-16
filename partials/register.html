@@ -1,5 +1,5 @@
-<div id="wrapper">
-    <div id="page-body-container">
+<div id="page-wrapper">
+    <div id="wrapper--body">
         <form class="form-signin">
             <ul>
                 <li>Due righe di indicazioni sul login,
@@ -14,22 +14,28 @@
                            required></li>
                 <br/>
                 <li>
-                    <button class="menu-button" type="submit">Registra utente</button>
+                    <button class="navigation--button" type="submit">Registra utente</button>
                 </li>
             </ul>
         </form>
     </div>
 
-    <div id="push"></div>
+    <div id="page-push"></div>
 </div>
 
-<div id="footer-container">
-    <div id="footer-content">
-        <div class="footer-component-left">
-            <i class="fa fa-times fa-2x footer-icons" ng-click="goToHome()"></i>
-            <i class="fas fa-2x footer-icons" ng-class="basePlaying ?  'fa-volume-up' : 'fa-volume-mute'"
-               ng-click="toggleBase()"></i>
-        </div>
-        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
+
+<div id="page-footer-container">
+    <div class="page--footer-column-left ellipsize">
+        <button class="page--footer-button" ng-click="toggleBase()">
+            <i class="page--footer-icons" ng-class="basePlaying ? 'fas fa-volume-up': 'fas fa-volume-mute'"></i>
+        </button>
+        <button class="page--footer-button" ng-click="goToHome()">
+            <i class="fa fa-times page--footer-icons"></i>
+        </button>
+    </div>
+    <div class="page--footer-column-right ellipsize">
+        <button class="page--footer-button" ng-click="">
+            <i class="far fa-user-circle page--footer-icons"></i>Non loggato
+        </button>
     </div>
 </div>

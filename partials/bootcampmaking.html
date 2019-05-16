@@ -1,75 +1,92 @@
-<div id="wrapper">
-    <div id="page-body-container">
-        <div class="centered-component">
+<div id="bootcampmaking" class="page">
+    <div class="page--wrapper">
+        <div class="page--body">
             <form name="customMatchForm">
-                <ul class="menu-list">
-                    <li class="menu-list-element">
-                        In questa modalità di gioco puoi allenarti tramite partite a CodyColor in single player. Puoi
-                        scegliere la durata di ogni partita, ed eventualmente, se utilizzare un bot come avversario.
+                <ul class="list">
+                    <li class="list--spaced-element">
+                        In questa modalità di gioco hai la possibilità di allenarti in single player.
+                        Puoi scegliere la durata di ogni partita, ed eventualmente, se utilizzare un bot come avversario.
                     </li>
-
-                    <li class="menu-list-element">
+                    <li class="list--spaced-element">
                         <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="Nickname"
                                required autofocus/>
                     </li>
-
-                    <li class="menu-list-element">
-                        <br>
-                       Avversario
+                    <li class="list--simple-element">
+                        Avversario
                     </li>
-                    <li class="menu-list-element">
+                    <li class="list--spaced-element">
                         <div class="selector">
-                            <div class="selector-button" ng-click="enemyLeft()"><i class="fas fa-chevron-left"></i></div>
-                            <div class="selector-text">{{enemySettings[currentEnemyIndex].text}}</div>
-                            <div class="selector-button" ng-click="enemyRight()"><i class="fas fa-chevron-right"></i></div>
+                            <div class="selector--button" ng-click="enemyLeft()">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="selector--text">{{enemySettings[currentEnemyIndex].text}}</div>
+                            <div class="selector--button" ng-click="enemyRight()">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
                         </div>
                     </li>
 
-                    <li class="menu-list-element">
-                        <br>
+                    <li class="list--simple-element">
                         Durata partita
                     </li>
-                    <li class="menu-list-element">
+                    <li class="list--spaced-element">
                         <div class="selector">
-                            <div class="selector-button" ng-click="decrementTime()"><i class="fas fa-minus"></i></div>
-                            <div class="selector-text">{{timerSettings[currentTimerIndex].text}}</div>
-                            <div class="selector-button" ng-click="incrementTime()"><i class="fas fa-plus"></i></div>
+                            <div class="selector--button" ng-click="decrementTime()">
+                                <i class="fas fa-minus"></i>
+                            </div>
+                            <div class="selector--text">{{timerSettings[currentTimerIndex].text}}</div>
+                            <div class="selector--button" ng-click="incrementTime()">
+                                <i class="fas fa-plus"></i>
+                            </div>
                         </div>
                         <br>
                     </li>
-                    <li class="menu-list-element">
-                        <button class="menu-button icons-margin" type="submit"
-                                ng-click="createBootcamp(customMatchForm.nickname.$viewValue)"
-                                ng-disabled="customMatchForm.nickname.$invalid">
-                            Genera partita <i class="fas fa-angle-double-right floating-right-component"></i>
+                    <li class="list--spaced-element">
+                        <button class="navigation--button flashing-animation" type="submit" ng-disabled="customMatchForm.nickname.$invalid"
+                                ng-click="createBootcamp(customMatchForm.nickname.$viewValue)">
+                            Genera partita
+                            <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                         </button>
                     </li>
                 </ul>
             </form>
         </div>
+        <div class="page--push"></div>
     </div>
-    <div id="push"></div>
-</div>
 
-<div id="footer-container">
-    <div id="footer-content">
-        <div class="footer-component-left">
-            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
-            <i class="fas fa-2x footer-icons" ng-class="basePlaying ? 'fa-volume-up' : 'fa-volume-mute'"
-               ng-click="toggleBase()"></i>
+    <!-- Footer module -->
+    <div class="page--footer">
+        <div class="page--footer-column-left ellipsize">
+            <button class="page--footer-button" ng-click="toggleBase()">
+                <i class="page--footer-icons" ng-class="basePlaying ? 'fas fa-volume-up': 'fas fa-volume-mute'"></i>
+            </button>
+            <button class="page--footer-button" ng-click="exitGame()">
+                <i class="fa fa-sign-out-alt page--footer-icons"></i>
+            </button>
         </div>
-        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
-    </div>
-</div>
-
-
-<div id="exitGameModal" class="modal-container" ng-show="exitGameModal">
-    <div class="modal-content">
-        <p>Sei sicuro di voler abbandonare la partita?</p>
-        <div class="modal-button-container">
-            <button class="modal-button-secondary" ng-click="stopExitGame()">Annulla</button>
-            <button class="modal-button-primary" ng-click="continueExitGame()">Ok</button>
+        <div class="page--footer-column-right ellipsize">
+            <i class="far fa-user-circle page--footer-icons"></i> Non loggato
         </div>
     </div>
-</div>
 
+    <!-- Exit game modal -->
+    <div class="modal" ng-show="exitGameModal">
+        <div class="modal--content">
+            <p>Sei sicuro di voler abbandonare la partita?</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-secondary" ng-click="stopExitGame()">Annulla</button>
+                <button class="modal--button-primary" ng-click="continueExitGame()">Ok</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Force exit modal -->
+    <div class="modal" ng-show="forceExitModal">
+        <div class="modal--content">
+            <p>{{forceExitText}}</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-primary" ng-click="continueForceExit()">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>

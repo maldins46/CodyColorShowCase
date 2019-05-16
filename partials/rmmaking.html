@@ -1,121 +1,136 @@
-<div id="wrapper">
-    <div id="page-body-container">
-        <div id="nickname-selection" ng-show="mmakingState === 'nicknameSelection'" class="centered-component">
-            <form name="nickForm">
-                <ul class="menu-list">
-                    <li class="menu-list-element">
-                        Scegli il nickname con il quale apparire nella prossima partita; CodyColor provvederà a trovare
-                        un avversario casuale tra quelli in attesa di giocare.
+<div id="rmmaking" class="page">
+    <div class="page--wrapper">
+        <div class="page--body">
+            <!-- Nickname selection -->
+            <div ng-show="mmakingState === 'nicknameSelection'" class="page--component">
+                <form name="nickForm">
+                    <ul class="list">
+                        <li class="list--spaced-element">
+                            Scegli il nickname con il quale apparire nella prossima partita; CodyColor provvederà a
+                            trovare un avversario casuale tra quelli in attesa di giocare.
+                        </li>
+                        <li class="list--spaced-element">
+                            <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="Nickname"
+                                   required autofocus/>
+                        </li>
+                        <li class="list--spaced-element">
+                            <button class="navigation--button flashing-animation"
+                                    ng-click="requestMMaking(nickForm.nickname.$viewValue)"
+                                    ng-disabled="nickForm.nickname.$invalid">
+                                Trova un avversario
+                                <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
+                            </button>
+                        </li>
+                        <li class="list--spaced-element">
+                            <p class="flashing-animation">Al momento, {{randomWaitingPlayers}}
+                                giocator{{randomWaitingPlayers === '1' ? 'e è': 'i sono'}} in attesa di
+                                un avversario</p>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
+            <!-- Waiting enemy -->
+            <div ng-show="mmakingState === 'waitingEnemy'" class="page--component">
+                <ul class="list">
+                    <li class="list--spaced-element">
+                        <div class="loading-spinner">
+                            <div></div><div></div><div></div>
+                            <div></div><div></div><div></div>
+                            <div></div><div></div><div></div>
+                        </div>
                     </li>
-                    <li class="menu-list-element">
-                        <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="Nickname"
-                               required autofocus/>
-                    </li>
-                    <li class="menu-list-element">
-                        <button class="menu-button flashing-component"
-                                ng-click="requestMMaking(nickForm.nickname.$viewValue)"
-                                ng-disabled="nickForm.nickname.$invalid">
-                            Trova un avversario
-                            <i class="fas fa-angle-double-right floating-right-component"></i>
-                        </button>
-                    </li>
-                    <li class="menu-list-element">
-                        <p class="flashing-component">Al momento, {{randomWaitingPlayers}}
-                            giocator{{randomWaitingPlayers === '1' ? 'e è': 'i sono'}} in attesa di
-                            un avversario</p>
+                    <li class="list--spaced-element">
+                        <div class="flashing-animation">In attesa di un avversario…</div>
                     </li>
                 </ul>
-            </form>
-        </div>
-
-        <div id="waiting-enemy" ng-show="mmakingState === 'waitingEnemy'" class="centered-component">
-            <!-- Spinner -->
-            <div class="lds-grid">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
             </div>
-            <p class="flashing-component">In attesa di un avversario…</p>
-        </div>
 
-        <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="centered-component">
-            Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
-            <button class="menu-button flashing-component" ng-click="playerReady()">Iniziamo! <i
-                    class="fas fa-angle-double-right floating-right-component"></i>
-            </button>
-        </div>
-
-        <div id="waiting-confirm" ng-show="mmakingState === 'waitingConfirm'" class="centered-component">
-            <!-- Spinner -->
-            <div class="lds-grid">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <!-- Enemy found -->
+            <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="page--component">
+                <ul class="list">
+                    <li class="list--spaced-element">
+                        Hai un nuovo avversario: <strong>{{enemyNickname}}</strong><br><br>
+                    </li>
+                    <li class="list--simple-element">
+                        <button class="navigation--button flashing-animation" ng-click="playerReady()">Iniziamo!
+                            <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
+                        </button>
+                    </li>
+                </ul>
             </div>
-            <p class="flashing-component">Attendi che l'avversario confermi la sua partecipazione…</p>
-        </div>
 
-        <div class="chat-container-mmaking" ng-show="mmakingState === 'waitingConfirm' || mmakingState === 'enemyFound'">
-        <div class="chat-bubbles-container">
-            <div class="chat-bubbles-header">Chat</div>
-            <div id="chat-bubbles-sub-container" ng-repeat="bubble in chatBubbles">
-                <div class="chat-bubble-container">
-                    <div ng-class="getBubbleStyle(bubble)">{{bubble.body}}</div>
+            <!-- Waiting confirm -->
+            <div id="waiting-confirm" ng-show="mmakingState === 'waitingConfirm'" class="page--component">
+                <ul class="list">
+                    <li class="list--spaced-element">
+                        <div class="loading-spinner">
+                            <div></div><div></div><div></div>
+                            <div></div><div></div><div></div>
+                            <div></div><div></div><div></div>
+                        </div>
+                    </li>
+                    <li class="list--spaced-element">
+                        <div class="flashing-animation">Attendi che l'avversario confermi la sua partecipazione…</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Chat module -->
+            <div class="chat" ng-show="mmakingState === 'waitingConfirm' || mmakingState === 'enemyFound'">
+                <div class="chat--bubbles-container">
+                    Chat
+                    <div class="chat--bubbles-sub-container" ng-repeat="bubble in chatBubbles">
+                        <div class="chat--bubble-row">
+                            <div ng-class="getBubbleStyle(bubble)">{{bubble.body}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat--hints-container">
+                    Invia un messaggio all'avversario
+                    <div class="chat--hints-sub-container" ng-repeat="hint in chatHints">
+                        <button class="chat--hint" ng-click="sendChatMessage(hint)">{{hint}}</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="chat-hint-container">
-            <div class="chat-hint-header">Invia un messaggio all'avversario</div>
-            <div id="chat-hints-sub-container" ng-repeat="hint in chatHints">
-                <button class="chat-hint" ng-click="sendChatMessage(hint)">{{hint}}</button>
+        <div class="page--push"></div>
+    </div>
+
+    <!-- Footer module -->
+    <div class="page--footer">
+        <div class="page--footer-column-left ellipsize">
+            <button class="page--footer-button" ng-click="toggleBase()">
+                <i class="page--footer-icons" ng-class="basePlaying ? 'fas fa-volume-up': 'fas fa-volume-mute'"></i>
+            </button>
+            <button class="page--footer-button" ng-click="exitGame()">
+                <i class="fa fa-sign-out-alt page--footer-icons"></i>
+            </button>
+        </div>
+        <div class="page--footer-column-right ellipsize">
+            <i class="far fa-user-circle page--footer-icons"></i> Non loggato
+        </div>
+    </div>
+
+    <!-- Exit game modal -->
+    <div class="modal" ng-show="exitGameModal">
+        <div class="modal--content">
+            <p>Sei sicuro di voler abbandonare la partita?</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-secondary" ng-click="stopExitGame()">Annulla</button>
+                <button class="modal--button-primary" ng-click="continueExitGame()">Ok</button>
             </div>
         </div>
     </div>
-    </div>
-    <div id="push"></div>
-</div>
 
-<div id="footer-container">
-    <div id="footer-content">
-        <div class="footer-component-left">
-            <i class="fas fa-sign-out-alt fa-2x footer-icons" ng-click="exitGame()"></i>
-            <i class="fas fa-2x footer-icons" ng-class="basePlaying ?  'fa-volume-up' : 'fa-volume-mute'"
-               ng-click="toggleBase()"></i>
-        </div>
-        <div class="footer-component-right"><i class="far fa-user-circle fa-2x footer-icons"></i>Non loggato</div>
-    </div>
-</div>
-
-
-<div id="exitGameModal" class="modal-container" ng-show="exitGameModal">
-    <div class="modal-content">
-        <p>Sei sicuro di voler abbandonare la partita?</p>
-        <div class="modal-button-container">
-            <button class="modal-button-secondary" ng-click="stopExitGame()">Annulla</button>
-            <button class="modal-button-primary" ng-click="continueExitGame()">Ok</button>
+    <!-- Force exit modal -->
+    <div class="modal" ng-show="forceExitModal">
+        <div class="modal--content">
+            <p>{{forceExitText}}</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-primary" ng-click="continueForceExit()">Ok</button>
+            </div>
         </div>
     </div>
 </div>
-
-<div id="forceExitModal" class="modal-container" ng-show="forceExitModal">
-    <div class="modal-content">
-        <p>{{forceExitText}}</p>
-        <div class="modal-button-container">
-            <button class="modal-button-primary" ng-click="continueForceExit()">Ok</button>
-        </div>
-    </div>
-</div>
-
