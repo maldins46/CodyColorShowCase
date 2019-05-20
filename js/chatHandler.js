@@ -2,14 +2,14 @@
  * ChatHandler: factory incaricato di gestire il modulo chat. Memorizza i messaggi di una determinata sezione di gioco,
  * e espone metodi per la sua gestione
  */
-angular.module('codyColor').factory("chatHandler", function(rabbit, gameData) {
+angular.module('codyColor').factory("chatHandler", function() {
     let chatHandler = {};
 
     let chatMessages = [];
     const chatHintsPreMatch = [  "Ciao!", "Tutto bene?", "No", "Sì", "Sei pronto?", "Ci sei?", "Iniziamo!",
         "Sono fortissimo!", "😄", "😂", "😘", "😎", "😭", "😱", "🤬", "🤖"];
 
-    const chatHintsAfterMatch = ["Bella partita!", "Che sfortuna!", "Devo andare", "Giochiamo ancora?",
+    const chatHintsAfterMatch = ["Bella partita!", "Che sfortuna!", "Devo andare", "Giochiamo ancora?", "Ciao!",
         "Sei un grande!", "No", "Sì", "Sei pronto?", "Ci sei?", "Iniziamo!", "😄", "😂", "😘", "😎", "😭", "😱", "🤬", "🤖"];
 
 

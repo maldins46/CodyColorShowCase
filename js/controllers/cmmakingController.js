@@ -16,15 +16,28 @@ angular.module('codyColor').controller('cmmakingCtrl',
             return;
         }
 
+        // cambia schermata in modo 'sicuro', evitando flickering durante le animazioni
+        let changeScreen = function(newScreen) {
+            scopeService.safeApply($scope, function () {
+                $scope.mmakingState = 'loadingScreen';
+            });
+            setTimeout(function () {
+                scopeService.safeApply($scope, function () {
+                    $scope.mmakingState = newScreen;
+                });
+            }, 200);
+        };
+
         gameData.setGameType('custom');
-        $scope.mmakingState = 'joinMatch';
+        $scope.chatVisible = false;
+        changeScreen('joinMatch');
 
         // tenta la connessione, se necessario
         $scope.connected = rabbit.getConnectionState();
         if (!$scope.connected) {
             rabbit.connect();
         } else {
-            console.log("connected in cmmaking; doing your shit");
+            console.log("connected in cmmaking");
             if (gameData.getGameCode() !== '0000') {
                 $scope.joinMessage = 'Cercando informazioni sulla partita…';
                 rabbit.sendGameRequest(false, gameData.getGameCode());
@@ -74,8 +87,8 @@ angular.module('codyColor').controller('cmmakingCtrl',
             scopeService.safeApply($scope, function () {
                 $scope.enemyNickname = gameData.getEnemyNickname();
                 $scope.totTime = gameData.formatTimeEnemyFoundText(gameData.getTimerSetting());
-                $scope.mmakingState = 'enemyFound';
             });
+            changeScreen('enemyFound');
 
         }, function () {
             // onReadyMessage
@@ -101,7 +114,6 @@ angular.module('codyColor').controller('cmmakingCtrl',
                 $scope.forceExitText = "Si è verificato un errore nella connessione con il server. Partita terminata.";
                 $scope.forceExitModal = true;
             });
-
 
         }, function (response) {
             // onGeneralInfoMessage
@@ -143,9 +155,10 @@ angular.module('codyColor').controller('cmmakingCtrl',
 
         // click su 'iniziamo'
         $scope.playerReady = function(nickname) {
-            $scope.mmakingState = 'waitingConfirm';
             gameData.setPlayerNickname(nickname);
             gameData.setPlayerReady(true);
+            if(!gameData.isEnemyReady())
+                changeScreen('waitingConfirm');
             rabbit.sendReadyMessage();
         };
 

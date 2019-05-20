@@ -95,8 +95,9 @@ textarea {
   Author's custom styles
   ========================================================================== */
 
-/* Tag di base */
-
+/* -------------------------------------------------------------------------
+ * Tag di base
+ * ------------------------------------------------------------------------- */
 
 html, body {
     height: 100%;
@@ -106,20 +107,16 @@ html, body {
     font-family: 'Play', sans-serif;
 }
 
-
-
 h1 {
     font-size: 60px;
     font-family: 'Baloo Chettan', cursive;
     margin: 0;
 }
 
-
 h2 {
     font-size: 30px;
     margin: 0;
 }
-
 
 a {
     color: White;
@@ -153,8 +150,8 @@ button:hover {
     cursor: pointer;
 }
 
-
-input[type=text], input[type=email], input[type=password], input[type=number] {
+input[type=text], input[type=email],
+input[type=password], input[type=number] {
     width: 100%;
     padding: 12px 20px;
     font-size: 20px;
@@ -162,18 +159,18 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     border-radius: 4px;
 }
 
-
 @media only screen and (min-width: 310px) {
-    input[type=text], input[type=email], input[type=password], input[type=number] {
+    input[type=text], input[type=email],
+    input[type=password], input[type=number] {
         width: 280px;
     }
 }
 
 
-/*
- * Modulo page: implementa lo scheletro di base comune a tutte le pagine, oltre ad aggiungere
- * eventuali personalizzazioni per determinate schermate
- */
+/* -------------------------------------------------------------------------
+ * Modulo page: implementa lo scheletro di base comune a tutte le pagine,
+ * oltre ad aggiungere eventuali personalizzazioni per determinate schermate
+ * ------------------------------------------------------------------------- */
 
 .page {
     text-align: center;
@@ -184,13 +181,11 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     width: 100%;
 }
 
-
 @media only screen and (min-width: 768px) {
     .page {
         width: 700px;
     }
 }
-
 
 .page--container {
     height: 100%;
@@ -199,29 +194,25 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     margin: 0 auto;
 }
 
-
 .page--wrapper {
     min-height: 100%;
     margin-bottom: -60px;
 }
 
-
+/* la schermata splash presenta un footer più alto */
 #splash .page--wrapper {
     min-height: 100%;
     margin-bottom: -120px;
 }
 
-
 .page--header {
     padding-top: 20px;
 }
-
 
 .page--body {
     padding-top: 20px;
     text-align: center;
 }
-
 
 #splash .page--body {
     padding-top: 80px;
@@ -229,14 +220,12 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     width: 100%;
 }
 
-
-
 .page--component {
     margin: 0 auto;
     text-align: center;
 }
 
-
+/* Componenti con altezza fissa e componenti interni centrati verticalmente */
 #enemy-found.page--component, #waiting-confirm.page--component {
     height: 140px;
     display: flex;
@@ -244,13 +233,13 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     justify-content: center;
 }
 
-
+/* contenitore della griglia di gioco, con altezza fissa e contenuto
+ * absolute positioned (per permettere il drag 'n drop) */
 #match-in-progress.page--component {
     height: 520px;
     width: 100%;
     position: relative;
 }
-
 
 #countdown.page--component {
     font-size: 60px;
@@ -258,16 +247,13 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     margin: 40px -20px -20px -20px;
 }
 
-
 .page--push, .page--footer {
     height: 60px;
 }
 
-
 #splash .page--push, #splash .page--footer {
     height: 120px;
 }
-
 
 .page--footer {
     display: flex;
@@ -276,7 +262,6 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     justify-content: center;
 }
 
-
 .page--footer-icons {
     color: white;
     font-size: 28px;
@@ -284,7 +269,6 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     vertical-align: middle;
     transition: 0.2ms;
 }
-
 
 .page--footer-button {
     color: white;
@@ -298,7 +282,6 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
     padding-left: 5px;
     display: inline-block;
 }
-
 
 .page--footer-column-right {
     float: right;
@@ -314,35 +297,54 @@ input[type=text], input[type=email], input[type=password], input[type=number] {
 }
 
 
-/*
- * Modulo list: implementa la struttura di base che permette di incolonnare componenti
- * secondo uno standard comune, con tre diverse opzioni di spaziatura
- */
+#bootcampmaking .page--body.ng-hide-remove {
+    animation: fadein 0.2s both ease-in;
+}
+
+.page--component.ng-hide-remove {
+    animation: fadein 0.2s both ease-in;
+}
+
+.page--component.ng-hide-add {
+    animation: fadeout 0.2s both ease-in;
+}
+
+#match .page--component.ng-hide-remove,
+#bootcamp .page--component.ng-hide-remove,
+#match .page--component.ng-hide-add,
+#bootcamp .page--component.ng-hide-add {
+    animation: none;
+}
+
+
+/* -------------------------------------------------------------------------
+ * Modulo list: implementa la struttura di base che permette di incolonnare
+ * componenti secondo uno standard comune, con tre diverse opzioni di spaziatura
+ * ------------------------------------------------------------------------- */
 
 ul.list {
     padding: 0;
     margin: 0;
 }
 
-
+/* spaziatura piccola: standard */
 li.list--simple-element {
     list-style-type: none;
     margin-bottom: 10px;
 }
 
-
+/* spaziatura più ampia */
 li.list--spaced-element {
     list-style-type: none;
     margin-bottom: 20px;
 }
 
-
+/* spaziatura molto ampia */
 li.list--super-spaced-element {
     list-style-type: none;
     margin-top: 30px;
     margin-bottom: 30px;
 }
-
 
 #aftermatch-options.list--spaced-element {
     height: 70px;
@@ -353,9 +355,10 @@ li.list--super-spaced-element {
 }
 
 
-/*
- * Navigation: layout del button standard di navigazione tra schermate e dei componenti collegati
- */
+/* -------------------------------------------------------------------------
+ * Modulo navigation: layout del button standard di navigazione tra le varie
+ * schermate
+ * ------------------------------------------------------------------------- */
 
 button.navigation--button {
     background-color: Transparent;
@@ -364,11 +367,9 @@ button.navigation--button {
     margin-bottom: 5px;
 }
 
-
 button.navigation--button:hover {
     color: #818387;
 }
-
 
 button.navigation--disabled-button {
     color: #66686c;
@@ -377,27 +378,25 @@ button.navigation--disabled-button {
     margin-bottom: 5px;
 }
 
-
 .navigation--icon-in-text {
     color: white;
     vertical-align: middle;
 }
 
-/*
+
+/* -------------------------------------------------------------------------
  * Modulo chat: comprende i componenti che permettono di instaurare una chat
  * tra due giocatori nelle schermate di matchmaking e aftermatch
- */
+ * ------------------------------------------------------------------------- */
 
 .chat {
     margin: 20px auto 0 auto;
     overflow: auto;
 }
 
-
 #aftermatch .chat {
     margin: 0 auto;
 }
-
 
 .chat--hints-container, .chat--bubbles-container {
     width: 100%;
@@ -413,7 +412,6 @@ button.navigation--disabled-button {
     overflow: scroll;
 }
 
-
 @media only screen and (min-width: 716px) {
     .chat--hints-container, .chat--bubbles-container {
         width: 300px;
@@ -421,22 +419,18 @@ button.navigation--disabled-button {
     }
 }
 
-
 .chat--hints-container {
     padding: 10px 10px 0 10px;
 }
-
 
 .chat--bubbles-container {
     padding: 10px 0;
 }
 
-
 .chat--bubbles-sub-container, .chat--hints-sub-container {
     width: 100%;
     box-sizing: border-box;
 }
-
 
 button.chat--hint {
     margin: 10px;
@@ -448,17 +442,14 @@ button.chat--hint {
     white-space: nowrap;
 }
 
-
 button.chat--hint:hover {
     background-color: #818387;
 }
-
 
 .chat--bubble-row {
     overflow: auto;
     margin: 10px auto 0 auto;
 }
-
 
 .chat--bubble-player, .chat--bubble-enemy {
     display: inline-block;
@@ -472,20 +463,17 @@ button.chat--hint:hover {
     position: relative;
 }
 
-
 .chat--bubble-player {
     float: left;
     margin-left: 20px;
     background-color: #48af9b;
 }
 
-
 .chat--bubble-enemy {
     float: right;
     margin-right: 20px;
     background-color: #ba793a;
 }
-
 
 .chat--bubble-enemy:before {
     content: "";
@@ -499,7 +487,6 @@ button.chat--hint:hover {
     right: -16px;
     top: 0;
 }
-
 
 .chat--bubble-player:before {
     content: "";
@@ -515,10 +502,20 @@ button.chat--hint:hover {
 }
 
 
-/*
- * Modulo modal: implementa un dialog modale per mostrare in sovrimpressione messaggi di errore o possibilità
- * di scelta per l'utente
- */
+.chat.ng-hide-remove {
+    animation: fadein 0.2s both ease-in;
+}
+
+.chat.ng-hide-add {
+    animation: fadeout 0.2s both ease-in;
+}
+
+
+
+/* -------------------------------------------------------------------------
+ * Modulo modal: implementa un dialog modale per mostrare in sovrimpressione
+ * messaggi di errore o possibilità di scelta per l'utente
+ * ------------------------------------------------------------------------- */
 
 .modal {
     position: fixed;
@@ -532,7 +529,6 @@ button.chat--hint:hover {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-
 .modal--content {
     background-color: #ffffff;
     color: Black;
@@ -544,48 +540,53 @@ button.chat--hint:hover {
     box-sizing: border-box;
 }
 
-
 @media only screen and (min-width: 780px) {
     .modal--content {
         width: 40%;
     }
 }
 
-
 .modal--buttons-container {
     text-align: right;
     padding-top: 10px;
 }
-
 
 button.modal--button-primary, button.modal--button-secondary {
     margin-left: 5px;
     padding: 10px 20px;
 }
 
-
 button.modal--button-primary {
     color: White;
     background-color: #bc241c;
 }
 
-
 button.modal--button-primary:hover {
     background-color: #bf4a44;
 }
-
 
 button.modal--button-secondary {
     color: Black;
     background-color: Transparent;
 }
 
-
 button.modal--button-secondary:hover {
     background-color: rgba(85, 113, 233, 0.11);
 }
 
+.modal.ng-hide-remove {
+    animation: fadein 0.2s both ease-in;
+}
 
+.modal.ng-hide-add {
+    animation: fadeout 0.2s both ease-in;
+}
+
+
+/* -------------------------------------------------------------------------
+ * Modulo selector: implementa un contenitore con un testo al suo interno,
+ * con due button ai lati che permettono di modificarne il contenuto
+ * ------------------------------------------------------------------------- */
 
 .selector {
     height: 50px;
@@ -598,13 +599,11 @@ button.modal--button-secondary:hover {
     flex-direction: row;
 }
 
-
 @media only screen and (min-width: 310px) {
     .selector {
         width: 280px;
     }
 }
-
 
 .selector--button {
     width: 50px;
@@ -621,13 +620,11 @@ button.modal--button-secondary:hover {
     background-color: transparent;
 }
 
-
 .selector--button:hover {
     transition-duration: 0.2s;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.09);
 }
-
 
 .selector--text {
     height: 100%;
@@ -642,6 +639,36 @@ button.modal--button-secondary:hover {
     border-color: White;
 }
 
+
+/* -------------------------------------------------------------------------
+ * Modulo copyable: implementa un contenitore contentente un testo, che
+ * reagisce al click mostrando una notifica di testo copiato negli appunti
+ * ------------------------------------------------------------------------- */
+
+.copyable {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: White;
+    transition-duration: 0.2s;
+    background-color: transparent;
+}
+
+.copyable:hover {
+    transition-duration: 0.2s;
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+@media only screen and (min-width: 320px) {
+    .copyable {
+        width: 280px;
+    }
+}
 
 .copyable--big-text {
     border: none;
@@ -668,7 +695,6 @@ button.modal--button-secondary:hover {
     margin-top: 5px;
 }
 
-
 .copyable--copy-icon {
     color: white;
     font-size: small;
@@ -677,39 +703,15 @@ button.modal--button-secondary:hover {
 }
 
 
-.copyable {
-    width: 100%;
-    margin: 0 auto;
-    padding: 10px;
-    box-sizing: border-box;
-    text-align: center;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 4px;
-    border-color: White;
-    transition-duration: 0.2s;
-    background-color: transparent;
-}
-
-
-.copyable:hover {
-    transition-duration: 0.2s;
-    background-color: rgba(255, 255, 255, 0.09);
-}
-
-
-@media only screen and (min-width: 320px) {
-    .copyable {
-        width: 280px;
-    }
-}
-
+/* -------------------------------------------------------------------------
+ * Modulo centered-columns: fornisce un contenitore che contiene due colonne
+ * parallele tra loro, con contenuto centrato al loro interno
+ * ------------------------------------------------------------------------- */
 
 .centered-columns {
     margin: 0 auto 20px auto;
     font-size: 20px;
 }
-
 
 .centered-columns-pair {
     display: flex;
@@ -718,11 +720,16 @@ button.modal--button-secondary:hover {
     justify-content: center;
 }
 
-
 .centered-columns--column {
     width: 50%;
     text-align: center;
 }
+
+
+/* -------------------------------------------------------------------------
+ * Modulo timer: struttura di base dei vari timer di gioco: scritta bianca
+ * in caso di scorrimento normale, rossa in caso di timer fermo
+ * ------------------------------------------------------------------------- */
 
 .timer--normal, .timer--stop {
     margin-right: 5px;
@@ -733,28 +740,15 @@ button.modal--button-secondary:hover {
     color: white;
 }
 
-
 .timer--stop {
     color: red;
 }
 
 
-
-.playground--arrow {
-    max-height: 90%;
-    max-width: 90%;
-    margin: 0 auto;
-    color: white;
-}
-
-
-.playground--arrow-over {
-    max-height: 90%;
-    max-width: 90%;
-    margin: 0 auto;
-    color: yellow;
-}
-
+/* -------------------------------------------------------------------------
+ * Modulo playground: implementa il campo da gioco, ovvero la griglia con
+ * le tiles colorate, e i vari componenti collegati
+ * ------------------------------------------------------------------------- */
 
 .playground {
     width: 100%;
@@ -764,14 +758,25 @@ button.modal--button-secondary:hover {
     position: relative;
 }
 
-
-/* Fissa la dimensione degli inputbox per dispositivi di schermo maggiore del mobile */
 @media only screen and (min-width: 320px) {
     .playground {
         width: 280px;
     }
 }
 
+.playground--arrow {
+    max-height: 90%;
+    max-width: 90%;
+    margin: 0 auto;
+    color: white;
+}
+
+.playground--arrow-over {
+    max-height: 90%;
+    max-width: 90%;
+    margin: 0 auto;
+    color: yellow;
+}
 
 .playground--table {
     width: 100%;
@@ -782,15 +787,14 @@ button.modal--button-secondary:hover {
     margin: 0 auto;
 }
 
-
 @media only screen and (min-width: 320px) {
     .playground--table {
         width: 280px;
     }
 }
 
-
-.playground--tile-placeholder, .playground--tile-red, .playground--tile-yellow, .playground--tile-gray {
+.playground--tile-placeholder, .playground--tile-red,
+.playground--tile-yellow, .playground--tile-gray {
     width: 100%;
     padding-bottom: 100%;
     border-radius: 4px;
@@ -800,17 +804,19 @@ button.modal--button-secondary:hover {
     background-color: #bc241c;
 }
 
-
 .playground--tile-yellow {
     background-color: #efd10b;
 }
-
 
 .playground--tile-gray {
     background-color: #bababa;
 }
 
 
+/* -------------------------------------------------------------------------
+ * Modulo stats: implementa il contenitore che mostra le statistiche
+ * di fine partita
+ * ------------------------------------------------------------------------- */
 
 .stats {
     width: 100%;
@@ -824,7 +830,6 @@ button.modal--button-secondary:hover {
     padding: 10px;
     overflow: auto;
 }
-
 
 @media only screen and (min-width: 716px) {
     .stats {
@@ -840,7 +845,6 @@ button.modal--button-secondary:hover {
     margin: 10px 0 0 0;
 }
 
-
 .stats--player-text {
     color: #48af9b;
 }
@@ -850,8 +854,9 @@ button.modal--button-secondary:hover {
 }
 
 
-/* Modulo spinner: implementa una schermata statica di caricamento */
-
+/* -------------------------------------------------------------------------
+ * Modulo loading-spinner: implementa una schermata statica di caricamento
+ * ------------------------------------------------------------------------- */
 
 .loading-spinner {
     margin-top: 20px;
@@ -860,7 +865,6 @@ button.modal--button-secondary:hover {
     width: 64px;
     height: 64px;
 }
-
 
 .loading-spinner div {
     position: absolute;
@@ -871,13 +875,11 @@ button.modal--button-secondary:hover {
     animation: loading-spinner 1.2s linear infinite;
 }
 
-
 .loading-spinner div:nth-child(1) {
     top: 6px;
     left: 6px;
     animation-delay: 0s;
 }
-
 
 .loading-spinner div:nth-child(2) {
     top: 6px;
@@ -885,13 +887,11 @@ button.modal--button-secondary:hover {
     animation-delay: -0.4s;
 }
 
-
 .loading-spinner div:nth-child(3) {
     top: 6px;
     left: 45px;
     animation-delay: -0.8s;
 }
-
 
 .loading-spinner div:nth-child(4) {
     top: 26px;
@@ -899,13 +899,11 @@ button.modal--button-secondary:hover {
     animation-delay: -0.4s;
 }
 
-
 .loading-spinner div:nth-child(5) {
     top: 26px;
     left: 26px;
     animation-delay: -0.8s;
 }
-
 
 .loading-spinner div:nth-child(6) {
     top: 26px;
@@ -913,13 +911,11 @@ button.modal--button-secondary:hover {
     animation-delay: -1.2s;
 }
 
-
 .loading-spinner div:nth-child(7) {
     top: 45px;
     left: 6px;
     animation-delay: -0.8s;
 }
-
 
 .loading-spinner div:nth-child(8) {
     top: 45px;
@@ -927,13 +923,11 @@ button.modal--button-secondary:hover {
     animation-delay: -1.2s;
 }
 
-
 .loading-spinner div:nth-child(9) {
     top: 45px;
     left: 45px;
     animation-delay: -1.6s;
 }
-
 
 @keyframes loading-spinner {
     0%, 100% {
@@ -945,45 +939,48 @@ button.modal--button-secondary:hover {
 }
 
 
-/* Moduli singoli e-o funzionalità specifiche */
+/* -------------------------------------------------------------------------
+ * Moduli singoli e-o funzionalità applicabili 'out-of-the-box' ad altri moduli
+ * ------------------------------------------------------------------------- */
 
+/* Aggiunge tre puntini al termine delle linea di testo, in caso di overflow*/
 .ellipsize {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-
+/* centra un div all'interno di un contenitore */
 .centered-container {
     margin: 0 auto;
     text-align: center;
 }
 
-
+/* trasforma la prima lettera in maiuscola */
 .capitalize:first-letter {
     text-transform: capitalize;
 }
 
-
+/* testo grande nello stile di h1, ma con bordi ridotti */
 .big-text {
     font-size: 60px;
     font-family: 'Baloo Chettan', cursive;
     margin: -20px;
 }
 
-
+/* formatta un'immagine di grandi dimensioni, come il logo della splash screen */
 .big-image {
     width: 100px;
     height: 100px;
 }
 
-
+/* formatta ul testo 'press to continue' della splash screen */
 .press-to-continue {
     margin: 50px 10% 0 10%;
     color: white;
 }
 
-
+/* proprietà del Roby trascinabile della schermata di gioco */
 .roby-draggable {
     width: 100px;
     height: 100px;
@@ -991,7 +988,7 @@ button.modal--button-secondary:hover {
     max-height: 100px;
 }
 
-
+/* proprietà dei Roby che si muovono nella griglia */
 .roby-automove {
     width: 36px;
     height: 36px;
@@ -1001,14 +998,14 @@ button.modal--button-secondary:hover {
 }
 
 
-
-/* Animazioni ed effetti*/
+/* -------------------------------------------------------------------------
+ * Animazioni ed effetti
+ * ------------------------------------------------------------------------- */
 
 .floating-up-animation {
     transform: translateX(0px);
     animation: float-top 4s ease-in-out infinite;
 }
-
 
 @keyframes float-top {
     0% {
@@ -1022,12 +1019,10 @@ button.modal--button-secondary:hover {
     }
 }
 
-
 .floating-right-animation {
     transform: translateY(0px);
     animation: float-right 4s ease-in-out infinite;
 }
-
 
 @keyframes float-right {
     0% {
@@ -1041,12 +1036,10 @@ button.modal--button-secondary:hover {
     }
 }
 
-
 .floating-left-animation {
     transform: translateX(0px);
     animation: float-left 4s ease-in-out infinite;
 }
-
 
 @keyframes float-left {
     0% {
@@ -1060,12 +1053,10 @@ button.modal--button-secondary:hover {
     }
 }
 
-
 .floating-down-animation {
     transform: translateY(0px);
     animation: float-bottom 4s ease-in-out infinite;
 }
-
 
 @keyframes float-bottom {
     0% {
@@ -1079,11 +1070,9 @@ button.modal--button-secondary:hover {
     }
 }
 
-
 .flashing-animation {
     animation: flash 2s ease-in-out infinite;
 }
-
 
 @keyframes flash {
     0% {
@@ -1098,17 +1087,17 @@ button.modal--button-secondary:hover {
 }
 
 
-/* AngularJS cross-page animations */
+/* -------------------------------------------------------------------------
+ * Implementa il modulo AngularJS 'ng-animate', e le animazioni collegate
+ * ------------------------------------------------------------------------- */
 
 .ng-enter {
     animation: fadein 0.2s both ease-in;
-    z-index: 8888;
+    animation-delay: 0.2s;
 }
 
-
 .ng-leave {
-    animation: fadeout 0.2s both ease-in;
-    z-index: 9999;
+    animation: fadeout 0.2s ease-in;
 }
 
 
@@ -1121,7 +1110,6 @@ button.modal--button-secondary:hover {
     }
 }
 
-
 @keyframes fadeout {
     from {
         opacity: 1;
@@ -1130,20 +1118,6 @@ button.modal--button-secondary:hover {
         opacity: 0;
     }
 }
-
-
-/*
-.ng-show {
-    animation: fadein 0.2s both ease-in;
-    z-index: 8888;
-}
-
-
-.ng-hide {
-    animation: fadeout 0.2s both ease-in;
-    z-index: 9999;
-}
-*/
 
 
 /* ==========================================================================

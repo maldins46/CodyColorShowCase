@@ -19,7 +19,19 @@ angular.module('codyColor').controller('newcmatchCtrl',
             rabbit.connect();
         }
 
-        $scope.mmakingState = 'createMatch';
+        // cambia schermata in modo 'sicuro', evitando flickering durante le animazioni
+        let changeScreen = function(newScreen) {
+            scopeService.safeApply($scope, function () {
+                $scope.mmakingState = 'loadingScreen';
+            });
+            setTimeout(function () {
+                scopeService.safeApply($scope, function () {
+                    $scope.mmakingState = newScreen;
+                });
+            }, 200);
+        };
+
+        changeScreen('createMatch');
         $scope.gameCode = '0000';
         $scope.timerSettings = [ { text: '15 secondi', value: 15000 }, { text: '30 secondi', value: 30000 },
                                  { text: '1 minuto', value: 60000 }, { text: '2 minuti', value: 120000 } ];
@@ -54,8 +66,8 @@ angular.module('codyColor').controller('newcmatchCtrl',
 
             scopeService.safeApply($scope, function () {
                 $scope.gameCode = message.code.toString();
-                $scope.mmakingState = 'enemyInvitation';
             });
+            changeScreen('enemyInvitation')
 
         }, function (message) {
             // onHereMessage
@@ -75,8 +87,8 @@ angular.module('codyColor').controller('newcmatchCtrl',
             audioHandler.playSound('enemy-found');
             scopeService.safeApply($scope, function () {
                 $scope.enemyNickname = gameData.getEnemyNickname();
-                $scope.mmakingState = 'enemyFound';
             });
+            changeScreen('enemyFound');
 
             gameData.setEnemyReady(true);
             if (gameData.isPlayerReady() && gameData.isEnemyReady())
@@ -132,8 +144,9 @@ angular.module('codyColor').controller('newcmatchCtrl',
 
         // tasto iniziamo
         $scope.playerReady = function() {
-            $scope.mmakingState = 'waitingConfirm';
             gameData.setPlayerReady(true);
+            if(!gameData.isEnemyReady())
+                changeScreen('waitingConfirm');
             rabbit.sendReadyMessage();
         };
 

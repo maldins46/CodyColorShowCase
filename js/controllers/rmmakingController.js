@@ -17,8 +17,20 @@ angular.module('codyColor').controller('rmmakingCtrl',
             return;
         }
 
+        // cambia schermata in modo 'sicuro', evitando flickering durante le animazioni
+        let changeScreen = function(newScreen) {
+            scopeService.safeApply($scope, function () {
+                $scope.mmakingState = 'loadingScreen';
+            });
+            setTimeout(function () {
+                scopeService.safeApply($scope, function () {
+                    $scope.mmakingState = newScreen;
+                });
+            }, 200);
+        };
+
         // tiene traccia dello stato del matchmaking, e di quale schermata deve essere visualizzata
-        $scope.mmakingState =  'nicknameSelection';
+        changeScreen('nicknameSelection');
         $scope.enemyNickname = "";
         $scope.randomWaitingPlayers = sessionHandler.getRandomWaitingPlayers().toString();
         gameData.setGameType('random');
@@ -50,9 +62,9 @@ angular.module('codyColor').controller('rmmakingCtrl',
             }
 
             audioHandler.playSound('enemy-found');
+            changeScreen('enemyFound');
             scopeService.safeApply($scope, function () {
                 $scope.enemyNickname = gameData.getEnemyNickname();
-                $scope.mmakingState = 'enemyFound';
             });
 
         }, function () {
@@ -70,7 +82,7 @@ angular.module('codyColor').controller('rmmakingCtrl',
             // onQuitGameMessage
             scopeService.safeApply($scope, function () {
                 $scope.forceExitText = "L'avversario ha abbandonato la partita.";
-                $scope.forceExitx = true;
+                $scope.forceExitModal = true;
             });
 
         }, function () {
@@ -107,15 +119,16 @@ angular.module('codyColor').controller('rmmakingCtrl',
         // una volta che l'utente ha scelto un nickname, invia una richiesta di gioco al server
         $scope.requestMMaking = function (nickname) {
             audioHandler.playSound('menu-click');
-            $scope.mmakingState = 'waitingEnemy';
+            changeScreen('waitingEnemy');
             gameData.setPlayerNickname(nickname);
             rabbit.sendGameRequest();
         };
 
         // invocata una volta premuto il tasto 'iniziamo'
         $scope.playerReady = function () {
-            $scope.mmakingState = 'waitingConfirm';
             gameData.setPlayerReady(true);
+            if(!gameData.isEnemyReady())
+                changeScreen('waitingConfirm');
             rabbit.sendReadyMessage();
         };
 

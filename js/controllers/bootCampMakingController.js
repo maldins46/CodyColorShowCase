@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('bootCampMakingCtrl',
     function ($scope, rabbit, navigationHandler,
-              audioHandler, $location, sessionHandler, gameData) {
+              audioHandler, $location, sessionHandler, gameData, scopeService) {
         console.log("Bootcamp making controller ready.");
 
         // inizializzazione sessione
@@ -20,8 +20,17 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
             sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
         });
 
-        gameData.setGameType('bootcamp');
+        // carica la pagina con un leggero delay per evitare problemi di flickering
+        $scope.pageReady = false;
+        setTimeout(function () {
+            scopeService.safeApply($scope, function () {
+                $scope.pageReady = true;
+            });
+        }, 200);
 
+
+
+        gameData.setGameType('bootcamp');
 
         // timer set
         $scope.timerSettings = [ { text: '15 secondi', value: 15000 },
