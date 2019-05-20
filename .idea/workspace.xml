@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/riccardomaldini.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/riccardomaldini.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/cmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/cmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/newcmatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/newcmatchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/rmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/rabbitCommunicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/rabbitCommunicator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/bootcampmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/bootcampmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/cmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/cmmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/match.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/match.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/rmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/rmmaking.html" afterDir="false" />
-    </list>
+    <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -36,11 +22,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/cmmakingController.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="313">
               <caret line="160" column="47" selection-start-line="160" selection-start-column="47" selection-end-line="160" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/chatHandler.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -72,19 +67,6 @@
                 <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
                 <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" />
                 <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/bootcamp.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-              <folding>
-                <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
-                <element signature="n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -140,7 +122,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>page</find>
       <find>navigation</find>
       <find>&lt;br&gt;</find>
       <find>big-te</find>
@@ -170,6 +151,7 @@
       <find>trova un</find>
       <find>chatvi</find>
       <find>inizi</find>
+      <find>inixzia</find>
     </findStrings>
     <replaceStrings>
       <replace>onOver: '  onDrop:'robyDropped</replace>
@@ -218,7 +200,6 @@
         <option value="$PROJECT_DIR$/js/controllers/bootAftermatchController.js" />
         <option value="$PROJECT_DIR$/js/audioHandler.js" />
         <option value="$PROJECT_DIR$/js/gameData.js" />
-        <option value="$PROJECT_DIR$/js/chatHandler.js" />
         <option value="$PROJECT_DIR$/partials/login.html" />
         <option value="$PROJECT_DIR$/partials/ranking.html" />
         <option value="$PROJECT_DIR$/partials/register.html" />
@@ -245,10 +226,11 @@
         <option value="$PROJECT_DIR$/js/controllers/rmmakingController.js" />
         <option value="$PROJECT_DIR$/js/controllers/newcmatchController.js" />
         <option value="$PROJECT_DIR$/js/controllers/cmmakingController.js" />
+        <option value="$PROJECT_DIR$/js/chatHandler.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
@@ -386,7 +368,7 @@
       <workItem from="1558005244512" duration="34000" />
       <workItem from="1558012012085" duration="6322000" />
       <workItem from="1558294294918" duration="219000" />
-      <workItem from="1558337083894" duration="15883000" />
+      <workItem from="1558337083894" duration="16105000" />
     </task>
     <task id="LOCAL-00001" summary="Creata prima bozza schermata match">
       <created>1555067124003</created>
@@ -640,11 +622,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558019744306</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="riorganizzato sistema animazioni, fix bug minore in rmmaking (mancata notifica di abbandono), aggiunto messaggio ciao! in afrermatch, riorganizzazione e commenti css">
+      <created>1558367641238</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1558367641238</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="312794000" />
+    <option name="totallyTimeSpent" value="313016000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -702,7 +691,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="aggiunti file music e modulo cookies" />
     <MESSAGE value="compatibilità gitpages" />
     <MESSAGE value="aggiunte favicon, temi, alcune animazioni, bigfixes" />
     <MESSAGE value="correzioni manifest" />
@@ -727,7 +715,8 @@
     <MESSAGE value="aggiunta funzionalità di chat, aggiustamenti vari" />
     <MESSAGE value="correzioni d'interfaccia per chat e stats aftermatch, suggerimenti chat personalizzati a seconda della schermata" />
     <MESSAGE value="riorganizzazione css, rifiniture grafiche" />
-    <option name="LAST_COMMIT_MESSAGE" value="riorganizzazione css, rifiniture grafiche" />
+    <MESSAGE value="riorganizzato sistema animazioni, fix bug minore in rmmaking (mancata notifica di abbandono), aggiunto messaggio ciao! in afrermatch, riorganizzazione e commenti css" />
+    <option name="LAST_COMMIT_MESSAGE" value="riorganizzato sistema animazioni, fix bug minore in rmmaking (mancata notifica di abbandono), aggiunto messaggio ciao! in afrermatch, riorganizzazione e commenti css" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/vendor/jquery.min.js" />
@@ -751,7 +740,6 @@
     <entry file="file://$PROJECT_DIR$/js/sessionHandler.js" />
     <entry file="file://$PROJECT_DIR$/js/gameData.js" />
     <entry file="file://$PROJECT_DIR$/js/audioHandler.js" />
-    <entry file="file://$PROJECT_DIR$/js/chatHandler.js" />
     <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -969,6 +957,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
           <caret line="160" column="47" selection-start-line="160" selection-start-column="47" selection-end-line="160" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/chatHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
         </state>
       </provider>
     </entry>
