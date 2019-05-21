@@ -1,7 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="" />
+    <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/browserconfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service-worker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/site.webmanifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/android-icon-144x144.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-icon-192x192.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/android-icon-192x192.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-icon-36x36.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/android-icon-36x36.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-icon-48x48.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/android-icon-48x48.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-icon-72x72.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/android-icon-72x72.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-icon-96x96.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/android-icon-96x96.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-114x114.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-114x114.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-120x120.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-120x120.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-144x144.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-152x152.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-152x152.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-180x180.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-180x180.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-57x57.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-57x57.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-60x60.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-60x60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-72x72.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-72x72.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-76x76.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-76x76.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon-precomposed.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon-precomposed.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apple-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/apple-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/countdown.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/countdown.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/enemy-found.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/enemy-found.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/lost.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/lost.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/menu-click.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/menu-click.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/music.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/music.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/roby-drag.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/roby-drag.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/roby-drop.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/roby-drop.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/roby-over.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/roby-over.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/roby-positioned.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/roby-positioned.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/start.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/start.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/win.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/win.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserconfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/normalize.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/TOC.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/TOC.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/css.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/css.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/extend.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/extend.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/faq.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/faq.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/html.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/html.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/js.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/js.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/misc.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/misc.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/usage.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/doc/usage.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon-16x16.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/favicon-16x16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon-32x32.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/favicon-32x32.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon-96x96.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/favicon-96x96.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/humans.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/humans.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/enemy-broken.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/enemy-broken.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/enemy-positioned.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/enemy-positioned.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/enemy-walking-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/enemy-walking-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/enemy-walking-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/enemy-walking-2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/roby-broken.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/roby-broken.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/roby-dragging-trasp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/roby-dragging-trasp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/roby-idle.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/roby-idle.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/roby-positioned.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/roby-positioned.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/roby-walking-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/roby-walking-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/roby-walking-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/roby-walking-2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/audioHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/audioHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/chatHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/chatHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/aftermatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/aftermatchController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/bootAftermatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/bootAftermatchController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/bootCampController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/bootCampController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/bootCampMakingController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/cmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/cmmakingController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/emptyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/emptyController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/homeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/homeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/loginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/loginController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/matchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/matchController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/newcmatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/newcmatchController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/rankingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/rankingController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/registerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/registerController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/rmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/rmmakingController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/splashController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/splashController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/gameData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/gameData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/navigationHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/navigationHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/plugins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/rabbitCommunicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/rabbitCommunicator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/robyAnimator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/robyAnimator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/scopeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/scopeService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/sessionHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/sessionHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/angular-animate.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/angular-animate.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/angular-animate.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/angular-animate.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/angular-cookies.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/angular-cookies.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/angular-cookies.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/angular-cookies.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/angular-dragdrop.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/angular-dragdrop.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/angular-route.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/angular-route.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/angular-route.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/angular-route.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/angular.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/angular.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/angular.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/angular.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/jquery-ui.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/jquery-ui.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/jquery.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/jquery.min.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/jquery.min.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/jquery.ui.touch-punch.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/jquery.ui.touch-punch.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/modernizr.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/modernizr.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vendor/stomp.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vendor/stomp.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/ms-icon-144x144.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-icon-150x150.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/ms-icon-150x150.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-icon-310x310.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/ms-icon-310x310.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-icon-70x70.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/ms-icon-70x70.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/aftermatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/aftermatch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/bootaftermatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/bootaftermatch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/bootcamp.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/bootcamp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/bootcampmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/bootcampmaking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/cmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/cmmaking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/match.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/match.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/newcmatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/newcmatch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/ranking.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/ranking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/rmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/rmmaking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/rules.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/rules.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/splash.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/partials/splash.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/robots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site.webmanifest" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -14,99 +139,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/main.css">
+        <entry file="file://$PROJECT_DIR$/src/service-worker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1637">
-              <caret line="387" column="14" selection-start-line="387" selection-start-column="10" selection-end-line="387" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/cmmakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="160" column="47" selection-start-line="160" selection-start-column="47" selection-end-line="160" selection-end-column="47" />
+            <state relative-caret-position="21">
+              <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/chatHandler.js">
+        <entry file="file://$PROJECT_DIR$/workbox-config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/bootCampMakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/newcmatch.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="113" column="105" selection-start-line="113" selection-start-column="39" selection-end-line="113" selection-end-column="105" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/rmmaking.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
-              <caret line="79" column="105" selection-start-line="79" selection-start-column="105" selection-end-line="79" selection-end-column="105" />
-              <folding>
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
-                <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" />
-                <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/newcmatchController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="145" column="41" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="130" column="47" lean-forward="true" selection-start-line="129" selection-start-column="11" selection-end-line="130" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/cmmaking.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="89" column="22" lean-forward="true" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/bootcampmaking.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
-              <folding>
-                <element signature="n#div#0;n#div#0;n#div#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="189">
+              <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -176,13 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/controllers/afterMatchController.js" />
-        <option value="$PROJECT_DIR$/js/baseRouting.js" />
-        <option value="$PROJECT_DIR$/js/AudioHandler.js" />
-        <option value="$PROJECT_DIR$/js/controllers/commonControllers.js" />
-        <option value="$PROJECT_DIR$/js/controllers/registrationController.js" />
-        <option value="$PROJECT_DIR$/partials/mmaking.html" />
-        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/partials/pmmaking.html" />
         <option value="$PROJECT_DIR$/js/controllers/newpmatchController.js" />
         <option value="$PROJECT_DIR$/partials/newpmatch.html" />
@@ -203,7 +241,6 @@
         <option value="$PROJECT_DIR$/partials/login.html" />
         <option value="$PROJECT_DIR$/partials/ranking.html" />
         <option value="$PROJECT_DIR$/partials/register.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/controllers/aftermatchController.js" />
         <option value="$PROJECT_DIR$/partials/rules.html" />
         <option value="$PROJECT_DIR$/js/controllers/matchController.js" />
@@ -214,7 +251,6 @@
         <option value="$PROJECT_DIR$/partials/splash.html" />
         <option value="$PROJECT_DIR$/partials/aftermatch.html" />
         <option value="$PROJECT_DIR$/partials/bootcamp.html" />
-        <option value="$PROJECT_DIR$/js/rabbitCommunicator.js" />
         <option value="$PROJECT_DIR$/partials/match.html" />
         <option value="$PROJECT_DIR$/partials/home.html" />
         <option value="$PROJECT_DIR$/partials/bootcampmaking.html" />
@@ -227,10 +263,19 @@
         <option value="$PROJECT_DIR$/js/controllers/newcmatchController.js" />
         <option value="$PROJECT_DIR$/js/controllers/cmmakingController.js" />
         <option value="$PROJECT_DIR$/js/chatHandler.js" />
+        <option value="$PROJECT_DIR$/js/rabbitCommunicator.js" />
+        <option value="$PROJECT_DIR$/humans.txt" />
+        <option value="$PROJECT_DIR$/browserconfig.xml" />
+        <option value="$PROJECT_DIR$/manifest.json" />
+        <option value="$PROJECT_DIR$/site.webmanifest" />
+        <option value="$PROJECT_DIR$/service-worker.js" />
+        <option value="$PROJECT_DIR$/workbox-config-js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/workbox-config.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
@@ -242,7 +287,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -253,28 +297,13 @@
             <path>
               <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -282,17 +311,20 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/icons" />
+      <recent name="$PROJECT_DIR$/js/vendor" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/js" />
       <recent name="$PROJECT_DIR$/js/controllers" />
       <recent name="$PROJECT_DIR$/partials" />
       <recent name="$PROJECT_DIR$/bower_components" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/js/vendor" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -369,6 +401,8 @@
       <workItem from="1558012012085" duration="6322000" />
       <workItem from="1558294294918" duration="219000" />
       <workItem from="1558337083894" duration="16105000" />
+      <workItem from="1558367669698" duration="56000" />
+      <workItem from="1558424673098" duration="5586000" />
     </task>
     <task id="LOCAL-00001" summary="Creata prima bozza schermata match">
       <created>1555067124003</created>
@@ -629,11 +663,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558367641238</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="utilizzo server pubblico">
+      <created>1558367716224</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1558367716224</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313016000" />
+    <option name="totallyTimeSpent" value="318658000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -691,7 +732,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="compatibilità gitpages" />
     <MESSAGE value="aggiunte favicon, temi, alcune animazioni, bigfixes" />
     <MESSAGE value="correzioni manifest" />
     <MESSAGE value="prima versione stabile codyColor multiplayer" />
@@ -716,116 +756,101 @@
     <MESSAGE value="correzioni d'interfaccia per chat e stats aftermatch, suggerimenti chat personalizzati a seconda della schermata" />
     <MESSAGE value="riorganizzazione css, rifiniture grafiche" />
     <MESSAGE value="riorganizzato sistema animazioni, fix bug minore in rmmaking (mancata notifica di abbandono), aggiunto messaggio ciao! in afrermatch, riorganizzazione e commenti css" />
-    <option name="LAST_COMMIT_MESSAGE" value="riorganizzato sistema animazioni, fix bug minore in rmmaking (mancata notifica di abbandono), aggiunto messaggio ciao! in afrermatch, riorganizzazione e commenti css" />
+    <MESSAGE value="utilizzo server pubblico" />
+    <option name="LAST_COMMIT_MESSAGE" value="utilizzo server pubblico" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/vendor/jquery.min.js" />
-    <entry file="file://$PROJECT_DIR$/js/vendor/angular-route.min.js" />
-    <entry file="file://$PROJECT_DIR$/js/vendor/angular-dragdrop.min.js" />
-    <entry file="file://$PROJECT_DIR$/js/controllers.js" />
-    <entry file="file://$PROJECT_DIR$/../CodyColorServer/serverScript.js" />
-    <entry file="file://$PROJECT_DIR$/js/baseRouting.js" />
-    <entry file="file://$PROJECT_DIR$/js/controllers/commonControllers.js" />
-    <entry file="file://$PROJECT_DIR$/css/normalize.css" />
-    <entry file="file://$PROJECT_DIR$/bower_components/.gitignore" />
     <entry file="file://$PROJECT_DIR$/img/.gitignore" />
-    <entry file="file://$PROJECT_DIR$/js/scopeService.js" />
-    <entry file="file://$PROJECT_DIR$/js/main.js" />
-    <entry file="file://$PROJECT_DIR$/js/plugins.js" />
-    <entry file="file://$PROJECT_DIR$/js/navigationHandler.js" />
-    <entry file="file://$PROJECT_DIR$/js/controllers/loginController.js" />
-    <entry file="file://$PROJECT_DIR$/js/controllers/rankingController.js" />
-    <entry file="file://$PROJECT_DIR$/js/controllers/registerController.js" />
-    <entry file="file://$PROJECT_DIR$/js/controllers/splashController.js" />
-    <entry file="file://$PROJECT_DIR$/js/sessionHandler.js" />
-    <entry file="file://$PROJECT_DIR$/js/gameData.js" />
-    <entry file="file://$PROJECT_DIR$/js/audioHandler.js" />
-    <entry file="file://$PROJECT_DIR$/js/controllers/aftermatchController.js">
+    <entry file="file://$PROJECT_DIR$/src/js/scopeService.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/main.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/plugins.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/navigationHandler.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/loginController.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/rankingController.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/registerController.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/splashController.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/sessionHandler.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/gameData.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/audioHandler.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/aftermatchController.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/ranking.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/ranking.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/emptyController.js">
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/emptyController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-408" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/register.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="32" column="33" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/rules.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/rules.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/matchController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="74" column="69" selection-start-line="74" selection-start-column="69" selection-end-line="74" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/404.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/404.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/bootAftermatchController.js">
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/bootAftermatchController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="30" column="34" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/robyAnimator.js">
+    <entry file="file://$PROJECT_DIR$/src/js/robyAnimator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/login.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="924">
           <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/splash.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/splash.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/bootCampController.js">
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/bootCampController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8295">
           <caret line="397" column="25" selection-start-line="397" selection-start-column="25" selection-end-line="397" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/bootaftermatch.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/bootaftermatch.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
           <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
@@ -836,7 +861,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/aftermatch.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/aftermatch.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
           <caret line="37" column="26" lean-forward="true" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
@@ -847,7 +872,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/match.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/match.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
@@ -859,26 +884,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/homeController.js">
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/homeController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1182" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/home.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/bootcamp.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/bootcamp.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
           <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
@@ -889,47 +907,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/bootcampmaking.html">
+    <entry file="file://$PROJECT_DIR$/src/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1637">
+        <state relative-caret-position="8127">
           <caret line="387" column="14" selection-start-line="387" selection-start-column="10" selection-end-line="387" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/newcmatch.html">
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/cmmakingController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="113" column="105" selection-start-line="113" selection-start-column="39" selection-end-line="113" selection-end-column="105" />
+        <state relative-caret-position="3318">
+          <caret line="160" column="47" selection-start-line="160" selection-start-column="47" selection-end-line="160" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/cmmaking.html">
+    <entry file="file://$PROJECT_DIR$/src/js/chatHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="89" column="22" lean-forward="true" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
+        <state relative-caret-position="21">
+          <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/bootCampMakingController.js">
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/bootCampMakingController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
+        <state relative-caret-position="588">
           <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/rmmaking.html">
+    <entry file="file://$PROJECT_DIR$/src/partials/newcmatch.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
+        <state relative-caret-position="2373">
+          <caret line="113" column="105" selection-start-line="113" selection-start-column="39" selection-end-line="113" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/partials/rmmaking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="882">
           <caret line="79" column="105" selection-start-line="79" selection-start-column="105" selection-end-line="79" selection-end-column="105" />
           <folding>
             <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" />
@@ -939,31 +954,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/rmmakingController.js">
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/newcmatchController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="130" column="47" lean-forward="true" selection-start-line="129" selection-start-column="11" selection-end-line="130" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/newcmatchController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
+        <state relative-caret-position="3003">
           <caret line="145" column="41" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/cmmakingController.js">
+    <entry file="file://$PROJECT_DIR$/src/js/controllers/rmmakingController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="160" column="47" selection-start-line="160" selection-start-column="47" selection-end-line="160" selection-end-column="47" />
+        <state relative-caret-position="2667">
+          <caret line="130" column="47" lean-forward="true" selection-start-line="129" selection-start-column="11" selection-end-line="130" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/chatHandler.js">
+    <entry file="file://$PROJECT_DIR$/src/partials/cmmaking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1869">
+          <caret line="89" column="22" lean-forward="true" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/partials/bootcampmaking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/rabbitCommunicator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/humans.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/browserconfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site.webmanifest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbox-config-js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4401">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/workbox-config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service-worker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
-          <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
+          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbox-config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
         </state>
       </provider>
     </entry>
