@@ -48,8 +48,10 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
 
     // callback dalla schermata home
-    rabbit.setHomeCallbacks = function(onGeneralInfoMessage) {
+    rabbit.setHomeCallbacks = function(onConnected, onConnectionLost, onGeneralInfoMessage) {
         callbacks = {};
+        callbacks.onConnected = onConnected;
+        callbacks.onConnectionLost = onConnectionLost;
         callbacks.onGeneralInfoMessage = onGeneralInfoMessage;
     };
 
@@ -134,10 +136,7 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
 
     // effettua la richiesta di connessione al broker. In caso di connessione
     // completata, sottoscrive il topic di controllo utilizzato per le risposte dal server
-    rabbit.connect = function(onConnected, onError) {
-        callbacks.onConnected      = onConnected;
-        callbacks.onConnectionLost = onError;
-
+    rabbit.connect = function() {
         // /* SIMULAZIONI IN LOCALE */ client = Stomp.client('ws://127.0.0.1:15674/ws');
         // /* SENZA HTTPS */           client = Stomp.client('ws://botify.it/codycolor/ws');
         client = Stomp.client(serverUrl);

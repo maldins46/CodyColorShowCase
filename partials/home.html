@@ -26,12 +26,12 @@
                     <button class="navigation--disabled-button">Accedi</button>
                 </li>
                 <li class="list--simple-element" ng-show="connected">
-                    <div class="flashing-animation">{{totalMatches}} partite giocate dal lancio,
+                    <div ng-class="(connected ? 'flashing-animation' : '')">{{totalMatches}} partite giocate dal lancio,
                         {{connectedPlayers}} giocator{{(connectedPlayers === '1'? 'e':'i')}}
                         collegat{{(connectedPlayers === '1'? 'o':'i')}} ora</div>
                 </li>
                 <li class="list--simple-element" ng-hide="connected">
-                    <div class="flashing-animation">Solo un momento, mi sto connettendo al server…</div>
+                    <div ng-class="(!connected ? 'flashing-animation' : '')">Sei offline. Ritento la connessione al server...</div>
                 </li>
             </ul>
         </div>
@@ -49,6 +49,16 @@
             <button class="page--footer-button" ng-click="">
                 <i class="far fa-user-circle page--footer-icons"></i>Non loggato
             </button>
+        </div>
+    </div>
+
+    <!-- No connection modal -->
+    <div class="modal" ng-show="noConnectionModal">
+        <div class="modal--content">
+            <p>Per utilizzare questa funzione devo connettermi al server. Controlla la tua connessione e riprova.</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-primary" ng-click="noConnectionModal = false">Ok</button>
+            </div>
         </div>
     </div>
 </div>

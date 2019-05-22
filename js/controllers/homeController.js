@@ -20,30 +20,28 @@ angular.module('codyColor').controller('homeCtrl',
         // un messaggio per notificare all'utente che la connessione al server è in corso
         $scope.connected = rabbit.getConnectionState();
         if (!$scope.connected) {
-            rabbit.connect(function () {
-                // onConnected
-                scopeService.safeApply($scope, function () {
-                    $scope.connected = true;
-                });
-            }, function () {
-                // onErrorConnection
-                scopeService.safeApply($scope, function () {
-                    $scope.connected = false;
-                    $scope.generalInfoReady = false;
-                });
-
-            });
+            rabbit.connect();
 
         } else {
-            let totalMatches = sessionHandler.getTotalMatches();
-            let connectedPlayers = sessionHandler.getConnectedPlayers();
             scopeService.safeApply($scope, function () {
-                $scope.totalMatches = (totalMatches).toString();
-                $scope.connectedPlayers = connectedPlayers.toString();
+                $scope.totalMatches = (sessionHandler.getTotalMatches()).toString();
+                $scope.connectedPlayers = sessionHandler.getConnectedPlayers().toString();
             });
         }
 
-        rabbit.setHomeCallbacks(function (response) {
+        rabbit.setHomeCallbacks(function() {
+            // onConnected
+            scopeService.safeApply($scope, function () {
+                $scope.connected = true;
+            });
+
+        }, function() {
+            // onConnectionLost
+            scopeService.safeApply($scope, function () {
+                $scope.connected = false;
+            });
+
+        } ,function (response) {
             // onGeneralInfoMessage
             sessionHandler.setTotalMatches(response.totalMatches);
             sessionHandler.setConnectedPlayers(response.connectedPlayers);
@@ -54,8 +52,6 @@ angular.module('codyColor').controller('homeCtrl',
                 $scope.connectedPlayers = sessionHandler.getConnectedPlayers().toString();
             });
         });
-
-
 
         // inizializzazione menù di navigazione
         $scope.goToRules = function () {
@@ -68,8 +64,12 @@ angular.module('codyColor').controller('homeCtrl',
                 rabbit.cleanCallbacks();
                 navigationHandler.goToPage($location, $scope, "/rmmaking");
                 audioHandler.playSound('menu-click');
-            } else
-                alert('Solo un momento, mi sto connettendo al server…');
+            } else {
+                scopeService.safeApply($scope, function () {
+                    $scope.noConnectionModal = true;
+                });
+            }
+
         };
         $scope.goToPMMaking = function () {
             if ($scope.connected) {
@@ -77,8 +77,11 @@ angular.module('codyColor').controller('homeCtrl',
                 navigationHandler.goToPage($location, $scope, "/cmmaking");
                 audioHandler.playSound('menu-click');
             }
-            else
-                alert('Solo un momento, mi sto connettendo al server…');
+            else {
+                scopeService.safeApply($scope, function () {
+                    $scope.noConnectionModal = true;
+                });
+            }
         };
         $scope.goToBootcamp = function () {
             rabbit.cleanCallbacks();

@@ -2,126 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68effdbd-7a12-4035-91b0-ee7027d365d4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src-service-worker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workbox-config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/countdown.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/countdown.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/enemy-found.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/enemy-found.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/lost.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/lost.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/menu-click.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/menu-click.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/music.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/music.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/roby-drag.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/roby-drag.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/roby-drop.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/roby-drop.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/roby-over.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/roby-over.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/roby-positioned.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/roby-positioned.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/start.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/start.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/win.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/win.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/browserconfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserconfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/normalize.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/TOC.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/TOC.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/css.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/css.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/extend.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/extend.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/faq.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/faq.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/html.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/html.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/js.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/js.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/misc.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/misc.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/usage.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/usage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/humans.txt" beforeDir="false" afterPath="$PROJECT_DIR$/humans.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/android-icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/android-icon-144x144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/android-icon-192x192.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/android-icon-192x192.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/android-icon-36x36.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/android-icon-36x36.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/android-icon-48x48.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/android-icon-48x48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/android-icon-72x72.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/android-icon-72x72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/android-icon-96x96.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/android-icon-96x96.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-114x114.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-114x114.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-120x120.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-120x120.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-144x144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-152x152.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-152x152.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-180x180.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-180x180.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-57x57.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-57x57.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-60x60.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-60x60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-72x72.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-72x72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-76x76.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-76x76.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon-precomposed.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon-precomposed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/apple-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/apple-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/favicon-16x16.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/favicon-16x16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/favicon-32x32.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/favicon-32x32.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/favicon-96x96.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/favicon-96x96.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/ms-icon-144x144.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/ms-icon-144x144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/ms-icon-150x150.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/ms-icon-150x150.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/ms-icon-310x310.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/ms-icon-310x310.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icons/ms-icon-70x70.png" beforeDir="false" afterPath="$PROJECT_DIR$/icons/ms-icon-70x70.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/enemy-broken.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/enemy-broken.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/enemy-positioned.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/enemy-positioned.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/enemy-walking-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/enemy-walking-1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/enemy-walking-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/enemy-walking-2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/roby-broken.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-broken.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/roby-dragging-trasp.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-dragging-trasp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/roby-idle.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-idle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/roby-positioned.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-positioned.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/roby-walking-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-walking-1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/roby-walking-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/roby-walking-2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/audioHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/audioHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/chatHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/chatHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/aftermatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/aftermatchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/bootAftermatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/bootAftermatchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/bootCampController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/bootCampController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/bootCampMakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/cmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/cmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/emptyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/emptyController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/homeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/homeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/loginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/loginController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/matchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/matchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/newcmatchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/newcmatchController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/rankingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rankingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/registerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/registerController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/rmmakingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/rmmakingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/splashController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/splashController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/gameData.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/gameData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/navigationHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/navigationHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/plugins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/rabbitCommunicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/rabbitCommunicator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/robyAnimator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/robyAnimator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/scopeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/scopeService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/sessionHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sessionHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/angular-animate.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-animate.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/angular-animate.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-animate.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/angular-cookies.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-cookies.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/angular-cookies.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-cookies.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/angular-dragdrop.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-dragdrop.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/angular-route.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-route.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/angular-route.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular-route.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/angular.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/angular.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/angular.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/jquery-ui.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/jquery-ui.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/jquery.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/jquery.min.map" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/jquery.min.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/jquery.ui.touch-punch.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/jquery.ui.touch-punch.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/modernizr.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/modernizr.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vendor/stomp.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vendor/stomp.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/aftermatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/aftermatch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/bootaftermatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/bootaftermatch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/bootcamp.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/bootcamp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/bootcampmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/bootcampmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/cmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/cmmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/match.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/match.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/newcmatch.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/newcmatch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/ranking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/ranking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/rmmaking.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/rmmaking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/rules.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/rules.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/partials/splash.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/splash.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/robots.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/service-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/site.webmanifest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workbox-config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/controllers/homeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/homeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/navigationHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/navigationHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/rabbitCommunicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/rabbitCommunicator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/partials/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/service-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/site.webmanifest" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -133,7 +24,62 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/partials/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-130">
+              <caret line="33" column="125" selection-start-line="33" selection-start-column="125" selection-end-line="33" selection-end-column="125" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/homeController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="222">
+              <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/splashController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="22" column="31" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="310" column="37" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partials/newcmatch.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="507">
+              <caret line="169" column="10" lean-forward="true" selection-start-line="161" selection-start-column="3" selection-end-line="169" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -144,11 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>navigation</find>
-      <find>&lt;br&gt;</find>
-      <find>big-te</find>
-      <find>h1</find>
-      <find>fade</find>
       <find>compo</find>
       <find>hide</find>
       <find>stagger</find>
@@ -162,7 +103,6 @@
       <find>ng-hide</find>
       <find>chatVisible</find>
       <find>ease</find>
-      <find>modal</find>
       <find>page--component</find>
       <find>forceexit</find>
       <find>mmakings</find>
@@ -174,6 +114,12 @@
       <find>chatvi</find>
       <find>inizi</find>
       <find>inixzia</find>
+      <find>?v=1.0.6</find>
+      <find>work</find>
+      <find>1.0.6</find>
+      <find>modal</find>
+      <find>connect =</find>
+      <find>generaling</find>
     </findStrings>
     <replaceStrings>
       <replace>onOver: '  onDrop:'robyDropped</replace>
@@ -183,14 +129,18 @@
       <replace>'fa-volume-up' : 'fa-volume-mute'</replace>
       <replace>/</replace>
       <replace>1.0.3</replace>
-      <replace />
       <replace>1.0.4</replace>
       <replace>1.0.5</replace>
       <replace>footer--column-right ellipsize&quot;</replace>
       <replace>1.0.6</replace>
       <replace>line</replace>
       <replace>ease</replace>
+      <replace />
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/js</dir>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -198,17 +148,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/partials/pmmaking.html" />
-        <option value="$PROJECT_DIR$/js/controllers/newpmatchController.js" />
         <option value="$PROJECT_DIR$/partials/newpmatch.html" />
         <option value="$PROJECT_DIR$/js/controllers/pmmakingController.js" />
         <option value="$PROJECT_DIR$/js/sessionHandler.js" />
         <option value="$PROJECT_DIR$/js/controllers/bCampController.js" />
         <option value="$PROJECT_DIR$/js/controllers/bCampMakingController.js" />
-        <option value="$PROJECT_DIR$/js/navigationHandler.js" />
         <option value="$PROJECT_DIR$/js/controllers/splashController.js" />
         <option value="$PROJECT_DIR$/js/controllers/emptyController.js" />
-        <option value="$PROJECT_DIR$/js/controllers/homeController.js" />
         <option value="$PROJECT_DIR$/js/controllers/loginController.js" />
         <option value="$PROJECT_DIR$/js/controllers/rankingController.js" />
         <option value="$PROJECT_DIR$/js/controllers/registerController.js" />
@@ -229,7 +175,6 @@
         <option value="$PROJECT_DIR$/partials/aftermatch.html" />
         <option value="$PROJECT_DIR$/partials/bootcamp.html" />
         <option value="$PROJECT_DIR$/partials/match.html" />
-        <option value="$PROJECT_DIR$/partials/home.html" />
         <option value="$PROJECT_DIR$/partials/bootcampmaking.html" />
         <option value="$PROJECT_DIR$/js/controllers/bootCampMakingController.js" />
         <option value="$PROJECT_DIR$/css/main.css" />
@@ -240,15 +185,20 @@
         <option value="$PROJECT_DIR$/js/controllers/newcmatchController.js" />
         <option value="$PROJECT_DIR$/js/controllers/cmmakingController.js" />
         <option value="$PROJECT_DIR$/js/chatHandler.js" />
-        <option value="$PROJECT_DIR$/js/rabbitCommunicator.js" />
         <option value="$PROJECT_DIR$/humans.txt" />
         <option value="$PROJECT_DIR$/browserconfig.xml" />
-        <option value="$PROJECT_DIR$/manifest.json" />
-        <option value="$PROJECT_DIR$/site.webmanifest" />
-        <option value="$PROJECT_DIR$/service-worker.js" />
         <option value="$PROJECT_DIR$/workbox-config-js" />
+        <option value="$PROJECT_DIR$/service-worker.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/navigationHandler.js" />
+        <option value="$PROJECT_DIR$/site.webmanifest" />
+        <option value="$PROJECT_DIR$/manifest.json" />
         <option value="$PROJECT_DIR$/workbox-config.js" />
+        <option value="$PROJECT_DIR$/src-service-worker.js" />
+        <option value="$PROJECT_DIR$/js/scopeService.js" />
+        <option value="$PROJECT_DIR$/js/rabbitCommunicator.js" />
+        <option value="$PROJECT_DIR$/js/controllers/homeController.js" />
+        <option value="$PROJECT_DIR$/partials/home.html" />
       </list>
     </option>
   </component>
@@ -271,6 +221,22 @@
               <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CodyColorClient" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodyColorClient" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -282,7 +248,15 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.karma.karma_node_package_dir" value="" />
+    <property name="js.buildTools.grunt.grunt-cli.package" value="" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs.cucumber.cucumber_node_package_dir" value="" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="" />
+    <property name="nodejs.protractor.protractor_package" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
   </component>
   <component name="RecentsManager">
@@ -310,6 +284,22 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="js.build_tools.grunt">
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="$USER_HOME$/Documents" CustomDictionaries="1" CustomDictionary0="$USER_HOME$/Documents/it.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
@@ -374,7 +364,9 @@
       <workItem from="1558294294918" duration="219000" />
       <workItem from="1558337083894" duration="16105000" />
       <workItem from="1558367669698" duration="56000" />
-      <workItem from="1558424673098" duration="5936000" />
+      <workItem from="1558424673098" duration="5993000" />
+      <workItem from="1558447395844" duration="3514000" />
+      <workItem from="1558512099632" duration="2978000" />
     </task>
     <task id="LOCAL-00001" summary="Creata prima bozza schermata match">
       <created>1555067124003</created>
@@ -649,11 +641,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558436694769</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="riconfigurazione folder">
+      <created>1558436983363</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1558436983363</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="319008000" />
+    <option name="totallyTimeSpent" value="325557000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -666,6 +665,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2613185" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -710,7 +710,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="correzioni manifest" />
     <MESSAGE value="prima versione stabile codyColor multiplayer" />
     <MESSAGE value="Correzione minore al css, rimossi bordi buttons" />
     <MESSAGE value="Disattivati momentaneamente link a schermate non complete, modifiche minori per versione produzione a schermate splash, come si gioca e mmaking" />
@@ -735,18 +734,15 @@
     <MESSAGE value="riorganizzato sistema animazioni, fix bug minore in rmmaking (mancata notifica di abbandono), aggiunto messaggio ciao! in afrermatch, riorganizzazione e commenti css" />
     <MESSAGE value="utilizzo server pubblico" />
     <MESSAGE value="conversione in pwa, aggiunto service worker per salvataggio in pre-cache" />
-    <option name="LAST_COMMIT_MESSAGE" value="conversione in pwa, aggiunto service worker per salvataggio in pre-cache" />
+    <MESSAGE value="riconfigurazione folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="riconfigurazione folder" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/img/.gitignore" />
-    <entry file="file://$PROJECT_DIR$/js/scopeService.js" />
     <entry file="file://$PROJECT_DIR$/js/main.js" />
     <entry file="file://$PROJECT_DIR$/js/plugins.js" />
-    <entry file="file://$PROJECT_DIR$/js/navigationHandler.js" />
     <entry file="file://$PROJECT_DIR$/js/controllers/loginController.js" />
     <entry file="file://$PROJECT_DIR$/js/controllers/rankingController.js" />
     <entry file="file://$PROJECT_DIR$/js/controllers/registerController.js" />
-    <entry file="file://$PROJECT_DIR$/js/controllers/splashController.js" />
     <entry file="file://$PROJECT_DIR$/js/sessionHandler.js" />
     <entry file="file://$PROJECT_DIR$/js/gameData.js" />
     <entry file="file://$PROJECT_DIR$/js/audioHandler.js" />
@@ -776,13 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="74" column="69" selection-start-line="74" selection-start-column="69" selection-end-line="74" selection-end-column="69" />
         </state>
       </provider>
     </entry>
@@ -862,18 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/homeController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1182" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/partials/bootcamp.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -910,13 +887,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
           <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/newcmatch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2373">
-          <caret line="113" column="105" selection-start-line="113" selection-start-column="39" selection-end-line="113" selection-end-column="105" />
         </state>
       </provider>
     </entry>
@@ -963,13 +933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/humans.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -984,59 +947,112 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/workbox-config-js" />
+    <entry file="file://$PROJECT_DIR$/src/workbox-config.js" />
+    <entry file="file://$PROJECT_DIR$/js/navigationHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="32" column="56" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/site.webmanifest">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workbox-config-js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4401">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        <state relative-caret-position="-353">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/workbox-config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manifest.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        <state relative-caret-position="296">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/workbox-config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        <state relative-caret-position="168">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src-service-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scopeService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7155">
+          <caret line="6" column="33" lean-forward="true" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/newcmatch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="169" column="10" lean-forward="true" selection-start-line="161" selection-start-column="3" selection-end-line="169" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/matchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="310" column="37" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/rabbitCommunicator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/splashController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/homeController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-130">
+          <caret line="33" column="125" selection-start-line="33" selection-start-column="125" selection-end-line="33" selection-end-column="125" />
         </state>
       </provider>
     </entry>
