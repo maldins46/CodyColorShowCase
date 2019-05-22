@@ -193,7 +193,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/main.css",
-    "revision": "1f7c5469881700276d690585f0c4ce2d"
+    "revision": "eccb119fe64eeb61ea3307160512d00c"
   },
   {
     "url": "css/normalize.css",
@@ -209,15 +209,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "partials/aftermatch.html",
-    "revision": "87826fabacec8409212cea2e64a4473a"
+    "revision": "2f597ffea4fca58c2815ab6a9d7b1755"
   },
   {
     "url": "partials/bootaftermatch.html",
-    "revision": "e902d02d9d0f3544d6d23bb2f5c1c896"
+    "revision": "b3396dc63ae9b9647660b7cf940fb602"
   },
   {
     "url": "partials/bootcamp.html",
-    "revision": "47f13fc5ea7ea9ec6415710ce42e9825"
+    "revision": "63335843758f22d1f781494f51a51bfe"
   },
   {
     "url": "partials/bootcampmaking.html",
@@ -237,7 +237,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "partials/match.html",
-    "revision": "d74987e2a9ea12e24d7d05dddd15aa80"
+    "revision": "b7d42605f0b280291d8fb1d9d04df649"
   },
   {
     "url": "partials/newcmatch.html",
