@@ -10,7 +10,7 @@
             <div id="match-in-progress" ng-hide="countdownInProgress" class="page--component">
                 <!-- Top centered columns with player-enemy data-->
                 <div class="centered-columns" ng-show="withEnemy">
-                    <div class="centered-columns-pair">
+                    <div class="centered-columns--pair">
                         <div class="centered-columns--column">
                             <div class="big-text ellipsize">{{playerPoints}}</div>
                         </div>
@@ -19,7 +19,7 @@
                         </div>
                     </div>
 
-                    <div class="centered-columns-pair">
+                    <div class="centered-columns--pair">
                         <div class="centered-columns--column ellipsize">
                             {{playerNickname}}
                         </div>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <div class="centered-columns-pair">
+                    <div class="centered-columns--pair">
                         <div class="centered-columns--column ellipsize" ng-class="{'timer--stop': playerPositioned}">
                             <i class="far fa-clock" ng-class="playerPositioned ? 'timer--stop' : 'timer--normal'"></i>
                             {{playerMatchTimerText}}

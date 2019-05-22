@@ -713,7 +713,7 @@ button.modal--button-secondary:hover {
     font-size: 20px;
 }
 
-.centered-columns-pair {
+.centered-columns--pair {
     display: flex;
     flex-direction: row;
     align-items: center;
