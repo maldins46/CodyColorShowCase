@@ -192,10 +192,6 @@ workbox.precaching.precacheAndRoute([
     "revision": "92c560f1efb7fa95b4113c0cf65bcdb6"
   },
   {
-    "url": "bower_components/angular/angular-csp.css",
-    "revision": "2986170bca6ad26fa43898a113fb9716"
-  },
-  {
     "url": "css/main.css",
     "revision": "243af11debeeac0e23aa7712052666dc"
   },
@@ -229,7 +225,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "partials/cmmaking.html",
-    "revision": "b188875b18bc5ca9cc1f1578890d6cf7"
+    "revision": "b934f7a9dcb7482a19c963d4510b3800"
   },
   {
     "url": "partials/home.html",
@@ -245,7 +241,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "partials/newcmatch.html",
-    "revision": "6619562c8daabff3013a3d7767c0e75d"
+    "revision": "b27f295227e70a363d99cca6a8b60d7c"
   },
   {
     "url": "partials/ranking.html",
@@ -257,7 +253,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "partials/rmmaking.html",
-    "revision": "fe0e7ddb32b03e6fd41c2d542d248926"
+    "revision": "f4a2e3e6ecb09ec457847d7bb05715ca"
   },
   {
     "url": "partials/rules.html",
@@ -268,60 +264,16 @@ workbox.precaching.precacheAndRoute([
     "revision": "fb98adbd8182a651e3ee6e9b4424c867"
   },
   {
-    "url": "bower_components/angular-cookies/bower.json",
-    "revision": "fb8602c4b46e38cd15b016fe2a881a40"
-  },
-  {
-    "url": "bower_components/angular-cookies/package.json",
-    "revision": "7c9c6f6be8c934a445931eae9d33c1d1"
-  },
-  {
-    "url": "bower_components/angular-sanitize/bower.json",
-    "revision": "bda7239ef05aa0f7eb8107597b8aa3df"
-  },
-  {
-    "url": "bower_components/angular-sanitize/package.json",
-    "revision": "fa5647c3c52743a5e59225d0a44a3d29"
-  },
-  {
-    "url": "bower_components/angular-translate-loader-static-files/bower.json",
-    "revision": "2737e3e5c01968d0381f13bca555b554"
-  },
-  {
-    "url": "bower_components/angular-translate-loader-static-files/package.json",
-    "revision": "7ced9de90cbdfa534bf579124f509f4e"
-  },
-  {
-    "url": "bower_components/angular-translate-storage-cookie/bower.json",
-    "revision": "c20b3f84ec63d086e34a95aa4ca72c1e"
-  },
-  {
-    "url": "bower_components/angular-translate-storage-cookie/package.json",
-    "revision": "7ed65f56ec0a8610ae5c2ad888b8898f"
-  },
-  {
-    "url": "bower_components/angular-translate/bower.json",
-    "revision": "1f49d8f6e46e4672cb1a4a629027ac37"
-  },
-  {
-    "url": "bower_components/angular/bower.json",
-    "revision": "1ccf6162f3f2857fc3174c931d6b04d2"
-  },
-  {
-    "url": "bower_components/angular/package.json",
-    "revision": "662e0d2c00209e32c1ac04ad7742a71d"
-  },
-  {
     "url": "browserconfig.xml",
     "revision": "905720e1544539f066d6e6c2017abe2c"
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "250970620818ddc3e9bbf76a01ce3183"
+    "revision": "842f9454aabaf466c667b8a749d8e4b9"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "c0235013134e437758191a35d56bc39a"
+    "revision": "21194bd277aa0a90f5b0d2a67a7e934e"
   },
   {
     "url": "manifest.json",
@@ -401,7 +353,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/main.js",
-    "revision": "fd1bf6872f8e610bd70af4dc70c0b6e6"
+    "revision": "c6ff72b5ec893587ea7a34fda984824d"
   },
   {
     "url": "js/navigationHandler.js",
