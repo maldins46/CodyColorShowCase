@@ -2,7 +2,7 @@
  * Controller login
  */
 angular.module('codyColor').controller('registerCtrl',
-    function (navigationHandler, $scope, audioHandler, $location, sessionHandler) {
+    function (navigationHandler, $scope, audioHandler, $location, sessionHandler, $translate) {
         console.log("Controller registration ready.");
 
         // inizializzazione sessione
@@ -14,6 +14,21 @@ angular.module('codyColor').controller('registerCtrl',
 
         $scope.goToHome = function () {
             navigationHandler.goToPage($location, $scope, '/home');
+            audioHandler.playSound('menu-click');
+        };
+
+        // impostazioni multi language
+        $scope.openLanguageModal = function() {
+            $scope.languageModal = true;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.closeLanguageModal = function() {
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+            $scope.languageModal = false;
             audioHandler.playSound('menu-click');
         };
 

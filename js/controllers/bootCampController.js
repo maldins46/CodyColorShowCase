@@ -2,7 +2,7 @@
  * Controller Empty, gestisce le schermate che non necessitano di funzioni specifiche.
  */
 angular.module('codyColor').controller('bootCampCtrl',
-    function ($scope, gameData, scopeService, robyAnimator, $location,
+    function ($scope, gameData, scopeService, robyAnimator, $location, $translate,
               navigationHandler, audioHandler, sessionHandler, rabbit) {
         console.log("Bootcamp controller ready.");
 
@@ -424,6 +424,21 @@ angular.module('codyColor').controller('bootCampCtrl',
                 navigationHandler.goToPage($location, $scope, '/home', arguments.notFromClick);
             }
             gameData.clearGameData();
+        };
+
+        // impostazioni multi language
+        $scope.openLanguageModal = function() {
+            $scope.languageModal = true;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.closeLanguageModal = function() {
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
         };
 
         // impostazioni audio

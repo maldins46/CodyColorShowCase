@@ -3,7 +3,8 @@
  * portarne avanti una con lo stesso avversario
  */
 angular.module('codyColor').controller('bootAftermatchCtrl',
-    function ($scope, rabbit, gameData, scopeService, $location, navigationHandler, audioHandler, sessionHandler) {
+    function ($scope, rabbit, gameData, scopeService, $location, navigationHandler,
+              audioHandler, sessionHandler, $translate) {
         console.log("Controller aftermatch ready.");
 
         // inizializzazione sessione
@@ -79,6 +80,21 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
             $scope.exitGameModal = false;
+        };
+
+        // impostazioni multi language
+        $scope.openLanguageModal = function() {
+            $scope.languageModal = true;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.closeLanguageModal = function() {
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
         };
 
         // impostazioni audio

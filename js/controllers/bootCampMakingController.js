@@ -2,7 +2,7 @@
  * Controller Empty, gestisce le schermate che non necessitano di funzioni specifiche.
  */
 angular.module('codyColor').controller('bootCampMakingCtrl',
-    function ($scope, rabbit, navigationHandler,
+    function ($scope, rabbit, navigationHandler, $translate,
               audioHandler, $location, sessionHandler, gameData, scopeService) {
         console.log("Bootcamp making controller ready.");
 
@@ -33,13 +33,16 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
         gameData.setGameType('bootcamp');
 
         // timer set
-        $scope.timerSettings = [ { text: '15 secondi', value: 15000 },
-                                 { text: '30 secondi', value: 30000 },
-                                 { text: '1 minuto', value: 60000 },
-                                 { text: '2 minuti', value: 120000 } ];
+        $translate(['15_SECONDS', '30_SECONDS', '1_MINUTE', '2_MINUTES']).then(function (translations) {
+            $scope.timerSettings = [
+                { text: translations['15_SECONDS'], value: 15000 },
+                { text: translations['30_SECONDS'], value: 30000 },
+                { text: translations['1_MINUTE'], value: 60000 },
+                { text: translations['2_MINUTES'], value: 120000 } ];
+        });
 
         $scope.currentTimerIndex = 1;
-        gameData.setTimerSetting($scope.timerSettings[$scope.currentTimerIndex].value);
+        gameData.setTimerSetting(30000);
         $scope.incrementTime = function() {
             audioHandler.playSound('menu-click');
             if ($scope.currentTimerIndex < 3)
@@ -59,12 +62,16 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
             gameData.setTimerSetting($scope.timerSettings[$scope.currentTimerIndex].value);
         };
 
-        $scope.enemySettings = [ { text: 'Nessun avversario', value: 0 },
-                                 { text: 'IA facile', value: 1 },
-                                 { text: 'IA medio', value: 2 },
-                                 { text: 'IA difficile', value: 3 } ];
+        $translate(['NO_ENEMY', 'AI_EASY', 'AI_MEDIUM', 'AI_HARD']).then(function (translations) {
+            $scope.enemySettings = [
+                { text: translations['NO_ENEMY'], value: 0 },
+                { text: translations['AI_EASY'], value: 1 },
+                { text: translations['AI_MEDIUM'], value: 2 },
+                { text: translations['AI_HARD'], value: 3 } ];
+        });
+
         $scope.currentEnemyIndex = 0;
-        gameData.setBootEnemySetting($scope.enemySettings[$scope.currentEnemyIndex].value);
+        gameData.setBootEnemySetting(0);
         $scope.enemyRight = function() {
             audioHandler.playSound('menu-click');
             if ($scope.currentEnemyIndex < 3)
@@ -111,6 +118,39 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
         $scope.connected = rabbit.getConnectionState();
         if (!$scope.connected)
             rabbit.connect();
+
+        // impostazioni multi language
+        $scope.openLanguageModal = function() {
+            $scope.languageModal = true;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.closeLanguageModal = function() {
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+
+            // timer set
+            $translate(['15_SECONDS', '30_SECONDS', '1_MINUTE', '2_MINUTES']).then(function (translations) {
+                $scope.timerSettings = [
+                    { text: translations['15_SECONDS'], value: 15000 },
+                    { text: translations['30_SECONDS'], value: 30000 },
+                    { text: translations['1_MINUTE'], value: 60000 },
+                    { text: translations['2_MINUTES'], value: 120000 } ];
+            });
+
+            $translate(['NO_ENEMY', 'AI_EASY', 'AI_MEDIUM', 'AI_HARD']).then(function (translations) {
+                $scope.enemySettings = [
+                    { text: translations['NO_ENEMY'], value: 0 },
+                    { text: translations['AI_EASY'], value: 1 },
+                    { text: translations['AI_MEDIUM'], value: 2 },
+                    { text: translations['AI_HARD'], value: 3 } ];
+            });
+
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
+        };
 
         // impostazioni audio
         $scope.basePlaying = audioHandler.isAudioEnabled();

@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('homeCtrl',
     function ($scope, rabbit, navigationHandler, audioHandler,
-              $location, sessionHandler, scopeService) {
+              $location, sessionHandler, scopeService, $translate) {
         console.log("Controller home ready.");
 
         // inizializzazione sessione
@@ -101,6 +101,26 @@ angular.module('codyColor').controller('homeCtrl',
         $scope.goToLogin = function () {
             rabbit.cleanCallbacks();
             navigationHandler.goToPage($location, $scope, "/login");
+            audioHandler.playSound('menu-click');
+        };
+
+        $scope.closeNoConnectionModal = function() {
+            $scope.noConnectionModal = false;
+            audioHandler.playSound('menu-click');
+        };
+
+        // impostazioni multi language
+        $scope.openLanguageModal = function() {
+            $scope.languageModal = true;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.closeLanguageModal = function() {
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+            $scope.languageModal = false;
             audioHandler.playSound('menu-click');
         };
 

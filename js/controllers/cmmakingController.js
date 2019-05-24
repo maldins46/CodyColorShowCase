@@ -2,7 +2,7 @@
  * Controller partita con avversario custom
  */
 angular.module('codyColor').controller('cmmakingCtrl',
-    function ($scope, rabbit, navigationHandler,
+    function ($scope, rabbit, navigationHandler, $translate,
               audioHandler, $location, sessionHandler, gameData, scopeService, chatHandler) {
         console.log("Cmmaking controller ready.");
 
@@ -104,14 +104,22 @@ angular.module('codyColor').controller('cmmakingCtrl',
         },  function () {
             // onQuitGameMessage
             scopeService.safeApply($scope, function () {
-                $scope.forceExitText = "L'avversario ha abbandonato la partita.";
+                $translate('ENEMY_LEFT').then(function (enemyLeft) {
+                    $scope.forceExitText = enemyLeft;
+                }, function (translationId) {
+                    $scope.forceExitText = translationId;
+                });
                 $scope.forceExitModal = true;
             });
 
         }, function () {
             // onConnectionLost
             scopeService.safeApply($scope, function () {
-                $scope.forceExitText = "Si è verificato un errore nella connessione con il server. Partita terminata.";
+                $translate('FORCE_EXIT').then(function (forceExit) {
+                    $scope.forceExitText = forceExit;
+                }, function (translationId) {
+                    $scope.forceExitText = translationId;
+                });
                 $scope.forceExitModal = true;
             });
 
@@ -188,6 +196,21 @@ angular.module('codyColor').controller('cmmakingCtrl',
             navigationHandler.goToPage($location, $scope, '/home', false);
             gameData.clearGameData();
             chatHandler.clearChat();
+        };
+
+        // impostazioni multi language
+        $scope.openLanguageModal = function() {
+            $scope.languageModal = true;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.closeLanguageModal = function() {
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
+        };
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+            $scope.languageModal = false;
+            audioHandler.playSound('menu-click');
         };
 
         // impostazioni audio

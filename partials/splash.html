@@ -3,21 +3,18 @@
     <div class="page--wrapper" ng-click="goToHome()">
         <div class="page--body">
             <img class="big-image floating-up-animation" src="img/logo.png" alt="Game logo">
-            <h1 class="ellipsize">CodyColor</h1>
-            <div class="ellipsize">Un mini gioco multiplayer.</div>
+            <h1 class="ellipsize">{{ 'APP_NAME_SHORT' | translate }}</h1>
+            <div class="ellipsize">{{ 'APP_SUBTITLE' | translate }}</div>
             <div class="press-to-continue flashing-animation ellipsize">
-                Premi per continuare
+                {{ 'PRESS_TO_CONTINUE' | translate }}
             </div>
         </div>
         <div class="page--push"></div>
     </div>
 
     <div class="page--footer">
-        <div class="page--footer-single-column ellipsize">
-            Versione Beta 1.0.6<br/>
-            Sviluppato da <a href="https://www.riccardomaldini.it/">Riccardo Maldini</a><br/>
-            Music by <a href="https://www.instagram.com/el.favelas">ElFavelas</a><br/>
-            © Digit S.r.l. 2019 per <a href="https://codemooc.net">CodeMOOC.net</a>
+        <div class="page--footer-single-column ellipsize"
+             translate="SPLASH_FOOTER" translate-values="{ version: '1.0.7' }">
         </div>
     </div>
 </div>
