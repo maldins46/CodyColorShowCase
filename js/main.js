@@ -7,7 +7,7 @@ angular.module('codyColor', ['ngRoute', 'ngAnimate', 'ngDragDrop',
 // global module configuration
 angular.module('codyColor').config(function ($translateProvider) {
     $translateProvider.useStaticFilesLoader({
-        prefix: '/locales/locale-',
+        prefix: 'locales/locale-',
         suffix: '.json'
     });
 
