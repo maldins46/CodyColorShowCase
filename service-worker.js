@@ -483,5 +483,4 @@ workbox.precaching.precacheAndRoute([
     "url": "js/vendor/stomp.min.js",
     "revision": "00e1237a0ae9934f2eb4506801a206ea"
   }
-], {
-});
+], { cleanupOutdatedCaches: true });
