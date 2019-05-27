@@ -29,7 +29,7 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
         $scope.playerMatchPoints   = results.playerResult.points;
         $scope.playerNickname      = gameData.getPlayerNickname();
         $scope.playerLength        = ( results.playerResult.loop ? 'Loop!' : results.playerResult.length );
-        $scope.formattedPlayerTime = gameData.formatTimerText(results.playerResult.time);
+        $scope.formattedPlayerTime = gameData.formatTimerTextDecPrecision(results.playerResult.time);
 
         if ($scope.withEnemy) {
             $scope.enemyLength        = ( results.enemyResult.loop ? 'Loop!' : results.enemyResult.length );
@@ -37,7 +37,7 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
             $scope.enemyMatchPoints   = results.enemyResult.points;
             $scope.enemyNickname      = gameData.getEnemyNickname();
             $scope.winner             = gameData.getMatchWinner();
-            $scope.formattedEnemyTime = gameData.formatTimerText(results.enemyResult.time);
+            $scope.formattedEnemyTime = gameData.formatTimerTextDecPrecision(results.enemyResult.time);
             $scope.matchCount         = gameData.getMatchCount();
 
             if ($scope.winner === gameData.getPlayerNickname()) {

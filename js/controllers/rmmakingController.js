@@ -7,17 +7,25 @@ angular.module('codyColor').controller('rmmakingCtrl',
               navigationHandler, audioHandler, sessionHandler, chatHandler) {
         console.log("Controller random matchmaking ready.");
 
-        // inizializzazione sessione
-        navigationHandler.initializeBackBlock($scope);
-        if (sessionHandler.isSessionInvalid()) {
+        // routine da eseguire per chiudere la schermata e uscire dal gioco in modo sicuro
+        let quitGame = function() {
             rabbit.quitGame();
             gameData.clearGameData();
             chatHandler.clearChat();
+            if (mmakingTimer !== undefined) {
+                clearInterval(mmakingTimer);
+            }
+        };
+
+        // inizializzazione sessione
+        navigationHandler.initializeBackBlock($scope);
+        if (sessionHandler.isSessionInvalid()) {
+            quitGame();
             navigationHandler.goToPage($location, $scope, '/');
             return;
         }
 
-        // cambia schermata in modo 'sicuro', evitando flickering durante le animazioni
+        // cambia schermata (senza lasciare la pagina) evitando flickering durante le animazioni
         let changeScreen = function(newScreen) {
             scopeService.safeApply($scope, function () {
                 $scope.mmakingState = 'loadingScreen';
@@ -28,6 +36,11 @@ angular.module('codyColor').controller('rmmakingCtrl',
                 });
             }, 200);
         };
+
+        // matchmakingTimer: interrompe la ricerca della partita nel caso in cui vada troppo per le lunghe
+        $scope.mmakingTimerText = '2:00';
+        let mmakingTimer = undefined;
+        let mmakingTimerValue = 120000;
 
         // tiene traccia dello stato del matchmaking, e di quale schermata deve essere visualizzata
         changeScreen('nicknameSelection');
@@ -54,6 +67,8 @@ angular.module('codyColor').controller('rmmakingCtrl',
 
         }, function (message) {
             // onHereMessage
+            audioHandler.playSound('enemy-found');
+
             gameData.setEnemyNickname(message.nickname);
             gameData.setEnemyReady(message.readyState);
 
@@ -61,7 +76,9 @@ angular.module('codyColor').controller('rmmakingCtrl',
                 rabbit.sendHereMessage(false);
             }
 
-            audioHandler.playSound('enemy-found');
+            clearInterval(mmakingTimer);
+            mmakingTimer = undefined;
+
             changeScreen('enemyFound');
             scopeService.safeApply($scope, function () {
                 $scope.enemyNickname = gameData.getEnemyNickname();
@@ -130,6 +147,24 @@ angular.module('codyColor').controller('rmmakingCtrl',
             changeScreen('waitingEnemy');
             gameData.setPlayerNickname(nickname);
             rabbit.sendGameRequest();
+            mmakingTimer = setInterval(function () {
+                mmakingTimerValue-= 1000;
+                if (mmakingTimerValue >= 0) {
+                    scopeService.safeApply($scope, function () {
+                        $scope.mmakingTimerText = gameData.formatTimerTextSecPrecision(mmakingTimerValue);
+                    });
+                } else {
+                    quitGame();
+                    scopeService.safeApply($scope, function () {
+                        $translate('NO_NEW_ENEMY').then(function (forceExit) {
+                            $scope.forceExitText = forceExit;
+                        }, function (translationId) {
+                            $scope.forceExitText = translationId;
+                        });
+                        $scope.forceExitModal = true;
+                    });
+                }
+            }, 1000);
         };
 
         // invocata una volta premuto il tasto 'iniziamo'
@@ -149,10 +184,8 @@ angular.module('codyColor').controller('rmmakingCtrl',
 
         $scope.continueExitGame = function() {
             audioHandler.playSound('menu-click');
-            rabbit.quitGame();
+            quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
-            gameData.clearGameData();
-            chatHandler.clearChat();
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -163,10 +196,8 @@ angular.module('codyColor').controller('rmmakingCtrl',
         $scope.forceExitText = '';
         $scope.continueForceExit = function() {
             audioHandler.playSound('menu-click');
-            rabbit.quitGame();
+            quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
-            gameData.clearGameData();
-            chatHandler.clearChat();
         };
 
         // impostazioni multi language

@@ -26,8 +26,8 @@ angular.module('codyColor').controller('aftermatchCtrl',
         $scope.playerNickname = gameData.getPlayerNickname();
         $scope.enemyNickname = gameData.getEnemyNickname();
         $scope.winner = gameData.getMatchWinner();
-        $scope.formattedPlayerTime = gameData.formatTimerText($scope.results.playerResult.time);
-        $scope.formattedEnemyTime  = gameData.formatTimerText($scope.results.enemyResult.time);
+        $scope.formattedPlayerTime = gameData.formatTimerTextDecPrecision($scope.results.playerResult.time);
+        $scope.formattedEnemyTime  = gameData.formatTimerTextDecPrecision($scope.results.enemyResult.time);
         $scope.matchCount = gameData.getMatchCount();
 
         if ($scope.winner === gameData.getPlayerNickname()) {

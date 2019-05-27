@@ -378,7 +378,7 @@ angular.module('codyColor').factory('gameData', function () {
     // --- helper methods ---
 
     // funzione che restituisce una stringa leggibile dato il valore di un timer
-    gameData.formatTimerText = function(timerValue) {
+    gameData.formatTimerTextDecPrecision = function(timerValue) {
         let decimals = Math.floor((timerValue / 10) % 100).toString();
         let seconds = Math.floor((timerValue / 1000) % 60).toString();
         let minutes = Math.floor((timerValue / (1000 * 60)) % 60).toString();
@@ -390,6 +390,15 @@ angular.module('codyColor').factory('gameData', function () {
         } else {
             return seconds + ':' + decimals;
         }
+    };
+
+    // funzione che restituisce una stringa leggibile dato il valore di un timer, omettendo le cifre decimali
+    gameData.formatTimerTextSecPrecision = function(timerValue) {
+        let seconds = Math.floor((timerValue / 1000) % 60).toString();
+        let minutes = Math.floor((timerValue / (1000 * 60)) % 60).toString();
+
+        seconds = (seconds.length < 2) ? "0" + seconds : seconds;
+        return minutes + ':' + seconds;
     };
 
     // funzione che restituisce una stringa leggibile dato il valore di un timer

@@ -119,10 +119,10 @@ angular.module('codyColor').controller('bootCampCtrl',
 
         // inizializzazione timers
         let playerMatchTimerValue = gameData.getTimerSetting();
-        $scope.playerMatchTimerText = gameData.formatTimerText(playerMatchTimerValue);
+        $scope.playerMatchTimerText = gameData.formatTimerTextDecPrecision(playerMatchTimerValue);
 
         let enemyMatchTimerValue = gameData.getTimerSetting();
-        $scope.enemyMatchTimerText =  gameData.formatTimerText(enemyMatchTimerValue);
+        $scope.enemyMatchTimerText =  gameData.formatTimerTextDecPrecision(enemyMatchTimerValue);
 
         let startCountdownValue = 3;
         $scope.startCountdownText = startCountdownValue.toString();
@@ -179,7 +179,7 @@ angular.module('codyColor').controller('bootCampCtrl',
 
                 if (playerMatchTimerValue > 0) {
                     scopeService.safeApply($scope, function () {
-                        $scope.playerMatchTimerText = gameData.formatTimerText(playerMatchTimerValue);
+                        $scope.playerMatchTimerText = gameData.formatTimerTextDecPrecision(playerMatchTimerValue);
                     });
 
                 } else {
@@ -191,7 +191,7 @@ angular.module('codyColor').controller('bootCampCtrl',
                         $scope.showCompleteGrid = true;
                         $scope.showArrows = false;
                         $scope.playerPositioned = true;
-                        $scope.playerMatchTimerText = gameData.formatTimerText(0);
+                        $scope.playerMatchTimerText = gameData.formatTimerTextDecPrecision(0);
                         calculateAllStartPositionCss(false);
                     });
 
@@ -212,7 +212,7 @@ angular.module('codyColor').controller('bootCampCtrl',
 
                     if (enemyMatchTimerValue > 0 && enemyMatchTimerValue > positionEnemyTrigger) {
                         scopeService.safeApply($scope, function () {
-                            $scope.enemyMatchTimerText = gameData.formatTimerText(enemyMatchTimerValue);
+                            $scope.enemyMatchTimerText = gameData.formatTimerTextDecPrecision(enemyMatchTimerValue);
                         });
 
                     } else if (enemyMatchTimerValue <= positionEnemyTrigger) {
@@ -226,7 +226,7 @@ angular.module('codyColor').controller('bootCampCtrl',
                             enemyMatchTimer = undefined;
                             scopeService.safeApply($scope, function () {
                                 $scope.enemyPositioned = true;
-                                $scope.enemyMatchTimerText = gameData.formatTimerText(enemyMatchTimerValue);
+                                $scope.enemyMatchTimerText = gameData.formatTimerTextDecPrecision(enemyMatchTimerValue);
                             });
                         }
                     } else {
@@ -236,7 +236,7 @@ angular.module('codyColor').controller('bootCampCtrl',
 
                         scopeService.safeApply($scope, function () {
                             $scope.enemyPositioned = true;
-                            $scope.enemyMatchTimerText = gameData.formatTimerText(0);
+                            $scope.enemyMatchTimerText = gameData.formatTimerTextDecPrecision(0);
                         });
 
                         gameData.setEnemyMatchTime(0);
@@ -328,7 +328,7 @@ angular.module('codyColor').controller('bootCampCtrl',
                     enemyMatchTimer = undefined;
                     scopeService.safeApply($scope, function () {
                         $scope.enemyPositioned = true;
-                        $scope.enemyMatchTimerText = gameData.formatTimerText(positionEnemyTrigger);
+                        $scope.enemyMatchTimerText = gameData.formatTimerTextDecPrecision(positionEnemyTrigger);
                     });
                 }
 
