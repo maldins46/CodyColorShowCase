@@ -4,7 +4,7 @@ module.exports = {
     "globPatterns": [
         "audio/*.wav",                 /* Audio */
         "**/*.{png,ico}",              /* Images */
-        "css/*.css",                    /* css */
+        "**/*.css",                    /* css (fontawesome included) */
         "**/*.html",                   /* html */
         "**/*.{json,webmanifest,xml}", /* auxiliary */
         "js/**/*.js"                   /* javascript */
