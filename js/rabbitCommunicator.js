@@ -61,7 +61,7 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
 
     rabbit.connect = function () {
         // todo switch to release prima della pubblicazione
-        client = Stomp.client(credentials.debugUrl);
+        client = Stomp.client(credentials.releaseUrl);
         client.connect(credentials.username,
                        credentials.password,
                        onConnected,

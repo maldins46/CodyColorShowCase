@@ -390,7 +390,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "b7957527a522261d954d3c27b83bef41"
+    "revision": "d0aa336ef5e460457931145e356c0c5d"
   },
   {
     "url": "js/robyAnimator.js",
@@ -402,7 +402,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "108dd3ad9affbfcdfd00bcc557ba3cfe"
+    "revision": "14f93ea21e5fa01e6894ece6d1f5d3da"
   },
   {
     "url": "js/vendor/jquery.ui.touch-punch.min.js",
