@@ -79,9 +79,9 @@
     </div>
 
     <!-- No connection modal -->
-    <div class="modal" ng-show="noConnectionModal">
+    <div class="modal" ng-show="noOnlineModal">
         <div class="modal--content">
-            <p>{{ 'NO_CONNECT_DESC' | translate }}</p>
+            <p>{{ noOnlineModalText }}</p>
             <div class="modal--buttons-container">
                 <button class="modal--button-primary" ng-click="closeNoConnectionModal()">{{ 'OK' | translate }}</button>
             </div>

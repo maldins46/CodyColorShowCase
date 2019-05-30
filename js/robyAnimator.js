@@ -14,7 +14,7 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
     let playerPath;
     let enemyPath;
 
-    let lastMovement = false;
+    let lastMovement;
 
     let robyImageCallbacks = {};
     let robyWalkingTimers = {};
@@ -26,6 +26,7 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
 
         robyImageCallbacks = {};
         robyWalkingTimers = {};
+        lastMovement = false;
     };
 
     robyAnimator.initializeElements = function (changePlayerImage, changeEnemyImage) {

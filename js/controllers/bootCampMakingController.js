@@ -14,12 +14,6 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
             return;
         }
 
-        rabbit.setBaseCallbacks(function (response) {
-            sessionHandler.setTotalMatches(response.totalMatches);
-            sessionHandler.setConnectedPlayers(response.connectedPlayers);
-            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
-        });
-
         // carica la pagina con un leggero delay per evitare problemi di flickering
         $scope.pageReady = false;
         setTimeout(function () {
@@ -27,8 +21,6 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
                 $scope.pageReady = true;
             });
         }, 200);
-
-
 
         gameData.setGameType('bootcamp');
 
@@ -43,6 +35,7 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
 
         $scope.currentTimerIndex = 1;
         gameData.setTimerSetting(30000);
+
         $scope.incrementTime = function() {
             audioHandler.playSound('menu-click');
             if ($scope.currentTimerIndex < 3)
@@ -52,6 +45,7 @@ angular.module('codyColor').controller('bootCampMakingCtrl',
 
             gameData.setTimerSetting($scope.timerSettings[$scope.currentTimerIndex].value);
         };
+
         $scope.decrementTime = function() {
             audioHandler.playSound('menu-click');
             if ($scope.currentTimerIndex > 0)

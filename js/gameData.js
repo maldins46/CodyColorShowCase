@@ -5,195 +5,180 @@ angular.module('codyColor').factory('gameData', function () {
 
     let gameData = {};
 
-    // dati serie corrente
-    let playerNickname;
-    let enemyNickname;
-    let gameRoomId;
-    let playerId;
-    let playerPoints;
-    let enemyPoints;
-    let matchCount;
-    let timerSetting;
-    let bootEnemySetting;
-    let gameType;
-    let gameCode;
+    const gameTypes = { random: 'random', custom: 'custom', aga: 'aga' };
 
-    // dati partita corrente
-    let isPlayerReady;
-    let isEnemyReady;
-    let matchTiles;
-    let matchPlayerStartPosition;
-    let matchEnemyStartPosition;
-    let matchPlayerTime;
-    let matchEnemyTime;
-    let matchResult;
-    let playerWantSkip;
-    let enemyWantSkip;
+    let seriesData = {};
+    let matchData = {};
+
+
+    gameData.getGameTypes = function() {
+        return gameTypes;
+    };
 
 
     // --- getter-setter dati serie corrente --- //
 
     gameData.setPlayerNickname = function (name) {
-        playerNickname = name;
+        seriesData.playerNickname = name;
     };
 
 
     gameData.getPlayerNickname = function () {
-        if (playerNickname === undefined)
-            playerNickname = "Anonimo";
+        if (seriesData.playerNickname === undefined)
+            seriesData.playerNickname = "Anonimo";
 
-        return playerNickname;
+        return seriesData.playerNickname;
     };
 
 
     gameData.setEnemyNickname = function (name) {
-        enemyNickname = name;
+        seriesData.enemyNickname = name;
     };
 
 
     gameData.getEnemyNickname = function () {
-        if (enemyNickname === undefined)
-            enemyNickname = "Anonimo";
+        if (seriesData.enemyNickname === undefined)
+            seriesData.enemyNickname = "Anonimo";
 
-        return enemyNickname;
+        return seriesData.enemyNickname;
     };
 
     gameData.setGameRoomId = function (id) {
-        gameRoomId = id;
+        seriesData.gameRoomId = id;
     };
 
 
     gameData.getGameRoomId = function () {
-        if(gameRoomId === undefined)
-            gameRoomId = -1;
+        if(seriesData.gameRoomId === undefined)
+            seriesData.gameRoomId = -1;
 
-        return gameRoomId;
+        return seriesData.gameRoomId;
     };
 
 
     gameData.setPlayerId = function (id) {
-        playerId = id;
+        seriesData.playerId = id;
     };
 
 
     gameData.getPlayerId = function () {
-        if(playerId === undefined)
-            playerId = -1;
+        if(seriesData.playerId === undefined)
+            seriesData.playerId = -1;
 
-        return playerId;
+        return seriesData.playerId;
     };
 
 
     gameData.getPlayerPoints = function () {
-        if (playerPoints === undefined)
-            playerPoints = 0;
+        if (seriesData.playerPoints === undefined)
+            seriesData.playerPoints = 0;
 
-        return playerPoints;
+        return seriesData.playerPoints;
     };
 
 
     gameData.addPlayerPoints = function (points) {
-        playerPoints += points;
+        seriesData.playerPoints += points;
     };
 
 
     gameData.getEnemyPoints = function () {
-        if (enemyPoints === undefined)
-            enemyPoints = 0;
+        if (seriesData.enemyPoints === undefined)
+            seriesData.enemyPoints = 0;
 
-        return enemyPoints;
+        return seriesData.enemyPoints;
     };
 
 
     gameData.addEnemyPoints = function (points) {
-        enemyPoints += points;
+        seriesData.enemyPoints += points;
     };
 
 
 
     gameData.getMatchCount = function () {
-        if(matchCount === undefined) {
-            matchCount = 1;
+        if(seriesData.matchCount === undefined) {
+            seriesData.matchCount = 1;
         }
-        return matchCount;
+        return seriesData.matchCount;
     };
 
     gameData.addMatch = function() {
-        if(matchCount === undefined) {
-            matchCount = 2;
+        if(seriesData.matchCount === undefined) {
+            seriesData.matchCount = 2;
         } else {
-            matchCount++;
+            seriesData.matchCount++;
         }
     };
 
     gameData.setTimerSetting = function(timer) {
-        timerSetting = timer;
+        seriesData.timerSetting = timer;
     };
 
     gameData.getTimerSetting = function() {
-        if (timerSetting === undefined)
-            timerSetting = 30000;
+        if (seriesData.timerSetting === undefined)
+            seriesData.timerSetting = 30000;
 
-        return timerSetting;
+        return seriesData.timerSetting;
     };
 
     gameData.setBootEnemySetting = function(setting) {
-        bootEnemySetting = setting;
+        seriesData.bootEnemySetting = setting;
     };
 
     gameData.getBootEnemySetting = function() {
-        if (bootEnemySetting === undefined)
-            bootEnemySetting = -1;
+        if (seriesData.bootEnemySetting === undefined)
+            seriesData.bootEnemySetting = -1;
 
-        return bootEnemySetting;
+        return seriesData.bootEnemySetting;
     };
 
     gameData.setGameCode = function(code) {
-        gameCode = code;
+        seriesData.gameCode = code;
     };
 
     gameData.getGameCode = function() {
-        if (gameCode === undefined)
-            gameCode = '0000';
+        if (seriesData.gameCode === undefined)
+            seriesData.gameCode = '0000';
 
-        return gameCode;
+        return seriesData.gameCode;
     };
 
     gameData.setGameType = function(type) {
-        gameType = type;
+        seriesData.gameType = type;
     };
 
     gameData.getGameType = function() {
-        if (gameType === undefined)
-            gameType = 'random';
+        if (seriesData.gameType === undefined)
+            seriesData.gameType = gameTypes.random;
 
-        return gameType;
+        return seriesData.gameType;
     };
 
 
     // --- getter-setter dati match corrente --- //
 
     gameData.isPlayerReady = function () {
-        if (isPlayerReady === undefined)
-            isPlayerReady = false;
+        if (matchData.isPlayerReady === undefined)
+            matchData.isPlayerReady = false;
 
-        return isPlayerReady;
+        return matchData.isPlayerReady;
     };
 
     gameData.setPlayerReady = function (state) {
-        isPlayerReady = state;
+        matchData.isPlayerReady = state;
     };
 
 
     gameData.isEnemyReady = function () {
-        if (isEnemyReady === undefined)
-            isEnemyReady = false;
+        if (matchData.isEnemyReady === undefined)
+            matchData.isEnemyReady = false;
 
-        return isEnemyReady;
+        return matchData.isEnemyReady;
     };
 
     gameData.setEnemyReady = function (state) {
-        isEnemyReady = state;
+        matchData.isEnemyReady = state;
     };
 
     gameData.generateNewMatchTiles = function() {
@@ -216,162 +201,133 @@ angular.module('codyColor').factory('gameData', function () {
 
     gameData.setCurrentMatchTiles = function (tilesString) {
         // si ipotizza al momento una matrice 5x5
-        matchTiles = new Array(5);
+        matchData.tiles = new Array(5);
         let positionIndex = 0;
 
         for (let i = 0; i < 5; i++) {
-            matchTiles[i] = new Array(5);
+            matchData.tiles[i] = new Array(5);
             for (let j = 0; j < 5; j++) {
-                matchTiles[i][j] = tilesString.charAt(positionIndex);
+                matchData.tiles[i][j] = tilesString.charAt(positionIndex);
                 positionIndex++;
             }
         }
     };
 
     gameData.getCurrentMatchTiles = function () {
-        if(matchTiles === undefined) {
-            matchTiles = new Array(5);
+        if (matchData.tiles === undefined) {
+            matchData.tiles = new Array(5);
 
             for (let i = 0; i < 5; i++) {
-                matchTiles[i] = new Array(5);
+                matchData.tiles[i] = new Array(5);
                 for (let j = 0; j < 5; j++) {
-                    matchTiles[i][j] = 'R';
+                    matchData.tiles[i][j] = 'G';
                 }
             }
         }
 
-        return matchTiles;
+        return matchData.tiles;
     };
 
     gameData.getPlayerStartPosition = function () {
-        if (matchPlayerStartPosition === undefined) {
-            matchPlayerStartPosition = { side: -1, distance: -1 };
-        }
+        if (matchData.playerStartPosition === undefined)
+            matchData.playerStartPosition = { side: -1, distance: -1 };
 
-        return matchPlayerStartPosition;
+        return  matchData.playerStartPosition;
     };
 
     gameData.setPlayerStartPosition = function (position) {
-        matchPlayerStartPosition = position;
+        matchData.playerStartPosition = position;
     };
 
 
     gameData.getEnemyStartPosition = function () {
-        if (matchEnemyStartPosition === undefined) {
-            matchEnemyStartPosition = { side: -1, distance: -1 };
-        }
+        if (matchData.enemyStartPosition === undefined)
+            matchData.enemyStartPosition = { side: -1, distance: -1 };
 
-        return matchEnemyStartPosition;
+        return matchData.enemyStartPosition;
     };
 
 
     gameData.setEnemyStartPosition = function (position) {
-        matchEnemyStartPosition = position;
-    };
-
-
-    gameData.formatStartPosition = function(position) {
-      return position.side.toString() + ' ' + position.distance.toString();
-    };
-
-
-    gameData.getPlayerMatchTime = function () {
-        if (matchPlayerTime === undefined) {
-            matchPlayerTime = 30000;
-        }
-
-        return matchPlayerTime;
+        matchData.enemyStartPosition = position;
     };
 
 
     gameData.setPlayerMatchTime = function (time) {
-        matchPlayerTime = time;
+        matchData.playerTime = time;
     };
 
+    gameData.getPlayerMatchTime = function () {
+        if (matchData.playerTime === undefined)
+            matchData.playerTime = 0;
 
-    gameData.getEnemyMatchTime = function () {
-        if (matchEnemyTime === undefined) {
-            matchEnemyTime = 30000;
-        }
-
-        return matchEnemyTime;
+        return matchData.playerTime;
     };
 
 
     gameData.setEnemyMatchTime = function (time) {
-        matchEnemyTime = time;
+        matchData.enemyTime = time;
+    };
+
+    gameData.getEnemyMatchTime = function () {
+        if (matchData.enemyTime === undefined)
+            matchData.enemyTime = 0;
+
+        return matchData.enemyTime;
     };
 
 
     gameData.setPlayerWantSkip = function(skip) {
-        return playerWantSkip = skip;
+        matchData.playerWantSkip = skip;
     };
 
 
     gameData.getPlayerWantSkip = function () {
-        if (playerWantSkip === undefined) {
-            playerWantSkip = false;
-        }
+        if (matchData.playerWantSkip === undefined)
+            matchData.playerWantSkip = false;
 
-        return playerWantSkip;
+        return matchData.playerWantSkip;
     };
 
     gameData.setEnemyWantSkip = function(skip) {
-        return enemyWantSkip = skip;
+        matchData.enemyWantSkip = skip;
     };
 
 
     gameData.getEnemyWantSkip = function () {
-        if (enemyWantSkip === undefined) {
-            enemyWantSkip = false;
-        }
+        if (matchData.enemyWantSkip === undefined)
+            matchData.enemyWantSkip = false;
 
-        return enemyWantSkip;
+        return matchData.enemyWantSkip;
     };
 
 
     gameData.setCurrentMatchResult = function (result) {
-        matchResult = result;
+        matchData.result = result;
     };
 
 
     gameData.getCurrentMatchResult = function () {
-        if (matchResult === undefined)
-            matchResult = { playerResult: { points: 0, length: 0, loop: false, time: 0 },
-                            enemyResult: { points: 0, length: 0, loop: false, time: 0 }};
+        if (matchData.result === undefined)
+            matchData.result = {
+                playerResult: { points: 0, length: 0, loop: false, time: 0 },
+                enemyResult: { points: 0, length: 0, loop: false, time: 0 }
+            };
 
-        return matchResult;
+        return matchData.result;
     };
 
 
     // --- data clear methods ---
 
     gameData.clearMatchData = function() {
-        isPlayerReady = undefined;
-        isEnemyReady  = undefined;
-        matchTiles = undefined;
-        matchPlayerStartPosition = undefined;
-        matchEnemyStartPosition = undefined;
-        matchPlayerTime = undefined;
-        matchEnemyTime = undefined;
-        matchResult = undefined;
-        playerWantSkip = undefined;
-        enemyWantSkip = undefined;
+        matchData = {};
     };
 
+
     gameData.clearGameData = function() {
-        gameData.clearMatchData();
-        playerNickname = undefined;
-        enemyNickname = undefined;
-        gameRoomId = undefined;
-        playerId = undefined;
-        playerPoints = undefined;
-        enemyPoints = undefined;
-        matchCount = undefined;
-        timerSetting = undefined;
-        bootEnemySetting = undefined;
-        gameType = undefined;
-        gameCode = undefined;
+        seriesData = {};
+        matchData = {};
     };
 
 
@@ -416,6 +372,11 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
+    gameData.formatStartPosition = function(position) {
+        return position.side.toString() + ' ' + position.distance.toString();
+    };
+
+
     gameData.formatChatDate = function(millis) {
         let date = new Date(millis);
 
@@ -428,14 +389,14 @@ angular.module('codyColor').factory('gameData', function () {
 
     // restituisce il vincitore della partita corrente in base ai dati memorizzati
     gameData.getMatchWinner = function () {
-        if (matchResult.playerResult.points > matchResult.enemyResult.points) {
-            return playerNickname;
-        } else if (matchResult.playerResult.points < matchResult.enemyResult.points) {
-            return enemyNickname;
-        } else if (matchPlayerTime > matchEnemyTime) {
-            return playerNickname;
-        } else if (matchPlayerTime < matchEnemyTime) {
-            return enemyNickname;
+        if (matchData.result.playerResult.points > matchData.result.enemyResult.points) {
+            return seriesData.playerNickname;
+        } else if (matchData.result.playerResult.points < matchData.result.enemyResult.points) {
+            return seriesData.enemyNickname;
+        } else if (matchData.playerTime > matchData.enemyTime) {
+            return seriesData.playerNickname;
+        } else if (matchData.playerTime < matchData.enemyTime) {
+            return seriesData.enemyNickname;
         } else {
             return "lo sport";
         }

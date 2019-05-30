@@ -29,99 +29,119 @@ angular.module('codyColor').controller('homeCtrl',
             });
         }
 
-        rabbit.setHomeCallbacks(function() {
-            // onConnected
-            scopeService.safeApply($scope, function () {
-                $scope.connected = true;
-            });
+        rabbit.setPageCallbacks({
+            onConnected: function() {
+                scopeService.safeApply($scope, function () {
+                    $scope.connected = true;
+                });
 
-        }, function() {
-            // onConnectionLost
+            }, onConnectionLost: function() {
             scopeService.safeApply($scope, function () {
                 $scope.connected = false;
             });
 
-        } ,function (response) {
-            // onGeneralInfoMessage
-            sessionHandler.setTotalMatches(response.totalMatches);
-            sessionHandler.setConnectedPlayers(response.connectedPlayers);
-            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
-
-            scopeService.safeApply($scope, function () {
-                $scope.totalMatches = (sessionHandler.getTotalMatches()).toString();
-                $scope.connectedPlayers = sessionHandler.getConnectedPlayers().toString();
-            });
+            }, onGeneralInfoMessage: function() {
+                scopeService.safeApply($scope, function () {
+                    $scope.totalMatches = (sessionHandler.getTotalMatches()).toString();
+                    $scope.connectedPlayers = sessionHandler.getConnectedPlayers().toString();
+                });
+            }
         });
 
         // inizializzazione menù di navigazione
         $scope.goToRules = function () {
-            rabbit.cleanCallbacks();
-            navigationHandler.goToPage($location, $scope, "/rules");
             audioHandler.playSound('menu-click');
+            rabbit.setPageCallbacks({});
+            navigationHandler.goToPage($location, $scope, "/rules");
         };
         $scope.goToRMMaking = function () {
-            if ($scope.connected) {
-                rabbit.cleanCallbacks();
-                navigationHandler.goToPage($location, $scope, "/rmmaking");
-                audioHandler.playSound('menu-click');
-            } else {
-                scopeService.safeApply($scope, function () {
-                    $scope.noConnectionModal = true;
+            if (!$scope.connected) {
+                $scope.noOnlineModal = true;
+                $translate('NO_CONNECT_DESC').then(function (enemyLeft) {
+                    $scope.noOnlineModalText = enemyLeft;
+                }, function (translationId) {
+                    $scope.noOnlineModalText = translationId;
                 });
+
+            } else if (!sessionHandler.isClientVersionValid()) {
+                $scope.noOnlineModal = true;
+                $translate('OUTDATED_VERSION_DESC').then(function (enemyLeft) {
+                    $scope.noOnlineModalText = enemyLeft;
+                }, function (translationId) {
+                    $scope.noOnlineModalText = translationId;
+                });
+
+            } else {
+                audioHandler.playSound('menu-click');
+                rabbit.setPageCallbacks({});
+                navigationHandler.goToPage($location, $scope, "/rmmaking");
             }
 
         };
         $scope.goToPMMaking = function () {
-            if ($scope.connected) {
-                rabbit.cleanCallbacks();
-                navigationHandler.goToPage($location, $scope, "/cmmaking");
-                audioHandler.playSound('menu-click');
-            }
-            else {
-                scopeService.safeApply($scope, function () {
-                    $scope.noConnectionModal = true;
+            if (!$scope.connected) {
+                $scope.noOnlineModal = true;
+                $translate('NO_CONNECT_DESC').then(function (enemyLeft) {
+                    $scope.noOnlineModalText = enemyLeft;
+                }, function (translationId) {
+                    $scope.noOnlineModalText = translationId;
                 });
+
+            } else if (!sessionHandler.isClientVersionValid()) {
+                $scope.noOnlineModal = true;
+                $translate('OUTDATED_VERSION_DESC').then(function (enemyLeft) {
+                    $scope.noOnlineModalText = enemyLeft;
+                }, function (translationId) {
+                    $scope.noOnlineModalText = translationId;
+                });
+
+            } else {
+                audioHandler.playSound('menu-click');
+                rabbit.setPageCallbacks({});
+                navigationHandler.goToPage($location, $scope, "/cmmaking");
             }
         };
         $scope.goToBootcamp = function () {
-            rabbit.cleanCallbacks();
-            navigationHandler.goToPage($location, $scope, "/bcampmaking");
             audioHandler.playSound('menu-click');
+            rabbit.setPageCallbacks({});
+            navigationHandler.goToPage($location, $scope, "/bcampmaking");
         };
         $scope.goToRanking = function () {
-            rabbit.cleanCallbacks();
-            navigationHandler.goToPage($location, $scope, "/ranking");
             audioHandler.playSound('menu-click');
+            rabbit.setPageCallbacks({});
+            navigationHandler.goToPage($location, $scope, "/ranking");
         };
         $scope.goToProfile = function () {
-            rabbit.cleanCallbacks();
-            navigationHandler.goToPage($location, $scope, "/profile");
             audioHandler.playSound('menu-click');
+            rabbit.setPageCallbacks({});
+            navigationHandler.goToPage($location, $scope, "/profile");
         };
         $scope.goToLogin = function () {
-            rabbit.cleanCallbacks();
-            navigationHandler.goToPage($location, $scope, "/login");
             audioHandler.playSound('menu-click');
+            rabbit.setPageCallbacks({});
+            navigationHandler.goToPage($location, $scope, "/login");
         };
 
         $scope.closeNoConnectionModal = function() {
-            $scope.noConnectionModal = false;
             audioHandler.playSound('menu-click');
+            $scope.noOnlineModal = false;
         };
 
         // impostazioni multi language
         $scope.openLanguageModal = function() {
+            audioHandler.playSound('menu-click');
             $scope.languageModal = true;
-            audioHandler.playSound('menu-click');
         };
+
         $scope.closeLanguageModal = function() {
-            $scope.languageModal = false;
             audioHandler.playSound('menu-click');
+            $scope.languageModal = false;
         };
+
         $scope.changeLanguage = function(langKey) {
+            audioHandler.playSound('menu-click');
             $translate.use(langKey);
             $scope.languageModal = false;
-            audioHandler.playSound('menu-click');
         };
 
         // impostazioni audio

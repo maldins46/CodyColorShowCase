@@ -6,9 +6,20 @@ angular.module('codyColor').factory("sessionHandler", function() {
     let sessionHandler = {};
     let isSessionValid;
 
-    let totalMatches;
-    let connectedPlayers;
-    let randomWaitingPlayers;
+    // todo da impostare manualmente ad ogni nuova release
+    const clientVersion = '1.0.7';
+
+    // informazioni sul sistema, aggiornate automaticamente dal server non appena connessi
+    let generalInfo = {
+        totalMatches: 0,
+        connectedPlayers: 0,
+        randomWaitingPlayers: 0,
+        requiredClientVersion: clientVersion
+    };
+
+    // numero univoco associato a questa sessione
+    const sessionId = (Math.floor(Math.random() * 100000)).toString();
+
 
     sessionHandler.validateSession = function() {
         isSessionValid = true;
@@ -18,39 +29,46 @@ angular.module('codyColor').factory("sessionHandler", function() {
         return isSessionValid === undefined || isSessionValid === false;
     };
 
-    sessionHandler.setTotalMatches = function (matches) {
-        totalMatches = matches;
+
+    sessionHandler.setGeneralInfo = function (newInfo) {
+        generalInfo = newInfo;
     };
+
 
     sessionHandler.getTotalMatches = function () {
-        if (totalMatches === undefined)
-            totalMatches = 0;
-
-        return totalMatches;
+        return generalInfo.totalMatches;
     };
 
-
-    sessionHandler.setConnectedPlayers = function (players) {
-        connectedPlayers = players;
-    };
 
     sessionHandler.getConnectedPlayers = function () {
-        if (connectedPlayers === undefined)
-            connectedPlayers = 0;
-
-        return connectedPlayers;
+        return generalInfo.connectedPlayers;
     };
 
-    sessionHandler.setRandomWaitingPlayers = function (players) {
-        randomWaitingPlayers = players;
-    };
 
     sessionHandler.getRandomWaitingPlayers = function () {
-        if (randomWaitingPlayers === undefined)
-            randomWaitingPlayers = 0;
-
-        return randomWaitingPlayers;
+        return generalInfo.randomWaitingPlayers;
     };
+
+
+    sessionHandler.getRequiredClientVersion = function () {
+        return generalInfo.requiredClientVersion;
+    };
+
+
+    sessionHandler.isClientVersionValid = function () {
+        return clientVersion.toString() === generalInfo.requiredClientVersion.toString();
+    };
+
+
+    sessionHandler.getClientVersion = function () {
+        return clientVersion;
+    };
+
+
+    sessionHandler.getSessionId = function () {
+        return sessionId;
+    };
+
 
     return sessionHandler;
 });

@@ -1,175 +1,229 @@
 /*
  * RabbitCommunicator module: service che si occupa dell'interazione 
- * con il broker, esponendo funzioni utili
+ * con il broker (RabbitMQ, per l'appunto), esponendo funzioni per la connessione
+ * e l'invio di messaggi al broker
  */
 
-angular.module('codyColor').factory("rabbit",function(gameData) {
-
+angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler) {
     let rabbit = {};
 
-    // credenziali di comunicazione con il server
-    const rabbitUsername = "guest";
-    const rabbitPassword = "guest";
-    //const serverUrl = "ws://127.0.0.1:15674/ws";   /* LOCALE */
-    const serverUrl = "wss://botify.it/codycolor/ws"; /* SERVER */
-    const rabbitVHost = "/";
-    const serverControlQueue = "/queue/serverControl";
-    const clientControlTopic = "/topic/clientsControl";
-    const generalTopic       = "/topic/general";
-    const randGameRoomsTopic = "/topic/gameRooms";
-    const custGameRoomsTopic = "/topic/custGameRooms";
-    const random = 'random';
-    const custom = 'custom';
+    const credentials = {
+        username:   "guest",
+        password:   "guest",
+        vHost:      "/",
+        releaseUrl: "wss://botify.it/codycolor/ws",
+        debugUrl:   "ws://127.0.0.1:15674/ws"
+    };
 
-    // crea il messaggio da utilizzare come richiesta di connessione
-    const uniqueClientId = (Math.floor(Math.random() * 100000)).toString();
+    const endpoints = {
+        serverControlQueue:   "/queue/serverControl",
+        clientControlTopic:   "/topic/clientsControl",
+        generalTopic:         "/topic/general",
+        randomGameRoomsTopic: "/topic/gameRooms",
+        customGameRoomsTopic: "/topic/custGameRooms",
+        agaGameRoomsTopics:   "/topic/agaGameRooms"
+    };
 
-    // riconosce se il client è connesso a rabbit al momento, oppure no
-    let connected;
+    const messageTypes = {
+        gameRequest:      "gameRequest",
+        gameResponse:     "gameResponse",
+        heartbeat:        "heartbeat",
+        tilesRequest:     "tilesRequest",
+        tilesResponse:    "tilesResponse",
+        connectedSignal:  "connectedSignal",
+        generalInfo:      "generalInfo",
+        here:             "here",
+        ready:            "ready",
+        playerPositioned: "playerPositioned",
+        skip:             "skip",
+        chat:             "chat",
+        quitGame:         "quitGame"
+    };
+
+    let connectedToBroker;
     let client;
-
-    // callback passati dai vari controller, utilizzati per eseguire del codice all'arrivo di nuovi messaggi
-    let callbacks = {};
-
-    // timer di heartbeat
+    let pageCallbacks = {};
     let heartbeatTimer;
+    let subscriptions = {};
 
-    // riferimenti alle subscription
-    let serverDirectSubscription;
-    let generalSubscription;
-    let gameRoomSubscription;
 
-    // ottiene lo stato attuale della connessione al broker
-    rabbit.getConnectionState = function() {
-        if(connected === undefined)
-            connected = false;
-        return connected;
+    rabbit.getConnectionState = function () {
+        if (connectedToBroker === undefined)
+            connectedToBroker = false;
+        return connectedToBroker;
     };
 
 
-    // callback dalla schermata home
-    rabbit.setHomeCallbacks = function(onConnected, onConnectionLost, onGeneralInfoMessage) {
-        callbacks = {};
-        callbacks.onConnected = onConnected;
-        callbacks.onConnectionLost = onConnectionLost;
-        callbacks.onGeneralInfoMessage = onGeneralInfoMessage;
-    };
-
-    // callback della splash
-    rabbit.setBaseCallbacks = function(onGeneralInfoMessage) {
-        callbacks = {};
-        callbacks.onGeneralInfoMessage = onGeneralInfoMessage;
+    rabbit.setPageCallbacks = function (callbacks) {
+        pageCallbacks = callbacks;
     };
 
 
-    rabbit.cleanCallbacks = function() {
-        callbacks = {};
-    };
-
-    // callback necessari per il matchmaking
-    rabbit.setRMMakingCallbacks = function(onGeneralInfoMessage, onGameRequestResponse, onHereMessage, onReadyMessage,
-                                           onTilesMessage, onQuitGameMessage, onConnectionLost, onChatMessage) {
-        callbacks = {};
-        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
-        callbacks.onGameRequestResponse = onGameRequestResponse;
-        callbacks.onHereMessage         = onHereMessage;
-        callbacks.onReadyMessage        = onReadyMessage;
-        callbacks.onTilesMessage        = onTilesMessage;
-        callbacks.onQuitGameMessage     = onQuitGameMessage;
-        callbacks.onConnectionLost      = onConnectionLost;
-        callbacks.onChatMessage         = onChatMessage;
-    };
-
-    // callback necessari per il matchmaking
-    rabbit.setCMMakingCallbacks = function(connectedCallback, onGameRequestResponse, onHereMessage, onReadyMessage,
-                                           onTilesMessage, onQuitGameMessage, onConnectionLost, onGeneralInfoMessage,
-                                           onChatMessage) {
-        callbacks = {};
-        callbacks.onConnected           = connectedCallback;
-        callbacks.onGameRequestResponse = onGameRequestResponse;
-        callbacks.onHereMessage         = onHereMessage;
-        callbacks.onReadyMessage        = onReadyMessage;
-        callbacks.onTilesMessage        = onTilesMessage;
-        callbacks.onQuitGameMessage     = onQuitGameMessage;
-        callbacks.onConnectionLost      = onConnectionLost;
-        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
-        callbacks.onChatMessage         = onChatMessage;
-    };
-
-    // callback necessari per il matchmaking
-    rabbit.setNewCMatchCallbacks = function(onGameRequestResponse, onHereMessage, onReadyMessage, onTilesMessage,
-                                           onQuitGameMessage, onConnectionLost, onGeneralInfoMessage, onChatMessage) {
-        callbacks = {};
-        callbacks.onGameRequestResponse = onGameRequestResponse;
-        callbacks.onHereMessage         = onHereMessage;
-        callbacks.onReadyMessage        = onReadyMessage;
-        callbacks.onTilesMessage        = onTilesMessage;
-        callbacks.onQuitGameMessage     = onQuitGameMessage;
-        callbacks.onConnectionLost      = onConnectionLost;
-        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
-        callbacks.onChatMessage         = onChatMessage;
-    };
-
-    // callback necessari per la schermata di aftermatch
-    rabbit.setAftermatchCallbacks = function(onReadyMessage, onTilesMessage, onQuitGameMessage, onConnectionLost,
-                                             onGeneralInfoMessage, onChatMessage) {
-        callbacks = {};
-        callbacks.onReadyMessage    = onReadyMessage;
-        callbacks.onTilesMessage    = onTilesMessage;
-        callbacks.onQuitGameMessage = onQuitGameMessage;
-        callbacks.onConnectionLost  = onConnectionLost;
-        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
-        callbacks.onChatMessage      = onChatMessage;
+    rabbit.connect = function () {
+        // todo switch to release prima della pubblicazione
+        client = Stomp.client(credentials.debugUrl);
+        client.connect(credentials.username,
+                       credentials.password,
+                       onConnected,
+                       onConnectionLost,
+                       credentials.vHost);
     };
 
 
-    // callback necessari per la schermata match
-    rabbit.setMatchCallbacks = function(onEnemyPositionedMessage, onQuitGameMessage, onConnectionLost, onSkipMessage, onGeneralInfoMessage) {
-        callbacks = {};
-        callbacks.onEnemyPositionedMessage = onEnemyPositionedMessage;
-        callbacks.onQuitGameMessage        = onQuitGameMessage;
-        callbacks.onConnectionLost         = onConnectionLost;
-        callbacks.onSkipMessage            = onSkipMessage;
-        callbacks.onGeneralInfoMessage  = onGeneralInfoMessage;
+    rabbit.subscribeGameRoom = function () {
+        subscriptions.gameRoom = client.subscribe(getGameRoomEndpoint(), handleIncomingMessage);
+
+        // invia un heartbeat al server ogni 5 secondi
+        heartbeatTimer = setInterval(function () {
+            sendInServerControlQueue({
+                msgType: messageTypes.heartbeat,
+                gameRoomId: gameData.getGameRoomId(),
+                playerId: gameData.getPlayerId(),
+                gameType: gameData.getGameType()
+            });
+        }, 5000);
     };
 
 
-    // effettua la richiesta di connessione al broker. In caso di connessione
-    // completata, sottoscrive il topic di controllo utilizzato per le risposte dal server
-    rabbit.connect = function() {
-        // /* SIMULAZIONI IN LOCALE */ client = Stomp.client('ws://127.0.0.1:15674/ws');
-        // /* SENZA HTTPS */           client = Stomp.client('ws://botify.it/codycolor/ws');
-        client = Stomp.client(serverUrl);
-        client.connect(rabbitUsername, rabbitPassword, // credenziali
-                       connectedCallback,              // onConnect
-                       errorCallback,                  // onError
-                       rabbitVHost);                   // vHost
+    // richiesta per iniziare una nuova partita
+    rabbit.sendGameRequest = function () {
+       sendInServerControlQueue({
+           msgType: messageTypes.gameRequest,
+           correlationId: sessionHandler.getSessionId(),
+           gameType: gameData.getGameType(),
+           code: gameData.getGameCode()
+       });
     };
 
 
-    // una volta avvenuta la connessione con il broker, va sottoscritta la queue temporanea
-    // utilizzata per intercettare la risposta del server, quando ancora non si è stati
-    // identificati da esso
-    let connectedCallback = function() {
-        console.log("Connessione a RabbitMQ completata.");
-        connected = true;
+    // notifica all'avversario la propria presenza
+    rabbit.sendHereMessage = function (needResponseValue) {
+        sendInGameRoomTopic({
+            msgType: messageTypes.here,
+            gameRoomId: gameData.getGameRoomId(),
+            playerId: gameData.getPlayerId(),
+            nickname: gameData.getPlayerNickname(),
+            needResponse: needResponseValue,
+            timerSetting: gameData.getTimerSetting(),
+            gameType: gameData.getGameType(),
+            readyState: gameData.isPlayerReady()
+        });
+    };
 
-        // sottoscrivi la queue per la conunicazione con il server
-        serverDirectSubscription = client.subscribe(clientControlTopic + '.' + uniqueClientId, handleDirectMessages);
-        generalSubscription = client.subscribe(generalTopic, handleGeneralMessages);
 
-        sendConnectedSignal();
+    // notifica all'avversario che si è pronti a iniziare la partita
+    rabbit.sendReadyMessage = function () {
+        sendInGameRoomTopic({
+            msgType: messageTypes.ready,
+            gameRoomId: gameData.getGameRoomId(),
+            playerId: gameData.getPlayerId(),
+            nickname: gameData.getPlayerNickname(),
+            gameType: gameData.getGameType(),
+            readyState: true
+        });
+    };
+
+
+    // notifica all'avversario l'avvenuto posizionamento di roby
+    rabbit.sendPlayerPositionedMessage = function () {
+        sendInGameRoomTopic({
+            msgType: messageTypes.playerPositioned,
+            gameRoomId: gameData.getGameRoomId(),
+            playerId: gameData.getPlayerId(),
+            gameType: gameData.getGameType(),
+            matchTime: gameData.getPlayerMatchTime(),
+            side: gameData.getPlayerStartPosition().side,
+            distance: gameData.getPlayerStartPosition().distance
+        });
+    };
+
+
+    // notifica all'avversario la volontà di skippare l'animazione
+    rabbit.sendSkipMessage = function () {
+        sendInGameRoomTopic({
+            msgType: messageTypes.skip,
+            gameRoomId: gameData.getGameRoomId(),
+            playerId: gameData.getPlayerId(),
+            gameType: gameData.getGameType()
+        });
+    };
+
+
+    // formatta, invia e restituisci messaggio di chat
+    rabbit.sendChatMessage = function (messageBody) {
+        let message = {
+            msgType: messageTypes.chat,
+            gameRoomId: gameData.getGameRoomId(),
+            playerId: gameData.getPlayerId(),
+            body: messageBody,
+            date: (new Date()).getTime(),
+            gameType: gameData.getGameType()
+        };
+        sendInGameRoomTopic(message);
+        return message;
+    };
+
+
+    // richiede al server una nuova disposizione tiles
+    rabbit.sendTilesRequest = function () {
+        sendInServerControlQueue({
+            msgType: messageTypes.tilesRequest,
+            gameRoomId: gameData.getGameRoomId(),
+            gameType: gameData.getGameType()
+        });
+    };
+
+
+    // chiude la connessione alla game room in modo sicuro
+    rabbit.quitGame = function () {
+        if (subscriptions.gameRoom !== undefined) {
+            subscriptions.gameRoom.unsubscribe();
+            subscriptions.gameRoom = undefined;
+        }
+
+        if (heartbeatTimer !== undefined) {
+            clearInterval(heartbeatTimer);
+        }
+
+        pageCallbacks = {};
+
+        if (gameData.getGameRoomId() === -1 || gameData.getPlayerId() === -1)
+            return;
+
+        let quitNotification = {
+            msgType: messageTypes.quitGame,
+            gameRoomId: gameData.getGameRoomId(),
+            playerId: gameData.getPlayerId(),
+            gameType: gameData.getGameType()
+        };
+
+        sendInServerControlQueue(quitNotification);
+        sendInGameRoomTopic(quitNotification);
+    };
+
+
+    // invocato non appena connesso al broker
+    let onConnected = function () {
+        connectedToBroker = true;
+
+        let serverDirectEndpoint = endpoints.clientControlTopic + '.' + sessionHandler.getSessionId();
+        subscriptions.serverDirect = client.subscribe(serverDirectEndpoint,   handleIncomingMessage);
+        subscriptions.general      = client.subscribe(endpoints.generalTopic, handleIncomingMessage);
+
+        sendInServerControlQueue({
+            msgType: messageTypes.connectedSignal,
+            correlationId: sessionHandler.getSessionId()
+        });
 
         // eventuali azioni addizionali da compiere a connessione completata
-        if (callbacks.onConnected !== undefined)
-            callbacks.onConnected();
+        if (pageCallbacks.onConnected !== undefined)
+            pageCallbacks.onConnected();
     };
 
 
-    // callback utilizzato in caso di errore di connessione
-    let errorCallback = function() {
-        console.log("Connessione a RabbitMQ non riuscita.");
-        connected = false;
+    // invocato in caso di errore di connessione con il broker
+    let onConnectionLost = function () {
+        connectedToBroker = false;
 
         // ritenta connessione dopo 10 secondi
         setTimeout(function () {
@@ -177,291 +231,108 @@ angular.module('codyColor').factory("rabbit",function(gameData) {
         }, 10000);
 
         // eventuali azioni addizionali
-        if (callbacks.onConnectionLost !== undefined)
-            callbacks.onConnectionLost();
+        if (pageCallbacks.onConnectionLost !== undefined)
+            pageCallbacks.onConnectionLost();
     };
 
 
-    // invia al server una richiesta per iniziare una nuova partita
-    rabbit.sendGameRequest = function(newCustomRequest, invitationCode) {
-        let message;
-        if (newCustomRequest !== undefined && newCustomRequest === true && invitationCode === undefined) {
-            // richiesta di nuovo custom match
-            message = { msgType:      'gameRequest',
-                        correlationId: uniqueClientId,
-                        gameOptions:   { timerSetting: gameData.getTimerSetting() },
-                        gameType:      custom,
-                        code:         '0000'};
+    let sendInServerControlQueue = function(message) {
+        // invia un messaggio nella queue riservata al server
+        client.send(endpoints.serverControlQueue, // destination
+            { durable: false, exclusive: false }, // headers
+            JSON.stringify(message));             // message
+    };
 
-        } else if (newCustomRequest !== undefined && newCustomRequest === false && invitationCode !== undefined) {
-            // richiesta di partecipazione a custom match da invito
-            message = { msgType:      'gameRequest',
-                        correlationId: uniqueClientId,
-                        gameType:      custom,
-                        code:          invitationCode.toString() };
 
-        } else {
-            // richiesta match casuale
-            message = { msgType:      'gameRequest',
-                        correlationId: uniqueClientId,
-                        gameType:      random };
+    let sendInGameRoomTopic = function(message) {
+        // invia un messaggio alla game room sottoscritta dal giocatore
+        client.send(getGameRoomEndpoint(),        // destination
+            { durable: false, exclusive: false }, // headers
+            JSON.stringify(message));             // message
+    };
+
+
+    let getGameRoomEndpoint = function() {
+        switch (gameData.getGameType()) {
+            case gameData.getGameTypes().random: {
+                return endpoints.randomGameRoomsTopic + '.' + gameData.getGameRoomId();
+            }
+            case gameData.getGameTypes().custom: {
+                return endpoints.customGameRoomsTopic + '.' + gameData.getGameRoomId();
+            }
+            case gameData.getGameTypes().aga: {
+                return endpoints.agaGameRoomsTopics + '.' + gameData.getGameRoomId();
+            }
+        }
+    };
+
+
+    let handleIncomingMessage = function (rawMessage) {
+        let message = JSON.parse(rawMessage.body);
+
+        // 1. messaggi provenienti dal server
+        switch(message.msgType) {
+            case messageTypes.gameResponse:
+                if (pageCallbacks.onGameRequestResponse !== undefined) {
+                    pageCallbacks.onGameRequestResponse(message);
+                }
+                return;
+
+            case messageTypes.generalInfo:
+                sessionHandler.setGeneralInfo( {
+                    totalMatches: message.totalMatches,
+                    connectedPlayers: message.connectedPlayers,
+                    randomWaitingPlayers: message.randomWaitingPlayers,
+                    requiredClientVersion: message.requiredClientVersion
+                });
+
+                if (pageCallbacks.onGeneralInfoMessage !== undefined) {
+                    pageCallbacks.onGeneralInfoMessage(message);
+                }
+                return;
         }
 
-
-        // permette di creare una queue con nominativo univoco nel broker,
-        // composto dal nome passato più una variabile di sessione.
-        client.send(serverControlQueue,                   // destination
-                    { durable: false, exclusive: false }, // headers
-                    JSON.stringify(message));             // message
-    };
-
-
-    // pone il client in ascolto di messaggi sulla game room
-    rabbit.subscribeGameRoom = function() {
-        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
-                              randGameRoomsTopic : custGameRoomsTopic);
-        gameRoomSubscription = client.subscribe(gameRoomsTopic + '.' + gameData.getGameRoomId(),
-                                                handleDirectMessages);
-
-        heartbeatTimer = setInterval(function() {
-            let message = { msgType:     'heartbeat',
-                gameRoomId:   gameData.getGameRoomId(),
-                playerId:     gameData.getPlayerId(),
-                gameType:     gameData.getGameType() };
-
-            client.send(serverControlQueue,                   // destination
-                { durable: false, exclusive: false }, // headers
-                JSON.stringify(message));             // message
-        }, 5000);
-    };
-
-
-    // invia un messaggio nella game room, utilizzato per notificare all'avversario,
-    // se presente, la propria presenza
-    rabbit.sendHereMessage = function(needResponseValue) {
-        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
-                              randGameRoomsTopic : custGameRoomsTopic);
-
-        let message = { msgType:     'here',
-                        gameRoomId:   gameData.getGameRoomId(),
-                        playerId:     gameData.getPlayerId(),
-                        nickname:     gameData.getPlayerNickname(),
-                        needResponse: needResponseValue,
-                        timerSetting: gameData.getTimerSetting(),
-                        gameType:     gameData.getGameType(),
-                        readyState:   gameData.isPlayerReady() };
-
-        // permette di creare una queue con nominativo univoco nel broker,
-        // composto dal nome passato più una variabile di sessione.
-        client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
-                    { durable: false, exclusive: false },            // headers
-                    JSON.stringify(message));                        // message
-    };
-
-
-    // invia messaggio alla game room, utilizzato per notificare all'avversario che si
-    // è pronti a giocare
-    rabbit.sendReadyMessage = function() {
-        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
-                              randGameRoomsTopic : custGameRoomsTopic);
-        let message = { msgType:     'ready',
-                        gameRoomId:   gameData.getGameRoomId(),
-                        playerId:     gameData.getPlayerId(),
-                        nickname:     gameData.getPlayerNickname(),
-                        gameType:     gameData.getGameType(),
-                        readyState:   true };
-
-        // permette di creare una queue con nominativo univoco nel broker,
-        // composto dal nome passato più una variabile di sessione.
-        client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
-                    { durable: false, exclusive: false },            // headers
-                    JSON.stringify(message));                        // message
-    };
-
-
-    // notifica all'avversario l'avvenuto posizionamento di roby
-    rabbit.sendPlayerPositionedMessage = function() {
-        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
-                              randGameRoomsTopic : custGameRoomsTopic);
-        let message = { msgType:   'playerPositioned',
-                        gameRoomId: gameData.getGameRoomId(),
-                        playerId:   gameData.getPlayerId(),
-                        gameType:   gameData.getGameType(),
-                        matchTime:  gameData.getPlayerMatchTime(),
-                        side:       gameData.getPlayerStartPosition().side,
-                        distance:   gameData.getPlayerStartPosition().distance };
-
-
-        client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
-                    { durable: false, exclusive: false },            // headers
-                    JSON.stringify(message));                        // message
-    };
-
-    // notifica all'avversario la volontà di skippare l'animazione
-    rabbit.sendSkipMessage = function() {
-        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
-            randGameRoomsTopic : custGameRoomsTopic);
-        let message = { msgType:   'skip',
-                        gameRoomId: gameData.getGameRoomId(),
-                        playerId:   gameData.getPlayerId(),
-                        gameType:   gameData.getGameType() };
-
-        client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
-                    { durable: false, exclusive: false },            // headers
-                    JSON.stringify(message));                        // message
-    };
-
-    // invia messaggio di chat
-    rabbit.sendChatMessage = function(messageBody) {
-        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
-            randGameRoomsTopic : custGameRoomsTopic);
-        let message = { msgType:     'chat',
-            gameRoomId:   gameData.getGameRoomId(),
-            playerId:     gameData.getPlayerId(),
-            body:         messageBody,
-            date:         (new Date()).getTime(),
-            gameType:     gameData.getGameType() };
-
-        // permette di creare una queue con nominativo univoco nel broker,
-        // composto dal nome passato più una variabile di sessione.
-        client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
-            { durable: false, exclusive: false },            // headers
-            JSON.stringify(message));                        // message
-
-        return message;
-    };
-
-
-    // invia messaggio al server, per richiedere una nuova disposizione tiles
-    rabbit.sendTilesRequest = function() {
-        let message = { msgType:     'tilesRequest',
-                        gameRoomId:   gameData.getGameRoomId(),
-                        gameType:     gameData.getGameType()};
-
-        // permette di creare una queue con nominativo univoco nel broker,
-        // composto dal nome passato più una variabile di sessione.
-        client.send(serverControlQueue,                    // destination
-                    { durable: false, exclusive: false },  // headers
-                    JSON.stringify(message));              // message
-    };
-
-    // notifica al server la connessione di un nuovo client al sistema
-    let sendConnectedSignal = function() {
-        let message = { msgType:      'connectedSignal',
-                        correlationId: uniqueClientId };
-
-        // permette di creare una queue con nominativo univoco nel broker,
-        // composto dal nome passato più una variabile di sessione.
-        client.send(serverControlQueue,            // destination
-            { durable: false, exclusive: false },  // headers
-            JSON.stringify(message));              // message
-    };
-
-
-    // chiude la connessione alla game room in modo sicuro
-    rabbit.quitGame = function() {
-        let gameRoomsTopic = (gameData.getGameType() === undefined || gameData.getGameType() === random ?
-                              randGameRoomsTopic : custGameRoomsTopic);
-
-        if (gameRoomSubscription !== undefined) {
-            gameRoomSubscription.unsubscribe();
-            gameRoomSubscription = undefined;
-        }
-
-        if (heartbeatTimer !== undefined) {
-            clearInterval(heartbeatTimer);
-            heartbeatTimer = undefined;
-        }
-
-        callbacks = {};
-
-        if (gameData.getGameRoomId() === -1 || gameData.getPlayerId() === -1)
+        // 2. messaggi provenienti dalla gameRoom
+        if (message.playerId === gameData.getPlayerId()) {
+            // si è intercettato il proprio messaggio: ignoralo
             return;
-
-        let message = { msgType:     'quitGame',
-                        gameRoomId:   gameData.getGameRoomId(),
-                        playerId:     gameData.getPlayerId(),
-                        gameType:     gameData.getGameType() };
-
-        // invia messaggi per notificare l'abbandono della partita,
-        // sia al server che agli altri client connessi alla gameRoom
-        client.send(serverControlQueue,                   // destination
-                    { durable: false, exclusive: false }, // headers
-                    JSON.stringify(message));             // message
-
-        client.send(gameRoomsTopic + '.' + gameData.getGameRoomId(), // destination
-                    { durable: false, exclusive: false },            // headers
-                    JSON.stringify(message));                        // message
-    };
-
-
-    let handleGeneralMessages = function(responseMessage) {
-        let responseObject = JSON.parse(responseMessage.body);
-
-        if (responseObject.msgType === 'generalInfo') {
-            if (callbacks.onGeneralInfoMessage !== undefined) {
-                callbacks.onGeneralInfoMessage(responseObject);
-            }
         }
-    };
 
+        switch (message.msgType) {
+            case messageTypes.here:
+                if (pageCallbacks.onHereMessage !== undefined)
+                    pageCallbacks.onHereMessage(message);
+                break;
 
-    // gestisce le risposte del broker, provenienti dal server o dalla game room
-    let handleDirectMessages = function(responseMessage) {
-        let responseObject = JSON.parse(responseMessage.body);
+            case messageTypes.ready:
+                if (pageCallbacks.onReadyMessage !== undefined)
+                    pageCallbacks.onReadyMessage(message);
+                break;
 
-        if (responseObject.msgType === 'gameResponse') {
-            if (callbacks.onGameRequestResponse !== undefined) {
-                callbacks.onGameRequestResponse(responseObject);
+            case messageTypes.tilesResponse:
+                if (pageCallbacks.onTilesMessage !== undefined)
+                    pageCallbacks.onTilesMessage(message);
+                break;
 
-            }
+            case messageTypes.playerPositioned:
+                if (pageCallbacks.onEnemyPositionedMessage !== undefined)
+                    pageCallbacks.onEnemyPositionedMessage(message);
+                break;
 
-        } else if (responseObject.msgType === 'generalInfo') {
-            if (callbacks.onGeneralInfoMessage !== undefined) {
-                callbacks.onGeneralInfoMessage(responseObject);
-            }
+            case messageTypes.chat:
+                if (pageCallbacks.onChatMessage !== undefined)
+                    pageCallbacks.onChatMessage(message);
+                break;
 
-        } else if (responseObject.playerId === gameData.getPlayerId()) {
-            // si è intercettato il proprio messaggio: non fare niente
+            case messageTypes.quitGame:
+                if (pageCallbacks.onQuitGameMessage !== undefined)
+                    pageCallbacks.onQuitGameMessage(message);
+                break;
 
-        } else {
-            // agisci in maniera diversa a seconda della tipologia di messaggio game room
-            switch(responseObject.msgType) {
-                case "here":
-                    if (callbacks.onHereMessage !== undefined)
-                        callbacks.onHereMessage(responseObject);
-                    break;
-
-                case "ready":
-                    if (callbacks.onReadyMessage !== undefined)
-                        callbacks.onReadyMessage(responseObject);
-                    break;
-
-                case "tilesResponse":
-                    if (callbacks.onTilesMessage !== undefined)
-                        callbacks.onTilesMessage(responseObject);
-                    break;
-
-                case "playerPositioned":
-                    if (callbacks.onEnemyPositionedMessage !== undefined)
-                        callbacks.onEnemyPositionedMessage(responseObject);
-                    break;
-
-                case "chat":
-                    if (callbacks.onChatMessage !== undefined)
-                        callbacks.onChatMessage(responseObject);
-                    break;
-
-                case "quitGame":
-                    if (callbacks.onQuitGameMessage !== undefined)
-                        callbacks.onQuitGameMessage();
-                    break;
-
-                case "skip":
-                    if (callbacks.onSkipMessage !== undefined)
-                        callbacks.onSkipMessage();
-                    break;
-            }
+            case messageTypes.skip:
+                if (pageCallbacks.onSkipMessage !== undefined)
+                    pageCallbacks.onSkipMessage(message);
+                break;
         }
     };
 

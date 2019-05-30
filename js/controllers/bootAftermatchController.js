@@ -16,12 +16,6 @@ angular.module('codyColor').controller('bootAftermatchCtrl',
             return;
         }
 
-        rabbit.setBaseCallbacks(function (response) {
-            sessionHandler.setTotalMatches(response.totalMatches);
-            sessionHandler.setConnectedPlayers(response.connectedPlayers);
-            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
-        });
-
         // informazioni sul risultato della partita
         let results                = gameData.getCurrentMatchResult();
         $scope.withEnemy           = gameData.getBootEnemySetting() !== 0;

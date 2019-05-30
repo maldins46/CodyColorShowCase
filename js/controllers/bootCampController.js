@@ -3,16 +3,16 @@
  */
 angular.module('codyColor').controller('bootCampCtrl',
     function ($scope, gameData, scopeService, robyAnimator, $location, $translate,
-              navigationHandler, audioHandler, sessionHandler, rabbit) {
+              navigationHandler, audioHandler, sessionHandler) {
         console.log("Bootcamp controller ready.");
 
         let enemyMatchTimer;
         let playerMatchTimer;
         let startCountdownTimer;
 
-        // inizializzazione sessione
-        navigationHandler.initializeBackBlock($scope);
-        if (sessionHandler.isSessionInvalid()) {
+        // metodo per terminare la partita in modo sicuro, disattivando i timer,
+        // interrompendo animazioni e connessioni con il server
+        let quitGame = function () {
             if (enemyMatchTimer !== undefined)
                 clearInterval(enemyMatchTimer);
 
@@ -23,17 +23,16 @@ angular.module('codyColor').controller('bootCampCtrl',
                 clearInterval(startCountdownTimer);
 
             robyAnimator.quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
             gameData.clearGameData();
+        };
+
+        // inizializzazione sessione
+        navigationHandler.initializeBackBlock($scope);
+        if (sessionHandler.isSessionInvalid()) {
+            quitGame();
+            navigationHandler.goToPage($location, $scope, '/');
             return;
         }
-
-        rabbit.setBaseCallbacks(function (response) {
-            sessionHandler.setTotalMatches(response.totalMatches);
-            sessionHandler.setConnectedPlayers(response.connectedPlayers);
-            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
-        });
-
 
         // inizializzazione componenti generali interfaccia
         $scope.playerPoints = gameData.getPlayerPoints();
@@ -386,7 +385,9 @@ angular.module('codyColor').controller('bootCampCtrl',
         };
         $scope.continueExitGame = function() {
             audioHandler.playSound('menu-click');
-            quitGame({notFromClick: false});
+            audioHandler.playSound('menu-click');
+            quitGame();
+            navigationHandler.goToPage($location, $scope, '/home', false);
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -397,33 +398,6 @@ angular.module('codyColor').controller('bootCampCtrl',
             audioHandler.playSound('menu-click');
             robyAnimator.quitGame();
             navigationHandler.goToPage($location, $scope, '/bootaftermatch');
-        };
-
-        // metodo per terminare la partita in modo sicuro, disattivando i timer, interrompendo animazioni e connessioni
-        // con il server, tornando alla home, e mostrando eventualmente un messaggio di errore
-        let quitGame = function (arguments) {
-            audioHandler.playSound('menu-click');
-            if (enemyMatchTimer !== undefined)
-                clearInterval(enemyMatchTimer);
-
-            if (playerMatchTimer !== undefined)
-                clearInterval(playerMatchTimer);
-
-            if (startCountdownTimer !== undefined)
-                clearInterval(startCountdownTimer);
-
-            robyAnimator.quitGame();
-
-            if (arguments.notFromClick === undefined) {
-                arguments.notFromClick = true;
-            }
-
-            if (arguments.isSessionInvalid !== undefined && arguments.isSessionInvalid === true) {
-                navigationHandler.goToPage($location, $scope, '/');
-            } else {
-                navigationHandler.goToPage($location, $scope, '/home', arguments.notFromClick);
-            }
-            gameData.clearGameData();
         };
 
         // impostazioni multi language

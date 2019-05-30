@@ -13,8 +13,8 @@ angular.module('codyColor').controller('rankingCtrl',
         }
 
         $scope.goToHome = function () {
-            navigationHandler.goToPage($location, $scope, '/home');
             audioHandler.playSound('menu-click');
+            navigationHandler.goToPage($location, $scope, '/home');
         };
 
         // impostazioni multi language

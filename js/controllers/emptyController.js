@@ -13,12 +13,6 @@ angular.module('codyColor').controller('emptyCtrl',
             return;
         }
 
-        rabbit.setBaseCallbacks(function (response) {
-            sessionHandler.setTotalMatches(response.totalMatches);
-            sessionHandler.setConnectedPlayers(response.connectedPlayers);
-            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
-        });
-
         // inizializzazione tasto home
         $scope.goToHome = function () {
             navigationHandler.goToPage($location, $scope, '/home');

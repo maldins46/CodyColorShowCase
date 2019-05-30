@@ -13,27 +13,27 @@ angular.module('codyColor').controller('loginCtrl',
         }
 
         $scope.goToHome = function () {
-            navigationHandler.goToPage($location, $scope, '/home');
             audioHandler.playSound('menu-click');
+            navigationHandler.goToPage($location, $scope, '/home');
         };
         $scope.goToRegister = function () {
-            navigationHandler.goToPage($location, $scope, '/register');
             audioHandler.playSound('menu-click');
+            navigationHandler.goToPage($location, $scope, '/register');
         };
 
         // impostazioni multi language
         $scope.openLanguageModal = function() {
-            $scope.languageModal = true;
             audioHandler.playSound('menu-click');
+            $scope.languageModal = true;
         };
         $scope.closeLanguageModal = function() {
-            $scope.languageModal = false;
             audioHandler.playSound('menu-click');
+            $scope.languageModal = false;
         };
         $scope.changeLanguage = function(langKey) {
+            audioHandler.playSound('menu-click');
             $translate.use(langKey);
             $scope.languageModal = false;
-            audioHandler.playSound('menu-click');
         };
 
         // impostazioni audio

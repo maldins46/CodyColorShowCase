@@ -1,7 +1,7 @@
 // codice da 'iniettare' in workbox, nel caso in cui si voglia andare a modificare il sistema di
 // caching predefinito
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js');
-
+/*
 // Cache the Google Fonts stylesheets with a stale-while-revalidate strategy.
 workbox.routing.registerRoute(
     /^https:\/\/fonts\.googleapis\.com/,
@@ -25,26 +25,7 @@ workbox.routing.registerRoute(
             }),
         ],
     })
-);
-
-// delete cache when service worker is updated
-/*
-self.addEventListener('activate', function(event) {
-    event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            return Promise.all(
-                cacheNames.filter(function(cacheName) {
-                    // Return true if you want to remove this cache,
-                    // but remember that caches are shared across
-                    // the whole origin
-                }).map(function(cacheName) {
-                    return caches.delete(cacheName);
-                })
-            );
-        })
-    );
-});*/
-
+);*/
 
 workbox.precaching.precacheAndRoute([
   {
@@ -245,7 +226,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "fa20b4d7d20ed2628510afd58862ede7"
+    "revision": "f17296fb15bd9ef5ef533bb495ea410e"
   },
   {
     "url": "partials/404.html",
@@ -273,7 +254,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "partials/home.html",
-    "revision": "7e7f384c98a30a1b1dc00fcac689cfd2"
+    "revision": "88bb0fd9b8574c114f3a63b3e616e2b5"
   },
   {
     "url": "partials/login.html",
@@ -297,7 +278,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "partials/rmmaking.html",
-    "revision": "f4a2e3e6ecb09ec457847d7bb05715ca"
+    "revision": "ca8fa03c031436149f41442323acda8b"
   },
   {
     "url": "partials/rules.html",
@@ -305,7 +286,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "partials/splash.html",
-    "revision": "fb98adbd8182a651e3ee6e9b4424c867"
+    "revision": "889b1030392f2bc0173b026bf305b502"
   },
   {
     "url": "browserconfig.xml",
@@ -313,11 +294,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "842f9454aabaf466c667b8a749d8e4b9"
+    "revision": "97a1373cbe22753a3215c8b02fda2ec3"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "21194bd277aa0a90f5b0d2a67a7e934e"
+    "revision": "811712986aa942c2fdd4d7559cf0931e"
   },
   {
     "url": "manifest.json",
@@ -337,47 +318,47 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/aftermatchController.js",
-    "revision": "b527b931518c2c47d49694b18b8fa252"
+    "revision": "706c679514e652d2221db7c73065f81a"
   },
   {
     "url": "js/controllers/bootAftermatchController.js",
-    "revision": "c7f408a2090c1d727d596670a95405ca"
+    "revision": "9d65c693266759ff2e3adad8f1a23489"
   },
   {
     "url": "js/controllers/bootCampController.js",
-    "revision": "299f35cb845a0f4e48bd8a3b8c350cf2"
+    "revision": "2fcc1c1a491b4b9c9e6dcdd496f3d357"
   },
   {
     "url": "js/controllers/bootCampMakingController.js",
-    "revision": "c0d74e93ae2e1c35f4a6d9f7ec9783bb"
+    "revision": "140fed1eaadbf49f8b18202f5795696e"
   },
   {
     "url": "js/controllers/cmmakingController.js",
-    "revision": "f6f1895630bddb4ac3344b338cfd9714"
+    "revision": "4ab53d5fd6007af990078b20ddc73442"
   },
   {
     "url": "js/controllers/emptyController.js",
-    "revision": "a5139d4d77d751b473c4cac3a0aa2ff7"
+    "revision": "5b269d942873cd2df2751c58e3b82d6b"
   },
   {
     "url": "js/controllers/homeController.js",
-    "revision": "a100a18b338b058d4e01eb20bdf319dc"
+    "revision": "302ff90c00816200a1ecb7a9969d20f8"
   },
   {
     "url": "js/controllers/loginController.js",
-    "revision": "6d01dbb997d0d29bbd5b470f12d5a8e5"
+    "revision": "d3adbbf4d4d47bd46a24f5aaf70f2dc4"
   },
   {
     "url": "js/controllers/matchController.js",
-    "revision": "1b613a32b3fd832278e5aa2fce2da12d"
+    "revision": "ee3abff6c655328558d3ca272440e7b2"
   },
   {
     "url": "js/controllers/newcmatchController.js",
-    "revision": "a779bde50ebeaaaf776d024fa2ea5225"
+    "revision": "f2dd09e1bff072d206e0a5bd6cc59a67"
   },
   {
     "url": "js/controllers/rankingController.js",
-    "revision": "57173d81050bdd1aebddad45e94974d1"
+    "revision": "a9079ceefc7249f905f1fa66e2bddfd5"
   },
   {
     "url": "js/controllers/registerController.js",
@@ -385,15 +366,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/rmmakingController.js",
-    "revision": "4fac79212578103641ae008efe191ce3"
+    "revision": "0e50f372c602d64f5a5380143cb033cf"
   },
   {
     "url": "js/controllers/splashController.js",
-    "revision": "e464f27c2858bde4d0312a2373b311ab"
+    "revision": "5ca944b508a71d4c6b6b98ad7ff52b63"
   },
   {
     "url": "js/gameData.js",
-    "revision": "658b19010854dfb5adef6bd7d6902632"
+    "revision": "7e25961ad907f51eab5b1de4877aa358"
   },
   {
     "url": "js/main.js",
@@ -405,15 +386,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/plugins.js",
-    "revision": "9baec86da49af9bae5ba6b3b5b6f5eca"
+    "revision": "048e67836eb558d0854f558a4f3a5663"
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "079baa0aaae387ae658832544dadc012"
+    "revision": "b7957527a522261d954d3c27b83bef41"
   },
   {
     "url": "js/robyAnimator.js",
-    "revision": "8395e79f89bf14c80d16ae4f4cf70308"
+    "revision": "1bae92cb4bbb39ca39e020e47ca1af32"
   },
   {
     "url": "js/scopeService.js",
@@ -421,51 +402,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "5732db23edd7e47ec03bb92541b7c5c6"
-  },
-  {
-    "url": "js/vendor/angular-animate.min.js",
-    "revision": "72c2f5ab2972d75161f2e1447dcc2758"
-  },
-  {
-    "url": "js/vendor/angular-cookies.min.js",
-    "revision": "bf11427c55c465560b91a34c22cc0498"
-  },
-  {
-    "url": "js/vendor/angular-dragdrop.min.js",
-    "revision": "68c7c58943631b2c73eda382ff50a732"
-  },
-  {
-    "url": "js/vendor/angular-route.min.js",
-    "revision": "c429fba7f57cd2306843295bc29aa571"
-  },
-  {
-    "url": "js/vendor/angular-sanitize.min.js",
-    "revision": "337cb810793e337cff921a292de44935"
-  },
-  {
-    "url": "js/vendor/angular-translate-loader-static-files.min.js",
-    "revision": "0d0f49ccc75db0eed91d792227e3cab4"
-  },
-  {
-    "url": "js/vendor/angular-translate-storage-cookie.min.js",
-    "revision": "5491ea6a28c1355d344df7afaf2fd7e0"
-  },
-  {
-    "url": "js/vendor/angular-translate.min.js",
-    "revision": "043ca33cd1a9b97ffbbb33671c3d38c8"
-  },
-  {
-    "url": "js/vendor/angular.min.js",
-    "revision": "0f146391dfc57e3e0506c4c0f72d51d1"
-  },
-  {
-    "url": "js/vendor/jquery-ui.min.js",
-    "revision": "c15b1008dec3c8967ea657a7bb4baaec"
-  },
-  {
-    "url": "js/vendor/jquery.min.js",
-    "revision": "bbcf3bf05fa6cb58a67cfd0498f00d23"
+    "revision": "108dd3ad9affbfcdfd00bcc557ba3cfe"
   },
   {
     "url": "js/vendor/jquery.ui.touch-punch.min.js",

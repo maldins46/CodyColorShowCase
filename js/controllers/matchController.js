@@ -11,9 +11,9 @@ angular.module('codyColor').controller('matchCtrl',
         let playerMatchTimer;
         let startCountdownTimer;
 
-        // inizializzazione sessione
-        navigationHandler.initializeBackBlock($scope);
-        if (sessionHandler.isSessionInvalid()) {
+        // metodo per terminare la partita in modo sicuro, disattivando i timer,
+        // interrompendo animazioni e connessioni con il server
+        let quitGame = function () {
             if (enemyMatchTimer !== undefined)
                 clearInterval(enemyMatchTimer);
 
@@ -25,8 +25,14 @@ angular.module('codyColor').controller('matchCtrl',
 
             rabbit.quitGame();
             robyAnimator.quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
             gameData.clearGameData();
+        };
+
+        // inizializzazione sessione
+        navigationHandler.initializeBackBlock($scope);
+        if (sessionHandler.isSessionInvalid()) {
+            quitGame();
+            navigationHandler.goToPage($location, $scope, '/');
             return;
         }
 
@@ -289,56 +295,51 @@ angular.module('codyColor').controller('matchCtrl',
 
         // callback passati alla classe responsabile della comunicazione con il broker.
         // Invocati all'arrivo di nuovi messaggi
-        rabbit.setMatchCallbacks(function (response) {
-            // onEnemyPositionedMessage
-            gameData.setEnemyStartPosition({ side: response.side, distance: response.distance });
-            gameData.setEnemyMatchTime(response.matchTime);
+        rabbit.setPageCallbacks({
+            onEnemyPositionedMessage: function (response) {
+                gameData.setEnemyStartPosition({ side: response.side, distance: response.distance });
+                gameData.setEnemyMatchTime(response.matchTime);
 
-            clearInterval(enemyMatchTimer);
-            enemyMatchTimer = undefined;
-            scopeService.safeApply($scope, function () {
-                $scope.enemyPositioned = true;
-                $scope.enemyMatchTimerText = gameData.formatTimerTextDecPrecision(response.matchTime);
-            });
-
-            if ($scope.enemyPositioned && $scope.playerPositioned) {
-                endMatch();
-            }
-        }, function () {
-            // onQuitGameMessage
-            scopeService.safeApply($scope, function () {
-                $translate('ENEMY_LEFT').then(function (enemyLeft) {
-                    $scope.forceExitText = enemyLeft;
-                }, function (translationId) {
-                    $scope.forceExitText = translationId;
+                clearInterval(enemyMatchTimer);
+                enemyMatchTimer = undefined;
+                scopeService.safeApply($scope, function () {
+                    $scope.enemyPositioned = true;
+                    $scope.enemyMatchTimerText = gameData.formatTimerTextDecPrecision(response.matchTime);
                 });
-                $scope.forceExitModal = true;
-            });
 
-        }, function () {
-            // onConnectionLost
-            scopeService.safeApply($scope, function () {
-                $translate('FORCE_EXIT').then(function (forceExit) {
-                    $scope.forceExitText = forceExit;
-                }, function (translationId) {
-                    $scope.forceExitText = translationId;
+                if ($scope.enemyPositioned && $scope.playerPositioned) {
+                    endMatch();
+                }
+            }, onQuitGameMessage: function () {
+                quitGame();
+                scopeService.safeApply($scope, function () {
+                    $translate('ENEMY_LEFT').then(function (enemyLeft) {
+                        $scope.forceExitText = enemyLeft;
+                    }, function (translationId) {
+                        $scope.forceExitText = translationId;
+                    });
+                    $scope.forceExitModal = true;
                 });
-                $scope.forceExitModal = true;
-            });
 
-        }, function () {
-            // onSkipMessage
-            gameData.setEnemyWantSkip(true);
+            }, onConnectionLost: function () {
+                quitGame();
+                scopeService.safeApply($scope, function () {
+                    $translate('FORCE_EXIT').then(function (forceExit) {
+                        $scope.forceExitText = forceExit;
+                    }, function (translationId) {
+                        $scope.forceExitText = translationId;
+                    });
+                    $scope.forceExitModal = true;
+                });
 
-            if (gameData.getPlayerWantSkip() && gameData.getEnemyWantSkip()) {
-                robyAnimator.quitGame();
-                navigationHandler.goToPage($location, $scope, '/aftermatch', true);
+            }, onSkipMessage: function () {
+                gameData.setEnemyWantSkip(true);
+
+                if (gameData.getPlayerWantSkip() && gameData.getEnemyWantSkip()) {
+                    robyAnimator.quitGame();
+                    navigationHandler.goToPage($location, $scope, '/aftermatch', true);
+                }
             }
-        }, function (response) {
-            // onGeneralInfoMessage
-            sessionHandler.setTotalMatches(response.totalMatches);
-            sessionHandler.setConnectedPlayers(response.connectedPlayers);
-            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
         });
 
         // cosa fare una volta terminata senza intoppi la partita; mostra la schermata aftermatch
@@ -372,7 +373,8 @@ angular.module('codyColor').controller('matchCtrl',
         };
         $scope.continueExitGame = function() {
             audioHandler.playSound('menu-click');
-            quitGame({ notFromClick: false });
+            quitGame();
+            navigationHandler.goToPage($location, $scope, '/home', false);
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -383,7 +385,7 @@ angular.module('codyColor').controller('matchCtrl',
         $scope.forceExitText = '';
         $scope.continueForceExit = function() {
             audioHandler.playSound('menu-click');
-            quitGame({ notFromClick: false });
+            navigationHandler.goToPage($location, $scope, '/home', false);
         };
 
         $scope.askedForSkip = false;
@@ -397,34 +399,6 @@ angular.module('codyColor').controller('matchCtrl',
                 robyAnimator.quitGame();
                 navigationHandler.goToPage($location, $scope, '/aftermatch');
             }
-        };
-
-        // metodo per terminare la partita in modo sicuro, disattivando i timer, interrompendo animazioni e connessioni
-        // con il server, tornando alla home, e mostrando eventualmente un messaggio di errore
-        let quitGame = function (arguments) {
-            audioHandler.playSound('menu-click');
-            if (enemyMatchTimer !== undefined)
-                clearInterval(enemyMatchTimer);
-
-            if (playerMatchTimer !== undefined)
-                clearInterval(playerMatchTimer);
-
-            if (startCountdownTimer !== undefined)
-                clearInterval(startCountdownTimer);
-
-            rabbit.quitGame();
-            robyAnimator.quitGame();
-
-            if (arguments.notFromClick === undefined) {
-                arguments.notFromClick = true;
-            }
-
-            if(arguments.isSessionInvalid !== undefined && arguments.isSessionInvalid === true) {
-                navigationHandler.goToPage($location, $scope, '/');
-            } else {
-                navigationHandler.goToPage($location, $scope, '/home', arguments.notFromClick);
-            }
-            gameData.clearGameData();
         };
 
         // impostazioni multi language

@@ -6,12 +6,16 @@ angular.module('codyColor').controller('cmmakingCtrl',
               audioHandler, $location, sessionHandler, gameData, scopeService, chatHandler) {
         console.log("Cmmaking controller ready.");
 
-        // inizializzazione sessione
-        navigationHandler.initializeBackBlock($scope);
-        if (sessionHandler.isSessionInvalid()) {
+        let quitGame = function() {
             rabbit.quitGame();
             gameData.clearGameData();
             chatHandler.clearChat();
+        };
+
+        // inizializzazione sessione
+        navigationHandler.initializeBackBlock($scope);
+        if (sessionHandler.isSessionInvalid()) {
+            quitGame();
             navigationHandler.goToPage($location, $scope, '/');
             return;
         }
@@ -40,7 +44,7 @@ angular.module('codyColor').controller('cmmakingCtrl',
             console.log("connected in cmmaking");
             if (gameData.getGameCode() !== '0000') {
                 $scope.joinMessage = 'Cercando informazioni sulla partita…';
-                rabbit.sendGameRequest(false, gameData.getGameCode());
+                rabbit.sendGameRequest();
             }
         }
 
@@ -49,92 +53,92 @@ angular.module('codyColor').controller('cmmakingCtrl',
             navigationHandler.goToPage($location, $scope, "/newcmatch");
         };
 
-        rabbit.setCMMakingCallbacks(function() {
-            console.log("connected in cmmaking; doing your shit");
-            if (gameData.getGameCode() !== '0000') {
+        rabbit.setPageCallbacks({
+            onConnected: function () {
+                if (gameData.getGameCode() !== '0000') {
+                    scopeService.safeApply($scope, function () {
+                        $translate('SEARCH_MATCH_INFO').then(function (text) {
+                            $scope.joinMessage = text;
+                        }, function (translationId) {
+                            $scope.joinMessage = translationId;
+                        });
+                    });
+                    rabbit.sendGameRequest();
+                }
+
+            }, onGameRequestResponse: function (message) {
+                if (message.code.toString() === '0000') {
+                    scopeService.safeApply($scope, function () {
+                        $translate('CODE_NOT_VALID').then(function (text) {
+                            $scope.joinMessage = text;
+                        }, function (translationId) {
+                            $scope.joinMessage = translationId;
+                        });
+                    });
+                } else {
+                    gameData.setGameCode(message.code.toString());
+                    gameData.setGameRoomId(message.gameRoomId);
+                    gameData.setPlayerId(message.playerId);
+                    rabbit.subscribeGameRoom();
+                    rabbit.sendHereMessage(true);
+                }
+
+            }, onHereMessage: function (message) {
+                gameData.setEnemyNickname(message.nickname);
+                gameData.setEnemyReady(message.readyState);
+                gameData.setTimerSetting(message.timerSetting);
+
+                if (message.needResponse) {
+                    rabbit.sendHereMessage(false);
+                }
+
+                audioHandler.playSound('enemy-found');
                 scopeService.safeApply($scope, function () {
-                    $scope.joinMessage = 'Cercando informazioni sulla partita…';
+                    $scope.enemyNickname = gameData.getEnemyNickname();
+                    $scope.totTime = gameData.formatTimeEnemyFoundText(gameData.getTimerSetting());
                 });
-                rabbit.sendGameRequest(false, gameData.getGameCode());
-            }
+                changeScreen('enemyFound');
 
-        }, function (message) {
-            // onGameRequestResponse
-            if(message.code.toString() === '0000') {
+            }, onReadyMessage: function () {
+                gameData.setEnemyReady(true);
+                if (gameData.isPlayerReady() && gameData.isEnemyReady())
+                    rabbit.sendTilesRequest();
+
+            }, onTilesMessage: function (message) {
+                gameData.setCurrentMatchTiles(message['tiles']);
+                navigationHandler.goToPage($location, $scope, '/match', true);
+
+            }, onQuitGameMessage: function (message) {
+                if (message.state !== 'playing') {
+                    quitGame();
+                    scopeService.safeApply($scope, function () {
+                        $translate('ENEMY_LEFT').then(function (enemyLeft) {
+                            $scope.forceExitText = enemyLeft;
+                        }, function (translationId) {
+                            $scope.forceExitText = translationId;
+                        });
+                        $scope.forceExitModal = true;
+                    });
+                }
+
+            }, onConnectionLost: function () {
+                quitGame();
                 scopeService.safeApply($scope, function () {
-                    $scope.joinMessage = 'Il codice inserito non è valido.'
+                    $translate('FORCE_EXIT').then(function (forceExit) {
+                        $scope.forceExitText = forceExit;
+                    }, function (translationId) {
+                        $scope.forceExitText = translationId;
+                    });
+                    $scope.forceExitModal = true;
                 });
-            } else {
-                gameData.setGameCode(message.code.toString());
-                gameData.setGameRoomId(message.gameRoomId);
-                gameData.setPlayerId(message.playerId);
-                rabbit.subscribeGameRoom();
-                rabbit.sendHereMessage(true);
+
+            }, onChatMessage: function (message) {
+                audioHandler.playSound('roby-over');
+                chatHandler.enqueueChatMessage(message);
+                scopeService.safeApply($scope, function () {
+                    $scope.chatBubbles = chatHandler.getChatMessages();
+                });
             }
-
-
-        }, function (message) {
-            // onHereMessage
-            gameData.setEnemyNickname(message.nickname);
-            gameData.setEnemyReady(message.readyState);
-            gameData.setTimerSetting(message.timerSetting);
-
-            if (message.needResponse) {
-                rabbit.sendHereMessage(false);
-            }
-
-            audioHandler.playSound('enemy-found');
-            scopeService.safeApply($scope, function () {
-                $scope.enemyNickname = gameData.getEnemyNickname();
-                $scope.totTime = gameData.formatTimeEnemyFoundText(gameData.getTimerSetting());
-            });
-            changeScreen('enemyFound');
-
-        }, function () {
-            // onReadyMessage
-            gameData.setEnemyReady(true);
-            if (gameData.isPlayerReady() && gameData.isEnemyReady())
-                rabbit.sendTilesRequest();
-
-        }, function (message) {
-            // onTilesMessage
-            gameData.setCurrentMatchTiles(message['tiles']);
-            navigationHandler.goToPage($location, $scope, '/match', true);
-
-        },  function () {
-            // onQuitGameMessage
-            scopeService.safeApply($scope, function () {
-                $translate('ENEMY_LEFT').then(function (enemyLeft) {
-                    $scope.forceExitText = enemyLeft;
-                }, function (translationId) {
-                    $scope.forceExitText = translationId;
-                });
-                $scope.forceExitModal = true;
-            });
-
-        }, function () {
-            // onConnectionLost
-            scopeService.safeApply($scope, function () {
-                $translate('FORCE_EXIT').then(function (forceExit) {
-                    $scope.forceExitText = forceExit;
-                }, function (translationId) {
-                    $scope.forceExitText = translationId;
-                });
-                $scope.forceExitModal = true;
-            });
-
-        }, function (response) {
-            // onGeneralInfoMessage
-            sessionHandler.setTotalMatches(response.totalMatches);
-            sessionHandler.setConnectedPlayers(response.connectedPlayers);
-            sessionHandler.setRandomWaitingPlayers(response.randomWaitingPlayers);
-        },function (message) {
-            // onChatMessage
-            audioHandler.playSound('roby-over');
-            chatHandler.enqueueChatMessage(message);
-            scopeService.safeApply($scope, function () {
-                $scope.chatBubbles = chatHandler.getChatMessages();
-            });
         });
 
         // chat
@@ -157,8 +161,13 @@ angular.module('codyColor').controller('cmmakingCtrl',
         // click su 'unisciti'
         $scope.joinGame = function(code) {
             audioHandler.playSound('menu-click');
-            $scope.joinMessage = 'Cercando informazioni sulla partita…';
-            rabbit.sendGameRequest(false, code);
+            $translate('SEARCH_MATCH_INFO').then(function (text) {
+                $scope.joinMessage = text;
+            }, function (translationId) {
+                $scope.joinMessage = translationId;
+            });
+            gameData.setGameCode(code);
+            rabbit.sendGameRequest();
         };
 
         // click su 'iniziamo'
@@ -178,10 +187,8 @@ angular.module('codyColor').controller('cmmakingCtrl',
         };
         $scope.continueExitGame = function() {
             audioHandler.playSound('menu-click');
-            rabbit.quitGame();
+            quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
-            gameData.clearGameData();
-            chatHandler.clearChat();
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -192,10 +199,8 @@ angular.module('codyColor').controller('cmmakingCtrl',
         $scope.forceExitText = '';
         $scope.continueForceExit = function() {
             audioHandler.playSound('menu-click');
-            rabbit.quitGame();
+            quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
-            gameData.clearGameData();
-            chatHandler.clearChat();
         };
 
         // impostazioni multi language
