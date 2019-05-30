@@ -402,7 +402,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "14f93ea21e5fa01e6894ece6d1f5d3da"
+    "revision": "6ed2388ff990868ff14ad667cd362fb2"
   },
   {
     "url": "js/vendor/jquery.ui.touch-punch.min.js",

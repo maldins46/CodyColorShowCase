@@ -14,7 +14,7 @@ angular.module('codyColor').factory("sessionHandler", function() {
         totalMatches: 0,
         connectedPlayers: 0,
         randomWaitingPlayers: 0,
-        requiredClientVersion: clientVersion
+        requiredClientVersion: undefined
     };
 
     // numero univoco associato a questa sessione
@@ -56,7 +56,10 @@ angular.module('codyColor').factory("sessionHandler", function() {
 
 
     sessionHandler.isClientVersionValid = function () {
-        return clientVersion.toString() === generalInfo.requiredClientVersion.toString();
+        if (generalInfo.requiredClientVersion === undefined)
+            return true;
+        else
+            return clientVersion === generalInfo.requiredClientVersion;
     };
 
 
