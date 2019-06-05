@@ -306,7 +306,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "cbbd7a9c1f46e7e7a821f6bada7af138"
+    "revision": "1bee52fcea1b094bbc05954d6c346126"
   },
   {
     "url": "manifest.json",
