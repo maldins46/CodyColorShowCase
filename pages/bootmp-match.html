@@ -1,4 +1,4 @@
-<div id="match" class="page">
+<div id="bootmp-match" class="page">
     <div class="page--wrapper">
         <div class="page--body">
             <!-- countdown component -->
@@ -7,24 +7,24 @@
             </div>
 
             <!-- match component -->
-            <div id="match-in-progress" ng-show="!countdownInProgress" class="page--component">
+            <div id="match-in-progress" ng-hide="countdownInProgress" class="page--component">
                 <!-- Top centered columns with player-enemy data-->
-                <div class="centered-columns">
+                <div class="centered-columns" ng-show="withEnemy">
                     <div class="centered-columns--pair">
                         <div class="centered-columns--column">
-                            <div class="big-text ellipsize">{{playerPoints}}</div>
+                            <div class="big-text ellipsize">{{player.points}}</div>
                         </div>
                         <div class="centered-columns--column">
-                            <div class="big-text ellipsize">{{enemyPoints}}</div>
+                            <div class="big-text ellipsize">{{enemy.points}}</div>
                         </div>
                     </div>
 
                     <div class="centered-columns--pair">
                         <div class="centered-columns--column ellipsize">
-                            {{playerNickname}}
+                            {{player.nickname}}
                         </div>
                         <div class="centered-columns--column ellipsize">
-                            {{enemyNickname}}
+                            {{enemy.nickname}}
                         </div>
                     </div>
 
@@ -38,6 +38,16 @@
                             <i class="far fa-clock" ng-class="enemyPositioned? 'timer--stop' : 'timer--normal'"></i>
                             {{enemyMatchTimerText}}
                         </div>
+                    </div>
+                </div>
+
+                <!-- Top player-only data-->
+                <div class="centered-columns" ng-hide="withEnemy">
+                    <div class="big-text ellipsize">{{player.points}}</div>
+                    <div class="ellipsize">{{player.nickname}}</div>
+                    <div class="ellipsize" ng-class="{'timer--stop': playerPositioned}">
+                        <i class="far fa-clock" ng-class="playerPositioned ? 'timer--stop' : 'timer--normal'"></i>
+                        {{playerMatchTimerText}}
                     </div>
                 </div>
 
@@ -370,21 +380,15 @@
 
                 <!-- Skip button -->
                 <div class="centered-container" ng-show="endMatch && !askedForSkip">
-                    <button class="navigation--button flashing-animation" ng-click="skip()">Skip
+                    <button class="navigation--button flashing-animation" ng-click="skip()"> {{ 'SKIP' | translate }}
                         <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                     </button>
-                </div>
-
-                <!-- Wait enemy skip-->
-                <div class="centered-container flashing-animation" ng-show="endMatch && askedForSkip">
-                    {{ 'WAIT_SKIP' | translate }}
                 </div>
             </div>
         </div>
 
         <div class="page--push"></div>
     </div>
-
 
     <!-- Footer module -->
     <div class="page--footer">
@@ -414,16 +418,6 @@
             <div class="modal--buttons-container">
                 <button class="modal--button-secondary" ng-click="stopExitGame()">{{ 'UNDO' | translate}}</button>
                 <button class="modal--button-primary" ng-click="continueExitGame()">{{ 'OK' | translate}}</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Force exit modal -->
-    <div class="modal" ng-show="forceExitModal">
-        <div class="modal--content">
-            <p>{{forceExitText}}</p>
-            <div class="modal--buttons-container">
-                <button class="modal--button-primary" ng-click="continueForceExit()">{{ 'OK' | translate}}</button>
             </div>
         </div>
     </div>

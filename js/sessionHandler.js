@@ -7,12 +7,12 @@ angular.module('codyColor').factory("sessionHandler", function() {
     let isSessionValid;
 
     // todo da impostare manualmente ad ogni nuova release
-    const clientVersion = '1.0.8';
+    const clientVersion = '1.0.9';
 
     // informazioni sul sistema, aggiornate automaticamente dal server non appena connessi
     let generalInfo = {
         totalMatches: 0,
-        connectedPlayers: 0,
+        connectedEnemies: 0,
         randomWaitingPlayers: 0,
         requiredClientVersion: undefined
     };

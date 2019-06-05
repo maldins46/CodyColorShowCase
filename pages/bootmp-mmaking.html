@@ -1,25 +1,30 @@
-<div id="bootcampmaking" class="page">
+<div id="bootmp-mmaking" class="page">
     <div class="page--wrapper">
         <div class="page--body" ng-show="pageReady">
             <form name="customMatchForm">
                 <ul class="list">
+                    <li class="list--simple-element"><h2>{{'BOOT_CAMP' | translate}}</h2></li>
                     <li class="list--spaced-element">
                         {{ 'BOOTCAMPMAKING_DESC' | translate }}
                     </li>
+
+                    <li class="list--simple-element">
+                        <label for="nickname">{{'NICKNAME' | translate}}</label>
+                    </li>
                     <li class="list--spaced-element">
-                        <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="Nickname"
-                               required autofocus/>
+                        <input type="text" name="nickname" maxlength="22" ng-model="nickname"
+                               placeholder="{{'NICKNAME_EXAMPLE' | translate}}"  id="nickname" required autofocus/>
                     </li>
                     <li class="list--simple-element">
                         {{ 'ENEMY' | translate }}
                     </li>
                     <li class="list--spaced-element">
                         <div class="selector">
-                            <div class="selector--button" ng-click="enemyLeft()">
+                            <div class="selector--button" ng-click="editBootEnemySetting(false)">
                                 <i class="fas fa-chevron-left"></i>
                             </div>
-                            <div class="selector--text">{{enemySettings[currentEnemyIndex].text}}</div>
-                            <div class="selector--button" ng-click="enemyRight()">
+                            <div class="selector--text">{{bootEnemySettings[currentBootEnemySettingIndex].text}}</div>
+                            <div class="selector--button" ng-click="editBootEnemySetting(true)">
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </div>
@@ -30,11 +35,11 @@
                     </li>
                     <li class="list--spaced-element">
                         <div class="selector">
-                            <div class="selector--button" ng-click="decrementTime()">
+                            <div class="selector--button" ng-click="editTimer(false)">
                                 <i class="fas fa-minus"></i>
                             </div>
                             <div class="selector--text">{{ timerSettings[currentTimerIndex].text }}</div>
-                            <div class="selector--button" ng-click="incrementTime()">
+                            <div class="selector--button" ng-click="editTimer(true)">
                                 <i class="fas fa-plus"></i>
                             </div>
                         </div>

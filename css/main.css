@@ -157,6 +157,7 @@ input[type=password], input[type=number] {
     font-size: 20px;
     box-sizing: border-box;
     border-radius: 4px;
+    text-align: center;
 }
 
 @media only screen and (min-width: 310px) {
@@ -166,6 +167,31 @@ input[type=password], input[type=number] {
     }
 }
 
+/* -------------------------------------------------------------------------
+ * Modulo timepicker
+ * ------------------------------------------------------------------------- */
+
+.timepicker {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    flex-direction: row;
+}
+
+input[type=number].timepicker--text {
+    width: auto;
+    padding: 12px 20px;
+    font-size: 20px;
+    margin: 0 5px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+@media only screen and (min-width: 310px) {
+    input[type=number].timepicker--text {
+        width: auto;
+    }
+}
 
 /* -------------------------------------------------------------------------
  * Modulo page: implementa lo scheletro di base comune a tutte le pagine,
@@ -309,10 +335,10 @@ input[type=password], input[type=number] {
     animation: fadeout 0.2s both ease-in;
 }
 
-#match .page--component.ng-hide-remove,
-#bootcamp .page--component.ng-hide-remove,
-#match .page--component.ng-hide-add,
-#bootcamp .page--component.ng-hide-add {
+#arcade-match .page--component.ng-hide-remove,
+#bootmp-match .page--component.ng-hide-remove,
+#arcade-match .page--component.ng-hide-add,
+#bootmp-match .page--component.ng-hide-add {
     animation: none;
 }
 
@@ -459,18 +485,25 @@ button.chat--hint:hover {
     border-radius: 8px;
     color: white;
     padding: 10px 20px;
-    text-align: center;
     position: relative;
+}
+
+.chat--bubble-sender {
+    box-sizing: border-box;
+    font-size: small;
+    text-align: inherit;
 }
 
 .chat--bubble-player {
     float: left;
+    text-align: left;
     margin-left: 20px;
     background-color: #48af9b;
 }
 
 .chat--bubble-enemy {
     float: right;
+    text-align: right;
     margin-right: 20px;
     background-color: #ba793a;
 }
@@ -654,34 +687,43 @@ button.modal--button-secondary:hover {
 
 
 /* -------------------------------------------------------------------------
- * Modulo copyable: implementa un contenitore contentente un testo, che
- * reagisce al click mostrando una notifica di testo copiato negli appunti
+ * Modulo copyable: implementa due contenitori contenenti un testo, che
+ * reagiscono al click mostrando una notifica di testo copiato negli appunti
  * ------------------------------------------------------------------------- */
+
+
+.copyable--container {
+    margin: 0 auto;
+    overflow: auto;
+}
 
 .copyable {
     width: 100%;
-    margin: 0 auto;
     padding: 10px;
+    margin: 10px 0;
     box-sizing: border-box;
-    text-align: center;
     border-style: solid;
     border-width: 1px;
-    border-radius: 4px;
+    border-radius: 8px;
     border-color: White;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.11);
+    overflow: scroll;
     transition-duration: 0.2s;
-    background-color: transparent;
+}
+
+@media only screen and (min-width: 716px) {
+    .copyable {
+        width: 300px;
+        margin: 10px;
+    }
 }
 
 .copyable:hover {
     transition-duration: 0.2s;
-    background-color: rgba(255, 255, 255, 0.09);
+    background-color: rgba(255, 255, 255, 0.20);
 }
 
-@media only screen and (min-width: 320px) {
-    .copyable {
-        width: 280px;
-    }
-}
 
 .copyable--big-text {
     border: none;
@@ -864,6 +906,47 @@ button.modal--button-secondary:hover {
 
 .stats--enemy-text {
     color: #ba793a;
+}
+
+
+/* -------------------------------------------------------------------------
+ * Modulo playerlist: implementa il contenitore che mostra i giocatori
+ * collegati a una partita in modalità tutti contro tutti
+ * ------------------------------------------------------------------------- */
+
+.playerlist {
+    width: 100%;
+    height: 120px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    border-color: White;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.11);
+    overflow: scroll;
+    padding: 10px 0;
+}
+
+@media only screen and (min-width: 716px) {
+    .playerlist {
+        width: 620px;
+    }
+}
+
+.playerlist--header {
+    margin: 0 0 15px 0;
+}
+
+
+.playerlist--sub-container {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.playerlist--line {
+    margin: 10px 0 0 0;
 }
 
 

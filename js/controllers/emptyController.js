@@ -20,7 +20,7 @@ angular.module('codyColor').controller('emptyCtrl',
         };
 
         // tenta la connessione, se necessario
-        $scope.connected = rabbit.getConnectionState();
+        $scope.connected = rabbit.getBrokerConnectionState();
         if (!$scope.connected)
             rabbit.connect();
 

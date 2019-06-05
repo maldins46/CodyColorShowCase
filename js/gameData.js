@@ -1,185 +1,198 @@
 /*
- * GameData: memorizza e condivide tra i vari controller informazioni sulla partita corrente
+ * GameData: factory utilizzato come struttura per memorizzare variabili della partita corrente,
+ * oltre a restituire funzioni utili alla formattazione di tali dati
  */
 angular.module('codyColor').factory('gameData', function () {
 
     let gameData = {};
 
-    const gameTypes = { random: 'random', custom: 'custom', aga: 'aga' };
+    let data = {};
 
-    let seriesData = {};
-    let matchData = {};
+    const gameTypes = {
+        bootmp: 'bootmp',
+        random: 'random',
+        custom: 'custom',
+        royale: 'royale'
+    };
+
+
+    let generateEmptyPlayerMatch = function() {
+        return {
+            time: 0,
+            wantSkip: false,
+            points: 0,
+            pathLength: 0,
+            startPosition: {
+                side: -1,
+                distance: -1
+            },
+            endPosition: {
+                side: -1,
+                distance: -1
+            },
+            tilesCoords: [],
+            direction: []
+        };
+    };
+
+
+    let generateEmptyPlayer = function() {
+        return {
+            nickname: "Anonymous",
+            points: 0,
+            playerId: -1,
+            ready: false,
+            match: generateEmptyPlayerMatch()
+        }
+    };
+
+
+    let generateEmptyGeneral = function() {
+        return {
+            gameName: undefined,
+            startDate: undefined,
+            gameRoomId: -1,
+            matchCount: 1,
+            timerSetting: 30000,
+            bootEnemySetting: -1,
+            code: '0000',
+            tiles: undefined,
+            gameType: undefined
+        }
+    };
+
+
+    let generateEmptyGameData = function() {
+        return {
+            general: generateEmptyGeneral(),
+            players: [generateEmptyPlayer()]
+        }
+    };
+
+    /* -------------------------------------------------------------------- *
+     * Initializators: metodi per 'pulire' la struttura dati, nel momento
+     * in cui vada resettata
+     * -------------------------------------------------------------------- */
+
+    // pone i dati di gioco al loro valore di default
+    gameData.initializeGameData = function () {
+        data = generateEmptyGameData();
+    };
+    gameData.initializeGameData();
+
+
+
+    gameData.initializeMatchData = function () {
+        data.general.tiles = undefined;
+        for (let i = 0; i < data.players.length; i++) {
+            data.players[i].match = generateEmptyPlayerMatch() ;
+        }
+    };
+
+
+    /* -------------------------------------------------------------------- *
+     * Getter-setter:funzioni ausiliarie per accedere ai dati
+     * -------------------------------------------------------------------- */
+
+    gameData.addEnemy = function (playerId) {
+        data.players.push(generateEmptyPlayer());
+        data.players[data.players.length - 1].playerId = playerId;
+    };
+
+
+    gameData.editEnemy = function(playerId, modifiedProperties) {
+        // modifica nella struttura i soli dati del giocatore passati in modifiedProperties,
+        // senza intaccare gli altri campi
+        let enemyId = getEnemyIndexById(playerId);
+        if (data.players[enemyId] !== undefined)
+            $.extend(true, data.players[enemyId], modifiedProperties);
+    };
+
+
+    gameData.editEnemy1vs1 = function(modifiedProperties) {
+        if (data.players[1] !== undefined)
+            $.extend(true, data.players[1], modifiedProperties);
+    };
+
+
+    gameData.editPlayer = function(modifiedProperties) {
+        $.extend(true, data.players[0], modifiedProperties);
+    };
+
+
+    gameData.removeEnemy = function(playerId) {
+        data.players.splice(getEnemyIndexById(playerId), 1);
+    };
+
+
+    gameData.editGeneral = function(modifiedProperties) {
+        $.extend(true, data.general, modifiedProperties);
+    };
+
+
+    gameData.editPlayerById = function(playerId, modifiedProperties) {
+        if (getPlayerIndexById(playerId) !== undefined)
+            $.extend(true,  data.players[getPlayerIndexById(playerId)], modifiedProperties);
+    };
+
+
+    gameData.getEnemies = function () {
+        let enemies = JSON.parse(JSON.stringify(data.players));
+        enemies.splice(0, 1);
+        return enemies;
+    };
+
+
+    gameData.getPlayerById = function(playerId) {
+        return data.players[getPlayerIndexById(playerId)];
+    };
+
+
+    gameData.getPlayer = function () {
+        return data.players[0];
+    };
+
+    gameData.getEnemy1vs1 = function () {
+        return data.players[1];
+    };
+
+
+    gameData.getAllPlayers = function () {
+        return data.players;
+    };
+
+
+    gameData.getGeneral = function () {
+        return data.general;
+    };
+
+
+    /* -------------------------------------------------------------------- *
+     * Helpers: metodi ausiliari alla formattazione dei dati e alla verifica
+     * di determinate proprieta'
+     * -------------------------------------------------------------------- */
+
+    let getEnemyIndexById = function(playerId) {
+        for (let i = 1; i < data.players.length; i++) {
+            if (data.players[i].playerId === playerId) {
+                return i;
+            }
+        }
+    };
+
+    let getPlayerIndexById = function(playerId) {
+        for (let i = 0; i < data.players.length; i++) {
+            if (data.players[i].playerId === playerId) {
+                return i;
+            }
+        }
+    };
 
 
     gameData.getGameTypes = function() {
         return gameTypes;
     };
 
-
-    // --- getter-setter dati serie corrente --- //
-
-    gameData.setPlayerNickname = function (name) {
-        seriesData.playerNickname = name;
-    };
-
-
-    gameData.getPlayerNickname = function () {
-        if (seriesData.playerNickname === undefined)
-            seriesData.playerNickname = "Anonimo";
-
-        return seriesData.playerNickname;
-    };
-
-
-    gameData.setEnemyNickname = function (name) {
-        seriesData.enemyNickname = name;
-    };
-
-
-    gameData.getEnemyNickname = function () {
-        if (seriesData.enemyNickname === undefined)
-            seriesData.enemyNickname = "Anonimo";
-
-        return seriesData.enemyNickname;
-    };
-
-    gameData.setGameRoomId = function (id) {
-        seriesData.gameRoomId = id;
-    };
-
-
-    gameData.getGameRoomId = function () {
-        if(seriesData.gameRoomId === undefined)
-            seriesData.gameRoomId = -1;
-
-        return seriesData.gameRoomId;
-    };
-
-
-    gameData.setPlayerId = function (id) {
-        seriesData.playerId = id;
-    };
-
-
-    gameData.getPlayerId = function () {
-        if(seriesData.playerId === undefined)
-            seriesData.playerId = -1;
-
-        return seriesData.playerId;
-    };
-
-
-    gameData.getPlayerPoints = function () {
-        if (seriesData.playerPoints === undefined)
-            seriesData.playerPoints = 0;
-
-        return seriesData.playerPoints;
-    };
-
-
-    gameData.addPlayerPoints = function (points) {
-        seriesData.playerPoints += points;
-    };
-
-
-    gameData.getEnemyPoints = function () {
-        if (seriesData.enemyPoints === undefined)
-            seriesData.enemyPoints = 0;
-
-        return seriesData.enemyPoints;
-    };
-
-
-    gameData.addEnemyPoints = function (points) {
-        seriesData.enemyPoints += points;
-    };
-
-
-
-    gameData.getMatchCount = function () {
-        if(seriesData.matchCount === undefined) {
-            seriesData.matchCount = 1;
-        }
-        return seriesData.matchCount;
-    };
-
-    gameData.addMatch = function() {
-        if(seriesData.matchCount === undefined) {
-            seriesData.matchCount = 2;
-        } else {
-            seriesData.matchCount++;
-        }
-    };
-
-    gameData.setTimerSetting = function(timer) {
-        seriesData.timerSetting = timer;
-    };
-
-    gameData.getTimerSetting = function() {
-        if (seriesData.timerSetting === undefined)
-            seriesData.timerSetting = 30000;
-
-        return seriesData.timerSetting;
-    };
-
-    gameData.setBootEnemySetting = function(setting) {
-        seriesData.bootEnemySetting = setting;
-    };
-
-    gameData.getBootEnemySetting = function() {
-        if (seriesData.bootEnemySetting === undefined)
-            seriesData.bootEnemySetting = -1;
-
-        return seriesData.bootEnemySetting;
-    };
-
-    gameData.setGameCode = function(code) {
-        seriesData.gameCode = code;
-    };
-
-    gameData.getGameCode = function() {
-        if (seriesData.gameCode === undefined)
-            seriesData.gameCode = '0000';
-
-        return seriesData.gameCode;
-    };
-
-    gameData.setGameType = function(type) {
-        seriesData.gameType = type;
-    };
-
-    gameData.getGameType = function() {
-        if (seriesData.gameType === undefined)
-            seriesData.gameType = gameTypes.random;
-
-        return seriesData.gameType;
-    };
-
-
-    // --- getter-setter dati match corrente --- //
-
-    gameData.isPlayerReady = function () {
-        if (matchData.isPlayerReady === undefined)
-            matchData.isPlayerReady = false;
-
-        return matchData.isPlayerReady;
-    };
-
-    gameData.setPlayerReady = function (state) {
-        matchData.isPlayerReady = state;
-    };
-
-
-    gameData.isEnemyReady = function () {
-        if (matchData.isEnemyReady === undefined)
-            matchData.isEnemyReady = false;
-
-        return matchData.isEnemyReady;
-    };
-
-    gameData.setEnemyReady = function (state) {
-        matchData.isEnemyReady = state;
-    };
 
     gameData.generateNewMatchTiles = function() {
         let bootTiles = '';
@@ -196,145 +209,28 @@ angular.module('codyColor').factory('gameData', function () {
                     break;
             }
         }
-        gameData.setCurrentMatchTiles(bootTiles);
+        return gameData.formatMatchTiles(bootTiles);
     };
 
-    gameData.setCurrentMatchTiles = function (tilesString) {
-        // si ipotizza al momento una matrice 5x5
-        matchData.tiles = new Array(5);
+
+    // converte la stringa 'GRY' in una matrice 5x5
+    gameData.formatMatchTiles = function (tilesString) {
+        let tiles = new Array(5);
         let positionIndex = 0;
 
         for (let i = 0; i < 5; i++) {
-            matchData.tiles[i] = new Array(5);
+            tiles[i] = new Array(5);
             for (let j = 0; j < 5; j++) {
-                matchData.tiles[i][j] = tilesString.charAt(positionIndex);
+                tiles[i][j] = tilesString.charAt(positionIndex);
                 positionIndex++;
             }
         }
+
+        return tiles;
     };
 
-    gameData.getCurrentMatchTiles = function () {
-        if (matchData.tiles === undefined) {
-            matchData.tiles = new Array(5);
-
-            for (let i = 0; i < 5; i++) {
-                matchData.tiles[i] = new Array(5);
-                for (let j = 0; j < 5; j++) {
-                    matchData.tiles[i][j] = 'G';
-                }
-            }
-        }
-
-        return matchData.tiles;
-    };
-
-    gameData.getPlayerStartPosition = function () {
-        if (matchData.playerStartPosition === undefined)
-            matchData.playerStartPosition = { side: -1, distance: -1 };
-
-        return  matchData.playerStartPosition;
-    };
-
-    gameData.setPlayerStartPosition = function (position) {
-        matchData.playerStartPosition = position;
-    };
-
-
-    gameData.getEnemyStartPosition = function () {
-        if (matchData.enemyStartPosition === undefined)
-            matchData.enemyStartPosition = { side: -1, distance: -1 };
-
-        return matchData.enemyStartPosition;
-    };
-
-
-    gameData.setEnemyStartPosition = function (position) {
-        matchData.enemyStartPosition = position;
-    };
-
-
-    gameData.setPlayerMatchTime = function (time) {
-        matchData.playerTime = time;
-    };
-
-    gameData.getPlayerMatchTime = function () {
-        if (matchData.playerTime === undefined)
-            matchData.playerTime = 0;
-
-        return matchData.playerTime;
-    };
-
-
-    gameData.setEnemyMatchTime = function (time) {
-        matchData.enemyTime = time;
-    };
-
-    gameData.getEnemyMatchTime = function () {
-        if (matchData.enemyTime === undefined)
-            matchData.enemyTime = 0;
-
-        return matchData.enemyTime;
-    };
-
-
-    gameData.setPlayerWantSkip = function(skip) {
-        matchData.playerWantSkip = skip;
-    };
-
-
-    gameData.getPlayerWantSkip = function () {
-        if (matchData.playerWantSkip === undefined)
-            matchData.playerWantSkip = false;
-
-        return matchData.playerWantSkip;
-    };
-
-    gameData.setEnemyWantSkip = function(skip) {
-        matchData.enemyWantSkip = skip;
-    };
-
-
-    gameData.getEnemyWantSkip = function () {
-        if (matchData.enemyWantSkip === undefined)
-            matchData.enemyWantSkip = false;
-
-        return matchData.enemyWantSkip;
-    };
-
-
-    gameData.setCurrentMatchResult = function (result) {
-        matchData.result = result;
-    };
-
-
-    gameData.getCurrentMatchResult = function () {
-        if (matchData.result === undefined)
-            matchData.result = {
-                playerResult: { points: 0, length: 0, loop: false, time: 0 },
-                enemyResult: { points: 0, length: 0, loop: false, time: 0 }
-            };
-
-        return matchData.result;
-    };
-
-
-    // --- data clear methods ---
-
-    gameData.clearMatchData = function() {
-        matchData = {};
-    };
-
-
-    gameData.clearGameData = function() {
-        seriesData = {};
-        matchData = {};
-    };
-
-
-    // --- helper methods ---
-
-    // funzione che restituisce una stringa leggibile dato il valore di un timer
-    gameData.formatTimerTextDecPrecision = function(timerValue) {
+    // ottiene la notazione 'secondi' : 'centesimi'
+    gameData.formatTimeDecimals = function(timerValue) {
         let decimals = Math.floor((timerValue / 10) % 100).toString();
         let seconds = Math.floor((timerValue / 1000) % 60).toString();
         let minutes = Math.floor((timerValue / (1000 * 60)) % 60).toString();
@@ -348,32 +244,31 @@ angular.module('codyColor').factory('gameData', function () {
         }
     };
 
-    // funzione che restituisce una stringa leggibile dato il valore di un timer, omettendo le cifre decimali
-    gameData.formatTimerTextSecPrecision = function(timerValue) {
-        let seconds = Math.floor((timerValue / 1000) % 60).toString();
-        let minutes = Math.floor((timerValue / (1000 * 60)) % 60).toString();
 
+    // ottiene la notazione 'minuti' : 'secondi'
+    gameData.formatTimeSeconds = function(timerValue) {
+        let seconds = Math.floor((timerValue % (1000 * 60)) / 1000).toString();
+        let minutes = Math.floor((timerValue % (1000 * 60 * 60)) / (1000 * 60)).toString();
+        let hours   = Math.floor((timerValue % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString();
+
+        hours = (hours === '0') ? '' : hours + ':';
         seconds = (seconds.length < 2) ? "0" + seconds : seconds;
-        return minutes + ':' + seconds;
+        return  hours + minutes + ':' + seconds;
     };
+
 
     // funzione che restituisce una stringa leggibile dato il valore di un timer
-    gameData.formatTimeEnemyFoundText = function(timerValue) {
+    gameData.formatTimeStatic = function(timerValue) {
         switch(timerValue) {
             case 15000:
-                return '15 secondi';
+                return '15_SECONDS';
             case 30000:
-                return '30 secondi';
+                return '30_SECONDS';
             case 60000:
-                return '1 minuto';
+                return '1_MINUTE';
             case 120000:
-                return '2 minuti';
+                return '2_MINUTES';
         }
-    };
-
-
-    gameData.formatStartPosition = function(position) {
-        return position.side.toString() + ' ' + position.distance.toString();
     };
 
 
@@ -382,24 +277,56 @@ angular.module('codyColor').factory('gameData', function () {
 
         let hours = date.getHours();
         let minutes = date.getMinutes();
-        minutes = minutes < 10 ? '0'+minutes : minutes;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
         return hours + ':' + minutes;
     };
 
 
-    // restituisce il vincitore della partita corrente in base ai dati memorizzati
+    // restituisce il nickname del vincitore della partita corrente in base
+    // nell'ordine a: punti totalizzati, passi effettuati e tempo impiegato
     gameData.getMatchWinner = function () {
-        if (matchData.result.playerResult.points > matchData.result.enemyResult.points) {
-            return seriesData.playerNickname;
-        } else if (matchData.result.playerResult.points < matchData.result.enemyResult.points) {
-            return seriesData.enemyNickname;
-        } else if (matchData.playerTime > matchData.enemyTime) {
-            return seriesData.playerNickname;
-        } else if (matchData.playerTime < matchData.enemyTime) {
-            return seriesData.enemyNickname;
-        } else {
-            return "lo sport";
+        let basePlayer = generateEmptyPlayer();
+        basePlayer.match.points = -1;
+        basePlayer.match.time = -1;
+        basePlayer.match.pathLength = -1;
+        let bestPointPlayers = [ basePlayer ];
+
+        for (let i = 0; i < data.players.length; i++) {
+            if (data.players[i].match.points > bestPointPlayers[0].match.points) {
+                bestPointPlayers = [ data.players[i] ];
+            } else if (data.players[i].match.points === bestPointPlayers[0].match.points) {
+                bestPointPlayers.push(data.players[i]);
+            }
         }
+
+        if (bestPointPlayers.length === 1)
+            return bestPointPlayers[0].nickname;
+
+        let bestPathPlayers = [ basePlayer ];
+        for (let i = 0; i < bestPointPlayers.length; i++) {
+            if (bestPointPlayers[i].match.pathLength > bestPathPlayers[0].match.pathLength) {
+                bestPathPlayers = [ bestPointPlayers[i] ];
+            } else if (bestPointPlayers[i].match.pathLength === bestPathPlayers[0].match.pathLength) {
+                bestPathPlayers.push(bestPointPlayers[i]);
+            }
+        }
+
+        if (bestPathPlayers.length === 1)
+            return bestPathPlayers[0].nickname;
+
+        let bestTimePlayers = [ basePlayer ];
+        for (let i = 0; i < bestPathPlayers.length; i++) {
+            if (bestPathPlayers[i].match.time > bestTimePlayers[0].match.time) {
+                bestTimePlayers = [ bestPathPlayers[i] ];
+            } else if (bestPathPlayers[i].match.time === bestTimePlayers[0].match.time) {
+                bestTimePlayers.push(bestPathPlayers[i]);
+            }
+        }
+
+        if (bestTimePlayers.length === 1)
+            return bestTimePlayers[0].nickname;
+
+        return "lo sport";
     };
 
     return gameData;

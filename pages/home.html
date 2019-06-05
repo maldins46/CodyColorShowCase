@@ -14,8 +14,11 @@
                     <button class="navigation--button" ng-click="goToRMMaking()">{{ 'RANDOM_MATCH' | translate }}</button>
                 </li>
                 <li class="list--simple-element">
-                    <button class="navigation--button" ng-click="goToPMMaking()">{{ 'CUSTOM_MATCH' | translate }}</button>
+                    <button class="navigation--button" ng-click="goToCMMaking()">{{ 'CUSTOM_MATCH' | translate }}</button>
                 </li>
+                <!--<li class="list--simple-element">
+                    <button class="navigation--button" ng-click="goToAMMaking()">{{ 'AGA_MATCH' | translate }}</button>
+                </li>-->
                 <li class="list--simple-element">
                     <button class="navigation--button" ng-click="goToBootcamp()">{{ 'BOOT_CAMP' | translate }}</button>
                 </li>
@@ -31,7 +34,7 @@
                     </div>
                 </li>
                 <li class="list--simple-element" ng-hide="connected">
-                    <div ng-class="(!connected ? 'flashing-animation' : '')">{{ 'NOTIF_OFFLINE' | translate }}</div>
+                    <div ng-class="(connected !== true ? 'flashing-animation' : '')">{{ 'NOTIF_OFFLINE' | translate }}</div>
                 </li>
             </ul>
         </div>

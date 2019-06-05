@@ -1,14 +1,15 @@
 /*
  * Controller partita con avversario custom
  */
-angular.module('codyColor').controller('cmmakingCtrl',
-    function ($scope, rabbit, navigationHandler, $translate,
+angular.module('codyColor').controller('customMmakingCtrl',
+    function ($scope, rabbit, navigationHandler, $translate, translationHandler,
               audioHandler, $location, sessionHandler, gameData, scopeService, chatHandler) {
-        console.log("Cmmaking controller ready.");
+        console.log("New match custom controller ready.");
+        gameData.editGeneral({ gameType: gameData.getGameTypes().custom });
 
         let quitGame = function() {
             rabbit.quitGame();
-            gameData.clearGameData();
+            gameData.initializeGameData();
             chatHandler.clearChat();
         };
 
@@ -31,37 +32,30 @@ angular.module('codyColor').controller('cmmakingCtrl',
                 });
             }, 200);
         };
-
-        gameData.setGameType('custom');
-        $scope.chatVisible = false;
         changeScreen('joinMatch');
 
         // tenta la connessione, se necessario
-        $scope.connected = rabbit.getConnectionState();
+        $scope.connected = rabbit.getBrokerConnectionState();
         if (!$scope.connected) {
             rabbit.connect();
         } else {
             console.log("connected in cmmaking");
-            if (gameData.getGameCode() !== '0000') {
-                $scope.joinMessage = 'Cercando informazioni sulla partita…';
+            if (gameData.getGeneral().code !== '0000') {
+                translationHandler.setTranslation($scope, 'joinMessage', 'SEARCH_MATCH_INFO');
                 rabbit.sendGameRequest();
             }
         }
 
         $scope.goToCreateMatch = function() {
             audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, "/newcmatch");
+            navigationHandler.goToPage($location, $scope, "/custom-new-match");
         };
 
         rabbit.setPageCallbacks({
             onConnected: function () {
-                if (gameData.getGameCode() !== '0000') {
+                if (gameData.getGeneral().code !== '0000') {
                     scopeService.safeApply($scope, function () {
-                        $translate('SEARCH_MATCH_INFO').then(function (text) {
-                            $scope.joinMessage = text;
-                        }, function (translationId) {
-                            $scope.joinMessage = translationId;
-                        });
+                        translationHandler.setTranslation($scope, 'joinMessage', 'SEARCH_MATCH_INFO');
                     });
                     rabbit.sendGameRequest();
                 }
@@ -69,24 +63,28 @@ angular.module('codyColor').controller('cmmakingCtrl',
             }, onGameRequestResponse: function (message) {
                 if (message.code.toString() === '0000') {
                     scopeService.safeApply($scope, function () {
-                        $translate('CODE_NOT_VALID').then(function (text) {
-                            $scope.joinMessage = text;
-                        }, function (translationId) {
-                            $scope.joinMessage = translationId;
-                        });
+                        translationHandler.setTranslation($scope, 'joinMessage', 'CODE_NOT_VALID');
                     });
                 } else {
-                    gameData.setGameCode(message.code.toString());
-                    gameData.setGameRoomId(message.gameRoomId);
-                    gameData.setPlayerId(message.playerId);
+                    gameData.editGeneral({
+                        code:         message.code.toString(),
+                        gameRoomId:   message.gameRoomId,
+                        timerSetting: message.timerSetting
+                    });
+                    gameData.editPlayer({
+                        playerId: message.playerId
+                    });
+
                     rabbit.subscribeGameRoom();
                     rabbit.sendHereMessage(true);
                 }
 
             }, onHereMessage: function (message) {
-                gameData.setEnemyNickname(message.nickname);
-                gameData.setEnemyReady(message.readyState);
-                gameData.setTimerSetting(message.timerSetting);
+                gameData.addEnemy(message.playerId);
+                gameData.editEnemy1vs1({
+                    nickname: message.nickname,
+                    ready:    message.readyState
+                });
 
                 if (message.needResponse) {
                     rabbit.sendHereMessage(false);
@@ -94,29 +92,28 @@ angular.module('codyColor').controller('cmmakingCtrl',
 
                 audioHandler.playSound('enemy-found');
                 scopeService.safeApply($scope, function () {
-                    $scope.enemyNickname = gameData.getEnemyNickname();
-                    $scope.totTime = gameData.formatTimeEnemyFoundText(gameData.getTimerSetting());
+                    $scope.enemyNickname = gameData.getEnemy1vs1().nickname;
+                    translationHandler.setTranslation($scope, 'totTime',
+                        gameData.formatTimeStatic(gameData.getGeneral().timerSetting));
                 });
                 changeScreen('enemyFound');
 
             }, onReadyMessage: function () {
-                gameData.setEnemyReady(true);
-                if (gameData.isPlayerReady() && gameData.isEnemyReady())
+                gameData.editEnemy1vs1({ ready: true });
+                if (gameData.getEnemy1vs1().ready && gameData.getPlayer().ready)
                     rabbit.sendTilesRequest();
 
             }, onTilesMessage: function (message) {
-                gameData.setCurrentMatchTiles(message['tiles']);
-                navigationHandler.goToPage($location, $scope, '/match', true);
+                gameData.editGeneral({
+                    tiles: gameData.formatMatchTiles(message.tiles)
+                });
+                navigationHandler.goToPage($location, $scope, '/arcade-match', true);
 
             }, onQuitGameMessage: function (message) {
                 if (message.state !== 'playing') {
                     quitGame();
                     scopeService.safeApply($scope, function () {
-                        $translate('ENEMY_LEFT').then(function (enemyLeft) {
-                            $scope.forceExitText = enemyLeft;
-                        }, function (translationId) {
-                            $scope.forceExitText = translationId;
-                        });
+                        translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
                         $scope.forceExitModal = true;
                     });
                 }
@@ -124,11 +121,7 @@ angular.module('codyColor').controller('cmmakingCtrl',
             }, onConnectionLost: function () {
                 quitGame();
                 scopeService.safeApply($scope, function () {
-                    $translate('FORCE_EXIT').then(function (forceExit) {
-                        $scope.forceExitText = forceExit;
-                    }, function (translationId) {
-                        $scope.forceExitText = translationId;
-                    });
+                    translationHandler.setTranslation($scope, 'forceExitText', 'FORCE_EXIT');
                     $scope.forceExitModal = true;
                 });
 
@@ -142,9 +135,10 @@ angular.module('codyColor').controller('cmmakingCtrl',
         });
 
         // chat
+        $scope.chatVisible = false;
         $scope.chatBubbles = chatHandler.getChatMessages();
         $scope.getBubbleStyle = function(chatMessage) {
-            if (chatMessage.playerId === gameData.getPlayerId())
+            if (chatMessage.playerId === gameData.getPlayer().playerId)
                 return 'chat--bubble-player';
             else
                 return 'chat--bubble-enemy';
@@ -157,25 +151,26 @@ angular.module('codyColor').controller('cmmakingCtrl',
             $scope.chatBubbles = chatHandler.getChatMessages();
         };
 
-        $scope.joinMessage = '';
         // click su 'unisciti'
-        $scope.joinGame = function(code) {
+        $scope.joinGame = function(codeValue) {
             audioHandler.playSound('menu-click');
             $translate('SEARCH_MATCH_INFO').then(function (text) {
                 $scope.joinMessage = text;
             }, function (translationId) {
                 $scope.joinMessage = translationId;
             });
-            gameData.setGameCode(code);
+            gameData.editGeneral({code: codeValue});
             rabbit.sendGameRequest();
         };
 
-        // click su 'iniziamo'
-        $scope.playerReady = function(nickname) {
-            gameData.setPlayerNickname(nickname);
-            gameData.setPlayerReady(true);
-            if(!gameData.isEnemyReady())
-                changeScreen('waitingConfirm');
+        // click su 'iniziamo' dall'inserimento nickname
+        $scope.playerReady = function(nicknameValue) {
+           gameData.editPlayer({
+               nickname: nicknameValue,
+               ready: true
+           });
+
+           changeScreen('waitingConfirm');
             rabbit.sendReadyMessage();
         };
 

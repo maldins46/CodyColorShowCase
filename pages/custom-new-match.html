@@ -1,63 +1,100 @@
-<div id="cmmaking" class="page">
+<div id="custom-new-match" class="page">
     <div class="page--wrapper">
         <div class="page--body">
-            <!-- Join match -->
-            <div ng-show="mmakingState === 'joinMatch'" class="page--component">
+            <!-- Create match -->
+            <div ng-show="mmakingState === 'createMatch'" class="page--component">
                 <form name="customMatchForm">
                     <ul class="list">
                         <li class="list--spaced-element">
-                            {{ 'CMMAKING_DESC' | translate }}
+                            <h2>{{ 'NEW_CUSTOM_EXT' | translate }}</h2>
                         </li>
                         <li class="list--spaced-element">
-                            <input type="number" name="code" max="9999" min="0"
-                                   ng-model="code" placeholder="{{'CODE' | translate}}" required autofocus/>
+                            {{ 'NEW_CUSTOM_MATCH_DESC' | translate }}
+                        </li>
+
+                        <li class="list--simple-element">
+                            <label for="nickname">{{ 'NICKNAME' | translate }}</label>
                         </li>
                         <li class="list--spaced-element">
-                            <button class="navigation--button flashing-animation"
-                                    ng-click="joinGame(customMatchForm.code.$viewValue)"
-                                    ng-disabled="customMatchForm.code.$invalid">
-                                {{ 'JOIN' | translate }}
+                            <input type="text" name="nickname" maxlength="22" ng-model="nickname" id="nickname"
+                                   placeholder="{{'NICKNAME_EXAMPLE' | translate }}" required autofocus/>
+                        </li>
+                        <li class="list--simple-element">
+                            {{ 'MATCH_TIME' | translate }}
+                        </li>
+                        <li class="list--spaced-element">
+                            <div class="selector">
+                                <div class="selector--button" ng-click="editTimer(false)">
+                                    <i class="fas fa-minus"></i>
+                                </div>
+                                <div class="selector--text">{{timerSettings[currentTimerIndex].text}}</div>
+                                <div class="selector--button" ng-click="editTimer(true)">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list--spaced-element">
+                            <button class="navigation--button flashing-animation" type="submit"
+                                    ng-click="requestMMaking(customMatchForm.nickname.$viewValue)"
+                                    ng-disabled="customMatchForm.nickname.$invalid">
+                                {{ 'CREATE_MATCH  ' | translate }}
                                 <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
                             </button>
                         </li>
-                        <li class="list--spaced-element"  ng-show="joinMessage !== ''"
-                            ng-class="joinMessage === 'Cercando informazioni sulla partita…' ? 'flashing-component' : ''">
-                            {{joinMessage}}
+                        <li class="list--spaced-element" ng-show="creatingMatch">
+                            <div class="flashing-animation">{{ 'CREATING_MATCH' | translate }}</div>
                         </li>
                     </ul>
                 </form>
+            </div>
+
+            <!-- Enemy invitation -->
+            <div ng-show="mmakingState === 'enemyInvitation'" class="page--component">
                 <ul class="list">
-                    <li class="list--super-spaced-element">- oppure -</li>
                     <li class="list--spaced-element">
-                        <button class="navigation--button flashing-animation" ng-click="goToCreateMatch()"
-                                ng-disabled="customMatchForm.nickname.$invalid">
-                            <span translate="NEW_CUSTOM_MATCH"></span>
-                            <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
-                        </button>
+                        {{ 'ENEMY_INVITATION_DESC' | translate }}
+                    </li>
+
+                    <li class="list--spaced-element">
+                        <div class="copyable" ng-click="copyCode()">
+                            <div class="copyable--big-text">{{gameCode}}</div>
+                            <div class="copyable--copy-text" ng-show="codeCopied">
+                                <i class="far fa-copy copyable--copy-icon"></i> {{ 'COPIED' | translate }}
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list--spaced-element">
+                        {{ 'ENEMY_INVITATION_SUB_DESC' | translate }}
+                    </li>
+
+                    <li class="list--spaced-element">
+                        <div class="copyable" ng-click="copyLink()">
+                            <div class="copyable--small-text">https://codycolor.codemooc.net/#!?match={{gameCode}}</div>
+                            <div class="copyable--copy-text" ng-show="linkCopied">
+                                <i class="far fa-copy copyable--copy-icon"></i> {{ 'COPIED' | translate }}
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list--spaced-element">
+                        <div class="flashing-animation">{{ 'ENEMY_WAIT' | translate }}</div>
                     </li>
                 </ul>
             </div>
 
             <!-- Enemy found -->
-            <div ng-show="mmakingState === 'enemyFound'" class="page--component">
-                <form name="landingMatchForm">
-                    <ul class="list">
-                        <li class="list--spaced-element">
-                            {{ 'MATCH_JOINED' | translate : { 'enemyNickname': enemyNickname, 'totTime': totTime } }}
-                        </li>
-                        <li class="list--spaced-element">
-                            <input type="text" name="nickname" maxlength="22"
-                                   ng-model="nickname" placeholder="{{'NICKNAME' | translate}}" required/>
-                        </li>
-                        <li class="list--spaced-element">
-                            <button class="navigation--button flashing-animation"
-                                    ng-click="playerReady(landingMatchForm.nickname.$viewValue)"
-                                    ng-disabled="landingMatchForm.nickname.$invalid">Iniziamo!
-                                <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </form>
+            <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="page--component">
+                <ul class="list">
+                    <li class="list--spaced-element">
+                       {{ 'NEW_ENEMY' | translate : { 'enemyNickname': enemyNickname } }}
+                    </li>
+                    <li class="list--simple-element">
+                        <button class="navigation--button flashing-animation" ng-click="playerReady()">
+                            {{ 'START' | translate }} <i class="fas fa-angle-double-right floating-right-animation"></i>
+                        </button>
+                    </li>
+                </ul>
             </div>
 
             <!-- Waiting confirm -->
@@ -71,18 +108,21 @@
                         </div>
                     </li>
                     <li class="list--spaced-element">
-                        <div class="flashing-animation">{{ 'ENEMY_WAIT' | translate }}</div>
+                        <div class="flashing-animation"> {{ 'ENEMY_WAIT' | translate }} </div>
                     </li>
                 </ul>
             </div>
 
             <!-- Chat module -->
-            <div class="chat" ng-show="mmakingState === 'waitingConfirm'">
+            <div class="chat" ng-show="mmakingState === 'waitingConfirm' || mmakingState === 'enemyFound'">
                 <div class="chat--bubbles-container">
                     {{ 'CHAT_TITLE' | translate }}
                     <div class="chat--bubbles-sub-container" ng-repeat="bubble in chatBubbles">
                         <div class="chat--bubble-row">
-                            <div ng-class="getBubbleStyle(bubble)">{{bubble.body}}</div>
+                            <div ng-class="getBubbleStyle(bubble)">
+                                <div class="chat--bubble-sender">{{bubble.sender}}</div>
+                                {{bubble.body}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,13 +134,15 @@
                 </div>
             </div>
         </div>
+
+        <!-- Push module -->
         <div class="page--push"></div>
     </div>
 
     <!-- Footer module -->
     <div class="page--footer">
         <div class="page--footer-column-left ellipsize">
-             <button class="page--footer-button" ng-click="exitGame()">
+            <button class="page--footer-button" ng-click="exitGame()">
                 <i class="fa  fa-times page--footer-icons"></i>
             </button>
             <button class="page--footer-button" ng-click="toggleBase()">

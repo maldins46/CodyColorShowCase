@@ -1,69 +1,74 @@
-<div id="rmmaking" class="page">
+<div id="custom-mmaking" class="page">
     <div class="page--wrapper">
         <div class="page--body">
-            <!-- Nickname selection -->
-            <div ng-show="mmakingState === 'nicknameSelection'" class="page--component">
-                <form name="nickForm">
+            <!-- Join match -->
+            <div ng-show="mmakingState === 'joinMatch'" class="page--component">
                     <ul class="list">
+                        <li class="list--simple-element"><h2> {{'CUSTOM_MATCH' | translate}}</h2></li>
                         <li class="list--spaced-element">
-                            {{ 'RMMAKING_DESC' | translate }}
+                            {{'CUSTOM_MATCH_DESC' | translate}}
                         </li>
                         <li class="list--spaced-element">
-                            <input type="text" name="nickname" maxlength="22" ng-model="nickname" placeholder="{{'NICKNAME' | translate}}"
-                                   required autofocus/>
+                            <button class="navigation--button flashing-animation" ng-click="goToCreateMatch()">
+                                <span translate="NEW_CUSTOM_MATCH"></span>
+                                <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
+                            </button>
+                        </li>
+                    </ul>
+                <br>
+                <form name="customMatchForm">
+                    <ul class="list">
+                        <li class="list--simple-element"><h2>{{'JOIN_TITLE' | translate}}</h2></li>
+                        <li class="list--spaced-element">
+                            {{'JOIN_DESC' | translate}}
+                        </li>
+                        <li class="list--simple-element">
+                            <label for="code">{{'CODE' | translate}}</label>
+                        </li>
+                        <li class="list--spaced-element">
+                            <input type="number" name="codeValue" max="9999" min="0" ID="code"
+                                   ng-model="codeValue" placeholder="{{'CODE_EXAMPLE' | translate}}" required autofocus/>
                         </li>
                         <li class="list--spaced-element">
                             <button class="navigation--button flashing-animation"
-                                    ng-click="requestMMaking(nickForm.nickname.$viewValue)"
-                                    ng-disabled="nickForm.nickname.$invalid">
-                                <span translate="FIND_ENEMY"></span>
+                                    ng-click="joinGame(customMatchForm.codeValue.$viewValue)"
+                                    ng-disabled="customMatchForm.codeValue.$invalid">
+                                {{ 'JOIN' | translate }}
                                 <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
                             </button>
                         </li>
-                        <li class="list--spaced-element">
-                            <p class="flashing-animation">
-                                {{ 'ENEMIES_WAITING' | translate : {'randomWaitingPlayers': randomWaitingPlayers} }}
-                            </p>
+                        <li class="list--spaced-element"  ng-show="joinMessage !== undefined"
+                            ng-class="joinMessage !== undefined ? 'flashing-component' : ''">
+                            {{joinMessage}}
                         </li>
                     </ul>
                 </form>
             </div>
 
-            <!-- Waiting enemy -->
-            <div ng-show="mmakingState === 'waitingEnemy'" class="page--component">
-                <ul class="list">
-                    <li class="list--spaced-element">
-                        <div class="loading-spinner">
-                            <div></div><div></div><div></div>
-                            <div></div><div></div><div></div>
-                            <div></div><div></div><div></div>
-                        </div>
-                    </li>
-                    <li class="list--spaced-element">
-                        <div class="flashing-animation">
-                            {{ 'WAITING_NEW_PLAYERS' | translate }}
-                            <br>
-                            {{ mmakingTimerText }}
-                        </div>
-                    </li>
-                    <li class="list--spaced-element">
-
-                    </li>
-                </ul>
-            </div>
-
             <!-- Enemy found -->
-            <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="page--component">
-                <ul class="list">
-                    <li class="list--spaced-element">
-                        {{ 'NEW_ENEMY' | translate : { 'enemyNickname': enemyNickname } }}
-                    </li>
-                    <li class="list--simple-element">
-                        <button class="navigation--button flashing-animation" ng-click="playerReady()">Iniziamo!
-                            <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
-                        </button>
-                    </li>
-                </ul>
+            <div ng-show="mmakingState === 'enemyFound'" class="page--component">
+                <form name="landingMatchForm">
+                    <ul class="list">
+                        <li class="list--spaced-element">
+                            {{ 'MATCH_JOINED' | translate : { 'enemyNickname': enemyNickname, 'totTime': totTime } }}
+                        </li>
+                        <li class="list--simple-element">
+                            <label for="nickname">{{ 'NICKNAME' | translate}}</label>
+                        </li>
+                        <li class="list--spaced-element">
+                            <input type="text" name="nicknameValue" maxlength="22" id="nickname"
+                                   ng-model="nicknameValue" placeholder="{{'NICKNAME_EXAMPLE' | translate}}" required/>
+                        </li>
+                        <li class="list--spaced-element">
+                            <button class="navigation--button flashing-animation"
+                                    ng-click="playerReady(landingMatchForm.nicknameValue.$viewValue)"
+                                    ng-disabled="landingMatchForm.nicknameValue.$invalid">
+                                {{ 'START' | translate}}
+                                <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </form>
             </div>
 
             <!-- Waiting confirm -->
@@ -83,12 +88,15 @@
             </div>
 
             <!-- Chat module -->
-            <div class="chat" ng-show="mmakingState === 'waitingConfirm' || mmakingState === 'enemyFound'">
+            <div class="chat" ng-show="mmakingState === 'waitingConfirm'">
                 <div class="chat--bubbles-container">
                     {{ 'CHAT_TITLE' | translate }}
                     <div class="chat--bubbles-sub-container" ng-repeat="bubble in chatBubbles">
                         <div class="chat--bubble-row">
-                            <div ng-class="getBubbleStyle(bubble)">{{bubble.body}}</div>
+                            <div ng-class="getBubbleStyle(bubble)">
+                                <div class="chat--bubble-sender">{{bubble.sender}}</div>
+                                {{bubble.body}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,7 +108,6 @@
                 </div>
             </div>
         </div>
-
         <div class="page--push"></div>
     </div>
 

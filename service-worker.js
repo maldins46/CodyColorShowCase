@@ -218,7 +218,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/main.css",
-    "revision": "243af11debeeac0e23aa7712052666dc"
+    "revision": "1f2dc50a69a0e18dfe3c006732d9d922"
   },
   {
     "url": "css/normalize.css",
@@ -226,66 +226,74 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "f17296fb15bd9ef5ef533bb495ea410e"
+    "revision": "c603b078aefbb7b2c477fc6cb797e439"
   },
   {
-    "url": "partials/404.html",
+    "url": "pages/404.html",
     "revision": "64b6c0eb68781a03f7ae1ab4bc8468dd"
   },
   {
-    "url": "partials/aftermatch.html",
-    "revision": "09aec097bb4436643719aaa656757181"
+    "url": "pages/arcade-aftermatch.html",
+    "revision": "5aec1bdbd8b6cb18e6d2b39aec68a4a3"
   },
   {
-    "url": "partials/bootaftermatch.html",
-    "revision": "88aef941bda516d2760240577ef67e7c"
+    "url": "pages/arcade-match.html",
+    "revision": "5429c29604adec9cf5a12de6f048bce0"
   },
   {
-    "url": "partials/bootcamp.html",
-    "revision": "a63beb37a7ba09eca4a816d3811ddefb"
+    "url": "pages/bootmp-aftermatch.html",
+    "revision": "5984b864529bbada5e431d0cf36b16d7"
   },
   {
-    "url": "partials/bootcampmaking.html",
-    "revision": "ad229e8e49be202e2b3d7e0845cb59e2"
+    "url": "pages/bootmp-match.html",
+    "revision": "95407c1c5838fec0d9fc3b9f342511a4"
   },
   {
-    "url": "partials/cmmaking.html",
-    "revision": "b934f7a9dcb7482a19c963d4510b3800"
+    "url": "pages/bootmp-mmaking.html",
+    "revision": "45deddabcac81dedc29dede5faf8e738"
   },
   {
-    "url": "partials/home.html",
-    "revision": "88bb0fd9b8574c114f3a63b3e616e2b5"
+    "url": "pages/custom-mmaking.html",
+    "revision": "b72dcc776968aca6acbb55b379147bb4"
   },
   {
-    "url": "partials/login.html",
+    "url": "pages/custom-new-match.html",
+    "revision": "336c85155b2e5fc49034cf3dc499a53d"
+  },
+  {
+    "url": "pages/home.html",
+    "revision": "3cd356e639869b1b3f0ee3be71fee970"
+  },
+  {
+    "url": "pages/login.html",
     "revision": "ed244ec7b7c3992d1ba8766e889b5f28"
   },
   {
-    "url": "partials/match.html",
-    "revision": "2756c2735907a88b3e9b67b754f39e14"
+    "url": "pages/random-mmaking.html",
+    "revision": "99c7118850dc958677bf70adcae65167"
   },
   {
-    "url": "partials/newcmatch.html",
-    "revision": "b27f295227e70a363d99cca6a8b60d7c"
-  },
-  {
-    "url": "partials/ranking.html",
+    "url": "pages/ranking.html",
     "revision": "f88137f7b65f1a3c925fa37713c8fbae"
   },
   {
-    "url": "partials/register.html",
+    "url": "pages/register.html",
     "revision": "4637b81ecb806084c19b6906a74aa133"
   },
   {
-    "url": "partials/rmmaking.html",
-    "revision": "ca8fa03c031436149f41442323acda8b"
+    "url": "pages/royale-mmaking.html",
+    "revision": "a931c21073f7ca7ed6d80e4931b08975"
   },
   {
-    "url": "partials/rules.html",
+    "url": "pages/royale-new-match.html",
+    "revision": "019b7a3eed1fc1f8bd6ca173de25d746"
+  },
+  {
+    "url": "pages/rules.html",
     "revision": "37d5cb5efbc98ae6e6debc55557fab7c"
   },
   {
-    "url": "partials/splash.html",
+    "url": "pages/splash.html",
     "revision": "889b1030392f2bc0173b026bf305b502"
   },
   {
@@ -294,11 +302,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "97a1373cbe22753a3215c8b02fda2ec3"
+    "revision": "fd8030d3c8332c23ef4d23f62da218bb"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "811712986aa942c2fdd4d7559cf0931e"
+    "revision": "cbbd7a9c1f46e7e7a821f6bada7af138"
   },
   {
     "url": "manifest.json",
@@ -317,44 +325,48 @@ workbox.precaching.precacheAndRoute([
     "revision": "3a6749134dff089b1751be593eaa0e32"
   },
   {
-    "url": "js/controllers/aftermatchController.js",
-    "revision": "706c679514e652d2221db7c73065f81a"
+    "url": "js/controllers/arcadeAftermatchController.js",
+    "revision": "c28d616b26d30d7744e8782b6a42a6ca"
   },
   {
-    "url": "js/controllers/bootAftermatchController.js",
-    "revision": "9d65c693266759ff2e3adad8f1a23489"
+    "url": "js/controllers/arcadeMatchController.js",
+    "revision": "ba06f759d029a6c1f3e6d34797c3e601"
   },
   {
-    "url": "js/controllers/bootCampController.js",
-    "revision": "2fcc1c1a491b4b9c9e6dcdd496f3d357"
+    "url": "js/controllers/bootmpAftermatchController.js",
+    "revision": "7072c253e42933f42343239b4aabf8f4"
   },
   {
-    "url": "js/controllers/bootCampMakingController.js",
-    "revision": "140fed1eaadbf49f8b18202f5795696e"
+    "url": "js/controllers/bootmpMatchController.js",
+    "revision": "9196fa8053498e52586dae1b98b07f4b"
   },
   {
-    "url": "js/controllers/cmmakingController.js",
-    "revision": "4ab53d5fd6007af990078b20ddc73442"
+    "url": "js/controllers/bootmpMmakingController.js",
+    "revision": "88fe95a7abe7ebc178831f675884437a"
+  },
+  {
+    "url": "js/controllers/customMmakingController.js",
+    "revision": "10953ab7fb5694770bc2b6b1997a2f7c"
+  },
+  {
+    "url": "js/controllers/customNewMatchController.js",
+    "revision": "a1db93df59ddd177e9e765f9f7d63b9f"
   },
   {
     "url": "js/controllers/emptyController.js",
-    "revision": "5b269d942873cd2df2751c58e3b82d6b"
+    "revision": "3dd7d2fbe1b0cb271a923fb02459524f"
   },
   {
     "url": "js/controllers/homeController.js",
-    "revision": "302ff90c00816200a1ecb7a9969d20f8"
+    "revision": "8a89d2091513950b9758e4aa8ba87857"
   },
   {
     "url": "js/controllers/loginController.js",
     "revision": "d3adbbf4d4d47bd46a24f5aaf70f2dc4"
   },
   {
-    "url": "js/controllers/matchController.js",
-    "revision": "ee3abff6c655328558d3ca272440e7b2"
-  },
-  {
-    "url": "js/controllers/newcmatchController.js",
-    "revision": "f2dd09e1bff072d206e0a5bd6cc59a67"
+    "url": "js/controllers/randomMmakingController.js",
+    "revision": "977ff07f44241c4b46396c1c1b127193"
   },
   {
     "url": "js/controllers/rankingController.js",
@@ -365,16 +377,20 @@ workbox.precaching.precacheAndRoute([
     "revision": "714cf16f7eeaf61d1649d5a6457e9c0a"
   },
   {
-    "url": "js/controllers/rmmakingController.js",
-    "revision": "0e50f372c602d64f5a5380143cb033cf"
+    "url": "js/controllers/royaleMmakingController.js",
+    "revision": "1e76ec757675a6507a8a30815f5d80b2"
+  },
+  {
+    "url": "js/controllers/royaleNewMatchController.js",
+    "revision": "263e82c68c4c2ceab3d922e65ee27463"
   },
   {
     "url": "js/controllers/splashController.js",
-    "revision": "5ca944b508a71d4c6b6b98ad7ff52b63"
+    "revision": "3599cea323d70ad678140047caf8ff2a"
   },
   {
     "url": "js/gameData.js",
-    "revision": "7e25961ad907f51eab5b1de4877aa358"
+    "revision": "e8e37a825701aaf2a6adc42b988be038"
   },
   {
     "url": "js/main.js",
@@ -382,7 +398,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/navigationHandler.js",
-    "revision": "0b15af766704fd1122d03c130929c3db"
+    "revision": "ba85c89884a6021ac2b10caeadd518b8"
   },
   {
     "url": "js/plugins.js",
@@ -390,11 +406,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "d0aa336ef5e460457931145e356c0c5d"
+    "revision": "68069409bf7c6fee0c792b44e3d5fbc1"
   },
   {
     "url": "js/robyAnimator.js",
-    "revision": "1bae92cb4bbb39ca39e020e47ca1af32"
+    "revision": "cdc8b2c50a107546a05d862f6a2f4ec6"
   },
   {
     "url": "js/scopeService.js",
@@ -402,7 +418,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "6ed2388ff990868ff14ad667cd362fb2"
+    "revision": "4131a831b6837fcf4631fd98cec66b88"
+  },
+  {
+    "url": "js/translationHandler.js",
+    "revision": "d3e1c13bf6967bacb9e32147aad203cf"
   },
   {
     "url": "js/vendor/jquery.ui.touch-punch.min.js",

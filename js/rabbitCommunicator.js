@@ -41,16 +41,23 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     };
 
     let connectedToBroker;
+    let connectedToServer;
     let client;
     let pageCallbacks = {};
     let heartbeatTimer;
     let subscriptions = {};
 
 
-    rabbit.getConnectionState = function () {
+    rabbit.getBrokerConnectionState = function () {
         if (connectedToBroker === undefined)
             connectedToBroker = false;
         return connectedToBroker;
+    };
+
+    rabbit.getServerConnectionState = function () {
+        if (connectedToServer === undefined)
+            connectedToServer = false;
+        return connectedToServer;
     };
 
 
@@ -62,24 +69,29 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     rabbit.connect = function () {
         // todo switch to release prima della pubblicazione
         client = Stomp.client(credentials.releaseUrl);
-        client.connect(credentials.username,
-                       credentials.password,
-                       onConnected,
-                       onConnectionLost,
-                       credentials.vHost);
+        client.connect(
+            credentials.username,
+            credentials.password,
+            onConnected,
+            onConnectionLost,
+            credentials.vHost
+        );
     };
 
 
     rabbit.subscribeGameRoom = function () {
-        subscriptions.gameRoom = client.subscribe(getGameRoomEndpoint(), handleIncomingMessage);
+        subscriptions.gameRoom = client.subscribe(
+            getGameRoomEndpoint(),
+            handleIncomingMessage
+        );
 
         // invia un heartbeat al server ogni 5 secondi
         heartbeatTimer = setInterval(function () {
             sendInServerControlQueue({
-                msgType: messageTypes.heartbeat,
-                gameRoomId: gameData.getGameRoomId(),
-                playerId: gameData.getPlayerId(),
-                gameType: gameData.getGameType()
+                msgType:    messageTypes.heartbeat,
+                gameRoomId: gameData.getGeneral().gameRoomId,
+                playerId:   gameData.getPlayer().playerId,
+                gameType:   gameData.getGeneral().gameType
             });
         }, 5000);
     };
@@ -88,10 +100,13 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     // richiesta per iniziare una nuova partita
     rabbit.sendGameRequest = function () {
        sendInServerControlQueue({
-           msgType: messageTypes.gameRequest,
+           msgType:       messageTypes.gameRequest,
            correlationId: sessionHandler.getSessionId(),
-           gameType: gameData.getGameType(),
-           code: gameData.getGameCode()
+           gameType:      gameData.getGeneral().gameType,
+           gameName:      gameData.getGeneral().gameName,
+           timerSetting:  gameData.getGeneral().timerSetting,
+           code:          gameData.getGeneral().code,
+           date:          gameData.getGeneral().startDate
        });
     };
 
@@ -99,14 +114,14 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     // notifica all'avversario la propria presenza
     rabbit.sendHereMessage = function (needResponseValue) {
         sendInGameRoomTopic({
-            msgType: messageTypes.here,
-            gameRoomId: gameData.getGameRoomId(),
-            playerId: gameData.getPlayerId(),
-            nickname: gameData.getPlayerNickname(),
+            msgType:      messageTypes.here,
+            gameRoomId:   gameData.getGeneral().gameRoomId,
+            playerId:     gameData.getPlayer().playerId,
+            nickname:     gameData.getPlayer().nickname,
             needResponse: needResponseValue,
-            timerSetting: gameData.getTimerSetting(),
-            gameType: gameData.getGameType(),
-            readyState: gameData.isPlayerReady()
+            timerSetting: gameData.getGeneral().timerSetting,
+            gameType:     gameData.getGeneral().gameType,
+            readyState:   gameData.getPlayer().ready
         });
     };
 
@@ -114,11 +129,11 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     // notifica all'avversario che si è pronti a iniziare la partita
     rabbit.sendReadyMessage = function () {
         sendInGameRoomTopic({
-            msgType: messageTypes.ready,
-            gameRoomId: gameData.getGameRoomId(),
-            playerId: gameData.getPlayerId(),
-            nickname: gameData.getPlayerNickname(),
-            gameType: gameData.getGameType(),
+            msgType:    messageTypes.ready,
+            gameRoomId: gameData.getGeneral().gameRoomId,
+            playerId:   gameData.getPlayer().playerId,
+            nickname:   gameData.getPlayer().nickname,
+            gameType:   gameData.getGeneral().gameType,
             readyState: true
         });
     };
@@ -127,13 +142,13 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     // notifica all'avversario l'avvenuto posizionamento di roby
     rabbit.sendPlayerPositionedMessage = function () {
         sendInGameRoomTopic({
-            msgType: messageTypes.playerPositioned,
-            gameRoomId: gameData.getGameRoomId(),
-            playerId: gameData.getPlayerId(),
-            gameType: gameData.getGameType(),
-            matchTime: gameData.getPlayerMatchTime(),
-            side: gameData.getPlayerStartPosition().side,
-            distance: gameData.getPlayerStartPosition().distance
+            msgType:    messageTypes.playerPositioned,
+            gameRoomId: gameData.getGeneral().gameRoomId,
+            playerId:   gameData.getPlayer().playerId,
+            gameType:   gameData.getGeneral().gameType,
+            matchTime:  gameData.getPlayer().match.time,
+            side:       gameData.getPlayer().match.startPosition.side,
+            distance:   gameData.getPlayer().match.startPosition.distance
         });
     };
 
@@ -141,10 +156,10 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     // notifica all'avversario la volontà di skippare l'animazione
     rabbit.sendSkipMessage = function () {
         sendInGameRoomTopic({
-            msgType: messageTypes.skip,
-            gameRoomId: gameData.getGameRoomId(),
-            playerId: gameData.getPlayerId(),
-            gameType: gameData.getGameType()
+            msgType:    messageTypes.skip,
+            gameRoomId: gameData.getGeneral().gameRoomId,
+            playerId:   gameData.getPlayer().playerId,
+            gameType:   gameData.getGeneral().gameType
         });
     };
 
@@ -152,12 +167,13 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     // formatta, invia e restituisci messaggio di chat
     rabbit.sendChatMessage = function (messageBody) {
         let message = {
-            msgType: messageTypes.chat,
-            gameRoomId: gameData.getGameRoomId(),
-            playerId: gameData.getPlayerId(),
-            body: messageBody,
-            date: (new Date()).getTime(),
-            gameType: gameData.getGameType()
+            msgType:    messageTypes.chat,
+            gameRoomId: gameData.getGeneral().gameRoomId,
+            playerId:   gameData.getPlayer().playerId,
+            sender:     gameData.getPlayer().nickname,
+            body:       messageBody,
+            date:       (new Date()).getTime(),
+            gameType:   gameData.getGeneral().gameType
         };
         sendInGameRoomTopic(message);
         return message;
@@ -167,34 +183,33 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     // richiede al server una nuova disposizione tiles
     rabbit.sendTilesRequest = function () {
         sendInServerControlQueue({
-            msgType: messageTypes.tilesRequest,
-            gameRoomId: gameData.getGameRoomId(),
-            gameType: gameData.getGameType()
+            msgType:    messageTypes.tilesRequest,
+            gameRoomId: gameData.getGeneral().gameRoomId,
+            gameType:   gameData.getGeneral().gameType
         });
     };
 
 
     // chiude la connessione alla game room in modo sicuro
     rabbit.quitGame = function () {
-        if (subscriptions.gameRoom !== undefined) {
+        if (subscriptions.gameRoom !== undefined)
             subscriptions.gameRoom.unsubscribe();
-            subscriptions.gameRoom = undefined;
-        }
 
-        if (heartbeatTimer !== undefined) {
+        subscriptions.gameRoom = undefined;
+
+        if (heartbeatTimer !== undefined)
             clearInterval(heartbeatTimer);
-        }
 
         pageCallbacks = {};
 
-        if (gameData.getGameRoomId() === -1 || gameData.getPlayerId() === -1)
+        if (gameData.getGeneral().gameRoomId === -1 || gameData.getPlayer().playerId === -1)
             return;
 
         let quitNotification = {
-            msgType: messageTypes.quitGame,
-            gameRoomId: gameData.getGameRoomId(),
-            playerId: gameData.getPlayerId(),
-            gameType: gameData.getGameType()
+            msgType:    messageTypes.quitGame,
+            gameRoomId: gameData.getGeneral().gameRoomId,
+            playerId:   gameData.getPlayer().playerId,
+            gameType:   gameData.getGeneral().gameType
         };
 
         sendInServerControlQueue(quitNotification);
@@ -206,7 +221,7 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     let onConnected = function () {
         connectedToBroker = true;
 
-        let serverDirectEndpoint = endpoints.clientControlTopic + '.' + sessionHandler.getSessionId();
+        let serverDirectEndpoint   = endpoints.clientControlTopic + '.' + sessionHandler.getSessionId();
         subscriptions.serverDirect = client.subscribe(serverDirectEndpoint,   handleIncomingMessage);
         subscriptions.general      = client.subscribe(endpoints.generalTopic, handleIncomingMessage);
 
@@ -224,6 +239,7 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     // invocato in caso di errore di connessione con il broker
     let onConnectionLost = function () {
         connectedToBroker = false;
+        connectedToServer = false;
 
         // ritenta connessione dopo 10 secondi
         setTimeout(function () {
@@ -253,15 +269,15 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
 
 
     let getGameRoomEndpoint = function() {
-        switch (gameData.getGameType()) {
+        switch (gameData.getGeneral().gameType) {
             case gameData.getGameTypes().random: {
-                return endpoints.randomGameRoomsTopic + '.' + gameData.getGameRoomId();
+                return endpoints.randomGameRoomsTopic + '.' + gameData.getGeneral().gameRoomId;
             }
             case gameData.getGameTypes().custom: {
-                return endpoints.customGameRoomsTopic + '.' + gameData.getGameRoomId();
+                return endpoints.customGameRoomsTopic + '.' + gameData.getGeneral().gameRoomId;
             }
-            case gameData.getGameTypes().aga: {
-                return endpoints.agaGameRoomsTopics + '.' + gameData.getGameRoomId();
+            case gameData.getGameTypes().royale: {
+                return endpoints.agaGameRoomsTopics + '.' + gameData.getGeneral().gameRoomId;
             }
         }
     };
@@ -279,6 +295,7 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
                 return;
 
             case messageTypes.generalInfo:
+                connectedToServer = true;
                 sessionHandler.setGeneralInfo( {
                     totalMatches: message.totalMatches,
                     connectedPlayers: message.connectedPlayers,
@@ -293,7 +310,7 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         }
 
         // 2. messaggi provenienti dalla gameRoom
-        if (message.playerId === gameData.getPlayerId()) {
+        if (message.playerId === gameData.getPlayer().playerId) {
             // si è intercettato il proprio messaggio: ignoralo
             return;
         }

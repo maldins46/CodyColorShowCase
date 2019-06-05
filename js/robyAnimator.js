@@ -5,28 +5,26 @@
 angular.module('codyColor').factory("robyAnimator", function(gameData) {
     let robyAnimator = {};
 
-    let playerRoby;
-    let enemyRoby;
-
-    let startPositions;
+    let startPositionsTiles;
     let completeGridTiles;
 
-    let playerPath;
-    let enemyPath;
+    let isLastMovement;
 
-    let lastMovement;
-
+    let playerRoby;
+    let enemyRoby;
     let robyImageCallbacks = {};
     let robyWalkingTimers = {};
 
     // in caso di interruzione del gioco, sospendi i timers
     robyAnimator.quitGame = function() {
-        clearInterval((robyWalkingTimers.player));
-        clearInterval((robyWalkingTimers.enemy));
+        if(robyWalkingTimers.player !== undefined)
+            clearInterval((robyWalkingTimers.player));
+        if(robyWalkingTimers.enemy !== undefined)
+            clearInterval((robyWalkingTimers.enemy));
 
         robyImageCallbacks = {};
         robyWalkingTimers = {};
-        lastMovement = false;
+        isLastMovement = false;
     };
 
     robyAnimator.initializeElements = function (changePlayerImage, changeEnemyImage) {
@@ -39,11 +37,11 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
         enemyRoby = $("#enemy-roby");
 
         // riferimenti alle posizioni di partenza nella griglia
-        startPositions = new Array(4);
+        startPositionsTiles = new Array(4);
         for (let side = 0; side < 4; side++) {
-            startPositions[side] = new Array(5);
+            startPositionsTiles[side] = new Array(5);
             for (let distance = 0; distance < 5; distance++) {
-                startPositions[side][distance] = $('#start-' + side.toString() + distance.toString());
+                startPositionsTiles[side][distance] = $('#start-' + side.toString() + distance.toString());
             }
         }
 
@@ -60,17 +58,18 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
 
     // pone l'immagine di roby del giocatore in posizione (senza animazione), sulla casella selezionata dall'utente
     robyAnimator.positionRoby = function (identity) {
-        let coordinates = (identity === 'player' ? gameData.getPlayerStartPosition() : gameData.getEnemyStartPosition());
+        let coordinates = (identity === 'player' ?
+            gameData.getPlayer().match.startPosition : gameData.getEnemy1vs1().match.startPosition);
         let roby = (identity === 'player' ? playerRoby : enemyRoby);
 
         if (coordinates.distance === -1 && coordinates.side === -1) {
             // robottino non posizionato dall'utente: mostralo nella posizione broken
-            let startPosition = (identity === 'player' ? startPositions[2][1].position() : startPositions[2][3].position());
+            let startPosition = (identity === 'player' ? startPositionsTiles[2][1].position() : startPositionsTiles[2][3].position());
             let rotationValue =  'rotate(' + getAngle(2).toString() + 'deg)';
             roby.css({ left: startPosition.left, top: startPosition.top, transform: rotationValue });
 
         } else {
-            let startPosition = startPositions[coordinates.side][coordinates.distance].position();
+            let startPosition = startPositionsTiles[coordinates.side][coordinates.distance].position();
             let rotationValue =  'rotate(' + getAngle((coordinates.side + 2).mod(4)).toString() + 'deg)';
             roby.css({ left: startPosition.left, top: startPosition.top, transform: rotationValue });
         }
@@ -79,102 +78,105 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
 
     // calcola i percorsi fatti dai due robottini, e restituisce un oggetto che rappresenta i valori del risultato
     // della partita
-    robyAnimator.calculateResults = function(bootSetting) {
-        let playerResultValue = calculatePath('player');
-
-        if (bootSetting === undefined || bootSetting === 1 || bootSetting === 2 || bootSetting === 3) {
-            let enemyResultValue = calculatePath('enemy');
-            return { playerResult: playerResultValue, enemyResult: enemyResultValue };
-        } else {
-            return { playerResult: playerResultValue };
+    robyAnimator.calculateResults = function() {
+        for (let i = 0; i < gameData.getAllPlayers().length; i++) {
+            calculatePath(undefined, gameData.getAllPlayers()[i]);
         }
     };
 
 
-    robyAnimator.getBootEnemyPath = function(enemySetting) {
+    robyAnimator.calculateBootEnemyPath = function() {
         let allPaths = [];
-        for (let side = 0; side < 4; side++) {
-            for (let distance = 0; distance < 5; distance++) {
-                allPaths.push(calculatePath(undefined, {'side': side, 'distance': distance}));
+        for (let sideValue = 0; sideValue < 4; sideValue++) {
+            for (let distanceValue = 0; distanceValue < 5; distanceValue++) {
+                allPaths.push(calculatePath({
+                    side: sideValue,
+                    distance: distanceValue
+                }));
             }
         }
         allPaths.sort(function(a, b){
             return a.length - b.length;
         });
 
-        switch (enemySetting) {
+        switch (gameData.getGeneral().bootEnemySetting) {
             case 1:
                 // facile: seleziona un percorso casuale tra i più corti
-                return allPaths[Math.floor(Math.random() * 10)];
+                gameData.editEnemy1vs1({
+                    match: allPaths[Math.floor(Math.random() * 10)]
+                });
+                break;
 
             case 2:
                 // medio: seleziona un percorso casuale tra i più lunghi
-                return allPaths[Math.floor(Math.random() * 10) + 10];
+                gameData.editEnemy1vs1({
+                    match: allPaths[Math.floor(Math.random() * 10) + 10]
+                });
+                break;
 
             case 3:
                 // difficile: seleziona il percorso più lungo
-                return allPaths[19];
+                gameData.editEnemy1vs1({
+                    match: allPaths[19]
+                });
+                break;
         }
     };
 
 
     // calcola il percorso di uno dei roby, salvandone un oggetto che lo descrive
-    let calculatePath = function (identity, customStart) {
-        let path = {tilesCoords: [],
+    let calculatePath = function (customStart, player) {
+        let newPathData = {
+            startPosition: { side: -1, distance: -1 },
+            endPosition: { side: -1, distance: -1 },
+            tilesCoords: [],
             direction: [],
-            startCoords: {},
-            endCoords: {},
-            length: 0,
-            loop: false};
+            pathLength: 0,
+            points: 0,
+        };
 
         // ottieni start position
         if (customStart !== undefined) {
-            path.startCoords = customStart;
-        } else if (identity === 'player') {
-            path.startCoords = gameData.getPlayerStartPosition();
-        } else if (identity === 'enemy') {
-            path.startCoords = gameData.getEnemyStartPosition();
+            newPathData.startPosition = customStart;
+        } else {
+            newPathData.startPosition = player.match.startPosition;
         }
 
         // roby non posizionato entro il tempo limite
-        if (path.startCoords.distance === -1 && path.startCoords.side === -1) {
-            // memorizza il path
-            if (identity === 'player') {
-                playerPath = path;
-            } else if (identity === 'enemy') {
-                enemyPath = path;
-            }
-            return {length: 0, loop: false, time: 0, points: 0, startCoords: path.startCoords };
+        if (newPathData.startPosition.distance === -1 && newPathData.startPosition.side === -1) {
+            if (player !== undefined)
+                gameData.editPlayerById(player.playerId, { match: newPathData });
+            return newPathData;
         }
 
         // ottieni primo elemento
-        switch (path.startCoords.side) {
+        switch (newPathData.startPosition.side) {
             case 0:
-                path.tilesCoords.push({ x: 0, y: path.startCoords.distance });
+                newPathData.tilesCoords.push({ x: 0, y: newPathData.startPosition.distance });
                 break;
             case 1:
-                path.tilesCoords.push({ x: path.startCoords.distance, y: 4 });
+                newPathData.tilesCoords.push({ x: newPathData.startPosition.distance, y: 4 });
                 break;
             case 2:
-                path.tilesCoords.push({ x: 4, y: path.startCoords.distance });
+                newPathData.tilesCoords.push({ x: 4, y: newPathData.startPosition.distance });
                 break;
             case 3:
-                path.tilesCoords.push({ x: path.startCoords.distance, y: 0 });
+                newPathData.tilesCoords.push({ x: newPathData.startPosition.distance, y: 0 });
                 break;
         }
-        path.direction.push((path.startCoords.side + 2).mod(4));
-        path.length++;
+        newPathData.direction.push((newPathData.startPosition.side + 2).mod(4));
+        newPathData.pathLength++;
 
         // ottieni elementi successivi tramite while
         let endOfThePath = false;
         while (!endOfThePath) {
-            let lastTileCoords = path.tilesCoords[path.length - 1];
-            let lastTileDirection = path.direction[path.length - 1];
+            let lastTileCoords = newPathData.tilesCoords[newPathData.pathLength - 1];
+            let lastTileDirection = newPathData.direction[newPathData.pathLength - 1];
             let nextTileCoords = {x: -1, y: -1};
             let nextTileDirection = -1;
 
             // 1. trova la prossima direction
-            switch(gameData.getCurrentMatchTiles()[lastTileCoords.x][lastTileCoords.y]) {
+            switch(gameData.getGeneral().tiles[lastTileCoords.x][lastTileCoords.y]) {
                 case 'Y':
                     // vai verso sinistra
                     nextTileDirection = (lastTileDirection - 1).mod( 4);
@@ -213,95 +215,75 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
                     break;
             }
 
-            // loop check
-            for (let i = 0; i < path.length; i++) {
-                if (path.tilesCoords[i].x === nextTileCoords.x &&
-                    path.tilesCoords[i].y === nextTileCoords.y &&
-                    path.direction[i] === nextTileDirection) {
-                    path.loop = true;
-                    endOfThePath = true;
-                }
-            }
-
             // exit checks
             if (nextTileDirection === 0 && nextTileCoords.x < 0) {
                 // uscita dal lato in alto
-                path.endCoords.side = 0;
-                path.endCoords.distance = nextTileCoords.y;
+                newPathData.endPosition.side = 0;
+                newPathData.endPosition.distance = nextTileCoords.y;
                 endOfThePath = true;
 
             } else if (nextTileDirection === 1 && nextTileCoords.y > 4) {
                 // uscita dal lato destro
-                path.endCoords.side = 1;
-                path.endCoords.distance = nextTileCoords.x;
+                newPathData.endPosition.side = 1;
+                newPathData.endPosition.distance = nextTileCoords.x;
                 endOfThePath = true;
 
             } else if (nextTileDirection === 2 && nextTileCoords.x > 4) {
                 // uscita dal lato in basso
-                path.endCoords.side = 2;
-                path.endCoords.distance = nextTileCoords.y;
+                newPathData.endPosition.side = 2;
+                newPathData.endPosition.distance = nextTileCoords.y;
                 endOfThePath = true;
 
             } else if (nextTileDirection === 3 && nextTileCoords.y < 0) {
                 // uscita dal lato sinistro
-                path.endCoords.side = 3;
-                path.endCoords.distance = nextTileCoords.x;
+                newPathData.endPosition.side = 3;
+                newPathData.endPosition.distance = nextTileCoords.x;
                 endOfThePath = true;
             }
 
             // la prossima tile è valida: aggiungila alla struttura dati
             if (endOfThePath === false) {
-                path.length++;
-                path.direction.push(nextTileDirection);
-                path.tilesCoords.push(nextTileCoords);
+                newPathData.pathLength++;
+                newPathData.direction.push(nextTileDirection);
+                newPathData.tilesCoords.push(nextTileCoords);
             }
         }
 
-        // memorizza il path
-        if (identity === 'player') {
-            playerPath = path;
-        } else if (identity === 'enemy') {
-            enemyPath = path;
+
+        // se il percorso è relativo a un giocatore, modificalo
+        if (player !== undefined) {
+            newPathData.points = calculatePoints(newPathData.pathLength, player.time);
+            gameData.editPlayerById(player.playerId, { match: newPathData });
         }
 
-        // restituisci un oggetto rappresentante il risultato del giocatore
-        if (identity === 'player') {
-            playerPath = path;
-        } else if (identity === 'enemy') {
-            enemyPath = path;
-        }
-
-        let timeValue = (identity === 'player' ? gameData.getPlayerMatchTime() : gameData.getEnemyMatchTime());
-        return { length: path.length, loop: path.loop, time: timeValue,
-                 points: calculatePoints(path.length, path.loop, timeValue), startCoords: path.startCoords };
+        return newPathData;
     };
 
+    robyAnimator.animateAndFinish = function(endMatchCallback) {
+        animatePath('player', endMatchCallback);
 
-    robyAnimator.animateAndFinish = function(endMatchCallback, bootSetting) {
-        animatePath('player', endMatchCallback, bootSetting);
-
-        if (bootSetting === undefined || bootSetting === 1 || bootSetting === 2 || bootSetting === 3)
-            animatePath('enemy', endMatchCallback, bootSetting);
+        if (gameData.getGeneral().bootEnemySetting !== 0)
+            animatePath('enemy', endMatchCallback);
     };
 
     // anima il movimento di roby
-    let animatePath = function (identity, endCallback, bootSetting) {
+    let animatePath = function (identity, endCallback) {
         let roby = (identity === 'player' ? playerRoby : enemyRoby);
-        let path = (identity === 'player' ? playerPath : enemyPath);
+        let path = (identity === 'player' ? gameData.getPlayer().match : gameData.getEnemy1vs1().match);
         let imageCallback = (identity === 'player' ? robyImageCallbacks.player : robyImageCallbacks.enemy);
         let imageValues = (identity === 'player' ? ['roby-walking-1', 'roby-walking-2'] : ['enemy-walking-2', 'enemy-walking-1']);
-        let startPosition = (identity === 'player' ? gameData.getPlayerStartPosition() : gameData.getEnemyStartPosition());
+        let startPosition = (identity === 'player' ? gameData.getPlayer().match.startPosition : gameData.getEnemy1vs1().match.startPosition);
 
         // roby non posizionato: mostra l'immagine corrispondente
         if (startPosition.distance === -1 && startPosition.side === -1) {
             imageCallback(identity === 'player' ? 'roby-broken' : 'enemy-broken');
             roby.delay(1000);
             roby.queue(function (next) {
-                if (lastMovement) {
-                    lastMovement = false;
+                if (isLastMovement) {
+                    isLastMovement = false;
                     endCallback();
                 } else {
-                    lastMovement = true;
+                    isLastMovement = true;
                 }
                 next();
             });
@@ -329,45 +311,52 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
             }
             next();
         });
-        for (let i = 0; i < path.length; i++) {
+        for (let i = 0; i < path.pathLength; i++) {
             let currentTilePos = completeGridTiles[path.tilesCoords[i].x][path.tilesCoords[i].y].position();
             roby.animate({left: currentTilePos.left, top: currentTilePos.top}, { duration: 800 });
             roby.delay(200);
             roby.queue(function(next) {
                 // rotation to the next direction
-                if ((i + 1) < path.length) {
+                if ((i + 1) < path.pathLength) {
                     //roby.rotateRobot(path.direction[i], path.direction[i + 1], next);
                     let rotationValue = 'rotate(' + getAngle(path.direction[i + 1]).toString() + 'deg)';
                     roby.css({transform: rotationValue});
 
                 } else {
                     //roby.rotateRobot(path.direction[i], path.endCoords.distance, next);
-                    let rotationValue = 'rotate(' + getAngle(path.endCoords.side).toString() + 'deg)';
+                    let rotationValue = 'rotate(' + getAngle(path.endPosition.side).toString() + 'deg)';
                     roby.css({transform: rotationValue});
                 }
                 next();
             });
         }
-        let endPos = startPositions[path.endCoords.side][path.endCoords.distance].position();
+        let endPos = startPositionsTiles[path.endPosition.side][path.endPosition.distance].position();
         roby.animate({left: endPos.left, top: endPos.top}, { duration: 800 });
         roby.queue(function (next) {
-            if (identity === 'player')
-                clearInterval(robyWalkingTimers.player);
-            else
-                clearInterval(robyWalkingTimers.enemy);
+            if (identity === 'player') {
+                if (robyWalkingTimers.player !== undefined)
+                    clearInterval(robyWalkingTimers.player);
 
-            imageCallback (identity === 'player'? 'roby-positioned' : 'enemy-positioned');
+                robyWalkingTimers.player = undefined;
+            } else {
+                if(robyWalkingTimers.enemy !== undefined)
+                    clearInterval(robyWalkingTimers.enemy);
+
+                robyWalkingTimers.enemy = undefined;
+            }
+
+            imageCallback(identity === 'player'? 'roby-positioned' : 'enemy-positioned');
             next();
         });
         roby.delay(1000);
         roby.queue(function (next) {
             // fine animazione; esegui il callback se si è gli ultimi ad eseguire
 
-        if (lastMovement || bootSetting === 0) {
-                lastMovement = false;
+        if (isLastMovement || gameData.getGeneral().bootEnemySetting === 0) {
+                isLastMovement = false;
                 endCallback();
             } else {
-                lastMovement = true;
+                isLastMovement = true;
             }
             next();
         });
@@ -380,17 +369,14 @@ angular.module('codyColor').factory("robyAnimator", function(gameData) {
      */
 
     // calcola il punteggio della partita in base ai parametri risultato
-    let calculatePoints = function (length, loop, time) {
+    let calculatePoints = function (length, time) {
         let points = 0;
 
         // ogni passo vale 2 punti
         points += length * 2;
 
-        // un loop vale 20 punti
-        if (loop) points += 100;
-
         // il tempo viene diviso in 4 parti. Ogni 'quarto' rimasto vale 2 punti
-        let totalTime = gameData.getTimerSetting();
+        let totalTime = gameData.getGeneral().timerSetting;
         let quarter = totalTime / 4;
 
         while (time > quarter) {

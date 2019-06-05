@@ -18,30 +18,26 @@ angular.module('codyColor').controller('homeCtrl',
 
         // impostazioni connessione server; implementa dei callback che permettono di mostrare se necessario
         // un messaggio per notificare all'utente che la connessione al server è in corso
-        $scope.connected = rabbit.getConnectionState();
+        $scope.connected = rabbit.getServerConnectionState();
         if (!$scope.connected) {
             rabbit.connect();
 
         } else {
             scopeService.safeApply($scope, function () {
-                $scope.totalMatches = (sessionHandler.getTotalMatches()).toString();
+                $scope.totalMatches = sessionHandler.getTotalMatches().toString();
                 $scope.connectedPlayers = sessionHandler.getConnectedPlayers().toString();
             });
         }
 
         rabbit.setPageCallbacks({
-            onConnected: function() {
+            onConnectionLost: function() {
                 scopeService.safeApply($scope, function () {
-                    $scope.connected = true;
+                    $scope.connected = false;
                 });
-
-            }, onConnectionLost: function() {
-            scopeService.safeApply($scope, function () {
-                $scope.connected = false;
-            });
 
             }, onGeneralInfoMessage: function() {
                 scopeService.safeApply($scope, function () {
+                    $scope.connected = true;
                     $scope.totalMatches = (sessionHandler.getTotalMatches()).toString();
                     $scope.connectedPlayers = sessionHandler.getConnectedPlayers().toString();
                 });
@@ -74,11 +70,11 @@ angular.module('codyColor').controller('homeCtrl',
             } else {
                 audioHandler.playSound('menu-click');
                 rabbit.setPageCallbacks({});
-                navigationHandler.goToPage($location, $scope, "/rmmaking");
+                navigationHandler.goToPage($location, $scope, "/random-mmaking");
             }
 
         };
-        $scope.goToPMMaking = function () {
+        $scope.goToCMMaking = function () {
             if (!$scope.connected) {
                 $scope.noOnlineModal = true;
                 $translate('NO_CONNECT_DESC').then(function (enemyLeft) {
@@ -98,13 +94,36 @@ angular.module('codyColor').controller('homeCtrl',
             } else {
                 audioHandler.playSound('menu-click');
                 rabbit.setPageCallbacks({});
-                navigationHandler.goToPage($location, $scope, "/cmmaking");
+                navigationHandler.goToPage($location, $scope, "/custom-mmaking");
+            }
+        };
+        $scope.goToAMMaking = function () {
+            if (!$scope.connected) {
+                $scope.noOnlineModal = true;
+                $translate('NO_CONNECT_DESC').then(function (enemyLeft) {
+                    $scope.noOnlineModalText = enemyLeft;
+                }, function (translationId) {
+                    $scope.noOnlineModalText = translationId;
+                });
+
+            } else if (!sessionHandler.isClientVersionValid()) {
+                $scope.noOnlineModal = true;
+                $translate('OUTDATED_VERSION_DESC').then(function (enemyLeft) {
+                    $scope.noOnlineModalText = enemyLeft;
+                }, function (translationId) {
+                    $scope.noOnlineModalText = translationId;
+                });
+
+            } else {
+                audioHandler.playSound('menu-click');
+                rabbit.setPageCallbacks({});
+                navigationHandler.goToPage($location, $scope, "/royale-mmaking");
             }
         };
         $scope.goToBootcamp = function () {
             audioHandler.playSound('menu-click');
             rabbit.setPageCallbacks({});
-            navigationHandler.goToPage($location, $scope, "/bcampmaking");
+            navigationHandler.goToPage($location, $scope, "/bootmp-mmaking");
         };
         $scope.goToRanking = function () {
             audioHandler.playSound('menu-click');

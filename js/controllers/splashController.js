@@ -15,9 +15,16 @@ angular.module('codyColor').controller('splashCtrl',
 
         let customMatch = $routeParams.match;
         if (customMatch !== undefined && customMatch.length > 0) {
-            gameData.setGameCode(customMatch.toString());
-            console.log("Custom match! " + gameData.getGameCode());
-            navigationHandler.goToPage($location, $scope, '/cmmaking');
+            gameData.editGeneral({ code: customMatch.toString() });
+            console.log("Custom match!");
+            navigationHandler.goToPage($location, $scope, '/custom-mmaking');
+        }
+
+        let agaMatch = $routeParams.royale;
+        if (agaMatch !== undefined && agaMatch.length > 0) {
+            gameData.editGeneral({ code: agaMatch.toString() });
+            console.log("Aga match!");
+            navigationHandler.goToPage($location, $scope, '/royale-mmaking');
         }
 
         $scope.clientVersion = sessionHandler.getClientVersion();

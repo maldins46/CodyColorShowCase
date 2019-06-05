@@ -1,14 +1,14 @@
 /*
  * Controller partita con avversario custom
  */
-angular.module('codyColor').controller('newcmatchCtrl',
-    function ($scope, rabbit, navigationHandler, scopeService, $translate,
+angular.module('codyColor').controller('customNewMatchCtrl',
+    function ($scope, rabbit, navigationHandler, scopeService, $translate, translationHandler,
               audioHandler, $location, sessionHandler, gameData, chatHandler) {
         console.log("Empty controller ready.");
 
         let quitGame = function () {
             rabbit.quitGame();
-            gameData.clearGameData();
+            gameData.initializeGameData();
             chatHandler.clearChat();
         };
 
@@ -21,7 +21,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
         }
 
         // tenta la connessione, se necessario
-        $scope.connected = rabbit.getConnectionState();
+        $scope.connected = rabbit.getBrokerConnectionState();
         if (!$scope.connected) {
             rabbit.connect();
         }
@@ -43,52 +43,52 @@ angular.module('codyColor').controller('newcmatchCtrl',
         // timer set
         $translate(['15_SECONDS', '30_SECONDS', '1_MINUTE', '2_MINUTES']).then(function (translations) {
             $scope.timerSettings = [
-                {text: translations['15_SECONDS'], value: 15000},
-                {text: translations['30_SECONDS'], value: 30000},
-                {text: translations['1_MINUTE'], value: 60000},
-                {text: translations['2_MINUTES'], value: 120000}];
+                { text: translations['15_SECONDS'], value: 15000 },
+                { text: translations['30_SECONDS'], value: 30000 },
+                { text: translations['1_MINUTE'], value: 60000 },
+                { text: translations['2_MINUTES'], value: 120000 }];
         });
-        $scope.currentIndex = 1;
+        $scope.currentTimerIndex = 1;
 
-        $scope.incrementTime = function () {
+        $scope.editTimer = function (increment) {
             audioHandler.playSound('menu-click');
-            if ($scope.currentIndex < 3)
-                $scope.currentIndex++;
+            if (increment)
+                $scope.currentTimerIndex = ($scope.currentTimerIndex < 3 ? $scope.currentTimerIndex + 1 : 3);
             else
-                $scope.currentIndex = 3;
+                $scope.currentTimerIndex = ($scope.currentTimerIndex > 0 ? $scope.currentTimerIndex - 1 : 0);
 
-            gameData.setTimerSetting($scope.timerSettings[$scope.currentIndex].value);
+            gameData.editGeneral({
+                timerSetting: $scope.timerSettings[$scope.currentTimerIndex].value
+            });
         };
 
-        $scope.decrementTime = function () {
-            audioHandler.playSound('menu-click');
-            if ($scope.currentIndex > 0)
-                $scope.currentIndex--;
-            else
-                $scope.currentIndex = 0;
-
-            gameData.setTimerSetting($scope.timerSettings[$scope.currentIndex].value);
-        };
 
         rabbit.setPageCallbacks({
             onGameRequestResponse: function (message) {
-                gameData.setGameRoomId(message.gameRoomId);
-                gameData.setPlayerId(message.playerId);
-                gameData.setGameCode(message.code.toString());
+                gameData.editGeneral({
+                    gameRoomId: message.gameRoomId,
+                    code: message.code.toString()
+                });
+                gameData.editPlayer({ playerId: message.playerId });
+
                 rabbit.subscribeGameRoom();
 
                 scopeService.safeApply($scope, function () {
                     $scope.gameCode = message.code.toString();
                 });
-                changeScreen('enemyInvitation')
+                changeScreen('enemyInvitation');
+
             }, onHereMessage: function (message) {
                 if (message.needResponse) {
                     rabbit.sendHereMessage(false);
                 }
 
             }, onReadyMessage: function (message) {
-                gameData.setEnemyNickname(message.nickname);
-                gameData.setEnemyReady(message.readyState);
+                gameData.addEnemy(message.playerId);
+                gameData.editEnemy1vs1({
+                    nickname: message.nickname,
+                    ready: message.readyState
+                });
 
                 if (message.needResponse) {
                     rabbit.sendHereMessage(false);
@@ -96,27 +96,25 @@ angular.module('codyColor').controller('newcmatchCtrl',
 
                 audioHandler.playSound('enemy-found');
                 scopeService.safeApply($scope, function () {
-                    $scope.enemyNickname = gameData.getEnemyNickname();
+                    $scope.enemyNickname = gameData.getEnemy1vs1().nickname;
                 });
                 changeScreen('enemyFound');
 
-                gameData.setEnemyReady(true);
-                if (gameData.isPlayerReady() && gameData.isEnemyReady())
+                gameData.editEnemy1vs1({ready: true });
+                if (gameData.getPlayer().ready && gameData.getEnemy1vs1().ready)
                     rabbit.sendTilesRequest();
 
             }, onTilesMessage: function (message) {
-                gameData.setCurrentMatchTiles(message['tiles']);
-                navigationHandler.goToPage($location, $scope, '/match', true);
+                gameData.editGeneral({
+                    tiles: gameData.formatMatchTiles(message.tiles)
+                });
+                navigationHandler.goToPage($location, $scope, '/arcade-match', true);
 
             }, onQuitGameMessage: function (message) {
                 if (message.state !== 'playing') {
                     quitGame();
                     scopeService.safeApply($scope, function () {
-                        $translate('ENEMY_LEFT').then(function (enemyLeft) {
-                            $scope.forceExitText = enemyLeft;
-                        }, function (translationId) {
-                            $scope.forceExitText = translationId;
-                        });
+                        translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
                         $scope.forceExitModal = true;
                     });
                 }
@@ -124,11 +122,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
             }, onConnectionLost: function () {
                 quitGame();
                 scopeService.safeApply($scope, function () {
-                    $translate('FORCE_EXIT').then(function (forceExit) {
-                        $scope.forceExitText = forceExit;
-                    }, function (translationId) {
-                        $scope.forceExitText = translationId;
-                    });
+                    translationHandler.setTranslation($scope, 'forceExitText', 'FORCE_EXIT');
                     $scope.forceExitModal = true;
                 });
 
@@ -144,7 +138,7 @@ angular.module('codyColor').controller('newcmatchCtrl',
         // chat
         $scope.chatBubbles = chatHandler.getChatMessages();
         $scope.getBubbleStyle = function (chatMessage) {
-            if (chatMessage.playerId === gameData.getPlayerId())
+            if (chatMessage.playerId === gameData.getPlayer().playerId)
                 return 'chat--bubble-player';
             else
                 return 'chat--bubble-enemy';
@@ -159,16 +153,16 @@ angular.module('codyColor').controller('newcmatchCtrl',
 
         // tasto iniziamo
         $scope.playerReady = function () {
-            gameData.setPlayerReady(true);
-            if (!gameData.isEnemyReady())
+            gameData.editPlayer({ready: true});
+            if (!gameData.getEnemy1vs1().ready)
                 changeScreen('waitingConfirm');
             rabbit.sendReadyMessage();
         };
 
         $scope.creatingMatch = false;
-        $scope.requestMMaking = function (nickname) {
+        $scope.requestMMaking = function (nicknameValue) {
             audioHandler.playSound('menu-click');
-            gameData.setPlayerNickname(nickname);
+            gameData.editPlayer({nickname: nicknameValue});
             rabbit.sendGameRequest();
             $scope.creatingMatch = true;
         };
@@ -177,13 +171,13 @@ angular.module('codyColor').controller('newcmatchCtrl',
         $scope.codeCopied = false;
         $scope.copyLink = function () {
             audioHandler.playSound('menu-click');
-            copyStringToClipboard('https://codycolor.codemooc.net/#!?match=' + gameData.getGameCode());
+            copyStringToClipboard('https://codycolor.codemooc.net/#!?match=' + gameData.getGeneral().code);
             $scope.linkCopied = true;
             $scope.codeCopied = false;
         };
         $scope.copyCode = function () {
             audioHandler.playSound('menu-click');
-            copyStringToClipboard(gameData.getGameCode());
+            copyStringToClipboard(gameData.getGeneral().code);
             $scope.linkCopied = false;
             $scope.codeCopied = true;
         };
@@ -246,7 +240,8 @@ angular.module('codyColor').controller('newcmatchCtrl',
                     {text: translations['15_SECONDS'], value: 15000},
                     {text: translations['30_SECONDS'], value: 30000},
                     {text: translations['1_MINUTE'], value: 60000},
-                    {text: translations['2_MINUTES'], value: 120000}];
+                    {text: translations['2_MINUTES'], value: 120000}
+                ];
             });
 
             audioHandler.playSound('menu-click');

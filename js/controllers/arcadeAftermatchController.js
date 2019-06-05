@@ -2,14 +2,14 @@
  * Controller responsabile della schermata post partita. Mostra dati sull'esito della partita e dà la possibilità di
  * portarne avanti una con lo stesso avversario
  */
-angular.module('codyColor').controller('aftermatchCtrl',
+angular.module('codyColor').controller('arcadeAftermatchCtrl',
     function ($scope, rabbit, gameData, scopeService, $location, $translate,
-              navigationHandler, audioHandler, sessionHandler, chatHandler) {
+              navigationHandler, audioHandler, sessionHandler, chatHandler, translationHandler) {
         console.log("Controller aftermatch ready.");
 
         let quitGame = function () {
             rabbit.quitGame();
-            gameData.clearGameData();
+            gameData.initializeGameData();
             chatHandler.clearChat();
         };
 
@@ -21,36 +21,35 @@ angular.module('codyColor').controller('aftermatchCtrl',
             return;
         }
 
-        // oggetto contenente informazioni sul risultato della partita
-        $scope.results = gameData.getCurrentMatchResult();
+        gameData.editPlayer({
+            points: gameData.getPlayer().points + gameData.getPlayer().match.points
+        });
 
-        // inizializzazione schermata informativa
-        $scope.playerPoints = gameData.getPlayerPoints();
-        $scope.enemyPoints = gameData.getEnemyPoints();
-        $scope.playerNickname = gameData.getPlayerNickname();
-        $scope.enemyNickname = gameData.getEnemyNickname();
+
+        gameData.editEnemy1vs1({
+            points: gameData.getEnemy1vs1().points + gameData.getEnemy1vs1().match.points
+        });
+
+
+        $scope.timeFormatter = gameData.formatTimeSeconds;
+        $scope.player = gameData.getPlayer();
+        $scope.enemy = gameData.getEnemy1vs1();
         $scope.winner = gameData.getMatchWinner();
-        $scope.formattedPlayerTime = gameData.formatTimerTextDecPrecision($scope.results.playerResult.time);
-        $scope.formattedEnemyTime  = gameData.formatTimerTextDecPrecision($scope.results.enemyResult.time);
-        $scope.matchCount = gameData.getMatchCount();
+        $scope.matchCount = gameData.getGeneral().matchCount;
 
-        if ($scope.winner === gameData.getPlayerNickname()) {
+        if ($scope.winner === gameData.getPlayer().nickname) {
             audioHandler.playSound('win');
-        } else if ($scope.winner === gameData.getEnemyNickname()) {
+        } else if ($scope.winner === gameData.getEnemy1vs1().nickname) {
             audioHandler.playSound('lost');
         }
 
-        // inizializzazione componenti per iniziare un nuovo match
-        $scope.newMatchClicked = false;
-        $scope.enemyRequestNewMatch = false;
-
-        gameData.setPlayerReady(false);
-        gameData.setEnemyReady(false);
+        gameData.editPlayer({ ready: false });
+        gameData.editEnemy1vs1({ ready: false });
 
         // richiede all'avversario l'avvio di una nuova partita tra i due
         $scope.newMatch = function () {
             rabbit.sendReadyMessage();
-            gameData.setPlayerReady(true);
+            gameData.editPlayer({ ready: true });
             scopeService.safeApply($scope, function () {
                 $scope.newMatchClicked = true;
             })
@@ -58,39 +57,33 @@ angular.module('codyColor').controller('aftermatchCtrl',
 
         rabbit.setPageCallbacks({
             onReadyMessage: function () {
-                gameData.setEnemyReady(true);
+                gameData.editEnemy1vs1({ ready: true });
                 scopeService.safeApply($scope, function () {
                     $scope.enemyRequestNewMatch = true;
                 });
 
-                if (gameData.isPlayerReady() && gameData.isEnemyReady())
+                if (gameData.getPlayer().ready && gameData.getEnemy1vs1().ready)
                     rabbit.sendTilesRequest();
 
             }, onTilesMessage: function (response) {
-                gameData.clearMatchData();
-                gameData.addMatch();
-                gameData.setCurrentMatchTiles(response['tiles']);
-                navigationHandler.goToPage($location, $scope, '/match', true);
+                gameData.initializeMatchData();
+                gameData.editGeneral({
+                    matchCount: gameData.getGeneral().matchCount + 1,
+                    tiles: gameData.formatMatchTiles(response.tiles)
+                });
+                navigationHandler.goToPage($location, $scope, '/arcade-match', true);
 
             }, onQuitGameMessage: function () {
                 quitGame();
                 scopeService.safeApply($scope, function () {
-                    $translate('ENEMY_LEFT').then(function (enemyLeft) {
-                        $scope.forceExitText = enemyLeft;
-                    }, function (translationId) {
-                        $scope.forceExitText = translationId;
-                    });
+                    translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
                     $scope.forceExitModal = true;
                 });
 
             }, onConnectionLost: function () {
                 quitGame();
                 scopeService.safeApply($scope, function () {
-                    $translate('FORCE_EXIT').then(function (forceExit) {
-                        $scope.forceExitText = forceExit;
-                    }, function (translationId) {
-                        $scope.forceExitText = translationId;
-                    });
+                    translationHandler.setTranslation($scope, 'forceExitText', 'FORCE_EXIT');
                     $scope.forceExitModal = true;
                 });
 
@@ -103,10 +96,10 @@ angular.module('codyColor').controller('aftermatchCtrl',
             }
         });
 
-        // chat
+        // impostazioni chat
         $scope.chatBubbles = chatHandler.getChatMessages();
         $scope.getBubbleStyle = function(chatMessage) {
-            if (chatMessage.playerId === gameData.getPlayerId())
+            if (chatMessage.playerId === gameData.getPlayer().playerId)
                 return 'chat--bubble-player';
             else
                 return 'chat--bubble-enemy';
@@ -119,8 +112,7 @@ angular.module('codyColor').controller('aftermatchCtrl',
             $scope.chatBubbles = chatHandler.getChatMessages();
         };
 
-        // termina la partita alla pressione sul tasto corrispondente
-        $scope.exitGameModal = false;
+        // impostazioni exit game
         $scope.exitGame = function () {
             audioHandler.playSound('menu-click');
             $scope.exitGameModal = true;
@@ -134,15 +126,12 @@ angular.module('codyColor').controller('aftermatchCtrl',
             audioHandler.playSound('menu-click');
             $scope.exitGameModal = false;
         };
-
-        $scope.forceExitModal = false;
-        $scope.forceExitText = '';
         $scope.continueForceExit = function() {
             audioHandler.playSound('menu-click');
             navigationHandler.goToPage($location, $scope, '/home', false);
         };
 
-        // impostazioni multi language
+        // impostazioni multi-language
         $scope.openLanguageModal = function() {
             $scope.languageModal = true;
             audioHandler.playSound('menu-click');
