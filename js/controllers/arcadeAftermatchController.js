@@ -34,7 +34,7 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl',
         $scope.timeFormatter = gameData.formatTimeSeconds;
         $scope.player = gameData.getPlayer();
         $scope.enemy = gameData.getEnemy1vs1();
-        $scope.winner = gameData.getMatchWinner();
+        $scope.winner = gameData.getMatchWinner().nickname;
         $scope.matchCount = gameData.getGeneral().matchCount;
 
         if ($scope.winner === gameData.getPlayer().nickname) {

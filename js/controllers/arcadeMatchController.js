@@ -2,7 +2,7 @@
  * Controller responsabile della schermata partita
  */
 angular.module('codyColor').controller('arcadeMatchCtrl',
-    function ($scope, rabbit, gameData, scopeService, robyAnimator, $location, $translate, chatHandler,
+    function ($scope, rabbit, gameData, scopeService, pathHandler, $location, $translate, chatHandler,
               navigationHandler, audioHandler, sessionHandler, translationHandler) {
         console.log("Controller match ready.");
 
@@ -23,7 +23,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
                 clearInterval(startCountdownTimer);
 
             rabbit.quitGame();
-            robyAnimator.quitGame();
+            pathHandler.quitGame();
             chatHandler.clearChat();
             gameData.initializeGameData();
         };
@@ -43,7 +43,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
         // inizializzazione riferimenti agli elementi della griglia
         $scope.playerRobyImage = 'roby-positioned';
         $scope.enemyRobyImage  = 'enemy-positioned';
-        robyAnimator.initializeElements(function (image) {
+        pathHandler.initializeElements(function (image) {
             scopeService.safeApply($scope, function () { $scope.playerRobyImage = image; });
         }, function (image) {
             scopeService.safeApply($scope, function () { $scope.enemyRobyImage = image; });
@@ -284,7 +284,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
                     $scope.showCompleteGrid = true;
                 });
 
-                robyAnimator.positionRoby('player');
+                pathHandler.positionRoby(true);
 
                 if ($scope.enemyPositioned && $scope.playerPositioned) {
                     endMatch();
@@ -329,7 +329,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
                 gameData.editEnemy1vs1({ match: { skip: true }});
 
                 if (gameData.getPlayer().match.skip && gameData.getEnemy1vs1().match.skip) {
-                    robyAnimator.quitGame();
+                    pathHandler.quitGame();
                     navigationHandler.goToPage($location, $scope, '/arcade-aftermatch', true);
                 }
             }
@@ -338,8 +338,8 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
         // cosa fare una volta terminata senza intoppi la partita; mostra la schermata aftermatch
         let endMatch = function () {
             if (!$scope.endMatch) {
-                robyAnimator.positionRoby('player');
-                robyAnimator.positionRoby('enemy');
+                pathHandler.positionRoby(true);
+                pathHandler.positionRoby(false);
 
                 if (enemyMatchTimer !== undefined)
                     clearInterval(enemyMatchTimer);
@@ -354,10 +354,11 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
                     $scope.endMatch = true;
                 });
 
-                robyAnimator.calculateResults();
+                pathHandler.calculatePaths();
+                gameData.calculateMatchPoints();
 
-                robyAnimator.animateAndFinish(function () {
-                    robyAnimator.quitGame();
+                pathHandler.animateRobots(function () {
+                    pathHandler.quitGame();
                     if ($scope.forceExitModal !== true)
                         navigationHandler.goToPage($location, $scope, '/arcade-aftermatch', true);
                 });
@@ -391,7 +392,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
             $scope.askedForSkip = true;
 
             if (gameData.getPlayer().match.skip && gameData.getEnemy1vs1().match.skip) {
-                robyAnimator.quitGame();
+                pathHandler.quitGame();
                 navigationHandler.goToPage($location, $scope, '/arcade-aftermatch');
             }
         };

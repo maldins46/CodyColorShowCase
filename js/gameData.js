@@ -172,6 +172,24 @@ angular.module('codyColor').factory('gameData', function () {
      * di determinate proprieta'
      * -------------------------------------------------------------------- */
 
+    // assegna il punteggio al vincitore
+    gameData.calculateMatchPoints = function () {
+        let winner = gameData.getMatchWinner();
+
+        if (winner !== undefined) {
+            let points = 0;
+
+            // ogni passo vale 2 punti
+            points += winner.match.pathLength * 2;
+
+            // il tempo viene scalato su un massimo di 15 punti
+            let totalTime = gameData.getGeneral().timerSetting;
+            points += Math.floor(15 * winner.match.time / totalTime);
+
+            data.players[getPlayerIndexById(winner.playerId)].match.points = points;
+        }
+    };
+
     let getEnemyIndexById = function(playerId) {
         for (let i = 1; i < data.players.length; i++) {
             if (data.players[i].playerId === playerId) {
@@ -282,37 +300,25 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
-    // restituisce il nickname del vincitore della partita corrente in base
-    // nell'ordine a: punti totalizzati, passi effettuati e tempo impiegato
+    // restituisce il vincitore della partita corrente in base
+    // nell'ordine a: passi effettuati e tempo impiegato
     gameData.getMatchWinner = function () {
         let basePlayer = generateEmptyPlayer();
         basePlayer.match.points = -1;
         basePlayer.match.time = -1;
         basePlayer.match.pathLength = -1;
-        let bestPointPlayers = [ basePlayer ];
-
-        for (let i = 0; i < data.players.length; i++) {
-            if (data.players[i].match.points > bestPointPlayers[0].match.points) {
-                bestPointPlayers = [ data.players[i] ];
-            } else if (data.players[i].match.points === bestPointPlayers[0].match.points) {
-                bestPointPlayers.push(data.players[i]);
-            }
-        }
-
-        if (bestPointPlayers.length === 1)
-            return bestPointPlayers[0].nickname;
 
         let bestPathPlayers = [ basePlayer ];
-        for (let i = 0; i < bestPointPlayers.length; i++) {
-            if (bestPointPlayers[i].match.pathLength > bestPathPlayers[0].match.pathLength) {
-                bestPathPlayers = [ bestPointPlayers[i] ];
-            } else if (bestPointPlayers[i].match.pathLength === bestPathPlayers[0].match.pathLength) {
-                bestPathPlayers.push(bestPointPlayers[i]);
+        for (let i = 0; i < data.players.length; i++) {
+            if (data.players[i].match.pathLength > bestPathPlayers[0].match.pathLength) {
+                bestPathPlayers = [ data.players[i] ];
+            } else if (data.players[i].match.pathLength === bestPathPlayers[0].match.pathLength) {
+                bestPathPlayers.push(data.players[i]);
             }
         }
 
         if (bestPathPlayers.length === 1)
-            return bestPathPlayers[0].nickname;
+            return bestPathPlayers[0];
 
         let bestTimePlayers = [ basePlayer ];
         for (let i = 0; i < bestPathPlayers.length; i++) {
@@ -324,9 +330,9 @@ angular.module('codyColor').factory('gameData', function () {
         }
 
         if (bestTimePlayers.length === 1)
-            return bestTimePlayers[0].nickname;
+            return bestTimePlayers[0];
 
-        return "lo sport";
+        return data.players[0];
     };
 
     return gameData;

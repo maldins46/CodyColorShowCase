@@ -2,7 +2,7 @@
  * Controller Empty, gestisce le schermate che non necessitano di funzioni specifiche.
  */
 angular.module('codyColor').controller('bootmpMatchCtrl',
-    function ($scope, gameData, scopeService, robyAnimator, $location, $translate,
+    function ($scope, gameData, scopeService, pathHandler, $location, $translate,
               navigationHandler, audioHandler, sessionHandler) {
         console.log("Bootcamp match controller ready.");
 
@@ -22,7 +22,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
             if (startCountdownTimer !== undefined)
                 clearInterval(startCountdownTimer);
 
-            robyAnimator.quitGame();
+            pathHandler.quitGame();
             gameData.initializeGameData();
         };
 
@@ -42,7 +42,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
         // inizializzazione riferimenti agli elementi della griglia
         $scope.playerRobyImage = 'roby-positioned';
         $scope.enemyRobyImage  = 'enemy-positioned';
-        robyAnimator.initializeElements(function (image) {
+        pathHandler.initializeElements(function (image) {
             scopeService.safeApply($scope, function () { $scope.playerRobyImage = image; });
         }, function (image) {
             scopeService.safeApply($scope, function () { $scope.enemyRobyImage = image; });
@@ -214,7 +214,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
                         // posiziona l'avversario se si supera il limite di tempo stabilito
                         if(gameData.getGeneral().bootEnemySetting !== 0 && !$scope.enemyPositioned) {
                             gameData.editEnemy1vs1({ match: { time: enemyMatchTimerValue } });
-                            robyAnimator.calculateBootEnemyPath();
+                            pathHandler.calculateBootEnemyPath();
 
                             clearInterval(enemyMatchTimer);
                             enemyMatchTimer = undefined;
@@ -318,7 +318,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
                 // posiziona l'avversario non appena viene posizionato roby
                 if(gameData.getGeneral().bootEnemySetting !== 0 && !$scope.enemyPositioned) {
                     gameData.editEnemy1vs1({ match: { time: positionEnemyTrigger } });
-                    robyAnimator.calculateBootEnemyPath();
+                    pathHandler.calculateBootEnemyPath();
                     clearInterval(enemyMatchTimer);
                     scopeService.safeApply($scope, function () {
                         $scope.enemyPositioned = true;
@@ -326,7 +326,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
                     });
                 }
 
-                robyAnimator.positionRoby('player');
+                pathHandler.positionRoby('player');
 
                 if ($scope.enemyPositioned && $scope.playerPositioned && gameData.getGeneral().bootEnemySetting !== 0) {
                     endMatch();
@@ -339,7 +339,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
         // cosa fare una volta terminata senza intoppi la partita; mostra la schermata aftermatch
         let endMatch = function () {
             if (!$scope.endMatch) {
-                robyAnimator.positionRoby('player');
+                pathHandler.positionRoby(true);
 
                 if (enemyMatchTimer !== undefined)
                     clearInterval(enemyMatchTimer);
@@ -351,16 +351,17 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
                     clearInterval(startCountdownTimer);
 
                 if (gameData.getGeneral().bootEnemySetting !== 0)
-                    robyAnimator.positionRoby('enemy');
+                    pathHandler.positionRoby(false);
 
                 scopeService.safeApply($scope, function () {
                     $scope.endMatch = true;
                 });
 
-                robyAnimator.calculateResults();
+                pathHandler.calculatePaths();
+                gameData.calculateMatchPoints();
 
-                robyAnimator.animateAndFinish(function () {
-                    robyAnimator.quitGame();
+                pathHandler.animateRobots(function () {
+                    pathHandler.quitGame();
                     navigationHandler.goToPage($location, $scope, '/bootmp-aftermatch', true);
                 }, gameData.getGeneral().bootEnemySetting);
             }
@@ -383,7 +384,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
         };
 
         $scope.skip = function() {
-            robyAnimator.quitGame();
+            pathHandler.quitGame();
             if ($scope.forceExitModal !== true)
                 navigationHandler.goToPage($location, $scope, '/bootmp-aftermatch', false);
             audioHandler.playSound('menu-click');

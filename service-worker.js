@@ -1,6 +1,7 @@
 // codice da 'iniettare' in workbox, nel caso in cui si voglia andare a modificare il sistema di
 // caching predefinito
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js');
+
 /*
 // Cache the Google Fonts stylesheets with a stale-while-revalidate strategy.
 workbox.routing.registerRoute(
@@ -226,7 +227,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "c603b078aefbb7b2c477fc6cb797e439"
+    "revision": "6300cd1730dce7c9cf8a655d6737db10"
   },
   {
     "url": "pages/404.html",
@@ -326,19 +327,19 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/arcadeAftermatchController.js",
-    "revision": "c28d616b26d30d7744e8782b6a42a6ca"
+    "revision": "1610f054695dd493608ae6ca060ebb71"
   },
   {
     "url": "js/controllers/arcadeMatchController.js",
-    "revision": "ba06f759d029a6c1f3e6d34797c3e601"
+    "revision": "20f16fea41c5cee8992e566c9001f540"
   },
   {
     "url": "js/controllers/bootmpAftermatchController.js",
-    "revision": "7072c253e42933f42343239b4aabf8f4"
+    "revision": "bd6c6dad8e497fccaa07631ead2d7069"
   },
   {
     "url": "js/controllers/bootmpMatchController.js",
-    "revision": "9196fa8053498e52586dae1b98b07f4b"
+    "revision": "6b5aec09b35dda15f7648f01eb3502f3"
   },
   {
     "url": "js/controllers/bootmpMmakingController.js",
@@ -390,7 +391,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/gameData.js",
-    "revision": "e8e37a825701aaf2a6adc42b988be038"
+    "revision": "31a2b29887f83eb6fb0f2a5d10a4ed1b"
   },
   {
     "url": "js/main.js",
@@ -401,16 +402,16 @@ workbox.precaching.precacheAndRoute([
     "revision": "ba85c89884a6021ac2b10caeadd518b8"
   },
   {
+    "url": "js/pathHandler.js",
+    "revision": "5ad299df51ae36605ac28de7493f56c8"
+  },
+  {
     "url": "js/plugins.js",
     "revision": "048e67836eb558d0854f558a4f3a5663"
   },
   {
     "url": "js/rabbitCommunicator.js",
     "revision": "68069409bf7c6fee0c792b44e3d5fbc1"
-  },
-  {
-    "url": "js/robyAnimator.js",
-    "revision": "cdc8b2c50a107546a05d862f6a2f4ec6"
   },
   {
     "url": "js/scopeService.js",
