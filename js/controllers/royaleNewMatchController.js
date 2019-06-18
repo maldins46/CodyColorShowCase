@@ -90,8 +90,13 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
                     return;
                 }
             }
-            gameData.editGeneral({ gameName: gameNameValue });
-            gameData.editPlayer({ nickname: nicknameValue });
+            gameData.editGeneral({
+                gameName: gameNameValue,
+            });
+            gameData.editPlayer({
+                nickname: nicknameValue,
+                organizer: true
+            });
             navigationHandler.goToPage($location, $scope, '/royale-mmaking', false);
         };
 

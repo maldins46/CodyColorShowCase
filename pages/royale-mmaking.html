@@ -73,25 +73,27 @@
             <!-- Waiting confirm -->
             <div ng-show="mmakingState === 'waitingEnemies'" class="page--component">
                 <ul class="list">
-                    <li class="list--spaced-element"><h2>{{'WELCOME' | translate}}</h2></li>
+                    <li class="list--simple-element"><h2>{{'WELCOME' | translate}}</h2></li>
                     <li class="list--spaced-element">
                         <!-- todo -->
-                        Benvenuto nella Battle "{{battleName}}"! Ogni match avrà la durata di {{battleTime}},
-                        e potranno partecipare un massimo di {{battlePlayers}} giocatori.
+                        Benvenuto nella Battle "{{generalData.gameName}}"!
+                        Ogni match avrà la durata di {{ battleTime }},
+                         Potranno partecipare un massimo di 20 giocatori.
                     </li>
                     <li class="list--spaced-element">
-                        <div ng-show="instantMatch !== true">
+                        <div ng-show="generalData.date !== undefined">
                             Tutti gli utenti collegati allo scadere del countdown potranno partecipare:<br>
                             <h2>{{ countdownFormatter(startMatchTimerValue) }}</h2>
                         </div>
-                        <div ng-show="instantMatch">
+                        <div ng-hide="generalData.date !== undefined">
                             La partita inizierà non appena l'organizzatore deciderà di avviarla.
                         </div>
                     </li>
-                    <li class="list--spaced-element" ng-show="instantMatch && organizer">
+                    <li class="list--spaced-element"
+                        ng-show="generalData.date === undefined && userPlayer.organizer">
                         <button class="navigation--button flashing-animation"
                                 ng-click="startMatch()">
-                            Inizia partita
+                            {{ 'START' | translate }}
                             <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                         </button>
                     </li>
@@ -107,7 +109,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="list--spaced-element"><h2>{{ 'INVITE_YOUR_FRIENDS' | translate }}</h2></li>
+                    <li class="list--simple-element"><h2>{{ 'INVITE_YOUR_FRIENDS' | translate }}</h2></li>
                     <li class="list--spaced-element">
                         {{ 'INVITE_DESC' | translate }}
                     </li>
@@ -115,14 +117,14 @@
                     <li class="list--spaced-element">
                         <div class="copyable--container">
                             <div class="copyable" ng-click="copyCode()">
-                                <div class="copyable--big-text">{{gameCode}}</div>
+                                <div class="copyable--big-text">{{generalData.code}}</div>
                                 <div class="copyable--copy-text" ng-show="codeCopied">
                                     <i class="far fa-copy copyable--copy-icon"></i> {{ 'COPIED' | translate }}
                                 </div>
                             </div>
 
                             <div class="copyable" ng-click="copyLink()">
-                                <div class="copyable--small-text">https://codycolor.codemooc.net/#!?aga={{gameCode}}
+                                <div class="copyable--small-text">https://codycolor.codemooc.net/#!?aga={{generalData.code}}
                                 </div>
                                 <div class="copyable--copy-text" ng-show="linkCopied">
                                     <i class="far fa-copy copyable--copy-icon"></i> {{ 'COPIED' | translate }}
@@ -130,7 +132,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="list--spaced-element"><h2>{{ 'CHAT_TITLE' | translate }}</h2></li>
+                    <li class="list--simple-element"><h2>{{ 'CHAT_TITLE' | translate }}</h2></li>
                     <li class="list--simple-element">
                         <!-- Chat module -->
                         <div class="chat">

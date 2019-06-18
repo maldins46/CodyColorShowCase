@@ -21,7 +21,7 @@ angular.module('codyColor').controller('bootmpAftermatchCtrl',
         }
 
         gameData.editPlayer({
-            points: gameData.getPlayer().points + gameData.getPlayer().match.points
+            points: gameData.getUserPlayer().points + gameData.getUserPlayer().match.points
         });
 
         if (gameData.getEnemy1vs1() !== undefined)
@@ -32,12 +32,12 @@ angular.module('codyColor').controller('bootmpAftermatchCtrl',
         // informazioni sul risultato della partita
         $scope.withEnemy = gameData.getEnemy1vs1() !== undefined;
         $scope.timeFormatter = gameData.formatTimeDecimals;
-        $scope.player = gameData.getPlayer();
+        $scope.player = gameData.getUserPlayer();
         $scope.enemy = gameData.getEnemy1vs1();
         $scope.winner = gameData.getMatchWinner().nickname;
         $scope.matchCount = gameData.getGeneral().matchCount;
 
-        if ($scope.winner === gameData.getPlayer().nickname) {
+        if ($scope.winner === gameData.getUserPlayer().nickname) {
             audioHandler.playSound('win');
         } else if ($scope.withEnemy && $scope.winner === gameData.getEnemy1vs1().nickname) {
             audioHandler.playSound('lost');

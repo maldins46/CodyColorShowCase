@@ -35,14 +35,14 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
         }
 
         // inizializzazione componenti generali interfaccia
-        $scope.player = gameData.getPlayer();
+        $scope.player = gameData.getUserPlayer();
         $scope.enemy = gameData.getEnemy1vs1();
         $scope.withEnemy = gameData.getEnemy1vs1() !== undefined;
         
         // inizializzazione riferimenti agli elementi della griglia
         $scope.playerRobyImage = 'roby-positioned';
         $scope.enemyRobyImage  = 'enemy-positioned';
-        pathHandler.initializeElements(function (image) {
+        pathHandler.initialize(function (image) {
             scopeService.safeApply($scope, function () { $scope.playerRobyImage = image; });
         }, function (image) {
             scopeService.safeApply($scope, function () { $scope.enemyRobyImage = image; });
@@ -360,7 +360,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
                 pathHandler.calculatePaths();
                 gameData.calculateMatchPoints();
 
-                pathHandler.animateRobots(function () {
+                pathHandler.animateActiveRobys(function () {
                     pathHandler.quitGame();
                     navigationHandler.goToPage($location, $scope, '/bootmp-aftermatch', true);
                 }, gameData.getGeneral().bootEnemySetting);

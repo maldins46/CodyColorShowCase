@@ -780,6 +780,19 @@ button.modal--button-secondary:hover {
     text-align: center;
 }
 
+.centered-columns--column-big {
+    width: 65%;
+    text-align: center;
+}
+
+
+.centered-columns--column-small {
+    width: 25%;
+    box-sizing: border-box;
+    text-align: center;
+    padding-left: 10px;
+}
+
 
 /* -------------------------------------------------------------------------
  * Modulo timer: struttura di base dei vari timer di gioco: scritta bianca
@@ -791,11 +804,11 @@ button.modal--button-secondary:hover {
     vertical-align: middle;
 }
 
-.timer--normal {
+.timer--normal, .timer--normal-no-margin  {
     color: white;
 }
 
-.timer--stop {
+.timer--stop, .timer--stop-no-margin {
     color: red;
 }
 
@@ -937,6 +950,7 @@ button.modal--button-secondary:hover {
 
 .playerlist--header {
     margin: 0 0 15px 0;
+    text-align: center;
 }
 
 
@@ -947,6 +961,50 @@ button.modal--button-secondary:hover {
 
 .playerlist--line {
     margin: 10px 0 0 0;
+}
+
+
+/*
+ * Playerlist royale match
+ */
+.playerlist-match {
+    width: 100%;
+    height: 120px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    border-color: White;
+    text-align: center;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.11);
+    overflow-y: scroll;
+}
+
+table.playerlist-match-table {
+    overflow-x: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.playerlist-match-table td:nth-child(n) {
+    white-space: nowrap;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+}
+
+.playerlist-match-table th:nth-child(n) {
+    white-space: nowrap;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+}
+
+.text-align-left {
+    text-align: left;
 }
 
 
@@ -1088,6 +1146,12 @@ button.modal--button-secondary:hover {
 .roby-automove {
     width: 36px;
     height: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.roby-automove-container {
     position: absolute;
     left: 0;
     top: 0;

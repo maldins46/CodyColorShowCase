@@ -90,7 +90,7 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
             sendInServerControlQueue({
                 msgType:    messageTypes.heartbeat,
                 gameRoomId: gameData.getGeneral().gameRoomId,
-                playerId:   gameData.getPlayer().playerId,
+                playerId:   gameData.getUserPlayer().playerId,
                 gameType:   gameData.getGeneral().gameType
             });
         }, 5000);
@@ -116,12 +116,13 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         sendInGameRoomTopic({
             msgType:      messageTypes.here,
             gameRoomId:   gameData.getGeneral().gameRoomId,
-            playerId:     gameData.getPlayer().playerId,
-            nickname:     gameData.getPlayer().nickname,
+            playerId:     gameData.getUserPlayer().playerId,
+            nickname:     gameData.getUserPlayer().nickname,
             needResponse: needResponseValue,
+            organizer:    gameData.getUserPlayer().organizer,
             timerSetting: gameData.getGeneral().timerSetting,
             gameType:     gameData.getGeneral().gameType,
-            readyState:   gameData.getPlayer().ready
+            readyState:   gameData.getUserPlayer().ready
         });
     };
 
@@ -131,8 +132,8 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         sendInGameRoomTopic({
             msgType:    messageTypes.ready,
             gameRoomId: gameData.getGeneral().gameRoomId,
-            playerId:   gameData.getPlayer().playerId,
-            nickname:   gameData.getPlayer().nickname,
+            playerId:   gameData.getUserPlayer().playerId,
+            nickname:   gameData.getUserPlayer().nickname,
             gameType:   gameData.getGeneral().gameType,
             readyState: true
         });
@@ -144,11 +145,11 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         sendInGameRoomTopic({
             msgType:    messageTypes.playerPositioned,
             gameRoomId: gameData.getGeneral().gameRoomId,
-            playerId:   gameData.getPlayer().playerId,
+            playerId:   gameData.getUserPlayer().playerId,
             gameType:   gameData.getGeneral().gameType,
-            matchTime:  gameData.getPlayer().match.time,
-            side:       gameData.getPlayer().match.startPosition.side,
-            distance:   gameData.getPlayer().match.startPosition.distance
+            matchTime:  gameData.getUserPlayer().match.time,
+            side:       gameData.getUserPlayer().match.startPosition.side,
+            distance:   gameData.getUserPlayer().match.startPosition.distance
         });
     };
 
@@ -158,7 +159,7 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         sendInGameRoomTopic({
             msgType:    messageTypes.skip,
             gameRoomId: gameData.getGeneral().gameRoomId,
-            playerId:   gameData.getPlayer().playerId,
+            playerId:   gameData.getUserPlayer().playerId,
             gameType:   gameData.getGeneral().gameType
         });
     };
@@ -169,8 +170,8 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         let message = {
             msgType:    messageTypes.chat,
             gameRoomId: gameData.getGeneral().gameRoomId,
-            playerId:   gameData.getPlayer().playerId,
-            sender:     gameData.getPlayer().nickname,
+            playerId:   gameData.getUserPlayer().playerId,
+            sender:     gameData.getUserPlayer().nickname,
             body:       messageBody,
             date:       (new Date()).getTime(),
             gameType:   gameData.getGeneral().gameType
@@ -202,13 +203,13 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
 
         pageCallbacks = {};
 
-        if (gameData.getGeneral().gameRoomId === -1 || gameData.getPlayer().playerId === -1)
+        if (gameData.getGeneral().gameRoomId === -1 || gameData.getUserPlayer().playerId === -1)
             return;
 
         let quitNotification = {
             msgType:    messageTypes.quitGame,
             gameRoomId: gameData.getGeneral().gameRoomId,
-            playerId:   gameData.getPlayer().playerId,
+            playerId:   gameData.getUserPlayer().playerId,
             gameType:   gameData.getGeneral().gameType
         };
 
@@ -310,7 +311,7 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         }
 
         // 2. messaggi provenienti dalla gameRoom
-        if (message.playerId === gameData.getPlayer().playerId) {
+        if (message.playerId === gameData.getUserPlayer().playerId) {
             // si è intercettato il proprio messaggio: ignoralo
             return;
         }

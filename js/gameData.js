@@ -19,7 +19,7 @@ angular.module('codyColor').factory('gameData', function () {
     let generateEmptyPlayerMatch = function() {
         return {
             time: 0,
-            wantSkip: false,
+            skip: false,
             points: 0,
             pathLength: 0,
             startPosition: {
@@ -30,8 +30,9 @@ angular.module('codyColor').factory('gameData', function () {
                 side: -1,
                 distance: -1
             },
-            tilesCoords: [],
-            direction: []
+            timer: undefined,
+            timerValue: 0,
+            positioned: false,
         };
     };
 
@@ -42,6 +43,9 @@ angular.module('codyColor').factory('gameData', function () {
             points: 0,
             playerId: -1,
             ready: false,
+            organizer: false,
+            ranking: undefined,
+            userPlayer: false,
             match: generateEmptyPlayerMatch()
         }
     };
@@ -75,20 +79,26 @@ angular.module('codyColor').factory('gameData', function () {
      * -------------------------------------------------------------------- */
 
     // pone i dati di gioco al loro valore di default
-    gameData.initializeGameData = function () {
-        data = generateEmptyGameData();
-    };
-    gameData.initializeGameData();
-
-
-
     gameData.initializeMatchData = function () {
-        data.general.tiles = undefined;
-        for (let i = 0; i < data.players.length; i++) {
-            data.players[i].match = generateEmptyPlayerMatch() ;
+        if(data.general !== undefined && data.players !== undefined) {
+            data.general.tiles = undefined;
+
+            for (let i = 0; i < data.players.length; i++) {
+                if (data.players[i].match.timer !== undefined)
+                    clearInterval(data.players[i].match.timer);
+
+                data.players[i].match = generateEmptyPlayerMatch();
+            }
         }
     };
 
+    gameData.initializeGameData = function () {
+        gameData.initializeMatchData();
+        data = generateEmptyGameData();
+        data.players[0].userPlayer = true;
+    };
+
+    gameData.initializeGameData();
 
     /* -------------------------------------------------------------------- *
      * Getter-setter:funzioni ausiliarie per accedere ai dati
@@ -100,28 +110,29 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
-    gameData.editEnemy = function(playerId, modifiedProperties) {
-        // modifica nella struttura i soli dati del giocatore passati in modifiedProperties,
-        // senza intaccare gli altri campi
-        let enemyId = getEnemyIndexById(playerId);
-        if (data.players[enemyId] !== undefined)
-            $.extend(true, data.players[enemyId], modifiedProperties);
+    gameData.removeEnemy = function(playerId) {
+        let index = getPlayerIndexById(playerId);
+        if(index !== undefined && !data.players[index].userPlayer) {
+            if (data.players[index].match.timer !== undefined)
+                clearInterval(data.players[index].match.timer);
+            data.players.splice(getPlayerIndexById(playerId), 1);
+        }
     };
 
 
     gameData.editEnemy1vs1 = function(modifiedProperties) {
-        if (data.players[1] !== undefined)
-            $.extend(true, data.players[1], modifiedProperties);
+        let enemyIndex = getEnemy1vs1Index();
+        if (enemyIndex !== undefined && data.players[enemyIndex] !== undefined)
+            $.extend(true, data.players[enemyIndex], modifiedProperties);
     };
 
 
-    gameData.editPlayer = function(modifiedProperties) {
-        $.extend(true, data.players[0], modifiedProperties);
-    };
-
-
-    gameData.removeEnemy = function(playerId) {
-        data.players.splice(getEnemyIndexById(playerId), 1);
+    gameData.editPlayer = function(modifiedProperties, playerId) {
+        if (playerId !== undefined) {
+            $.extend(true, data.players[getPlayerIndexById(playerId)], modifiedProperties);
+        } else {
+            $.extend(true, data.players[getUserPlayerIndex()], modifiedProperties);
+        }
     };
 
 
@@ -130,15 +141,9 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
-    gameData.editPlayerById = function(playerId, modifiedProperties) {
-        if (getPlayerIndexById(playerId) !== undefined)
-            $.extend(true,  data.players[getPlayerIndexById(playerId)], modifiedProperties);
-    };
-
-
     gameData.getEnemies = function () {
         let enemies = JSON.parse(JSON.stringify(data.players));
-        enemies.splice(0, 1);
+        enemies.splice(getUserPlayerIndex(), 1);
         return enemies;
     };
 
@@ -148,17 +153,21 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
-    gameData.getPlayer = function () {
-        return data.players[0];
+    gameData.getUserPlayer = function () {
+        return data.players[getUserPlayerIndex()];
     };
 
     gameData.getEnemy1vs1 = function () {
-        return data.players[1];
+        return data.players[getEnemy1vs1Index()];
     };
 
 
     gameData.getAllPlayers = function () {
         return data.players;
+    };
+
+    gameData.duplicateAllPlayers = function () {
+        return JSON.parse(JSON.stringify(data.players));
     };
 
 
@@ -186,17 +195,10 @@ angular.module('codyColor').factory('gameData', function () {
             let totalTime = gameData.getGeneral().timerSetting;
             points += Math.floor(15 * winner.match.time / totalTime);
 
-            data.players[getPlayerIndexById(winner.playerId)].match.points = points;
+            gameData.editPlayer({match:{points: points}}, winner.playerId);
         }
     };
 
-    let getEnemyIndexById = function(playerId) {
-        for (let i = 1; i < data.players.length; i++) {
-            if (data.players[i].playerId === playerId) {
-                return i;
-            }
-        }
-    };
 
     let getPlayerIndexById = function(playerId) {
         for (let i = 0; i < data.players.length; i++) {
@@ -204,6 +206,20 @@ angular.module('codyColor').factory('gameData', function () {
                 return i;
             }
         }
+    };
+
+    let getEnemy1vs1Index = function() {
+        for (let i = 0; i < data.players.length; i++) {
+            if (data.players[i].userPlayer !== true) {
+                return i;
+            }
+        }
+    };
+
+    let getUserPlayerIndex = function() {
+        for (let i = 0; i < data.players.length; i++)
+            if (data.players[i].userPlayer === true)
+                return i;
     };
 
 

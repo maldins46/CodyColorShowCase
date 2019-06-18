@@ -100,7 +100,7 @@ angular.module('codyColor').controller('customMmakingCtrl',
 
             }, onReadyMessage: function () {
                 gameData.editEnemy1vs1({ ready: true });
-                if (gameData.getEnemy1vs1().ready && gameData.getPlayer().ready)
+                if (gameData.getEnemy1vs1().ready && gameData.getUserPlayer().ready)
                     rabbit.sendTilesRequest();
 
             }, onTilesMessage: function (message) {
@@ -138,7 +138,7 @@ angular.module('codyColor').controller('customMmakingCtrl',
         $scope.chatVisible = false;
         $scope.chatBubbles = chatHandler.getChatMessages();
         $scope.getBubbleStyle = function(chatMessage) {
-            if (chatMessage.playerId === gameData.getPlayer().playerId)
+            if (chatMessage.playerId === gameData.getUserPlayer().playerId)
                 return 'chat--bubble-player';
             else
                 return 'chat--bubble-enemy';

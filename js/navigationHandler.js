@@ -43,6 +43,8 @@ angular.module('codyColor').config(function ($routeProvider) {
         .when("/royale-new-match", {templateUrl: "pages/royale-new-match.html", controller: "royaleNewMatchCtrl"})
         .when("/arcade-match", {templateUrl: "pages/arcade-match.html", controller: "arcadeMatchCtrl"})
         .when("/arcade-aftermatch", {templateUrl: "pages/arcade-aftermatch.html", controller: "arcadeAftermatchCtrl"})
+        .when("/royale-match", {templateUrl: "pages/royale-match.html", controller: "royaleMatchCtrl"})
+        .when("/royale-aftermatch", {templateUrl: "pages/royale-aftermatch.html", controller: "royaleAftermatchCtrl"})
         .when("/bootmp-mmaking", {templateUrl: "pages/bootmp-mmaking.html", controller: "bootmpMmakingCtrl"})
         .when("/bootmp-match", {templateUrl: "pages/bootmp-match.html", controller: "bootmpMatchCtrl"})
         .when("/bootmp-aftermatch", {templateUrl: "pages/bootmp-aftermatch.html", controller: "bootmpAftermatchCtrl"})

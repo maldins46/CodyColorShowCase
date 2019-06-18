@@ -42,6 +42,8 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
 
         $scope.chatVisible = false;
         $scope.countdownFormatter = gameData.formatTimeSeconds;
+        $scope.generalData = gameData.getGeneral();
+        $scope.userPlayer = gameData.getUserPlayer();
 
         // tenta la connessione, se necessario
         $scope.connected = rabbit.getBrokerConnectionState();
@@ -50,7 +52,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
         } else {
             // l'if identifica il caso in cui si sia ricevuto un invito (gameCode !== '0000') o il caso
             // in cui si sia pronti a inviare una richiesta di gioco
-            if (gameData.getGeneral().code !== '0000' || gameData.getGeneral().gameName !== undefined) {
+            if (gameData.getGeneral().code !== '0000' || gameData.getUserPlayer().organizer) {
                 rabbit.sendGameRequest();
                 translationHandler.setTranslation($scope, 'joinMessage', 'SEARCH_MATCH_INFO');
             }
@@ -66,7 +68,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
             onConnected: function () {
                 // l'if identifica il caso in cui si sia ricevuto un invito (gameCode !== '0000') o il caso
                 // in cui si sia pronti a inviare una richiesta di gioco
-                if (gameData.getGeneral().code !== '0000' || gameData.getGeneral().gameName !== undefined) {
+                if (gameData.getGeneral().code !== '0000' || gameData.getUserPlayer().organizer) {
                     scopeService.safeApply($scope, function () {
                         rabbit.sendGameRequest();
                         translationHandler.setTranslation($scope, 'joinMessage', 'SEARCH_MATCH_INFO');
@@ -78,27 +80,31 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                     scopeService.safeApply($scope, function () {
                         translationHandler.setTranslation($scope, 'joinMessage', 'CODE_NOT_VALID');
                     });
+
                 } else {
                     audioHandler.playSound('enemy-found');
-                    gameData.editGeneral({
-                        code: message.code.toString(),
-                        gameRoomId: message.gameRoomId,
-                        startDate: message.date,
-                        timerSetting: message.timerSetting
+
+                    scopeService.safeApply($scope, function () {
+                        gameData.editGeneral({
+                            code: message.code.toString(),
+                            gameRoomId: message.gameRoomId,
+                            gameName: message.gameName,
+                            startDate: message.date,
+                            timerSetting: message.timerSetting
+                        });
+                        // imposta il testo che mostra la durata di ogni match
+                        $scope.battleTime = '';
+                        let formattedTranslateCode = gameData.formatTimeStatic(gameData.getGeneral().timerSetting);
+                        translationHandler.setTranslation($scope, 'battleTime', formattedTranslateCode);
                     });
+
                     gameData.editPlayer({
                         playerId: message.playerId
                     });
                     rabbit.subscribeGameRoom();
 
-                    scopeService.safeApply($scope, function () {
-                        $scope.gameCode = gameData.getGeneral().code;
-                        $scope.instantMatch = gameData.getGeneral().startDate === undefined;
-                        if (gameData.getPlayer().nickname !== 'Anonymous')
-                            $scope.organizer = true;
-                    });
 
-                    if (gameData.getPlayer().nickname !== 'Anonymous') {
+                    if (gameData.getUserPlayer().organizer) {
                         changeScreen('waitingEnemies');
                         rabbit.sendHereMessage(true);
                     } else {
@@ -124,20 +130,16 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                             }
                         }, 1000)
                     }
-
-                    scopeService.safeApply($scope, function () {
-                        $scope.battleName = gameData.getGeneral().gameName;
-                        translationHandler.setTranslation($scope, 'battleTime',
-                            gameData.formatTimeStatic(gameData.getGeneral().timerSetting));
-                    })
                 }
 
             }, onHereMessage: function (message) {
-                if (gameData.getPlayer().nickname !== 'Anonymous' && gameData.getPlayerById(message.playerId) === undefined) {
+                if (gameData.getUserPlayer().nickname !== 'Anonymous'
+                    && gameData.getPlayerById(message.playerId) === undefined) {
                     gameData.addEnemy(message.playerId);
-                    gameData.editEnemy(message.playerId, {
-                        nickname: message.nickname
-                    });
+                    gameData.editPlayer({
+                        nickname: message.nickname,
+                        organizer: message.organizer
+                    }, message.playerId);
                 }
 
                 scopeService.safeApply($scope, function () {
@@ -159,7 +161,8 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                     navigationHandler.goToPage($location, $scope, '/royale-match', true);
 
                 } else if (gameData.getEnemies().length === 1) {
-                    navigationHandler.goToPage($location, $scope, '/arcade-match', true);
+                    // todo navigationHandler.goToPage($location, $scope, '/arcade-match', true);
+                    navigationHandler.goToPage($location, $scope, '/royale-match', true);
 
                 } else {
                     quitGame();
@@ -170,7 +173,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                 }
 
             }, onQuitGameMessage: function (message) {
-                if (gameData.getPlayer().nickname !== 'Anonymous') {
+                if (gameData.getUserPlayer().nickname !== 'Anonymous') {
                     if (gameData.getPlayerById(message.playerId) !== undefined) {
                         gameData.removeEnemy(message.playerId);
                         scopeService.safeApply($scope, function () {
@@ -217,7 +220,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
         // chat
         $scope.chatBubbles = chatHandler.getChatMessages();
         $scope.getBubbleStyle = function(chatMessage) {
-            if (chatMessage.playerId === gameData.getPlayer().playerId)
+            if (chatMessage.playerId === gameData.getUserPlayer().playerId)
                 return 'chat--bubble-player';
             else
                 return 'chat--bubble-enemy';

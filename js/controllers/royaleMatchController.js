@@ -1,7 +1,7 @@
 /*
  * Controller responsabile della schermata partita
  */
-angular.module('codyColor').controller('arcadeMatchCtrl',
+angular.module('codyColor').controller('royaleMatchCtrl',
     function ($scope, rabbit, gameData, scopeService, pathHandler, $location, $translate, chatHandler,
               navigationHandler, audioHandler, sessionHandler, translationHandler) {
         console.log("Controller match ready.");
@@ -25,28 +25,32 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
             return;
         }
 
-        $scope.showDraggableRoby = true;
-        pathHandler.initialize($scope);
-        $scope.player = gameData.getUserPlayer();
-        $scope.enemy  = gameData.getEnemy1vs1();
-        $scope.playerRoby = pathHandler.getPlayerRoby();
-        $scope.enemiesRoby = pathHandler.getEnemiesRoby();
-        $scope.timerFormatter = gameData.formatTimeDecimals;
+        gameData.getAllPlayers().sort(function (a, b) {
+            return a.points - b.points;
+        });
 
         // inizializzazione componenti generali interfaccia
-        gameData.editPlayer({
-            match: { timerValue: gameData.getGeneral().timerSetting }
-        });
-        gameData.editEnemy1vs1({
-            match: { timerValue: gameData.getGeneral().timerSetting }
-        });
+        $scope.showDraggableRoby = true;
+        pathHandler.initialize($scope);
+        $scope.players = gameData.getAllPlayers();
+        $scope.userPlayer = gameData.getUserPlayer();
+        $scope.timerFormatter = gameData.formatTimeDecimals;
+        $scope.playerRoby = pathHandler.getPlayerRoby();
+        $scope.enemiesRoby = pathHandler.getEnemiesRoby();
+
+        for (let i = 0; i < gameData.getAllPlayers().length; i++) {
+            gameData.editPlayer({
+                ranking: (i + 1).toString() + ".",
+                match: { timerValue: gameData.getGeneral().timerSetting  }
+            }, gameData.getAllPlayers()[i].playerId);
+        }
 
         // inizializzazione start positions
-        let setArrowCss = function(side, distance, over) {
+        let setArrowCss = function (side, distance, over) {
             let finalResult = '';
 
             let arrowSide = '';
-            switch(side) {
+            switch (side) {
                 case 0:
                     arrowSide = 'down';
                     break;
@@ -74,12 +78,12 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
             $scope.startPositionsCss[side][distance] = finalResult;
         };
 
-        let calculateAllStartPositionCss = function(over) {
+        let calculateAllStartPositionCss = function (over) {
             $scope.startPositionsCss = new Array(4);
             for (let side = 0; side < 4; side++) {
                 $scope.startPositionsCss[side] = new Array(5);
                 for (let distance = 0; distance < 5; distance++) {
-                   setArrowCss(side, distance, over);
+                    setArrowCss(side, distance, over);
                 }
             }
         };
@@ -168,7 +172,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
                             rabbit.sendPlayerPositionedMessage();
                             // pathHandler.positionRoby(true, gameData.getUserPlayer().match.startPosition);
 
-                            if (gameData.getUserPlayer().match.positioned && gameData.getEnemy1vs1().match.positioned)
+                            if (allPlayersPositioned())
                                 endMatch();
                         }
                     }
@@ -176,6 +180,16 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
             }
         };
 
+        let allPlayersPositioned = function () {
+            let allPositioned = true;
+            for (let j = 0; j < gameData.getAllPlayers().length; j++) {
+                if (gameData.getAllPlayers()[j].match.positioned !== true) {
+                    allPositioned = false;
+                    break;
+                }
+            }
+            return allPositioned;
+        };
 
         // inizializzazione draggable roby
         $scope.showCompleteGrid = false;
@@ -258,7 +272,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
                 pathHandler.positionRoby(true, gameData.getUserPlayer().match.startPosition);
                 rabbit.sendPlayerPositionedMessage();
 
-                if (gameData.getUserPlayer().match.positioned && gameData.getEnemy1vs1().match.positioned)
+                if (allPlayersPositioned())
                     endMatch();
             }
         };
@@ -267,9 +281,9 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
         // Invocati all'arrivo di nuovi messaggi
         rabbit.setPageCallbacks({
             onEnemyPositionedMessage: function (message) {
-                clearInterval(gameData.getEnemy1vs1().match.timer);
+                clearInterval(gameData.getPlayerById(message.playerId).match.timer);
                 scopeService.safeApply($scope, function () {
-                    gameData.editEnemy1vs1({
+                    gameData.editPlayer({
                         match: {
                             startPosition: {side: message.side, distance: message.distance},
                             timerValue: message.matchTime,
@@ -277,31 +291,45 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
                             positioned: true,
                             timer: undefined
                         }
-                    });
+                    }, message.playerId);
                 });
 
-                if (gameData.getUserPlayer().match.positioned && gameData.getEnemy1vs1().match.positioned)
+                if (allPlayersPositioned())
                     endMatch();
 
-            }, onQuitGameMessage: function () {
-                quitGame();
+            }, onQuitGameMessage: function (message) {
                 scopeService.safeApply($scope, function () {
-                    translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
-                    $scope.forceExitModal = true;
+                    gameData.removeEnemy(message.playerId)
                 });
 
+                if (gameData.getAllPlayers().length <= 1 ) {
+                    scopeService.safeApply($scope, function () {
+                        translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
+                        $scope.forceExitModal = true;
+                    });
+                    quitGame();
+                }
+
             }, onConnectionLost: function () {
-                quitGame();
                 scopeService.safeApply($scope, function () {
                     translationHandler.setTranslation($scope, 'forceExitText', 'FORCE_EXIT');
                     $scope.forceExitModal = true;
                 });
+                quitGame();
 
-            }, onSkipMessage: function () {
-                gameData.editEnemy1vs1({ match: { skip: true } });
-                if (gameData.getUserPlayer().match.skip && gameData.getEnemy1vs1().match.skip) {
+            }, onSkipMessage: function (message) {
+                gameData.editPlayer({match: {skip: true}}, message.playerId);
+
+                let allSkip = true;
+                for (let i = 0; i < gameData.getAllPlayers().length; i++) {
+                    if (gameData.getAllPlayers()[i].match.skip === false) {
+                        allSkip = false;
+                        break;
+                    }
+                }
+                if (allSkip) {
                     pathHandler.quitGame();
-                    navigationHandler.goToPage($location, $scope, '/arcade-aftermatch', true);
+                    navigationHandler.goToPage($location, $scope, '/royale-aftermatch', true);
                 }
             }
         });
@@ -309,7 +337,9 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
         // cosa fare una volta terminata senza intoppi la partita; mostra la schermata aftermatch
         let endMatch = function () {
             if (!$scope.endMatch) {
-                pathHandler.positionRoby(false, gameData.getEnemy1vs1().match.startPosition);
+                for (let i = 0; i < gameData.getEnemies().length; i++) {
+                    pathHandler.positionRoby(false, gameData.getEnemies()[i].match.startPosition);
+                }
 
                 scopeService.safeApply($scope, function () {
                     $scope.endMatch = true;
@@ -320,7 +350,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
                 pathHandler.animateActiveRobys(function () {
                     pathHandler.quitGame();
                     if ($scope.forceExitModal !== true)
-                        navigationHandler.goToPage($location, $scope, '/arcade-aftermatch', true);
+                        navigationHandler.goToPage($location, $scope, '/royale-aftermatch', true);
                 });
             }
         };
@@ -330,43 +360,52 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
             audioHandler.playSound('menu-click');
             $scope.exitGameModal = true;
         };
-        $scope.continueExitGame = function() {
+
+        $scope.continueExitGame = function () {
             audioHandler.playSound('menu-click');
             quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
         };
-        $scope.stopExitGame = function() {
+
+        $scope.stopExitGame = function () {
             audioHandler.playSound('menu-click');
             $scope.exitGameModal = false;
         };
 
-        $scope.continueForceExit = function() {
+        $scope.continueForceExit = function () {
             audioHandler.playSound('menu-click');
             navigationHandler.goToPage($location, $scope, '/home', false);
         };
 
-        $scope.skip = function() {
+        $scope.skip = function () {
             audioHandler.playSound('menu-click');
             rabbit.sendSkipMessage();
-            gameData.editPlayer({ match: { skip:true }});
+            gameData.editPlayer({match: {skip: true}});
             $scope.askedForSkip = true;
 
-            if (gameData.getUserPlayer().match.skip && gameData.getEnemy1vs1().match.skip) {
+            let allSkip = true;
+            for (let i = 0; i < gameData.getAllPlayers().length; i++) {
+                if (gameData.getAllPlayers()[i].match.skip === false) {
+                    allSkip = false;
+                    break;
+                }
+            }
+            if (allSkip) {
                 pathHandler.quitGame();
-                navigationHandler.goToPage($location, $scope, '/arcade-aftermatch', false);
+                navigationHandler.goToPage($location, $scope, '/royale-aftermatch', false);
             }
         };
 
         // impostazioni multi language
-        $scope.openLanguageModal = function() {
+        $scope.openLanguageModal = function () {
             $scope.languageModal = true;
             audioHandler.playSound('menu-click');
         };
-        $scope.closeLanguageModal = function() {
+        $scope.closeLanguageModal = function () {
             $scope.languageModal = false;
             audioHandler.playSound('menu-click');
         };
-        $scope.changeLanguage = function(langKey) {
+        $scope.changeLanguage = function (langKey) {
             $translate.use(langKey);
             $scope.languageModal = false;
             audioHandler.playSound('menu-click');

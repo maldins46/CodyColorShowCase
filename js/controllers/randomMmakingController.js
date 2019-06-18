@@ -84,7 +84,7 @@ angular.module('codyColor').controller('randomMmakingCtrl',
                 gameData.editEnemy1vs1({
                     ready: true
                 });
-                if (gameData.getPlayer().ready && gameData.getEnemy1vs1().ready)
+                if (gameData.getUserPlayer().ready && gameData.getEnemy1vs1().ready)
                     rabbit.sendTilesRequest();
 
             }, onTilesMessage: function (message) {
@@ -120,7 +120,7 @@ angular.module('codyColor').controller('randomMmakingCtrl',
         // chat
         $scope.chatBubbles = chatHandler.getChatMessages();
         $scope.getBubbleStyle = function (chatMessage) {
-            if (chatMessage.playerId === gameData.getPlayer().playerId)
+            if (chatMessage.playerId === gameData.getUserPlayer().playerId)
                 return 'chat--bubble-player';
             else
                 return 'chat--bubble-enemy';
