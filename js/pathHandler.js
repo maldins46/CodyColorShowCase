@@ -261,6 +261,10 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
         }
     };
 
+    pathHandler.calculatePlayerPath = function() {
+        calculatePath({ player: gameData.getUserPlayer() });
+    };
+
 
     // algoritmo di calcolo del percorso dell'IA, in base al livello di difficoltà selezionato
     pathHandler.calculateBootEnemyPath = function() {

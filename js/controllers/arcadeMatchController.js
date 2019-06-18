@@ -11,6 +11,9 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
         // metodo per terminare la partita in modo sicuro, disattivando i timer,
         // interrompendo animazioni e connessioni con il server
         let quitGame = function () {
+            if (startCountdownTimer !== undefined)
+                clearInterval(startCountdownTimer);
+
             rabbit.quitGame();
             pathHandler.quitGame();
             chatHandler.clearChat();

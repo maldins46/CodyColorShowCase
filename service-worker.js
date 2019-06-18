@@ -247,7 +247,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/bootmp-match.html",
-    "revision": "95407c1c5838fec0d9fc3b9f342511a4"
+    "revision": "5f14888a9939a95a6a92479c1668ff1f"
   },
   {
     "url": "pages/bootmp-mmaking.html",
@@ -339,7 +339,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/arcadeMatchController.js",
-    "revision": "a8ddb2a67ed4ba165ac2c5a66c8150af"
+    "revision": "cc623a0e7500a37e1919c96966814dcb"
   },
   {
     "url": "js/controllers/bootmpAftermatchController.js",
@@ -347,7 +347,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/bootmpMatchController.js",
-    "revision": "150f51271271d8d02d1e3afbb706b0d7"
+    "revision": "0d5189268486cfb313a7dd156f269146"
   },
   {
     "url": "js/controllers/bootmpMmakingController.js",
@@ -391,7 +391,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/royaleMatchController.js",
-    "revision": "91dff468250ce52039b66eaf6ec4d7b3"
+    "revision": "9e16f9e4ca6b0c25a4c714be42e3e338"
   },
   {
     "url": "js/controllers/royaleMmakingController.js",
@@ -419,7 +419,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/pathHandler.js",
-    "revision": "a897f5841f3a4b052c731c66d15e43c7"
+    "revision": "50bcdc66ce4600b8d8a3c0a4c888feea"
   },
   {
     "url": "js/plugins.js",
