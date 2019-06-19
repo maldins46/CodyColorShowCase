@@ -8,6 +8,7 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
         console.log("Controller aftermatch ready.");
         let newMatchTimer;
 
+        // chiude la partita in modo sicuro
         let quitGame = function () {
             rabbit.quitGame();
             gameData.initializeGameData();
@@ -29,7 +30,6 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
         $scope.newMatchTimerValue = 60000;
         newMatchTimer = setInterval(function () {
             if ($scope.newMatchTimerValue <= 0) {
-                rabbit.sendTilesRequest();
                 if (newMatchTimer !== undefined) {
                     clearInterval(newMatchTimer);
                     newMatchTimer = undefined;
@@ -37,6 +37,10 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
                 scopeService.safeApply($scope, function () {
                     $scope.newMatchTimerValue = 0;
                 });
+
+                if(isLowerPlayerId())
+                    rabbit.sendTilesRequest();
+
             } else {
                 scopeService.safeApply($scope, function () {
                     $scope.newMatchTimerValue -= 1000;
@@ -44,8 +48,30 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
             }
         }, 1000);
 
+        let updateRanking = function() {
+           // riordina classifica
+            $scope.players = gameData.getAllPlayers();
+            gameData.getAllPlayers().sort(function (a, b) {
+                return b.points - a.points;
+            });
+            for (let i = 0; i < gameData.getAllPlayers().length; i++) {
+                let player = gameData.getAllPlayers()[i];
+                gameData.editPlayer({
+                    ranking: (i + 1).toString() + "."
+                },  player.playerId);
+            }
 
-        $scope.players = gameData.getAllPlayers();
+            // riordina classifica players match
+            $scope.matchPlayers = gameData.duplicateAllPlayers();
+            $scope.matchPlayers.sort(function (a, b) {
+                return b.match.points - a.match.points;
+            });
+            for (let i = 0; i < $scope.matchPlayers.length; i++) {
+                $scope.matchPlayers[i].match.ranking = (i + 1).toString() + ".";
+            }
+        };
+
+        // aggiorna punteggio players
         for (let i = 0; i < gameData.getAllPlayers().length; i++) {
             let player = gameData.getAllPlayers()[i];
             gameData.editPlayer({
@@ -53,24 +79,7 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
                 ready: false
             },  player.playerId);
         }
-        gameData.getAllPlayers().sort(function (a, b) {
-            return b.points - a.points;
-        });
-        for (let i = 0; i < gameData.getAllPlayers().length; i++) {
-            let player = gameData.getAllPlayers()[i];
-            gameData.editPlayer({
-                ranking: (i + 1).toString() + "."
-            },  player.playerId);
-        }
-
-        $scope.matchPlayers = gameData.duplicateAllPlayers();
-        $scope.matchPlayers.sort(function (a, b) {
-            return b.match.points - a.match.points;
-        });
-        for (let i = 0; i < $scope.matchPlayers.length; i++) {
-            $scope.matchPlayers[i].match.ranking = (i + 1).toString() + ".";
-        }
-
+        updateRanking();
         $scope.timeFormatter = gameData.formatTimeSeconds;
         $scope.winner = gameData.getMatchWinner().nickname;
         $scope.matchCount = gameData.getGeneral().matchCount;
@@ -78,7 +87,6 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
         if ($scope.winner === gameData.getUserPlayer().nickname) {
             audioHandler.playSound('win');
         }
-
 
         // richiede all'avversario l'avvio di una nuova partita tra i due
         $scope.newMatch = function () {
@@ -96,7 +104,6 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
         rabbit.setPageCallbacks({
             onReadyMessage: function (message) {
                 gameData.editPlayer({ ready: true }, message.playerId);
-
                 if (allPlayersReady() && isLowerPlayerId()) {
                     rabbit.sendTilesRequest();
                 }
@@ -113,9 +120,7 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
                 navigationHandler.goToPage($location, $scope, '/royale-match', true);
 
             }, onQuitGameMessage: function (message) {
-                scopeService.safeApply($scope, function () {
-                    gameData.removeEnemy(message.playerId)
-                });
+                gameData.removeEnemy(message.playerId);
 
                 if (gameData.getAllPlayers().length <= 1) {
                     scopeService.safeApply($scope, function () {
@@ -123,6 +128,14 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
                         $scope.forceExitModal = true;
                     });
                     quitGame();
+                } else {
+                    scopeService.safeApply($scope, function () {
+                        updateRanking();
+                    });
+
+                    if ((allPlayersReady() || newMatchTimer === undefined()) && isLowerPlayerId()) {
+                        rabbit.sendTilesRequest();
+                    }
                 }
 
             }, onConnectionLost: function () {

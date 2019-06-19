@@ -318,8 +318,8 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
                     $scope.endMatch = true;
                 });
 
-                pathHandler.calculatePaths();
-                gameData.calculateMatchPoints();
+                pathHandler.calculateAllPaths();
+                gameData.calculateArcadeMatchPoints();
                 pathHandler.animateActiveRobys(function () {
                     pathHandler.quitGame();
                     if ($scope.forceExitModal !== true)

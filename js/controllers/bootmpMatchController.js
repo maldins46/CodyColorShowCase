@@ -339,7 +339,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
                 scopeService.safeApply($scope, function () {
                     $scope.endMatch = true;
                 });
-                gameData.calculateMatchPoints();
+                gameData.calculateArcadeMatchPoints();
 
                 pathHandler.animateActiveRobys(function () {
                     pathHandler.quitGame();

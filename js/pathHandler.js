@@ -1,18 +1,18 @@
 /*
  * RobyMoveHandler: servizio che permette di gestire i robot nella scacchiera, calcolando il percorso che
- * i robot devono fare, animandoli a comando, e calcolandone il percorso
+ * ogni robot robot deve compiere, animandoli a comando, e calcolandone il percorso
  */
 angular.module('codyColor').factory("pathHandler", function(gameData, scopeService) {
     let pathHandler = {};
 
+    // rirerimenti jQuery agli elementi del DOM utilizzati nell'elaborazione delle animaizoni
     let startPositionsTiles;
     let completeGridTiles;
-
     let playerRoby = {};
     let enemiesRoby = [];
 
 
-    // in caso di interruzione del gioco, sospendi i timers
+    // permette di uscire dal gioco in modo sicuro, interrompendo tutti i timers e pulendo le variabili
     pathHandler.quitGame = function() {
         for (let side = 0; side < 4; side++) {
             for (let distance = 0; distance < 5; distance++) {
@@ -25,9 +25,10 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
             }
         }
 
-        if(playerRoby.walkingTimer !== undefined)
+        if (playerRoby.walkingTimer !== undefined) {
             clearInterval(playerRoby.walkingTimer);
-        playerRoby.walkingTimer = undefined;
+            playerRoby.walkingTimer = undefined;
+        }
 
         playerRoby = {};
         enemiesRoby = [];
@@ -44,10 +45,9 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
     };
 
 
-    // inizializzazione elementi utilizzare per le animazioni dei robot
+    // inizializzazione oggetti utilizzati per tenere traccia di vari dati dei roby,
+    // oltre agli altri elementi utili per il calcolo del percorso
     pathHandler.initialize = function ($scope) {
-
-        // riferimenti alle posizioni di partenza nella griglia
         startPositionsTiles = new Array(4);
         for (let side = 0; side < 4; side++) {
             startPositionsTiles[side] = new Array(5);
@@ -56,7 +56,6 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
             }
         }
 
-        // riferimenti alle tile della griglia completa; utilizzate per animare il movimento di roby
         completeGridTiles = new Array(5);
         for (let x = 0; x < 5; x++) {
             completeGridTiles[x] = new Array(5);
@@ -65,8 +64,6 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
             }
         }
 
-        // riferimenti jQuery ad alcuni elementi dell'interfaccia. Utilizzato per fornire l'animazione di
-        // movimento di roby; Inizializzati qua per motivi prestazionali
         playerRoby = {
             element: $('#player-roby'),
             show: false,
@@ -124,20 +121,19 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
     };
 
 
-    // pone l'immagine di roby del giocatore in posizione (senza animazione), sulla casella selezionata dall'utente
+    // pone l'immagine di roby, avversario o non, in posizione (senza animazione),
+    // sulla casella passata in ingresso dall'utente
     pathHandler.positionRoby = function (isPlayer, selectedStart) {
         if (selectedStart.side === -1 && selectedStart.distance === -1)
             return;
 
         let roby = (isPlayer ? playerRoby : enemiesRoby[selectedStart.side][selectedStart.distance]);
 
-        if (roby === undefined)
-            return;
+        if (roby === undefined) return;
 
         roby.setShow(true);
-
         let startPosition = startPositionsTiles[selectedStart.side][selectedStart.distance].position();
-        let rotationValue =  'rotate(' + getAngle((selectedStart.side + 2).mod(4)).toString() + 'deg)';
+        let rotationValue = 'rotate(' + getAngle((selectedStart.side + 2).mod(4)).toString() + 'deg)';
         roby.element.css({
             left: startPosition.left,
             top: startPosition.top,
@@ -147,11 +143,10 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
     };
 
 
+    // anima tutti i roby che sono stati posizionati nella griglia
     pathHandler.animateActiveRobys = function(endMatchCallback) {
-        // animate player
         animateRoby(playerRoby, endMatchCallback, true);
 
-        // animate enemies
         for (let side = 0; side < 4; side++) {
             for (let distance = 0; distance < 5; distance++) {
                 if(enemiesRoby[side][distance].show === true)
@@ -162,8 +157,6 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
 
     // anima il movimento di roby
     let animateRoby = function (roby, endCallback, isPlayer) {
-
-        // roby non posizionato: mostra l'immagine corrispondente
         if (roby.startPosition.distance === -1 && roby.startPosition.side === -1) {
             roby.element.delay(1000);
             roby.element.queue(function (next) {
@@ -176,7 +169,8 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
 
         roby.element.delay(1000);
 
-        // aggiunge un leggero ritardo al movimento dell'avversario, per non sovrapporre i robottini
+        // aggiunge un leggero ritardo al movimento dell'avversario,
+        // per non sovrapporre i robottini
         if(!isPlayer)
             roby.element.delay(100);
 
@@ -215,6 +209,7 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
                 next();
             });
         }
+
         let endPos = startPositionsTiles[roby.endPosition.side][roby.endPosition.distance].position();
         roby.element.animate({left: endPos.left, top: endPos.top}, { duration: 800 });
         roby.element.queue(function (next) {
@@ -254,8 +249,8 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
     };
 
 
-    // calcola i percorsi fatti dai giocatori
-    pathHandler.calculatePaths = function() {
+    // calcola e salva nei gameData tutti i percorsi fatti dai giocatori
+    pathHandler.calculateAllPaths = function() {
         for (let i = 0; i < gameData.getAllPlayers().length; i++) {
             calculatePath({ player: gameData.getAllPlayers()[i] });
         }
@@ -280,7 +275,7 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
             }
         }
         allPaths.sort(function(a, b){
-            return b.pathLength - a.pathLength;
+            return a.pathLength - b.pathLength;
         });
 
         let selectedPath;
@@ -307,7 +302,7 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
     };
 
 
-    // calcola il percorso di uno dei roby, salvandone un oggetto che lo descrive
+    // algoritmo per il calcolo del percorso di uno dei roby, salvandone un oggetto che lo descrive
     let calculatePath = function (args) {
         let pathInfo = {
             startPosition: { side: -1, distance: -1 },

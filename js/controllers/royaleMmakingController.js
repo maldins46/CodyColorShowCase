@@ -1,15 +1,15 @@
 /*
- * Controller partita royale
+ * Controller royale mmaking: gestisce la creazione di partite e l'accoppiamento dei giocatori
  */
 angular.module('codyColor').controller('royaleMmakingCtrl',
     function ($scope, rabbit, navigationHandler, $translate, translationHandler,
               audioHandler, $location, sessionHandler, gameData, scopeService, chatHandler) {
-        console.log("Ammaking controller ready.");
+        console.log("Royale mmaking controller ready.");
         gameData.editGeneral({ gameType: gameData.getGameTypes().royale });
 
         let startMatchTimer;
 
-        // funzione per chiudere il gioco in modo sicuro
+        // chiudere il gioco in modo sicuro
         let quitGame = function() {
             rabbit.quitGame();
             gameData.initializeGameData();
@@ -28,9 +28,15 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
         }
 
         // cambia schermata in modo 'sicuro', evitando flickering durante le animazioni
+        const screens = {
+            loadingScreen:  'loadingScreen', // schermata di transizione
+            joinMatch:      'joinMatch',     // inserimento code
+            matchFound:     'matchFound',    // inserimento nickname
+            waitingEnemies: 'waitingEnemies' // entrato nella gameRoom
+        };
         let changeScreen = function(newScreen) {
             scopeService.safeApply($scope, function () {
-                $scope.mmakingState = 'loadingScreen';
+                $scope.mmakingState = screens.loadingScreen;
             });
             setTimeout(function () {
                 scopeService.safeApply($scope, function () {
@@ -38,9 +44,8 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                 });
             }, 200);
         };
-        changeScreen('joinMatch');
+        changeScreen(screens.joinMatch);
 
-        $scope.chatVisible = false;
         $scope.countdownFormatter = gameData.formatTimeSeconds;
         $scope.generalData = gameData.getGeneral();
         $scope.userPlayer = gameData.getUserPlayer();
@@ -50,50 +55,44 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
         if (!$scope.connected) {
             rabbit.connect();
         } else {
-            // l'if identifica il caso in cui si sia ricevuto un invito (gameCode !== '0000') o il caso
-            // in cui si sia pronti a inviare una richiesta di gioco
+            // connessione già pronta: richiedi i dati della battle al server
             if (gameData.getGeneral().code !== '0000' || gameData.getUserPlayer().organizer) {
                 rabbit.sendGameRequest();
                 translationHandler.setTranslation($scope, 'joinMessage', 'SEARCH_MATCH_INFO');
             }
         }
 
-        // click su 'crea nuova partita'
-        $scope.goToCreateMatch = function() {
-            audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, "/royale-new-match");
-        };
 
         rabbit.setPageCallbacks({
             onConnected: function () {
-                // l'if identifica il caso in cui si sia ricevuto un invito (gameCode !== '0000') o il caso
-                // in cui si sia pronti a inviare una richiesta di gioco
+                // ci si è connessi ed è necessario richiedere i dati battle al server
                 if (gameData.getGeneral().code !== '0000' || gameData.getUserPlayer().organizer) {
+                    rabbit.sendGameRequest();
                     scopeService.safeApply($scope, function () {
-                        rabbit.sendGameRequest();
                         translationHandler.setTranslation($scope, 'joinMessage', 'SEARCH_MATCH_INFO');
                     });
                 }
 
             }, onGameRequestResponse: function (message) {
                 if (message.code.toString() === '0000') {
+                    // il codice inserito non è valido
                     scopeService.safeApply($scope, function () {
                         translationHandler.setTranslation($scope, 'joinMessage', 'CODE_NOT_VALID');
                     });
 
                 } else {
+                    // il codice inserito è valido: accedi alla gameRoom
                     audioHandler.playSound('enemy-found');
 
                     scopeService.safeApply($scope, function () {
                         gameData.editGeneral({
-                            code: message.code.toString(),
-                            gameRoomId: message.gameRoomId,
-                            gameName: message.gameName,
-                            startDate: message.date,
+                            code:         message.code.toString(),
+                            gameRoomId:   message.gameRoomId,
+                            gameName:     message.gameName,
+                            startDate:    message.date,
                             timerSetting: message.timerSetting
                         });
-                        // imposta il testo che mostra la durata di ogni match
-                        $scope.battleTime = '';
+                        // testo che mostra la durata di ogni match
                         let formattedTranslateCode = gameData.formatTimeStatic(gameData.getGeneral().timerSetting);
                         translationHandler.setTranslation($scope, 'battleTime', formattedTranslateCode);
                     });
@@ -101,14 +100,14 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                     gameData.editPlayer({
                         playerId: message.playerId
                     });
+
                     rabbit.subscribeGameRoom();
 
-
                     if (gameData.getUserPlayer().organizer) {
-                        changeScreen('waitingEnemies');
+                        changeScreen(screens.waitingEnemies);
                         rabbit.sendHereMessage(true);
                     } else {
-                        changeScreen('matchFound');
+                        changeScreen(screens.matchFound);
                     }
 
                     if (message.date !== undefined) {
@@ -133,8 +132,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                 }
 
             }, onHereMessage: function (message) {
-                if (gameData.getUserPlayer().nickname !== 'Anonymous'
-                    && gameData.getPlayerById(message.playerId) === undefined) {
+                if (gameData.getPlayerById(message.playerId) === undefined) {
                     gameData.addEnemy(message.playerId);
                     gameData.editPlayer({
                         nickname: message.nickname,
@@ -146,47 +144,55 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                     $scope.connectedEnemies = gameData.getEnemies();
                 });
 
-                if (message.needResponse) {
+                // non rispedire messaggi here se si è in matchFound
+                if (message.needResponse && $scope.mmakingState !== screens.matchFound) {
                     rabbit.sendHereMessage(false);
                 }
 
             }, onTilesMessage: function (message) {
-                gameData.editGeneral({
-                    tiles: gameData.formatMatchTiles(message.tiles)
-                });
-                if (startMatchTimer !== undefined)
-                    clearInterval(startMatchTimer);
-
-                if (gameData.getEnemies().length > 1) {
-                    navigationHandler.goToPage($location, $scope, '/royale-match', true);
-
-                } else if (gameData.getEnemies().length === 1) {
-                    // todo navigationHandler.goToPage($location, $scope, '/arcade-match', true);
-                    navigationHandler.goToPage($location, $scope, '/royale-match', true);
-
-                } else {
+                // esci se non si è ancora selezionato il nickname
+                if ($scope.mmakingState === screens.matchFound) {
                     quitGame();
                     scopeService.safeApply($scope, function () {
                         translationHandler.setTranslation($scope, 'forceExitText', 'FORCE_EXIT');
                         $scope.forceExitModal = true;
                     });
-                }
 
-            }, onQuitGameMessage: function (message) {
-                if (gameData.getUserPlayer().nickname !== 'Anonymous') {
-                    if (gameData.getPlayerById(message.playerId) !== undefined) {
-                        gameData.removeEnemy(message.playerId);
-                        scopeService.safeApply($scope, function () {
-                            $scope.connectedEnemies = gameData.getEnemies();
-                        });
+                } else {
+                    gameData.editGeneral({
+                        tiles: gameData.formatMatchTiles(message.tiles)
+                    });
 
-                    } else if (message.playerId === 'server') {
+                    if (startMatchTimer !== undefined) {
+                        clearInterval(startMatchTimer);
+                        startMatchTimer = undefined;
+                    }
+
+                    if (gameData.getEnemies().length > 0) {
+                        navigationHandler.goToPage($location, $scope, '/royale-match', true);
+
+                    } else {
                         quitGame();
                         scopeService.safeApply($scope, function () {
                             translationHandler.setTranslation($scope, 'forceExitText', 'FORCE_EXIT');
                             $scope.forceExitModal = true;
                         });
                     }
+                }
+
+            }, onQuitGameMessage: function (message) {
+                if (gameData.getPlayerById(message.playerId) !== undefined) {
+                    gameData.removeEnemy(message.playerId);
+                    scopeService.safeApply($scope, function () {
+                        $scope.connectedEnemies = gameData.getEnemies();
+                    });
+
+                } else if (message.playerId === 'server') {
+                    quitGame();
+                    scopeService.safeApply($scope, function () {
+                        translationHandler.setTranslation($scope, 'forceExitText', 'FORCE_EXIT');
+                        $scope.forceExitModal = true;
+                    });
                 }
 
             }, onConnectionLost: function () {
@@ -205,11 +211,18 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
             }
         });
 
+
+        // click su 'crea nuova partita'
+        $scope.goToCreateMatch = function() {
+            audioHandler.playSound('menu-click');
+            navigationHandler.goToPage($location, $scope, "/royale-new-match");
+        };
+
         // click sul tasto 'iniziamo' da schermata di selezione nickname
         $scope.playerReady = function(nicknameValue) {
             gameData.editPlayer({ nickname: nicknameValue });
             rabbit.sendHereMessage(true);
-            changeScreen('waitingEnemies');
+            changeScreen(screens.waitingEnemies);
         };
 
         // click sul tasto 'inizia partita' dell'organizzatore.

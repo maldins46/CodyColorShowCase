@@ -11,8 +11,10 @@ angular.module('codyColor').controller('royaleMatchCtrl',
         // metodo per terminare la partita in modo sicuro, disattivando i timer,
         // interrompendo animazioni e connessioni con il server
         let quitGame = function () {
-            if (startCountdownTimer !== undefined)
+            if (startCountdownTimer !== undefined) {
                 clearInterval(startCountdownTimer);
+                startCountdownTimer = undefined;
+            }
 
             rabbit.quitGame();
             pathHandler.quitGame();
@@ -29,7 +31,7 @@ angular.module('codyColor').controller('royaleMatchCtrl',
         }
 
         gameData.getAllPlayers().sort(function (a, b) {
-            return a.points - b.points;
+            return b.points - a.points;
         });
 
         // inizializzazione componenti generali interfaccia
@@ -173,7 +175,6 @@ angular.module('codyColor').controller('royaleMatchCtrl',
                                 calculateAllStartPositionCss(false);
                             });
                             rabbit.sendPlayerPositionedMessage();
-                            // pathHandler.positionRoby(true, gameData.getUserPlayer().match.startPosition);
 
                             if (allPlayersPositioned())
                                 endMatch();
@@ -311,17 +312,24 @@ angular.module('codyColor').controller('royaleMatchCtrl',
                         $scope.forceExitModal = true;
                     });
                     quitGame();
+                } else {
+                    scopeService.safeApply($scope, function () {
+                        $scope.players = gameData.getAllPlayers();
+                    });
+
+                    if (allPlayersPositioned())
+                        endMatch();
                 }
 
             }, onConnectionLost: function () {
+                quitGame();
                 scopeService.safeApply($scope, function () {
                     translationHandler.setTranslation($scope, 'forceExitText', 'FORCE_EXIT');
                     $scope.forceExitModal = true;
                 });
-                quitGame();
 
             }, onSkipMessage: function (message) {
-                gameData.editPlayer({match: {skip: true}}, message.playerId);
+                gameData.editPlayer({ match: { skip: true }}, message.playerId);
 
                 let allSkip = true;
                 for (let i = 0; i < gameData.getAllPlayers().length; i++) {
@@ -348,8 +356,8 @@ angular.module('codyColor').controller('royaleMatchCtrl',
                     $scope.endMatch = true;
                 });
 
-                pathHandler.calculatePaths();
-                gameData.calculateMatchPoints();
+                pathHandler.calculateAllPaths();
+                gameData.calculateRoyaleMatchPoints();
                 pathHandler.animateActiveRobys(function () {
                     pathHandler.quitGame();
                     if ($scope.forceExitModal !== true)

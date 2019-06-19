@@ -181,25 +181,6 @@ angular.module('codyColor').factory('gameData', function () {
      * di determinate proprieta'
      * -------------------------------------------------------------------- */
 
-    // assegna il punteggio al vincitore
-    gameData.calculateMatchPoints = function () {
-        let winner = gameData.getMatchWinner();
-
-        if (winner !== undefined) {
-            let points = 0;
-
-            // ogni passo vale 2 punti
-            points += winner.match.pathLength * 2;
-
-            // il tempo viene scalato su un massimo di 15 punti
-            let totalTime = gameData.getGeneral().timerSetting;
-            points += Math.floor(15 * winner.match.time / totalTime);
-
-            gameData.editPlayer({match:{points: points}}, winner.playerId);
-        }
-    };
-
-
     let getPlayerIndexById = function(playerId) {
         for (let i = 0; i < data.players.length; i++) {
             if (data.players[i].playerId === playerId) {
@@ -313,6 +294,52 @@ angular.module('codyColor').factory('gameData', function () {
         let minutes = date.getMinutes();
         minutes = minutes < 10 ? '0' + minutes : minutes;
         return hours + ':' + minutes;
+    };
+
+
+    // assegna il punteggio al vincitore
+    gameData.calculateArcadeMatchPoints = function () {
+        let winner = gameData.getMatchWinner();
+
+        if (winner !== undefined) {
+            let points = 0;
+
+            // ogni passo vale 2 punti
+            points += winner.match.pathLength * 2;
+
+            // il tempo viene scalato su un massimo di 15 punti
+            let totalTime = gameData.getGeneral().timerSetting;
+            points += Math.floor(15 * winner.match.time / totalTime);
+
+            gameData.editPlayer({match:{points: points}}, winner.playerId);
+        }
+    };
+
+    gameData.calculateRoyaleMatchPoints = function() {
+        for(let i = 0; i < data.players.length; i++) {
+            let points = 0;
+
+            // ogni passo vale 2 punti
+            points += data.players[i].match.pathLength * 2;
+
+            // il tempo viene scalato su un massimo di 15 punti
+            let totalTime = gameData.getGeneral().timerSetting;
+            points += Math.floor(15 * data.players[i].match.time / totalTime);
+            data.players[i].match.points = points;
+        }
+    };
+
+
+    gameData.getPlayersOrderedByMatchResult = function() {
+        let players = gameData.duplicateAllPlayers();
+        players.sort(function (a, b) {
+            if (b.match.pathLength - a.match.pathLength !== 0) {
+                return b.match.pathLength - a.match.pathLength;
+            } else {
+                return b.match.time - a.match.time;
+            }
+        });
+        return players;
     };
 
 
