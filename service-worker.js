@@ -291,7 +291,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-mmaking.html",
-    "revision": "7813248e18017f7b514893fca498df9f"
+    "revision": "459eb385a799d637da76737a75f46fd2"
   },
   {
     "url": "pages/royale-new-match.html",

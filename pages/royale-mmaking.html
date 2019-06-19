@@ -81,16 +81,16 @@
                          Potranno partecipare un massimo di 20 giocatori.
                     </li>
                     <li class="list--spaced-element">
-                        <div ng-show="generalData.date !== undefined">
+                        <div ng-show="generalData.startDate !== undefined">
                             Tutti gli utenti collegati allo scadere del countdown potranno partecipare:<br>
                             <h2>{{ countdownFormatter(startMatchTimerValue) }}</h2>
                         </div>
-                        <div ng-hide="generalData.date !== undefined">
+                        <div ng-hide="generalData.startDate !== undefined">
                             La partita inizierà non appena l'organizzatore deciderà di avviarla.
                         </div>
                     </li>
                     <li class="list--spaced-element"
-                        ng-show="generalData.date === undefined && userPlayer.organizer">
+                        ng-show="generalData.startDate === undefined && userPlayer.organizer">
                         <button class="navigation--button flashing-animation"
                                 ng-click="startMatch()">
                             {{ 'START' | translate }}
