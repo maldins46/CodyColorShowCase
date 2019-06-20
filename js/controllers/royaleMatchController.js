@@ -285,7 +285,8 @@ angular.module('codyColor').controller('royaleMatchCtrl',
         // Invocati all'arrivo di nuovi messaggi
         rabbit.setPageCallbacks({
             onEnemyPositionedMessage: function (message) {
-                clearInterval(gameData.getPlayerById(message.playerId).match.timer);
+                if (gameData.getPlayerById(message.playerId) !== undefined)
+                    clearInterval(gameData.getPlayerById(message.playerId).match.timer);
                 scopeService.safeApply($scope, function () {
                     gameData.editPlayer({
                         match: {

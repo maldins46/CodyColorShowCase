@@ -133,7 +133,7 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
                         updateRanking();
                     });
 
-                    if ((allPlayersReady() || newMatchTimer === undefined()) && isLowerPlayerId()) {
+                    if ((allPlayersReady() || newMatchTimer === undefined) && isLowerPlayerId()) {
                         rabbit.sendTilesRequest();
                     }
                 }
