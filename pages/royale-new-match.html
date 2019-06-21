@@ -41,6 +41,20 @@
                         </div>
                     </li>
                     <li class="list--simple-element">
+                        {{ 'MAX_PLAYERS' | translate }}
+                    </li>
+                    <li class="list--spaced-element">
+                        <div class="selector">
+                            <div class="selector--button" ng-click="editMaxPlayers(false)">
+                                <i class="fas fa-minus"></i>
+                            </div>
+                            <div class="selector--text">{{maxPlayersSettings[currentMaxPlayersIndex].text}}</div>
+                            <div class="selector--button" ng-click="editMaxPlayers(true)">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list--simple-element">
                         {{ 'NEW_ROYALE_START_MODE' | translate }}
                     </li>
                     <li class="list--spaced-element">

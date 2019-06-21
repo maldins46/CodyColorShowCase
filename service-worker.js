@@ -74,6 +74,10 @@ workbox.precaching.precacheAndRoute([
     "revision": "465d4ef50c7e6932fec9ac8ddd181e29"
   },
   {
+    "url": "CodyColorComponents.png",
+    "revision": "d8f986ad32a2c0b2ee440c715f6d871a"
+  },
+  {
     "url": "favicon.ico",
     "revision": "8a7fd8e460595bafc6f1a4b32efd1a28"
   },
@@ -283,7 +287,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-aftermatch.html",
-    "revision": "78a71b7bbf8a86e7d19aaa34c31a10ce"
+    "revision": "27243b8fcfb72dbbc7c9d0822ecb7317"
   },
   {
     "url": "pages/royale-match.html",
@@ -291,11 +295,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-mmaking.html",
-    "revision": "459eb385a799d637da76737a75f46fd2"
+    "revision": "31cb4398b3d6d5f99fa3871493663ece"
   },
   {
     "url": "pages/royale-new-match.html",
-    "revision": "019b7a3eed1fc1f8bd6ca173de25d746"
+    "revision": "3fcf2739e9420c1983ef53b528fec160"
   },
   {
     "url": "pages/rules.html",
@@ -311,11 +315,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "fd8030d3c8332c23ef4d23f62da218bb"
+    "revision": "a85f136bbf925617ae4eefc3eb0865d1"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "1bee52fcea1b094bbc05954d6c346126"
+    "revision": "f398be3136d177ab2e24d7b3c7829170"
   },
   {
     "url": "manifest.json",
@@ -387,19 +391,19 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/royaleAftermatchController.js",
-    "revision": "7cc2878d6b9f579471dc7c6956d44f50"
+    "revision": "69a63636c104375068eeed1df86e062c"
   },
   {
     "url": "js/controllers/royaleMatchController.js",
-    "revision": "8feacc6beabd872ac43d61292175392b"
+    "revision": "976e5dc829f7cd5c2cee4e040884a25c"
   },
   {
     "url": "js/controllers/royaleMmakingController.js",
-    "revision": "00dc9f05a34e62f7f1c674be6e5c791d"
+    "revision": "4669fef3559569850f8078f310e92bc3"
   },
   {
     "url": "js/controllers/royaleNewMatchController.js",
-    "revision": "ef965b81c01d1db792a5810164953192"
+    "revision": "aef1a3ccdd0c76997366e7c1ad90df49"
   },
   {
     "url": "js/controllers/splashController.js",
@@ -407,7 +411,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/gameData.js",
-    "revision": "a9d7a86c938525aa6a4662f95bd44afe"
+    "revision": "5b166a45b3491d01eba4f98da4837a8a"
   },
   {
     "url": "js/main.js",
@@ -427,7 +431,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "2d1b81f20a817580c6784db16c20ebb5"
+    "revision": "826d1285124c6e1ea96cc22f71f14eb2"
   },
   {
     "url": "js/scopeService.js",

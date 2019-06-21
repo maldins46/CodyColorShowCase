@@ -105,6 +105,7 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
            gameType:      gameData.getGeneral().gameType,
            gameName:      gameData.getGeneral().gameName,
            timerSetting:  gameData.getGeneral().timerSetting,
+           maxPlayersSetting: gameData.getGeneral().maxPlayersSetting,
            code:          gameData.getGeneral().code,
            date:          gameData.getGeneral().startDate
        });

@@ -75,18 +75,16 @@
                 <ul class="list">
                     <li class="list--simple-element"><h2>{{'WELCOME' | translate}}</h2></li>
                     <li class="list--spaced-element">
-                        <!-- todo -->
-                        Benvenuto nella Battle "{{generalData.gameName}}"!
-                        Ogni match avrà la durata di {{ battleTime }},
-                         Potranno partecipare un massimo di 20 giocatori.
+                        {{ 'BATTLE_WELCOME' | translate : { 'gameName': generalData.gameName, 'battleTime': battleTime, 'maxPlayers': generalData.maxPlayersSetting} }}
                     </li>
+                    <li class="list--simple-element"><h2> {{'WHEN_START' | translate }}</h2></li>
                     <li class="list--spaced-element">
                         <div ng-show="generalData.startDate !== undefined">
-                            Tutti gli utenti collegati allo scadere del countdown potranno partecipare:<br>
+                            {{ 'WHEN_TIMER' | translate }}<br>
                             <h2>{{ countdownFormatter(startMatchTimerValue) }}</h2>
                         </div>
                         <div ng-hide="generalData.startDate !== undefined">
-                            La partita inizierà non appena l'organizzatore deciderà di avviarla.
+                            {{ 'WHEN_INSTANT' | translate }}
                         </div>
                     </li>
                     <li class="list--spaced-element"

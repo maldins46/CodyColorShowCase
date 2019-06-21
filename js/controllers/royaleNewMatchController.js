@@ -49,6 +49,30 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
         };
 
 
+        // maxPlayers setting selector
+        $scope.currentMaxPlayersIndex = 1;
+        $translate(['PLAYERS_10', 'PLAYERS_20', 'PLAYERS_40', 'PLAYERS_100']).then(function (translations) {
+            $scope.maxPlayersSettings = [
+                {text: translations['PLAYERS_10'], value: 10},
+                {text: translations['PLAYERS_20'], value: 20},
+                {text: translations['PLAYERS_40'], value: 40},
+                {text: translations['PLAYERS_100'], value: 100}
+            ];
+        });
+
+        $scope.editMaxPlayers = function (increment) {
+            audioHandler.playSound('menu-click');
+            if (increment)
+                $scope.currentMaxPlayersIndex = ($scope.currentMaxPlayersIndex < 3 ? $scope.currentMaxPlayersIndex + 1 : 3);
+            else
+                $scope.currentMaxPlayersIndex = ($scope.currentMaxPlayersIndex > 0 ? $scope.currentMaxPlayersIndex - 1 : 0);
+
+            gameData.editGeneral({
+                maxPlayersSetting: $scope.maxPlayersSettings[$scope.currentMaxPlayersIndex].value
+            });
+        };
+
+
         // start mode selector
         $scope.currentStartIndex = 0;
         $translate(['IN_DATE', 'MANUAL']).then(function (translations) {
@@ -158,6 +182,15 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
                     { text: translations['30_SECONDS'], value: 30000  },
                     { text: translations['1_MINUTE'],   value: 60000  },
                     { text: translations['2_MINUTES'],  value: 120000 }
+                ];
+            });
+
+            $translate(['PLAYERS_10', 'PLAYERS_20', 'PLAYERS_40', 'PLAYERS_100']).then(function (translations) {
+                $scope.maxPlayersSettings = [
+                    {text: translations['PLAYERS_10'], value: 10},
+                    {text: translations['PLAYERS_20'], value: 20},
+                    {text: translations['PLAYERS_40'], value: 40},
+                    {text: translations['PLAYERS_100'], value: 100}
                 ];
             });
 

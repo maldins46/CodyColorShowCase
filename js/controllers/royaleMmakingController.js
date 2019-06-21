@@ -90,7 +90,8 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                             gameRoomId:   message.gameRoomId,
                             gameName:     message.gameName,
                             startDate:    message.date,
-                            timerSetting: message.timerSetting
+                            timerSetting: message.timerSetting,
+                            maxPlayersSetting: message.maxPlayersSetting
                         });
                         // testo che mostra la durata di ogni match
                         let formattedTranslateCode = gameData.formatTimeStatic(gameData.getGeneral().timerSetting);

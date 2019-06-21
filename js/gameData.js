@@ -59,6 +59,7 @@ angular.module('codyColor').factory('gameData', function () {
             matchCount: 1,
             timerSetting: 30000,
             bootEnemySetting: -1,
+            maxPlayersSetting: 20,
             code: '0000',
             tiles: undefined,
             gameType: undefined
