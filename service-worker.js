@@ -439,7 +439,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "4131a831b6837fcf4631fd98cec66b88"
+    "revision": "da3b5792bf227baae4fa6edcb1a50a9a"
   },
   {
     "url": "js/translationHandler.js",
