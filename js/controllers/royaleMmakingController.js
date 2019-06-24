@@ -264,7 +264,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
         $scope.codeCopied = false;
         $scope.copyLink = function () {
             audioHandler.playSound('menu-click');
-            copyStringToClipboard('https://codycolor.codemooc.net/#!?aga=' + gameData.getGeneral().code);
+            copyStringToClipboard('https://codycolor.codemooc.net/#!?royale=' + gameData.getGeneral().code);
             $scope.linkCopied = true;
             $scope.codeCopied = false;
         };
