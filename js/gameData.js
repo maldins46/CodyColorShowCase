@@ -303,30 +303,24 @@ angular.module('codyColor').factory('gameData', function () {
         let winner = gameData.getMatchWinner();
 
         if (winner !== undefined) {
-            let points = 0;
 
             // ogni passo vale 2 punti
-            points += winner.match.pathLength * 2;
+            winner.match.points += winner.match.pathLength * 2;
 
             // il tempo viene scalato su un massimo di 15 punti
             let totalTime = gameData.getGeneral().timerSetting;
-            points += Math.floor(15 * winner.match.time / totalTime);
-
-            gameData.editPlayer({match:{points: points}}, winner.playerId);
+            winner.match.points += Math.floor(15 * winner.match.time / totalTime);
         }
     };
 
     gameData.calculateRoyaleMatchPoints = function() {
         for(let i = 0; i < data.players.length; i++) {
-            let points = 0;
-
             // ogni passo vale 2 punti
-            points += data.players[i].match.pathLength * 2;
+            data.players[i].match.points += data.players[i].match.pathLength * 2;
 
             // il tempo viene scalato su un massimo di 15 punti
             let totalTime = gameData.getGeneral().timerSetting;
-            points += Math.floor(15 * data.players[i].match.time / totalTime);
-            data.players[i].match.points = points;
+            data.players[i].match.points += Math.floor(15 * data.players[i].match.time / totalTime);
         }
     };
 

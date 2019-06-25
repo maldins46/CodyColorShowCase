@@ -287,7 +287,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-aftermatch.html",
-    "revision": "27243b8fcfb72dbbc7c9d0822ecb7317"
+    "revision": "8a287c8364f14e9b0dbfd8533d20d211"
   },
   {
     "url": "pages/royale-match.html",
@@ -351,7 +351,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/bootmpMatchController.js",
-    "revision": "97a7e63d1e3f944709a98d91989d1e97"
+    "revision": "ee6af3295c79062d27b3300f5085c0ca"
   },
   {
     "url": "js/controllers/bootmpMmakingController.js",
@@ -391,7 +391,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/royaleAftermatchController.js",
-    "revision": "69a63636c104375068eeed1df86e062c"
+    "revision": "298949da73098e95ab650946ba4be8ba"
   },
   {
     "url": "js/controllers/royaleMatchController.js",
@@ -411,7 +411,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/gameData.js",
-    "revision": "5b166a45b3491d01eba4f98da4837a8a"
+    "revision": "eb363225667d6e9578aea4ac7ca38954"
   },
   {
     "url": "js/main.js",
@@ -439,7 +439,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "da3b5792bf227baae4fa6edcb1a50a9a"
+    "revision": "359b738a95111552f4370ef8d9fb2c14"
   },
   {
     "url": "js/translationHandler.js",

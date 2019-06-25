@@ -80,7 +80,8 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
             },  player.playerId);
         }
         updateRanking();
-        $scope.timeFormatter = gameData.formatTimeSeconds;
+        $scope.timeFormatter = gameData.formatTimeDecimals;
+        $scope.timeFormatterCountdown = gameData.formatTimeSeconds;
         $scope.winner = gameData.getMatchWinner().nickname;
         $scope.matchCount = gameData.getGeneral().matchCount;
 

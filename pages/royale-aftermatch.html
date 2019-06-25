@@ -65,7 +65,7 @@
                         </button>
                     </div>
                     <div>
-                        {{'MAT_START_COUNTDOWN' | translate : { 'countdown': timeFormatter(newMatchTimerValue) } }}
+                        {{'MAT_START_COUNTDOWN' | translate : { 'countdown': timeFormatterCountdown(newMatchTimerValue) } }}
                     </div>
                     <div ng-show="newMatchClicked">
                         <div class="flashing-animation">{{ 'ENEMY_WAIT' | translate }}</div>

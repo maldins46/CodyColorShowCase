@@ -309,7 +309,9 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
                 });
 
                 // posiziona l'avversario se si supera il limite di tempo stabilito
-                clearInterval(gameData.getEnemy1vs1().match.timer);
+                if(gameData.getEnemy1vs1() !== undefined)
+                    clearInterval(gameData.getEnemy1vs1().match.timer);
+
                 gameData.editEnemy1vs1({
                     match: {
                         positioned: true,
@@ -323,7 +325,8 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
                 $scope.showDraggableRoby = false;
                 pathHandler.positionRoby(true, gameData.getUserPlayer().match.startPosition);
                 pathHandler.calculatePlayerPath();
-                pathHandler.calculateBootEnemyPath();
+                if ($scope.enemy !== undefined)
+                    pathHandler.calculateBootEnemyPath();
 
                 if (allPlayersPositioned())
                     endMatch();
