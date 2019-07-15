@@ -18,13 +18,15 @@
                         <table class="playerlist-match-table">
                             <tr>
                                 <th></th>
-                                <th>Nick.</th>
-                                <th>Punti</th>
+                                <th>{{ 'NICKNAME' | translate }}</th>
+                                <th>{{ 'STATS_POINTS_R' | translate }}</th>
+                                <th>{{ 'STATS_WINS_R' | translate }}</th>
                             </tr>
                             <tr ng-repeat="player in players">
                                 <td>{{player.ranking}}</td>
                                 <td>{{player.nickname}}</td>
                                 <td>{{player.points}}</td>
+                                <td>{{player.wonMatches}}</td>
                                 <!-- Match vinti -->
                             </tr>
                         </table>
@@ -40,10 +42,10 @@
                         <table class="playerlist-match-table">
                             <tr>
                                 <th></th>
-                                <th>Nick.</th>
-                                <th>Punti</th>
-                                <th>Passi</th>
-                                <th>Tempo</th>
+                                <th>{{ 'NICKNAME' | translate }}</th>
+                                <th>{{ 'STATS_POINTS_R' | translate }}</th>
+                                <th>{{ 'STATS_MOVES_R' | translate }}</th>
+                                <th>{{ 'STATS_TIME_R' | translate }}</th>
                             </tr>
                             <tr ng-repeat="player in matchPlayers">
                                 <td>{{player.match.ranking}}</td>

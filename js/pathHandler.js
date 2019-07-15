@@ -235,11 +235,13 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
         if (!playerRoby.animationFinished)
             allAnimationFinished = false;
 
-        for (let side = 0; side < 4; side++) {
-            for (let distance = 0; distance < 5; distance++) {
-                if (enemiesRoby[side][distance].show && !enemiesRoby[side][distance].animationFinished) {
-                    allAnimationFinished = false;
-                    break;
+        if (enemiesRoby.length > 0) {
+            for (let side = 0; side < 4; side++) {
+                for (let distance = 0; distance < 5; distance++) {
+                    if (enemiesRoby[side][distance].show && !enemiesRoby[side][distance].animationFinished) {
+                        allAnimationFinished = false;
+                        break;
+                    }
                 }
             }
         }
@@ -250,13 +252,13 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
 
 
     // calcola e salva nei gameData tutti i percorsi fatti dai giocatori
-    pathHandler.calculateAllPaths = function() {
+    pathHandler.calculateAllPlayersPath = function() {
         for (let i = 0; i < gameData.getAllPlayers().length; i++) {
             calculatePath({ player: gameData.getAllPlayers()[i] });
         }
     };
 
-    pathHandler.calculatePlayerPath = function() {
+    pathHandler.calculateUserPlayerPath = function() {
         calculatePath({ player: gameData.getUserPlayer() });
     };
 

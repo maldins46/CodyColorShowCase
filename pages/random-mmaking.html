@@ -1,8 +1,8 @@
 <div id="random-mmaking" class="page">
     <div class="page--wrapper">
         <div class="page--body">
-            <!-- Nickname selection -->
-            <div ng-show="mmakingState === 'nicknameSelection'" class="page--component">
+            <!-- Inserimento nickname -->
+            <div ng-show="mmakingState === screens.nicknameSelection" class="page--component">
                 <form name="nickForm">
                     <ul class="list">
                         <li class="list--simple-element"><h2>{{ 'RANDOM_MATCH' | translate }}</h2></li>
@@ -34,8 +34,8 @@
                 </form>
             </div>
 
-            <!-- Waiting enemy -->
-            <div ng-show="mmakingState === 'waitingEnemy'" class="page--component">
+            <!-- Entrato nella gameRoom, aspetta un avversario -->
+            <div ng-show="mmakingState === screens.waitingEnemy" class="page--component">
                 <ul class="list">
                     <li class="list--spaced-element">
                         <div class="loading-spinner">
@@ -57,8 +57,8 @@
                 </ul>
             </div>
 
-            <!-- Enemy found -->
-            <div id="enemy-found" ng-show="mmakingState === 'enemyFound'" class="page--component">
+            <!-- Players accoppiati, in attesa di ready -->
+            <div id="enemy-found" ng-show="mmakingState === screens.enemyFound" class="page--component">
                 <ul class="list">
                     <li class="list--spaced-element">
                         {{ 'NEW_ENEMY' | translate : { 'enemyNickname': enemyNickname } }}
@@ -72,8 +72,8 @@
                 </ul>
             </div>
 
-            <!-- Waiting confirm -->
-            <div id="waiting-confirm" ng-show="mmakingState === 'waitingConfirm'" class="page--component">
+            <!-- Ready clicked, aspettando il segnale di ready dell'avversario -->
+            <div id="waiting-confirm" ng-show="mmakingState === screens.waitingReady" class="page--component">
                 <ul class="list">
                     <li class="list--spaced-element">
                         <div class="loading-spinner">
@@ -89,7 +89,7 @@
             </div>
 
             <!-- Chat module -->
-            <div class="chat" ng-show="mmakingState === 'waitingConfirm' || mmakingState === 'enemyFound'">
+            <div class="chat" ng-show="mmakingState === screens.waitingReady || mmakingState === screens.enemyFound">
                 <div class="chat--bubbles-container">
                     {{ 'CHAT_TITLE' | translate }}
                     <div class="chat--bubbles-sub-container" ng-repeat="bubble in chatBubbles">

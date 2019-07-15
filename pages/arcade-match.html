@@ -411,14 +411,14 @@
                      jqyoui-draggable="{ animate:true, onStart:'startDragging', onStop:'endDragging' }"/>
 
                 <!-- Skip button -->
-                <div class="centered-container" ng-show="endMatch && !askedForSkip">
+                <div class="centered-container" ng-show="startAnimation && !askedForSkip">
                     <button class="navigation--button flashing-animation" ng-click="skip()">Skip
                         <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                     </button>
                 </div>
 
                 <!-- Wait enemy skip-->
-                <div class="centered-container flashing-animation" ng-show="endMatch && askedForSkip">
+                <div class="centered-container flashing-animation" ng-show="startAnimation && askedForSkip">
                     {{ 'WAIT_SKIP' | translate }}
                 </div>
             </div>

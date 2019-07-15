@@ -21,17 +21,7 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl',
             return;
         }
 
-        gameData.editPlayer({
-            points: gameData.getUserPlayer().points + gameData.getUserPlayer().match.points
-        });
-
-
-        gameData.editEnemy1vs1({
-            points: gameData.getEnemy1vs1().points + gameData.getEnemy1vs1().match.points
-        });
-
-
-        $scope.timeFormatter = gameData.formatTimeSeconds;
+        $scope.timeFormatter = gameData.formatTimeDecimals;
         $scope.player = gameData.getUserPlayer();
         $scope.enemy = gameData.getEnemy1vs1();
         $scope.winner = gameData.getMatchWinner().nickname;
@@ -43,40 +33,31 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl',
             audioHandler.playSound('lost');
         }
 
-        gameData.editPlayer({ ready: false });
-        gameData.editEnemy1vs1({ ready: false });
-
         // richiede all'avversario l'avvio di una nuova partita tra i due
         $scope.newMatch = function () {
+            gameData.getUserPlayer().ready = true;
             rabbit.sendReadyMessage();
-            gameData.editPlayer({ ready: true });
             scopeService.safeApply($scope, function () {
                 $scope.newMatchClicked = true;
-            })
+            });
         };
 
         rabbit.setPageCallbacks({
             onReadyMessage: function () {
-                gameData.editEnemy1vs1({ ready: true });
+                gameData.getEnemy1vs1().ready = true;
                 scopeService.safeApply($scope, function () {
                     $scope.enemyRequestNewMatch = true;
                 });
 
-                if (gameData.getUserPlayer().ready && gameData.getEnemy1vs1().ready)
-                    rabbit.sendTilesRequest();
-
-            }, onTilesMessage: function (response) {
+            }, onStartMatch: function (message) {
                 gameData.initializeMatchData();
-                gameData.editGeneral({
-                    matchCount: gameData.getGeneral().matchCount + 1,
-                    tiles: gameData.formatMatchTiles(response.tiles)
-                });
+                gameData.syncGameData(message.gameData);
                 navigationHandler.goToPage($location, $scope, '/arcade-match', true);
 
-            }, onQuitGameMessage: function () {
+            }, onGameQuit: function () {
                 quitGame();
                 scopeService.safeApply($scope, function () {
-                    translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
+                    translationHandler.setTranslation($scope,'forceExitText', 'ENEMY_LEFT');
                     $scope.forceExitModal = true;
                 });
 
@@ -119,6 +100,7 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl',
         };
         $scope.continueExitGame = function() {
             audioHandler.playSound('menu-click');
+            rabbit.sendPlayerQuitRequest();
             quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
         };

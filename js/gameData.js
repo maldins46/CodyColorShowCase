@@ -18,51 +18,51 @@ angular.module('codyColor').factory('gameData', function () {
 
     let generateEmptyPlayerMatch = function() {
         return {
-            time: 0,
-            skip: false,
-            points: 0,
-            pathLength: 0,
+            time:          -1,
+            points:        0,
+            pathLength:    0,
+            animationEnded: false,
+            positioned:    false,
+            timerValue:    0,
             startPosition: {
-                side: -1,
+                side:     -1,
                 distance: -1
             },
             endPosition: {
-                side: -1,
+                side:     -1,
                 distance: -1
             },
-            timer: undefined,
-            timerValue: 0,
-            positioned: false,
         };
     };
 
 
     let generateEmptyPlayer = function() {
         return {
-            nickname: "Anonymous",
-            points: 0,
-            playerId: -1,
-            ready: false,
-            organizer: false,
-            ranking: undefined,
+            nickname:  "Anonymous",
+            points:     0,
+            wonMatches: 0,
+            playerId:  -1,
+            ready:      false,
+            validated:  false,
+            organizer:  false,
             userPlayer: false,
-            match: generateEmptyPlayerMatch()
+            match:      generateEmptyPlayerMatch()
         }
     };
 
 
     let generateEmptyGeneral = function() {
         return {
-            gameName: undefined,
-            startDate: undefined,
-            gameRoomId: -1,
-            matchCount: 1,
-            timerSetting: 30000,
+            gameName:          undefined,
+            startDate:         undefined,
+            gameRoomId:       -1,
+            matchCount:        0,
+            timerSetting:      30000,
             bootEnemySetting: -1,
             maxPlayersSetting: 20,
-            code: '0000',
-            tiles: undefined,
-            gameType: undefined
+            code:             '0000',
+            tiles:             undefined,
+            gameType:          undefined
         }
     };
 
@@ -85,9 +85,6 @@ angular.module('codyColor').factory('gameData', function () {
             data.general.tiles = undefined;
 
             for (let i = 0; i < data.players.length; i++) {
-                if (data.players[i].match.timer !== undefined)
-                    clearInterval(data.players[i].match.timer);
-
                 data.players[i].match = generateEmptyPlayerMatch();
             }
         }
@@ -137,6 +134,43 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
+    gameData.syncGameData = function(newData) {
+        if (newData.general.tiles !== undefined) {
+            newData.general.tiles = gameData.formatMatchTiles(newData.general.tiles);
+        }
+        $.extend(true, data.general, newData.general);
+
+        for (let i = 0; i < data.players.length; i++) {
+            let localToRemove = true;
+            for (let j = 0; j < newData.players.length; j++) {
+                if (newData.players[j].playerId === data.players[i].playerId) {
+                    $.extend(true, data.players[i], newData.players[j]);
+                    localToRemove = false;
+                    newData.players[j].presentYet = true;
+                }
+            }
+            data.players[i].toRemove = localToRemove;
+        }
+
+        for (let i = 0; i < data.players.length; i++) {
+            if (data.players[i].toRemove !== false) {
+                gameData.removeEnemy(data.players[i].playerId);
+            }
+        }
+
+        for (let i = 0; i < newData.players.length; i++) {
+            if (newData.players[i].presentYet !== true) {
+                gameData.addEnemy(i);
+                $.extend(true, data.players[data.players.length - 1], newData.players[i]);
+            }
+        }
+
+        data.players.sort(function (a, b) {
+            return b.points - a.points;
+        });
+    };
+
+
     gameData.editGeneral = function(modifiedProperties) {
         $.extend(true, data.general, modifiedProperties);
     };
@@ -159,7 +193,8 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
     gameData.getEnemy1vs1 = function () {
-        return data.players[getEnemy1vs1Index()];
+        if(getEnemy1vs1Index() !== undefined)
+            return data.players[getEnemy1vs1Index()];
     };
 
 
@@ -341,36 +376,12 @@ angular.module('codyColor').factory('gameData', function () {
     // restituisce il vincitore della partita corrente in base
     // nell'ordine a: passi effettuati e tempo impiegato
     gameData.getMatchWinner = function () {
-        let basePlayer = generateEmptyPlayer();
-        basePlayer.match.points = -1;
-        basePlayer.match.time = -1;
-        basePlayer.match.pathLength = -1;
+        let winnerPlayerUnWired = gameData.getPlayersOrderedByMatchResult()[0];
 
-        let bestPathPlayers = [ basePlayer ];
         for (let i = 0; i < data.players.length; i++) {
-            if (data.players[i].match.pathLength > bestPathPlayers[0].match.pathLength) {
-                bestPathPlayers = [ data.players[i] ];
-            } else if (data.players[i].match.pathLength === bestPathPlayers[0].match.pathLength) {
-                bestPathPlayers.push(data.players[i]);
-            }
+            if(winnerPlayerUnWired.playerId === data.players[i].playerId)
+                return data.players[i];
         }
-
-        if (bestPathPlayers.length === 1)
-            return bestPathPlayers[0];
-
-        let bestTimePlayers = [ basePlayer ];
-        for (let i = 0; i < bestPathPlayers.length; i++) {
-            if (bestPathPlayers[i].match.time > bestTimePlayers[0].match.time) {
-                bestTimePlayers = [ bestPathPlayers[i] ];
-            } else if (bestPathPlayers[i].match.time === bestTimePlayers[0].match.time) {
-                bestTimePlayers.push(bestPathPlayers[i]);
-            }
-        }
-
-        if (bestTimePlayers.length === 1)
-            return bestTimePlayers[0];
-
-        return data.players[0];
     };
 
     return gameData;

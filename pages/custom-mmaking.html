@@ -1,8 +1,8 @@
 <div id="custom-mmaking" class="page">
     <div class="page--wrapper">
         <div class="page--body">
-            <!-- Join match -->
-            <div ng-show="mmakingState === 'joinMatch'" class="page--component">
+            <!-- Schermata iniziale, opzioni ins. code e newMatch -->
+            <div ng-show="mmakingState === screens.joinMatch" class="page--component">
                     <ul class="list">
                         <li class="list--simple-element"><h2> {{'CUSTOM_MATCH' | translate}}</h2></li>
                         <li class="list--spaced-element">
@@ -26,7 +26,7 @@
                             <label for="code">{{'CODE' | translate}}</label>
                         </li>
                         <li class="list--spaced-element">
-                            <input type="number" name="codeValue" max="9999" min="0" ID="code"
+                            <input type="number" name="codeValue" max="9999" min="1" ID="code"
                                    ng-model="codeValue" placeholder="{{'CODE_EXAMPLE' | translate}}" required autofocus/>
                         </li>
                         <li class="list--spaced-element">
@@ -45,12 +45,12 @@
                 </form>
             </div>
 
-            <!-- Enemy found -->
-            <div ng-show="mmakingState === 'enemyFound'" class="page--component">
+            <!-- Inserimento nickname -->
+            <div ng-show="mmakingState === screens.nicknameSelection" class="page--component">
                 <form name="landingMatchForm">
                     <ul class="list">
                         <li class="list--spaced-element">
-                            {{ 'MATCH_JOINED' | translate : { 'enemyNickname': enemyNickname, 'totTime': totTime } }}
+                            {{ 'MATCH_JOINED' | translate : { 'enemyNickname': enemyPlayer.nickname, 'totTime': totTime } }}
                         </li>
                         <li class="list--simple-element">
                             <label for="nickname">{{ 'NICKNAME' | translate}}</label>
@@ -61,7 +61,7 @@
                         </li>
                         <li class="list--spaced-element">
                             <button class="navigation--button flashing-animation"
-                                    ng-click="playerReady(landingMatchForm.nicknameValue.$viewValue)"
+                                    ng-click="validPlayer(landingMatchForm.nicknameValue.$viewValue)"
                                     ng-disabled="landingMatchForm.nicknameValue.$invalid">
                                 {{ 'START' | translate}}
                                 <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
@@ -71,8 +71,58 @@
                 </form>
             </div>
 
-            <!-- Waiting confirm -->
-            <div id="waiting-confirm" ng-show="mmakingState === 'waitingConfirm'" class="page--component">
+            <!-- Entrato nella gameRoom, mostra codici -->
+            <div ng-show="mmakingState === screens.waitingEnemy" class="page--component">
+                <ul class="list">
+                    <li class="list--spaced-element">
+                        {{ 'ENEMY_INVITATION_DESC' | translate }}
+                    </li>
+
+                    <li class="list--spaced-element">
+                        <div class="copyable" ng-click="copyCode()">
+                            <div class="copyable--big-text">{{generalData.code}}</div>
+                            <div class="copyable--copy-text" ng-show="codeCopied">
+                                <i class="far fa-copy copyable--copy-icon"></i> {{ 'COPIED' | translate }}
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list--spaced-element">
+                        {{ 'ENEMY_INVITATION_SUB_DESC' | translate }}
+                    </li>
+
+                    <li class="list--spaced-element">
+                        <div class="copyable" ng-click="copyLink()">
+                            <div class="copyable--small-text">https://codycolor.codemooc.net/#!?custom={{generalData.code}}</div>
+                            <div class="copyable--copy-text" ng-show="linkCopied">
+                                <i class="far fa-copy copyable--copy-icon"></i> {{ 'COPIED' | translate }}
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list--spaced-element">
+                        <div class="flashing-animation">{{ 'ENEMY_WAIT' | translate }}</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Players accoppiati, in attesa di ready -->
+            <div id="enemy-found" ng-show="mmakingState === screens.enemyFound" class="page--component">
+                <ul class="list">
+                    <li class="list--spaced-element">
+                        {{ 'NEW_ENEMY' | translate : { 'enemyNickname': enemyPlayer.nickname } }}
+                    </li>
+                    <li class="list--simple-element">
+                        <button class="navigation--button flashing-animation" ng-click="playerReady()">
+                            {{ 'START' | translate}}
+                            <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Ready clicked, aspettando il segnale di ready dell'avversario -->
+            <div id="waiting-confirm" ng-show="mmakingState === screens.waitingReady" class="page--component">
                 <ul class="list">
                     <li class="list--spaced-element">
                         <div class="loading-spinner">
@@ -88,7 +138,7 @@
             </div>
 
             <!-- Chat module -->
-            <div class="chat" ng-show="mmakingState === 'waitingConfirm'">
+            <div class="chat" ng-show="mmakingState === screens.enemyFound || mmakingState === screens.waitingReady">
                 <div class="chat--bubbles-container">
                     {{ 'CHAT_TITLE' | translate }}
                     <div class="chat--bubbles-sub-container" ng-repeat="bubble in chatBubbles">

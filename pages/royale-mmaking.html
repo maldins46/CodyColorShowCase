@@ -2,7 +2,7 @@
     <div class="page--wrapper">
         <div class="page--body">
             <!-- Join match -->
-            <div ng-show="mmakingState === 'joinMatch'" class="page--component">
+            <div ng-show="mmakingState === screens.joinMatch" class="page--component">
                 <ul class="list">
                     <li class="list--simple-element"><h2>{{'AGA_MATCH' | translate}}</h2></li>
                     <li class="list--spaced-element">
@@ -26,7 +26,7 @@
                             <label for="code">{{'CODE' | translate}}</label>
                         </li>
                         <li class="list--spaced-element">
-                            <input type="number" name="code" max="9999" min="0" ID="code"
+                            <input type="number" name="code" max="9999" min="1" ID="code"
                                    ng-model="code" placeholder="{{'CODE_EXAMPLE' | translate}}" required autofocus/>
                         </li>
                         <li class="list--spaced-element">
@@ -46,7 +46,7 @@
             </div>
 
             <!-- Enemy found -->
-            <div ng-show="mmakingState === 'matchFound'" class="page--component">
+            <div ng-show="mmakingState === screens.nicknameSelection" class="page--component">
                 <form name="landingMatchForm">
                     <ul class="list">
                         <li class="list--spaced-element">
@@ -61,7 +61,7 @@
                         </li>
                         <li class="list--spaced-element">
                             <button class="navigation--button flashing-animation"
-                                    ng-click="playerReady(landingMatchForm.nickname.$viewValue)"
+                                    ng-click="validPlayer(landingMatchForm.nickname.$viewValue)"
                                     ng-disabled="landingMatchForm.nickname.$invalid">{{ 'START' | translate}}
                                 <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                             </button>
@@ -71,7 +71,7 @@
             </div>
 
             <!-- Waiting confirm -->
-            <div ng-show="mmakingState === 'waitingEnemies'" class="page--component">
+            <div ng-show="mmakingState === screens.waitingEnemies" class="page--component">
                 <ul class="list">
                     <li class="list--simple-element"><h2>{{'WELCOME' | translate}}</h2></li>
                     <li class="list--spaced-element">
@@ -88,9 +88,9 @@
                         </div>
                     </li>
                     <li class="list--spaced-element"
-                        ng-show="generalData.startDate === undefined && userPlayer.organizer">
+                        ng-show="generalData.startDate === undefined && userPlayer.organizer && readyClicked !== true">
                         <button class="navigation--button flashing-animation"
-                                ng-click="startMatch()">
+                                ng-click="playerReady()">
                             {{ 'START' | translate }}
                             <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                         </button>

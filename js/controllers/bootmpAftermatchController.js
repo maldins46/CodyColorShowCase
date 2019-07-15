@@ -47,7 +47,6 @@ angular.module('codyColor').controller('bootmpAftermatchCtrl',
         $scope.newMatch = function () {
             gameData.initializeMatchData();
             gameData.editGeneral({
-                matchCount: gameData.getGeneral().matchCount + 1,
                 tiles: gameData.generateNewMatchTiles()
             });
             navigationHandler.goToPage($location, $scope, '/bootmp-match');

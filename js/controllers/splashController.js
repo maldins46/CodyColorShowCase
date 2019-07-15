@@ -13,16 +13,16 @@ angular.module('codyColor').controller('splashCtrl',
         // tenta subito la connessione al broker
         rabbit.connect();
 
-        let customMatch = $routeParams.match;
+        let customMatch = $routeParams.custom;
         if (customMatch !== undefined && customMatch.length > 0) {
-            gameData.editGeneral({ code: customMatch.toString() });
+            gameData.getGeneral().code = customMatch.toString();
             console.log("Custom match!");
             navigationHandler.goToPage($location, $scope, '/custom-mmaking');
         }
 
         let agaMatch = $routeParams.royale;
         if (agaMatch !== undefined && agaMatch.length > 0) {
-            gameData.editGeneral({ code: agaMatch.toString() });
+            gameData.getGeneral().code = agaMatch.toString();
             console.log("Aga match!");
             navigationHandler.goToPage($location, $scope, '/royale-mmaking');
         }

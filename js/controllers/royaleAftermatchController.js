@@ -38,8 +38,10 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
                     $scope.newMatchTimerValue = 0;
                 });
 
-                if(isLowerPlayerId())
-                    rabbit.sendTilesRequest();
+                if (!gameData.getUserPlayer().ready) {
+                    gameData.getUserPlayer().ready = true;
+                    rabbit.sendReadyMessage();
+                }
 
             } else {
                 scopeService.safeApply($scope, function () {
@@ -72,13 +74,6 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
         };
 
         // aggiorna punteggio players
-        for (let i = 0; i < gameData.getAllPlayers().length; i++) {
-            let player = gameData.getAllPlayers()[i];
-            gameData.editPlayer({
-                points: player.points + player.match.points,
-                ready: false
-            },  player.playerId);
-        }
         updateRanking();
         $scope.timeFormatter = gameData.formatTimeDecimals;
         $scope.timeFormatterCountdown = gameData.formatTimeSeconds;
@@ -91,53 +86,41 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
 
         // richiede all'avversario l'avvio di una nuova partita tra i due
         $scope.newMatch = function () {
-            rabbit.sendReadyMessage();
-            gameData.editPlayer({ ready: true });
+            if (!gameData.getUserPlayer().ready) {
+                gameData.getUserPlayer().ready = true;
+                rabbit.sendReadyMessage();
+            }
             scopeService.safeApply($scope, function () {
                 $scope.newMatchClicked = true;
             });
-
-            if (allPlayersReady() && isLowerPlayerId()) {
-                rabbit.sendTilesRequest();
-            }
         };
 
         rabbit.setPageCallbacks({
             onReadyMessage: function (message) {
-                gameData.editPlayer({ ready: true }, message.playerId);
-                if (allPlayersReady() && isLowerPlayerId()) {
-                    rabbit.sendTilesRequest();
-                }
+                gameData.getPlayerById(message.playerId).ready = true;
 
-            }, onTilesMessage: function (response) {
+            }, onStartMatch: function (message) {
                 if (newMatchTimer !== undefined) {
                     clearInterval(newMatchTimer);
+                    newMatchTimer = undefined;
                 }
+
                 gameData.initializeMatchData();
-                gameData.editGeneral({
-                    matchCount: gameData.getGeneral().matchCount + 1,
-                    tiles: gameData.formatMatchTiles(response.tiles)
-                });
+                gameData.syncGameData(message.gameData);
                 navigationHandler.goToPage($location, $scope, '/royale-match', true);
 
-            }, onQuitGameMessage: function (message) {
-                gameData.removeEnemy(message.playerId);
+            }, onGameQuit: function () {
+                quitGame();
+                scopeService.safeApply($scope, function () {
+                    translationHandler.setTranslation($scope,'forceExitText', 'ENEMY_LEFT');
+                    $scope.forceExitModal = true;
+                });
 
-                if (gameData.getAllPlayers().length <= 1) {
-                    scopeService.safeApply($scope, function () {
-                        translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
-                        $scope.forceExitModal = true;
-                    });
-                    quitGame();
-                } else {
-                    scopeService.safeApply($scope, function () {
-                        updateRanking();
-                    });
-
-                    if ((allPlayersReady() || newMatchTimer === undefined) && isLowerPlayerId()) {
-                        rabbit.sendTilesRequest();
-                    }
-                }
+            }, onPlayerRemoved: function (message) {
+                scopeService.safeApply($scope, function () {
+                    gameData.syncGameData(message.gameData);
+                    updateRanking();
+                });
 
             }, onConnectionLost: function () {
                 quitGame();
@@ -154,26 +137,6 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
                 });
             }
         });
-
-        let allPlayersReady = function() {
-            let allReady = true;
-            for (let j = 0; j < gameData.getAllPlayers().length; j++) {
-                if (gameData.getAllPlayers()[j].ready !== true) {
-                    allReady = false;
-                    break;
-                }
-            }
-            return allReady;
-        };
-
-        let isLowerPlayerId = function() {
-            let lowerId = 100;
-            for (let i = 0; i < gameData.getAllPlayers().length; i++) {
-                if(gameData.getAllPlayers()[i].playerId < lowerId)
-                    lowerId = gameData.getAllPlayers()[i].playerId;
-            }
-            return lowerId === gameData.getUserPlayer().playerId;
-        };
 
         // impostazioni chat
         $scope.chatBubbles = chatHandler.getChatMessages();
@@ -198,6 +161,7 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
         };
         $scope.continueExitGame = function() {
             audioHandler.playSound('menu-click');
+            rabbit.sendPlayerQuitRequest();
             quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
         };

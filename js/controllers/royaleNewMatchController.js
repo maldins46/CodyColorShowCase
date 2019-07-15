@@ -107,20 +107,14 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
                 if (matchDateValid(hours, minutes)) {
                     let startDateGenerator = new Date();
                     startDateGenerator.setHours(hours, minutes);
-                    gameData.editGeneral({
-                        startDate: startDateGenerator.getTime()
-                    });
+                    gameData.getGeneral().startDate = startDateGenerator.getTime();
                 } else {
                     return;
                 }
             }
-            gameData.editGeneral({
-                gameName: gameNameValue,
-            });
-            gameData.editPlayer({
-                nickname: nicknameValue,
-                organizer: true
-            });
+            gameData.getGeneral().gameName = gameNameValue;
+            gameData.getUserPlayer().nickname = nicknameValue;
+            gameData.getUserPlayer().organizer = true;
             navigationHandler.goToPage($location, $scope, '/royale-mmaking', false);
         };
 
@@ -150,6 +144,7 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
         };
         $scope.continueExitGame = function () {
             audioHandler.playSound('menu-click');
+            rabbit.sendPlayerQuitRequest();
             quitGame();
             navigationHandler.goToPage($location, $scope, '/home', false);
         };
