@@ -5,7 +5,7 @@
 * the **back-end**, composed by a [message broker and a NodeJS executable](https://github.com/digit-srl/CodyColorServer); all the back-end code is contained and handled in a Docker infrastructure;
 * the **font-end**, composed by a web app developed on the AngularJS framework.
 
-![CodyColor Multiplayer Component Diagram](CodyColorComponents.png)
+![CodyColor Multiplayer Component Diagram](docs/CodyColorComponents.png)
 
 This repository includes all the files that form the front-end system of the game.
 
