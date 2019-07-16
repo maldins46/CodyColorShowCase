@@ -1,0 +1,15 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+
+services:
+  server:
+    image: nginx:1.17.1-alpine
+    networks:
+    - web
+    expose:
+    - "80"
+    volumes:
+    - ./src:/usr/share/nginx/html:ro
