@@ -26,7 +26,7 @@
     "SEARCH_MATCH_INFO": "Searching match info…",
     "CODE_NOT_VALID": "The code is not valid anymore.",
     "NOTIF_OFFLINE": "You are offline. Trying to connect to the server...",
-    "NOTIF_GENERAL": "{{totalMatches}} match played, {{connectedPlayers}} players connected now",
+    "NOTIF_GENERAL": "{{totalMatches}} matches played, {{connectedPlayers}} players connected now",
     "404": "404",
     "PAGE_NOT_FOUND": "Page not found",
     "15_SECONDS": "15 seconds",
