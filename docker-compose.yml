@@ -6,10 +6,8 @@ networks:
 
 services:
   server:
-    image: nginx:1.17.1-alpine
+    build: ./src
     networks:
     - web
     expose:
     - "80"
-    volumes:
-    - ./src:/usr/share/nginx/html:ro

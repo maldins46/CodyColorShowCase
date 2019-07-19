@@ -4,16 +4,8 @@
  * e l'invio di messaggi al broker
  */
 
-angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler) {
+angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler, settings) {
     let rabbit = {};
-
-    const credentials = {
-        username:   "guest",
-        password:   "guest",
-        vHost:      "/",
-        releaseUrl: "wss://botify.it/codycolor/ws",
-        debugUrl:   "ws://127.0.0.1:15674/ws"
-    };
 
     const endpoints = {
         serverControlQueue:   "/queue/serverControl",
@@ -77,19 +69,16 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         pageCallbacks = callbacks;
     };
 
-
     rabbit.connect = function () {
-        // todo switch to release prima della pubblicazione
-        client = Stomp.client(credentials.releaseUrl);
+        client = Stomp.client(settings.rabbitSocketUrl);
         client.connect(
-            credentials.username,
-            credentials.password,
+            settings.rabbitUsername,
+            settings.rabbitPassword,
             onConnected,
             onConnectionLost,
-            credentials.vHost
+            settings.rabbitVHost
         );
     };
-
 
     rabbit.subscribeGameRoom = function () {
         subscriptions.gameRoom = client.subscribe(
