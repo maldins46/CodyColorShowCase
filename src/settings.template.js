@@ -7,7 +7,8 @@ angular.module('codyColor').factory("settings", function() {
         rabbitUsername:   "",
         rabbitPassword:   "",
         rabbitVHost:      "",
-        rabbitSocketUrl:  "wss://"
+        rabbitSocketUrl:  "wss://",
+        webBaseUrl:       "https://"
     };
 
     return settings;

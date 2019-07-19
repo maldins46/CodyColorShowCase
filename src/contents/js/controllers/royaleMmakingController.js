@@ -3,7 +3,8 @@
  */
 angular.module('codyColor').controller('royaleMmakingCtrl',
     function ($scope, rabbit, navigationHandler, $translate, translationHandler,
-              audioHandler, $location, sessionHandler, gameData, scopeService, chatHandler) {
+              audioHandler, $location, sessionHandler, gameData, scopeService,
+              chatHandler, settings) {
         console.log("Royale mmaking controller ready.");
         gameData.getGeneral().gameType = gameData.getGameTypes().royale;
 
@@ -51,6 +52,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
         $scope.countdownFormatter = gameData.formatTimeSeconds;
         $scope.generalData = gameData.getGeneral();
         $scope.userPlayer = gameData.getUserPlayer();
+        $scope.baseUrl = settings.webBaseUrl;
 
         // tenta la connessione, se necessario
         $scope.connected = rabbit.getBrokerConnectionState();
@@ -225,7 +227,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
         $scope.codeCopied = false;
         $scope.copyLink = function () {
             audioHandler.playSound('menu-click');
-            copyStringToClipboard('https://codycolor.codemooc.net/#!?royale=' + gameData.getGeneral().code);
+            copyStringToClipboard(settings.webBaseUrl + '/#!?royale=' + gameData.getGeneral().code);
             $scope.linkCopied = true;
             $scope.codeCopied = false;
         };
