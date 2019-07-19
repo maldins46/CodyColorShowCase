@@ -3,12 +3,15 @@
  */
 angular.module('codyColor').controller('splashCtrl',
     function ($scope, rabbit, navigationHandler, audioHandler,
-              $location, sessionHandler, $routeParams, gameData) {
+              $location, sessionHandler, $routeParams, gameData, authHandler) {
         console.log("Controller splash ready.");
 
         // validazione sessione
         navigationHandler.initializeBackBlock($scope);
         sessionHandler.validateSession();
+
+        // inizializza il flusso di autenticazione (automatico, se rilevati cookies)
+        authHandler.initializeAuth();
 
         // tenta subito la connessione al broker
         rabbit.connect();

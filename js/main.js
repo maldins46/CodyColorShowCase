@@ -16,7 +16,7 @@ angular.module('codyColor').config(function ($translateProvider) {
         '*': 'en'
     });
 
-    // l'autorilevazione del linguaggio utente su chrome restituisce inglese, bug
+    // l'autorilevazione del linguaggio utente delle volte su chrome restituisce inglese a priori
     $translateProvider.determinePreferredLanguage(function () {
         if (navigator.languages && navigator.languages.length) {
             return navigator.languages[0];

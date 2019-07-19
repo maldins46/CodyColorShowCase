@@ -150,8 +150,8 @@ button:hover {
     cursor: pointer;
 }
 
-input[type=text], input[type=email],
-input[type=password], input[type=number] {
+input[type=text].standard-input, input[type=email].standard-input,
+input[type=password].standard-input, input[type=number].standard-input {
     width: 100%;
     padding: 12px 20px;
     font-size: 20px;
@@ -161,8 +161,8 @@ input[type=password], input[type=number] {
 }
 
 @media only screen and (min-width: 310px) {
-    input[type=text], input[type=email],
-    input[type=password], input[type=number] {
+    input[type=text].standard-input, input[type=email].standard-input,
+    input[type=password].standard-input, input[type=number].standard-input {
         width: 280px;
     }
 }

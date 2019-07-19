@@ -1,40 +1,45 @@
-<div id="page-wrapper">
-    <div id="wrapper--body">
-        <form class="form-login">
-            <ul class="list">
-                <li class="list--simple-element">
-                    Due righe di indicazioni sul login, lorem ipsum dolor sit amet, consectetur adipiscing;
-                    lorem ipsum dolor sit amet, consectetur adipiscing, dolor sit amet, consectetur adipiscing.
-                </li>
-                <li class="list--simple-element">
-                    <input type="email" id="inputEmail" placeholder="Email o nickname" required autofocus>
-                </li>
-                <li class="list--simple-element">
-                    <input type="password" id="inputPassword" class="form-control"
-                           placeholder="Password" required>
-                </li>
-                <li class="list--simple-element">
-                    <button class="navigation--button" type="submit" ng-click="">Accedi</button>
-                </li>
-                <li class="list--simple-element">- Oppure -</li>
-                <li class="list--simple-element">
-                    <button class="navigation--button" ng-click="goToRegister()">Registrati</button>
-                </li>
-            </ul>
-        </form>
+<div id="home" class="page">
+    <div class="page--wrapper">
+        <div class="page--body">
+            <!-- Schermata iniziale, opzioni ins. code e newMatch -->
+            <div class="page--component">
+                <ul class="list">
+                    <li ng-show="loginState === screens.login" class="list--spaced-element">
+                        Due righe di indicazioni sul login, lorem ipsum dolor sit amet, consectetur adipiscing;
+                        lorem ipsum dolor sit amet, consectetur adipiscing, dolor sit amet, consectetur adipiscing.
+                    </li>
+                    <li class="list--simple-element">
+                        <div id="firebaseui-auth-container"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div ng-show="loginState === screens.profile" class="page--component">
+                <ul class="list">
+                    <li class="list--simple-element">
+                        <h2>Welcome, {{ username }}!</h2>
+                    </li>
+                    <li class="list--simple-element">
+                        <button class="navigation--button" ng-click="logout()">Logout</button>
+                    </li>
+                    <li class="list--simple-element">
+                        <button class="navigation--button" ng-click="deleteAccount()">Elimina account</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page--push"></div>
     </div>
 
-    <div id="page-push"></div>
-</div>
-
-
-<div id="page-footer-container">
+    <!-- Footer module -->
+    <div class="page--footer">
     <div class="page--footer-column-left ellipsize">
+        <button class="page--footer-button" ng-click="goToHome()">
+            <i class="fa  fa-times page--footer-icons"></i>
+        </button>
         <button class="page--footer-button" ng-click="toggleBase()">
             <i class="page--footer-icons" ng-class="basePlaying ? 'fas fa-volume-up': 'fas fa-volume-mute'"></i>
-        </button>
-        <button class="page--footer-button" ng-click="goToHome()">
-            <i class="fa fa-times page--footer-icons"></i>
         </button>
         <button class="page--footer-button" ng-click="openLanguageModal()">
             <i class="page--footer-icons fas"
@@ -42,10 +47,12 @@
         </button>
     </div>
     <div class="page--footer-column-right ellipsize">
-        <button class="page--footer-button" ng-click="">
-            <i class="far fa-user-circle page--footer-icons"></i> {{ 'NOT_LOGGED' | translate }}
+        <button class="page--footer-button" ng-click=""> <span class="ellipsize">
+            <i ng-class="username !== undefined ? 'fas fa-user-circle': 'far fa-user-circle'"
+                    class="page--footer-icons"></i> {{ username !== undefined ? username : 'Non loggato' }} </span>
         </button>
     </div>
+</div>
 
     <!-- Language modal -->
     <div class="modal" ng-show="languageModal">

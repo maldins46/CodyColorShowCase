@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('homeCtrl',
     function ($scope, rabbit, navigationHandler, audioHandler,
-              $location, sessionHandler, scopeService, $translate) {
+              $location, sessionHandler, scopeService, $translate, authHandler) {
         console.log("Controller home ready.");
 
         // inizializzazione sessione
@@ -29,6 +29,16 @@ angular.module('codyColor').controller('homeCtrl',
             });
         }
 
+        if (authHandler.userLogged()) {
+            // user già loggato: mostra profile screen
+            scopeService.safeApply($scope, function () {
+                $scope.username = (authHandler.getUser().displayName !== null ?
+                    authHandler.getUser().displayName : authHandler.getUser().email);
+                $scope.userDataString = JSON.stringify(authHandler.getUser());
+            });
+        }
+
+
         rabbit.setPageCallbacks({
             onConnectionLost: function() {
                 scopeService.safeApply($scope, function () {
@@ -43,6 +53,7 @@ angular.module('codyColor').controller('homeCtrl',
                 });
             }
         });
+
 
         // inizializzazione menù di navigazione
         $scope.goToRules = function () {
@@ -119,6 +130,11 @@ angular.module('codyColor').controller('homeCtrl',
                 rabbit.setPageCallbacks({});
                 navigationHandler.goToPage($location, $scope, "/royale-mmaking");
             }
+        };
+        $scope.goToLoginProfile = function () {
+            audioHandler.playSound('menu-click');
+            rabbit.setPageCallbacks({});
+            navigationHandler.goToPage($location, $scope, "/login");
         };
         $scope.goToBootcamp = function () {
             audioHandler.playSound('menu-click');
