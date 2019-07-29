@@ -4,7 +4,7 @@
  * e l'invio di messaggi al broker
  */
 
-angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler, settings) {
+angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler, settings, authHandler) {
     let rabbit = {};
 
     const endpoints = {
@@ -41,6 +41,13 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
 
         c_heartbeat:      "c_heartbeat",      // segnale heartbeat
         c_chat:           "c_chat",           // chat, intercettati SOLO dai client
+
+        c_signUpRequest:  "c_signUpRequest",  // aggiunge l'utente al db con nickname
+        c_logInRequest:   "c_logInRequest",  // richiedi nickname utente con uid
+        s_authResponse:  "s_authResponse",   // fornisci il nickname utente - o messaggio error
+
+        c_userDeleteRequest:   "c_userDeleteRequest",  // richiedi l'eliminazione di un utente
+        s_userDeleteResponse:  "s_userDeleteResponse"  // conferma l'eliminazione di un utente
     };
 
     let connectedToBroker;
@@ -106,11 +113,38 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
            correlationId:     sessionHandler.getSessionId(),
            gameType:          gameData.getGeneral().gameType,
            gameName:          gameData.getGeneral().gameName,
+           userId:            authHandler.getFirebaseUserData().uid,
            timerSetting:      gameData.getGeneral().timerSetting,
            maxPlayersSetting: gameData.getGeneral().maxPlayersSetting,
            code:              gameData.getGeneral().code,
            startDate:         gameData.getGeneral().startDate
        });
+    };
+
+    rabbit.sendSignUpRequest = function (nickname) {
+        sendInServerControlQueue({
+            msgType:           messageTypes.c_signUpRequest,
+            nickname:          nickname,
+            email:             authHandler.getFirebaseUserData().email,
+            correlationId:     sessionHandler.getSessionId(),
+            userId:            authHandler.getFirebaseUserData().uid
+        });
+    };
+
+    rabbit.sendLogInRequest = function () {
+        sendInServerControlQueue({
+            msgType:           messageTypes.c_logInRequest,
+            correlationId:     sessionHandler.getSessionId(),
+            userId:            authHandler.getFirebaseUserData().uid
+        });
+    };
+
+    rabbit.sendUserDeleteRequest = function () {
+        sendInServerControlQueue({
+            msgType:           messageTypes.c_userDeleteRequest,
+            correlationId:     sessionHandler.getSessionId(),
+            userId:            authHandler.getFirebaseUserData().uid
+        });
     };
 
 
@@ -232,18 +266,20 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
 
 
     // invocato in caso di errore di connessione con il broker
-    let onConnectionLost = function () {
-        connectedToBroker = false;
-        connectedToServer = false;
+    let onConnectionLost = function (message) {
+        if(message === 'connectionLost') {
+            connectedToBroker = false;
+            connectedToServer = false;
 
-        // ritenta connessione dopo 10 secondi
-        setTimeout(function () {
-            rabbit.connect();
-        }, 10000);
+            // ritenta connessione dopo 10 secondi
+            setTimeout(function () {
+                rabbit.connect();
+            }, 10000);
 
-        // eventuali azioni addizionali
-        if (pageCallbacks.onConnectionLost !== undefined)
-            pageCallbacks.onConnectionLost();
+            // eventuali azioni addizionali
+            if (pageCallbacks.onConnectionLost !== undefined)
+                pageCallbacks.onConnectionLost();
+        }
     };
 
 
@@ -301,6 +337,18 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
             case messageTypes.s_gameResponse:
                 if (pageCallbacks.onGameRequestResponse !== undefined) {
                     pageCallbacks.onGameRequestResponse(message);
+                }
+                return;
+
+            case messageTypes.s_authResponse:
+                if (pageCallbacks.onLogInResponse !== undefined) {
+                    pageCallbacks.onLogInResponse(message);
+                }
+                return;
+
+            case messageTypes.s_userDeleteResponse:
+                if (pageCallbacks.onUserDeletedResponse !== undefined) {
+                    pageCallbacks.onUserDeletedResponse(message);
                 }
                 return;
 

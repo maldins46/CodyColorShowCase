@@ -2,107 +2,137 @@
  * AuthHandler: factory per la gestione del flusso di autenticazione legato alle librerie firebase Auth, firebase UI
  * e ai vari provider oAuth
  */
-angular.module('codyColor').factory("authHandler", function() {
+angular.module('codyColor').factory("authHandler", function($cookies) {
     let authHandler = {};
-    let initialized = false;
 
+    // oggetto di configurazione Firebse SDK
     const firebaseConfig = {
         apiKey: "AIzaSyCJoAvdMagPFHTG--zurc3RjBekWLJzvxo",
         authDomain: "codycolor-f2519.firebaseapp.com",
         databaseURL: "https://codycolor-f2519.firebaseio.com",
         projectId: "codycolor-f2519",
-        storageBucket: "",
+        storageBucket: "codycolor-f2519.appspot.com",
         messagingSenderId: "839718298178",
         appId: "1:839718298178:web:6e3b0cf34856eb12"
     };
 
-
+    // oggetto di configurazione dell'istanza firebaseUI
     const uiConfig = {
         callbacks: {
-            signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-                // callbacks.onSignInSuccess(authResult, redirectUrl);
+            signInSuccessWithAuthResult: function (authResult) {
+                // return false in case of custom success sign in flow
+                if (callbacks.onFirebaseSignIn !== undefined)
+                    callbacks.onFirebaseSignIn(authResult);
                 return false;
             },
             signInFailure: function (error) {
-                // Return a promise when error handling is completed and FirebaseUI
-                // will reset, clearing any UI
-                // return callbacks.onSignInError(error);
+                // Return a promise when error handling is completed and FirebaseUI will reset, clearing any UI
+                if (callbacks.onFirebaseSignInError !== undefined)
+                    return callbacks.onFirebaseSignInError(error);
+            },
+            uiShown: function () {
+                // The widget is rendered, hide the loader
+                if (callbacks.uiShown !== undefined)
+                    callbacks.onUiShown();
             }
         },
         signInOptions: [
-            /*{
-                provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                // Required to enable this provider in One-Tap Sign-up.
-                authMethod: 'https://accounts.google.com',
-                // Required to enable ID token credentials for this provider.
-                clientId: CLIENT_ID
-            },*/
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             firebase.auth.FacebookAuthProvider.PROVIDER_ID,
             firebase.auth.TwitterAuthProvider.PROVIDER_ID,
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
         ],
-        // tosUrl and privacyPolicyUrl accept either url string or a callback
-        // function.
-        // Terms of service url/callback.
-        tosUrl: 'https://www.example.com',
-        privacyPolicyUrl: 'https://www.example.com'
-        // Privacy policy url/callback.
-        /*privacyPolicyUrl: function() {
-            // do something, ex. policy inside app
-        }*/
+        tosUrl: function() {
+            if (callbacks.onTosClick !== undefined)
+                callbacks.onTosClick();
+        },
+        privacyPolicyUrl: function() {
+            if (callbacks.onPrivacyClick !== undefined)
+                callbacks.onPrivacyClick();
+        },
+        // i vari servizi credentialHelper quali accountchooser.com o Google One Tap Sign In generano problemi
+        // nel flusso di autenticazione custom. E' stato quindi disabilitato
+        // todo prova a riattivarla, forse ora va
+        credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     };
 
+    let initialized = false;
     let ui;
     let callbacks = {};
 
-    // dati dell'utente autenticato. Disponibili solo a login completato
-    let userData;
+    let firebaseUserData = {};
+    let serverUserData = {};
+    let startCookieSignIn;
+    let cookieNickCallback;
 
 
     // inizializza i callbacks
     authHandler.setAuthCallbacks = function(args) {
-        callbacks.onSignIn = args.onSignIn;
-        callbacks.onSignInError = args.onSignInError;
-        callbacks.onSignOut = args.onSignOut;
+        callbacks.onFirebaseSignIn = args.onFirebaseSignIn;
+        callbacks.onFirebaseSignInError = args.onFirebaseSignInError;
+        callbacks.onFirebaseSignOut = args.onFirebaseSignOut;
+        callbacks.onFirebaseUserDeleted = args.onFirebaseUserDeleted;
+        callbacks.onFirebaseUserDeletedError = args.onFirebaseUserDeletedError;
+        callbacks.onUiShown = args.onUiShown;
+        callbacks.onPrivacyClick = args.onPrivacyClick;
+        callbacks.onTosClick = args.onTosClick;
     };
 
 
-    // cancella i callbacks
-    authHandler.clearCallbacks = function() {
-        callbacks = {};
+    // imposta un callback, utilizzato nella schermata home, che aggiorna il nickname dell'utente
+    // visualizzato in fondo a destra, nel caso si passi alla schermata nickname senza aver concluso
+    // la cookieAuthentication
+    authHandler.setCookieNickCallback = function(callback) {
+        if (serverUserData.nickname === undefined) {
+            cookieNickCallback = callback;
+        }
+    };
+
+    // invocando questa funzione, il programma prova ad autenticare l'utente tramite cookie non appena firebaseAuth
+    // viene inizializzato per la prima volta
+    authHandler.enableCookieSignIn = function() {
+        startCookieSignIn = function(user) {
+            console.log('1/2 [CookieSignIn] - User ' + user.email + ' signed in with FirebaseAuth.');
+            firebaseUserData = user;
+
+            // controlla che sia memorizzato tra i cookie anche il nickname. Se non memorizzato, l'ultimo login
+            // non si è concluso con successo: effettua il logout anche da firebaseAuth
+            let cookieNickname = $cookies.get('nickname');
+            if (cookieNickname !== undefined) {
+                console.log('2/2 [CookieSignIn] - Cookie nickname validated. Welcome in, ' + cookieNickname + '.');
+                serverUserData.nickname = cookieNickname;
+
+            } else {
+                console.log('2/2 [CookieSignIn] - Cookie nickname not found. Logging out from FirebaseAuth.');
+                authHandler.logout();
+            }
+
+            if (cookieNickCallback !== undefined) {
+                cookieNickCallback(serverUserData.nickname);
+                cookieNickCallback = undefined;
+            }
+        }
     };
 
 
-    // inizializza la libreria firebase per l'autenticazione. Da chiamare all'avvio dell'app
+    // invocando questa funzione, il programma disattiva l'autenticazione utente tramite cookie, invocata altrimenti
+    // in automatico non appena firebaseAuth viene inizializzato per la prima volta
+    authHandler.disableCookieSignIn = function() {
+        startCookieSignIn = undefined;
+    };
+
+
+    // inizializza la libreria firebase per l'autenticazione; in caso l'inizializzazione sia già avvenuta, non esegue
+    // nulla; tenta l'autenticazione tramite cookies nel caso in cui sia stata abilitata con le funzioni di cui sopra
     authHandler.initializeAuth = function () {
         if (!initialized) {
             firebase.initializeApp(firebaseConfig);
-
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-                    // User is signed in.
-                    console.log('User signed in: ' + JSON.stringify(user));
-                    userData = user;
+                    if (startCookieSignIn !== undefined)
+                        startCookieSignIn(user);
 
-                    if (callbacks.onSignIn !== undefined) {
-                        callbacks.onSignIn(user);
-                    }
-
-                } else {
-                    // User is signed out.
-                    console.log('User signed out.');
-                    userData = undefined;
-
-                    if (callbacks.onSignOut !== undefined) {
-                        callbacks.onSignOut();
-                    }
-                }
-            }, function (error) {
-                console.log(error);
-
-                if (callbacks.onSignInError !== undefined) {
-                    callbacks.onSignInError(error);
+                    startCookieSignIn = undefined;
                 }
             });
             initialized = true;
@@ -123,36 +153,66 @@ angular.module('codyColor').factory("authHandler", function() {
     };
 
 
+    // effettua il logout in maniera 'safe', cancellando sia i dati salvati automaticamente da FirebaseAuth che
+    // quelli personalizzati provenienti dal db server (sia quelli di sessione che nei cookies)
     authHandler.logout = function () {
-        firebase.auth().signOut();
-    };
-
-
-    authHandler.deleteAccount = function () {
-        firebase.auth().currentUser.delete().catch(function(error) {
-            if (error.code === 'auth/requires-recent-login') {
-                // The user's credential is too old. She needs to sign in again.
-                firebase.auth().signOut().then(function () {
-                    // The timeout allows the message to be displayed after the UI has
-                    // changed to the signed out state.
-                    setTimeout(function () {
-                        alert('Please sign in again to delete your account.');
-                    }, 1);
-                });
-            }
+        $cookies.remove('nickname');
+        serverUserData = {};
+        firebaseUserData = {};
+        firebase.auth().signOut().then(function () {
+            if (callbacks.onFirebaseSignOut !== undefined)
+                callbacks.onFirebaseSignOut();
         });
     };
 
+
+    // effettua l'eliminazione utente in maniera 'safe', cancellando i dati salvati automaticamente da FirebaseAuth,
+    // quelli personalizzati provenienti dal db server (sia quelli di sessione che nei cookies), e inviando una
+    // richiesta di rimozione dei dati utente al server (nel callback onFirebaseUserDeleted)
+    authHandler.deleteAccount = function () {
+        firebase.auth().currentUser.delete().then(function() {
+            $cookies.remove('nickname');
+            serverUserData = {};
+            firebaseUserData = {};
+            callbacks.onFirebaseUserDeleted();
+        }).catch(function(error) {
+            if (callbacks.onFirebaseUserDeletedError !== undefined)
+                callbacks.onFirebaseUserDeletedError();
+        });
+    };
+
+
+    // controlla che ci sia un flusso di autenticazione in corso. Utile per verificare se ci si trova
+    // nella pagina di login dopo un redirect di un provider oAuth
     authHandler.isPendingRedirect = function () {
         return ui.isPendingRedirect();
     };
 
-    authHandler.getUser = function () {
-        return userData;
+
+    authHandler.loginCompleted = function () {
+        return !(Object.entries(serverUserData).length === 0 && serverUserData.constructor === Object)
+            && !(Object.entries(firebaseUserData).length === 0 && firebaseUserData.constructor === Object);
     };
 
-    authHandler.userLogged = function () {
-        return userData !== undefined;
+
+    authHandler.setFirebaseUserData = function(newUser) {
+        firebaseUserData = newUser;
+    };
+
+
+    authHandler.getFirebaseUserData = function () {
+        return firebaseUserData;
+    };
+
+
+    authHandler.setServerUserData = function (newUserData) {
+        $cookies.put('nickname', newUserData.nickname);
+        serverUserData = newUserData;
+    };
+
+
+    authHandler.getServerUserData = function () {
+        return serverUserData;
     };
 
 

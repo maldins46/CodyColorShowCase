@@ -4,7 +4,7 @@
  */
 angular.module('codyColor').controller('bootmpAftermatchCtrl',
     function ($scope, rabbit, gameData, scopeService, $location, navigationHandler,
-              audioHandler, sessionHandler, $translate) {
+              audioHandler, sessionHandler, $translate, authHandler, translationHandler) {
         console.log("Controller aftermatch ready.");
 
         // chiusura 'sicura' della partita
@@ -16,8 +16,15 @@ angular.module('codyColor').controller('bootmpAftermatchCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
+        }
+
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
         }
 
         gameData.editPlayer({
@@ -46,10 +53,8 @@ angular.module('codyColor').controller('bootmpAftermatchCtrl',
         // richiede all'avversario l'avvio di una nuova partita tra i due
         $scope.newMatch = function () {
             gameData.initializeMatchData();
-            gameData.editGeneral({
-                tiles: gameData.generateNewMatchTiles()
-            });
-            navigationHandler.goToPage($location, $scope, '/bootmp-match');
+            gameData.getGeneral().tiles = gameData.generateNewMatchTiles();
+            navigationHandler.goToPage($location, '/bootmp-match');
         };
 
         // termina la partita alla pressione sul tasto corrispondente
@@ -62,7 +67,7 @@ angular.module('codyColor').controller('bootmpAftermatchCtrl',
         $scope.continueExitGame = function() {
             audioHandler.playSound('menu-click');
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home');
+            navigationHandler.goToPage($location, '/home');
         };
 
         $scope.stopExitGame = function() {

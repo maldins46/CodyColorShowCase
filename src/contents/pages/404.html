@@ -7,6 +7,9 @@
 
     <div class="page--footer">
         <div class="page--footer-column-left ellipsize">
+            <button class="page--footer-button" ng-click="goToHome()">
+                <i class="fa  fa-times page--footer-icons"></i>
+            </button>
             <button class="page--footer-button" ng-click="toggleBase()">
                 <i class="page--footer-icons" ng-class="basePlaying ? 'fas fa-volume-up': 'fas fa-volume-mute'"></i>
             </button>
@@ -16,8 +19,9 @@
             </button>
         </div>
         <div class="page--footer-column-right ellipsize">
-            <button class="page--footer-button" ng-click="">
-                <i class="far fa-user-circle page--footer-icons"></i> {{ 'NOT_LOGGED' | translate }}
+            <button class="page--footer-button" ng-click=""> <span class="ellipsize">
+                <i ng-class="userLogged ? 'fas fa-user-circle': 'far fa-user-circle'"
+                   class="page--footer-icons"></i> {{ userNickname }} </span>
             </button>
         </div>
     </div>

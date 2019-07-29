@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('royaleMatchCtrl',
     function ($scope, rabbit, gameData, scopeService, pathHandler, $location, $translate, chatHandler,
-              navigationHandler, audioHandler, sessionHandler, translationHandler) {
+              navigationHandler, audioHandler, sessionHandler, translationHandler, authHandler) {
         console.log("Controller match ready.");
 
         let startCountdownTimer;
@@ -32,8 +32,15 @@ angular.module('codyColor').controller('royaleMatchCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
+        }
+
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
         }
 
         gameData.getAllPlayers().sort(function (a, b) {
@@ -323,8 +330,11 @@ angular.module('codyColor').controller('royaleMatchCtrl',
             }, onEndMatch: function (message) {
                 gameData.syncGameData(message.gameData);
                 pathHandler.quitGame();
-                if ($scope.forceExitModal !== true)
-                    navigationHandler.goToPage($location, $scope, '/royale-aftermatch', true);
+                if ($scope.forceExitModal !== true) {
+                    scopeService.safeApply($scope, function () {
+                        navigationHandler.goToPage($location, '/royale-aftermatch');
+                    });
+                }
             }
         });
 
@@ -359,7 +369,7 @@ angular.module('codyColor').controller('royaleMatchCtrl',
             audioHandler.playSound('menu-click');
             rabbit.sendPlayerQuitRequest();
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
 
         $scope.stopExitGame = function () {
@@ -369,7 +379,7 @@ angular.module('codyColor').controller('royaleMatchCtrl',
 
         $scope.continueForceExit = function () {
             audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
 
         $scope.skip = function () {

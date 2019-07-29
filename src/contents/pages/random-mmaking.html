@@ -15,11 +15,12 @@
                         <li class="list--spaced-element">
                             <input type="text" name="nickname" maxlength="22" ng-model="nickname" id="nickname"
                                    placeholder="{{'NICKNAME_EXAMPLE' | translate}}" class="standard-input"
+                                   ng-disabled="userLogged"
                                    required autofocus/>
                         </li>
                         <li class="list--spaced-element">
                             <button class="navigation--button flashing-animation"
-                                    ng-click="requestMMaking(nickForm.nickname.$viewValue)"
+                                    ng-click="requestMMaking()"
                                     ng-disabled="nickForm.nickname.$invalid">
                                 <span translate="FIND_ENEMY"></span>
                                 <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
@@ -129,7 +130,10 @@
         </div>
         <div class="page--footer-column-right ellipsize">
             <button class="page--footer-button" ng-click="">
-                <i class="far fa-user-circle page--footer-icons"></i> {{ 'NOT_LOGGED' | translate }}
+                <span class="ellipsize">
+                    <i ng-class="userLogged ? 'fas fa-user-circle': 'far fa-user-circle'"
+                       class="page--footer-icons"></i> {{ userNickname }}
+                </span>
             </button>
         </div>
     </div>

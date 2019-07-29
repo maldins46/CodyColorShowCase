@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('customNewMatchCtrl',
     function ($scope, rabbit, navigationHandler, scopeService, $translate, translationHandler,
-              audioHandler, $location, sessionHandler, gameData) {
+              audioHandler, $location, sessionHandler, gameData, authHandler) {
         console.log("Empty controller ready.");
 
         let quitGame = function () {
@@ -15,15 +15,18 @@ angular.module('codyColor').controller('customNewMatchCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
         }
 
-        // tenta la connessione, se necessario
-        $scope.connected = rabbit.getBrokerConnectionState();
-        if (!$scope.connected) {
-            rabbit.connect();
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+            $scope.nickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
         }
+
 
         // timer set
         $translate(['15_SECONDS', '30_SECONDS', '1_MINUTE', '2_MINUTES']).then(function (translations) {
@@ -56,12 +59,12 @@ angular.module('codyColor').controller('customNewMatchCtrl',
             }
         });
 
-        $scope.requestMMaking = function (nicknameValue) {
+        $scope.requestMMaking = function () {
             audioHandler.playSound('menu-click');
             $scope.creatingMatch = true;
-            gameData.getUserPlayer().nickname = nicknameValue;
+            gameData.getUserPlayer().nickname = $scope.nickname;
             gameData.getUserPlayer().organizer = true;
-            navigationHandler.goToPage($location, $scope, '/custom-mmaking', false);
+            navigationHandler.goToPage($location, '/custom-mmaking');
         };
 
         // termina la partita alla pressione sul tasto corrispondente
@@ -74,7 +77,7 @@ angular.module('codyColor').controller('customNewMatchCtrl',
             audioHandler.playSound('menu-click');
             rabbit.sendPlayerQuitRequest();
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
         $scope.stopExitGame = function () {
             audioHandler.playSound('menu-click');
@@ -85,7 +88,7 @@ angular.module('codyColor').controller('customNewMatchCtrl',
         $scope.forceExitText = '';
         $scope.continueForceExit = function () {
             audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
 
         // impostazioni multi language

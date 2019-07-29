@@ -30,56 +30,96 @@ workbox.routing.registerRoute(
 
 workbox.precaching.precacheAndRoute([
   {
-    "url": "audio/countdown.wav",
-    "revision": "fcdba471baf93cf317bd392e682a1261"
+    "url": "audio/countdown.mp3",
+    "revision": "c70e5b039371b033378509d7f3a87d4b"
   },
   {
-    "url": "audio/enemy-found.wav",
-    "revision": "59eb4b84ab3931e9ba5da36f2de44f07"
+    "url": "audio/enemy-found.mp3",
+    "revision": "75ba38576de28f3418910c49643d4d03"
   },
   {
-    "url": "audio/lost.wav",
-    "revision": "e7773435c8b62ad8a42a55d480b26f66"
+    "url": "audio/lost.mp3",
+    "revision": "38d342d60cb61725a8a1cdbd4287d446"
   },
   {
-    "url": "audio/menu-click.wav",
-    "revision": "94339968dc4a1b931a9266c49242cc56"
+    "url": "audio/menu-click.mp3",
+    "revision": "910fd40f18057b42713177074e9f716d"
   },
   {
-    "url": "audio/music.wav",
-    "revision": "9c41883e174fc4e878411d75a6e9f8fb"
+    "url": "audio/music.mp3",
+    "revision": "21d1ec68ac1c488a3b27948823d46c50"
   },
   {
-    "url": "audio/roby-drag.wav",
-    "revision": "6d30aacce3aa8e3d714ebf2a1d364475"
+    "url": "audio/roby-drag.mp3",
+    "revision": "2b2da610c3c860d39463696a34ffd585"
   },
   {
-    "url": "audio/roby-drop.wav",
-    "revision": "0fb8b4ba1b875e5c823a9a613c62e860"
+    "url": "audio/roby-drop.mp3",
+    "revision": "6252cdd7361c22621a8de53f2a15b4d3"
   },
   {
-    "url": "audio/roby-over.wav",
-    "revision": "f9e65696135eb47780f50ef887ba1138"
+    "url": "audio/roby-over.mp3",
+    "revision": "1276b2a2c9a5e20e2b889233639a9add"
   },
   {
-    "url": "audio/roby-positioned.wav",
-    "revision": "c2afbfff1b703215c9645567deffc4eb"
+    "url": "audio/roby-positioned.mp3",
+    "revision": "eb135194c92486ac831fb640fd03b4fd"
   },
   {
-    "url": "audio/start.wav",
-    "revision": "87d921a4f945c49659669d4149ac2cc4"
+    "url": "audio/start.mp3",
+    "revision": "2ea9a9bb1e903f2addf4b56e4811f2eb"
   },
   {
-    "url": "audio/win.wav",
-    "revision": "465d4ef50c7e6932fec9ac8ddd181e29"
+    "url": "audio/win.mp3",
+    "revision": "5b0bed32b967e627ef0afbe8c826f697"
   },
   {
-    "url": "CodyColorComponents.png",
-    "revision": "d8f986ad32a2c0b2ee440c715f6d871a"
+    "url": "img/enemy-broken.png",
+    "revision": "c291eb43e8e01373dea38dc8c3ab2273"
   },
   {
-    "url": "favicon.ico",
-    "revision": "8a7fd8e460595bafc6f1a4b32efd1a28"
+    "url": "img/enemy-positioned.png",
+    "revision": "5f18d784278bb55cc0830c0f41e071eb"
+  },
+  {
+    "url": "img/enemy-walking-1.png",
+    "revision": "05cb43fee3edb6acb0acd80fe7386162"
+  },
+  {
+    "url": "img/enemy-walking-2.png",
+    "revision": "4f0ca3c1459321c2587432ee83791a89"
+  },
+  {
+    "url": "img/logo.png",
+    "revision": "a3b5ed943fad358db813ab707e40f75a"
+  },
+  {
+    "url": "img/roby-broken.png",
+    "revision": "b63f884b982622be78634811ee96f9ad"
+  },
+  {
+    "url": "img/roby-dragging-trasp.png",
+    "revision": "3f37e37ce19fb4075e79513b07b66fd0"
+  },
+  {
+    "url": "img/roby-idle.png",
+    "revision": "b66ae37776e3e5db922f5ee533277892"
+  },
+  {
+    "url": "img/roby-positioned.png",
+    "revision": "92b8806dc0ade6ffac1215fe693a39f5"
+  },
+  {
+    "url": "img/roby-walking-1.png",
+    "revision": "872407728def30501e3774c2cb70d29c"
+  },
+  {
+    "url": "img/roby-walking-2.png",
+    "revision": "92c560f1efb7fa95b4113c0cf65bcdb6"
+  },
+  {
+    "url": "img/user-avatar.png",
+    "revision": "33a9e23901d5f05b300bcf4b1270b8ae"
   },
   {
     "url": "icons/android-icon-144x144.png",
@@ -178,136 +218,268 @@ workbox.precaching.precacheAndRoute([
     "revision": "ce244be22b976f20be7d587f14372c39"
   },
   {
-    "url": "img/enemy-broken.png",
-    "revision": "c291eb43e8e01373dea38dc8c3ab2273"
+    "url": "favicon.ico",
+    "revision": "8a7fd8e460595bafc6f1a4b32efd1a28"
   },
   {
-    "url": "img/enemy-positioned.png",
-    "revision": "5f18d784278bb55cc0830c0f41e071eb"
-  },
-  {
-    "url": "img/enemy-walking-1.png",
-    "revision": "05cb43fee3edb6acb0acd80fe7386162"
-  },
-  {
-    "url": "img/enemy-walking-2.png",
-    "revision": "4f0ca3c1459321c2587432ee83791a89"
-  },
-  {
-    "url": "img/logo.png",
-    "revision": "a3b5ed943fad358db813ab707e40f75a"
-  },
-  {
-    "url": "img/roby-broken.png",
-    "revision": "b63f884b982622be78634811ee96f9ad"
-  },
-  {
-    "url": "img/roby-dragging-trasp.png",
-    "revision": "3f37e37ce19fb4075e79513b07b66fd0"
-  },
-  {
-    "url": "img/roby-idle.png",
-    "revision": "b66ae37776e3e5db922f5ee533277892"
-  },
-  {
-    "url": "img/roby-positioned.png",
-    "revision": "92b8806dc0ade6ffac1215fe693a39f5"
-  },
-  {
-    "url": "img/roby-walking-1.png",
-    "revision": "872407728def30501e3774c2cb70d29c"
-  },
-  {
-    "url": "img/roby-walking-2.png",
-    "revision": "92c560f1efb7fa95b4113c0cf65bcdb6"
+    "url": "css/firebase-ui-custom.css",
+    "revision": "f616cb3698398300bb729a3b34765ff8"
   },
   {
     "url": "css/main.css",
-    "revision": "9b88a591aafe5126cc4a9fe04dc5222f"
+    "revision": "cfb27517bcd4ee3157f39043cc0a8ea5"
   },
   {
     "url": "css/normalize.css",
     "revision": "112272e51c80ffe5bd01becd2ce7d656"
   },
   {
+    "url": "bower_components/firebaseui/buildtools/all_tests.html",
+    "revision": "a804685d6a54412445269458d21cf813"
+  },
+  {
+    "url": "bower_components/firebaseui/buildtools/test_template.html",
+    "revision": "4bfc458a724432ad9a3a59f64217c485"
+  },
+  {
+    "url": "bower_components/firebaseui/demo/public/index.html",
+    "revision": "f525a41290c5c506cdb728a35604b618"
+  },
+  {
+    "url": "bower_components/firebaseui/demo/public/widget.html",
+    "revision": "505e21921f09bf6df39fce67c0d59cb2"
+  },
+  {
+    "url": "bower_components/firebaseui/javascript/ui/mdl_test_dom.html",
+    "revision": "5b631f895bac9e9e49a38971e9a803fa"
+  },
+  {
+    "url": "bower_components/firebaseui/soy/elements_test_dom.html",
+    "revision": "009952fe4c6199a56e5f6f2db8e20002"
+  },
+  {
+    "url": "bower_components/firebaseui/soy/pages_test_dom.html",
+    "revision": "2d5659f736def12b16c843cfd105fb9b"
+  },
+  {
     "url": "index.html",
-    "revision": "68dcea3d755be5fea176a44f561da4f6"
+    "revision": "33048d95395016a924ed78754cbd0736"
   },
   {
     "url": "pages/404.html",
-    "revision": "64b6c0eb68781a03f7ae1ab4bc8468dd"
+    "revision": "e83ad3cd1bc3d85e789543f4635a3dd3"
   },
   {
     "url": "pages/arcade-aftermatch.html",
-    "revision": "5aec1bdbd8b6cb18e6d2b39aec68a4a3"
+    "revision": "684639b5c84dca1a429568eb923be75a"
   },
   {
     "url": "pages/arcade-match.html",
-    "revision": "5b780aad543d0da175827fe7dc0656e4"
+    "revision": "97c44fc85496cb43eaee7c23ec6baf1e"
   },
   {
     "url": "pages/bootmp-aftermatch.html",
-    "revision": "5984b864529bbada5e431d0cf36b16d7"
+    "revision": "fe3008ec5f85d29da383239bb3321e1a"
   },
   {
     "url": "pages/bootmp-match.html",
-    "revision": "ac1debe8a6233b1a8c76390f5ec42a44"
+    "revision": "5cbd48ba408947c9c31a079d78bcd183"
   },
   {
     "url": "pages/bootmp-mmaking.html",
-    "revision": "45deddabcac81dedc29dede5faf8e738"
+    "revision": "c4ff95c21c907796509afb875903a19f"
   },
   {
     "url": "pages/custom-mmaking.html",
-    "revision": "b6df3b637e63d34854de9fa8f93ceec9"
+    "revision": "5be7346c8ff2bf6f1a74b74c5f9dab7b"
   },
   {
     "url": "pages/custom-new-match.html",
-    "revision": "e595a91e8a8b593334be8ce530736f16"
+    "revision": "daaf3f99f4bd3284f6de0b2afdcbd999"
   },
   {
     "url": "pages/home.html",
-    "revision": "d9b894a5b233e5c1e2ff5f709a58bdb6"
+    "revision": "4786c7d571944d5d9024d08e9f15a241"
   },
   {
     "url": "pages/login.html",
-    "revision": "ed244ec7b7c3992d1ba8766e889b5f28"
+    "revision": "6234ba6e2d8590db2e0eed2ecfa42105"
+  },
+  {
+    "url": "pages/privacy.html",
+    "revision": "1d456b68b1394ed4fc4ca8c718759d73"
   },
   {
     "url": "pages/random-mmaking.html",
-    "revision": "0bafc2bbdcabbad86f06d8996c3ed0b9"
-  },
-  {
-    "url": "pages/ranking.html",
-    "revision": "f88137f7b65f1a3c925fa37713c8fbae"
-  },
-  {
-    "url": "pages/register.html",
-    "revision": "4637b81ecb806084c19b6906a74aa133"
+    "revision": "b7663e424cb5dbcf965b2d520382451e"
   },
   {
     "url": "pages/royale-aftermatch.html",
-    "revision": "688157cbccdbfb3db8d25291a7df0676"
+    "revision": "ca9f4a5608079b13699325759b82a9ee"
   },
   {
     "url": "pages/royale-match.html",
-    "revision": "d43d1741684718e8558eeadd3d89e91d"
+    "revision": "7d3ccc27263741a62e575c7e5e6aae94"
   },
   {
     "url": "pages/royale-mmaking.html",
-    "revision": "d7d99550018169ddfed835086a56a707"
+    "revision": "d8bd9b001102ab2a0b29afbdefa206eb"
   },
   {
     "url": "pages/royale-new-match.html",
-    "revision": "3fcf2739e9420c1983ef53b528fec160"
+    "revision": "e324f9906411ae4a85cd01cbc75b1aca"
   },
   {
     "url": "pages/rules.html",
-    "revision": "37d5cb5efbc98ae6e6debc55557fab7c"
+    "revision": "cdc96d5fca10a8ce3d5ac84e57a1fdd6"
   },
   {
     "url": "pages/splash.html",
     "revision": "2a19a3e995e43efd1c4edc834ecf1866"
+  },
+  {
+    "url": "pages/terms.html",
+    "revision": "43337ad2159f4ba3d30ccc1ebff3d8ed"
+  },
+  {
+    "url": "static/privacy-policy/index.html",
+    "revision": "ef2992b14cbc08c8f2d3948dda84b8b6"
+  },
+  {
+    "url": "static/terms-of-service/index.html",
+    "revision": "3fa28e680a5209544ddb0c8bc9ed4eea"
+  },
+  {
+    "url": "bower_components/angular-animate/bower.json",
+    "revision": "143abaf2f8c6557a3c64c226efe1d815"
+  },
+  {
+    "url": "bower_components/angular-animate/package.json",
+    "revision": "ae38c7ba43f9ed36054403b48c367ca1"
+  },
+  {
+    "url": "bower_components/angular-cookies/bower.json",
+    "revision": "fb8602c4b46e38cd15b016fe2a881a40"
+  },
+  {
+    "url": "bower_components/angular-cookies/package.json",
+    "revision": "7c9c6f6be8c934a445931eae9d33c1d1"
+  },
+  {
+    "url": "bower_components/angular-dragdrop/bower.json",
+    "revision": "e667182e4c2a2b8ba83eeda7a4007a76"
+  },
+  {
+    "url": "bower_components/angular-route/bower.json",
+    "revision": "e47197bf0513f8079252481d63cc37ec"
+  },
+  {
+    "url": "bower_components/angular-route/package.json",
+    "revision": "1e2ae5431d45b8d62820167259f5e50f"
+  },
+  {
+    "url": "bower_components/angular-sanitize/bower.json",
+    "revision": "bda7239ef05aa0f7eb8107597b8aa3df"
+  },
+  {
+    "url": "bower_components/angular-sanitize/package.json",
+    "revision": "fa5647c3c52743a5e59225d0a44a3d29"
+  },
+  {
+    "url": "bower_components/angular-translate-loader-static-files/bower.json",
+    "revision": "2737e3e5c01968d0381f13bca555b554"
+  },
+  {
+    "url": "bower_components/angular-translate-loader-static-files/package.json",
+    "revision": "7ced9de90cbdfa534bf579124f509f4e"
+  },
+  {
+    "url": "bower_components/angular-translate-storage-cookie/bower.json",
+    "revision": "c20b3f84ec63d086e34a95aa4ca72c1e"
+  },
+  {
+    "url": "bower_components/angular-translate-storage-cookie/package.json",
+    "revision": "7ed65f56ec0a8610ae5c2ad888b8898f"
+  },
+  {
+    "url": "bower_components/angular-translate/bower.json",
+    "revision": "1f49d8f6e46e4672cb1a4a629027ac37"
+  },
+  {
+    "url": "bower_components/angular/bower.json",
+    "revision": "1ccf6162f3f2857fc3174c931d6b04d2"
+  },
+  {
+    "url": "bower_components/angular/package.json",
+    "revision": "662e0d2c00209e32c1ac04ad7742a71d"
+  },
+  {
+    "url": "bower_components/components-font-awesome/bower.json",
+    "revision": "f4de236dcabb0f3fc9106bd8279e409b"
+  },
+  {
+    "url": "bower_components/components-font-awesome/package.json",
+    "revision": "aee5c6dc19b23607390fa0ec9f8033de"
+  },
+  {
+    "url": "bower_components/firebase/bower.json",
+    "revision": "bfe1578f09d5f16bcdd27d7278faafc0"
+  },
+  {
+    "url": "bower_components/firebaseui/bower.json",
+    "revision": "934b87afd0424c1568f7846769fcf15c"
+  },
+  {
+    "url": "bower_components/firebaseui/buildtools/country_data/full_country_data.json",
+    "revision": "c1d959779a986064aeca0cac2d834e57"
+  },
+  {
+    "url": "bower_components/firebaseui/buildtools/country_data/package.json",
+    "revision": "d3fd188fbb398411fdbe2bddafe738e9"
+  },
+  {
+    "url": "bower_components/firebaseui/demo/database.rules.json",
+    "revision": "a5cc2552a021f155336cc59c3cfd7379"
+  },
+  {
+    "url": "bower_components/firebaseui/demo/firebase.json",
+    "revision": "2c15266bdc5c2e5b88c662559cf9621b"
+  },
+  {
+    "url": "bower_components/firebaseui/demo/public/manifest.json",
+    "revision": "e5d5d0f61f178bee8a47e2ec7fd14e67"
+  },
+  {
+    "url": "bower_components/firebaseui/package-lock.json",
+    "revision": "e72c3fee4b8e281415d7ba111727e1f0"
+  },
+  {
+    "url": "bower_components/firebaseui/package.json",
+    "revision": "fd44d80ec614fe5a8478cc7a9cb1705e"
+  },
+  {
+    "url": "bower_components/firebaseui/sauce_browsers.json",
+    "revision": "2a553cedae11577b30ad9e553fb1ce52"
+  },
+  {
+    "url": "bower_components/jquery-ui/bower.json",
+    "revision": "9daf20df48669e11776d27fe7248d5a3"
+  },
+  {
+    "url": "bower_components/jquery-ui/component.json",
+    "revision": "8b58751abe18cd9d45704d12db83b57d"
+  },
+  {
+    "url": "bower_components/jquery-ui/composer.json",
+    "revision": "e69a9d05ca71fe0614749ca744a9d12c"
+  },
+  {
+    "url": "bower_components/jquery-ui/package.json",
+    "revision": "efa9e364274c77ff592fe0c793292c05"
+  },
+  {
+    "url": "bower_components/jquery/bower.json",
+    "revision": "5dc00f10d3c2752e1a1d6f27abbc2062"
   },
   {
     "url": "browserconfig.xml",
@@ -315,15 +487,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "6746ddb00dfea25088f72ca53effdea4"
+    "revision": "0aa37e10a3682c269a10058e6df0a23f"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "6a95ffcf7c1432e877d25820246cec08"
+    "revision": "cc7fb3cce518749dad946b75ae4c2542"
   },
   {
     "url": "manifest.json",
-    "revision": "a1c81b5cb1033a0be5130ab456c6436b"
+    "revision": "319f0ce547818d0a541a1abe4f818400"
   },
   {
     "url": "site.webmanifest",
@@ -331,7 +503,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/audioHandler.js",
-    "revision": "7638a0e7c5f19f82aa0d24775300c8a3"
+    "revision": "2f4945433da8ea8dd7976a1119ba5a00"
+  },
+  {
+    "url": "js/authHandler.js",
+    "revision": "1b762f239d4fb4eb65e86bc7dfe6fe0e"
   },
   {
     "url": "js/chatHandler.js",
@@ -339,75 +515,67 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/arcadeAftermatchController.js",
-    "revision": "cf774c4a9b520eee64c948cffe1db9c6"
+    "revision": "c9796325d7d4ab090d9cd877ca4e66d6"
   },
   {
     "url": "js/controllers/arcadeMatchController.js",
-    "revision": "d711237b9d4fd8a3ca70a5361d46c603"
+    "revision": "beb675a2ae9db5732f24cfc8dc69605c"
   },
   {
     "url": "js/controllers/bootmpAftermatchController.js",
-    "revision": "d30d026be04b4c07533f33a8beed83fb"
+    "revision": "3ae12efe9ff5f0f896c65e6a1c8a62fb"
   },
   {
     "url": "js/controllers/bootmpMatchController.js",
-    "revision": "60e7a71db93caf597b1aea5e6fb919fd"
+    "revision": "30bba06ee9a39358bd2b4419921d51b3"
   },
   {
     "url": "js/controllers/bootmpMmakingController.js",
-    "revision": "88fe95a7abe7ebc178831f675884437a"
+    "revision": "8872aad5023d1ab702afd337286291f7"
   },
   {
     "url": "js/controllers/customMmakingController.js",
-    "revision": "1e323b3ad7a1357ffbaeb8b58b716e97"
+    "revision": "3cb65cda1c1d25574269316e8102d7a8"
   },
   {
     "url": "js/controllers/customNewMatchController.js",
-    "revision": "f306ceb81487d3e801990d9cd173a948"
+    "revision": "f3a3eb6c043adbc0c15e2d61335d7871"
   },
   {
     "url": "js/controllers/emptyController.js",
-    "revision": "3dd7d2fbe1b0cb271a923fb02459524f"
+    "revision": "4c1eafcab5f7ca1104d9be0e298565bb"
   },
   {
     "url": "js/controllers/homeController.js",
-    "revision": "8a89d2091513950b9758e4aa8ba87857"
+    "revision": "62fd875313f9a9eec240a89323917abe"
   },
   {
     "url": "js/controllers/loginController.js",
-    "revision": "d3adbbf4d4d47bd46a24f5aaf70f2dc4"
+    "revision": "d4fb897e8cf37469f2a4a7da1aaa1562"
   },
   {
     "url": "js/controllers/randomMmakingController.js",
-    "revision": "d7143ff7a37c0e235e3a7710f5daf170"
-  },
-  {
-    "url": "js/controllers/rankingController.js",
-    "revision": "a9079ceefc7249f905f1fa66e2bddfd5"
-  },
-  {
-    "url": "js/controllers/registerController.js",
-    "revision": "714cf16f7eeaf61d1649d5a6457e9c0a"
+    "revision": "21d20c4e2ed2e80157253802d1822bdd"
   },
   {
     "url": "js/controllers/royaleAftermatchController.js",
-    "revision": "c62e7b1ca13c460ac9f959f6f719986a"
+    "revision": "0c34fe179eccdeecfe867c5278dc2b7f"
   },
   {
     "url": "js/controllers/royaleMatchController.js",
-    "revision": "e457817ca326889f8eb4cd4ca573442d"
+    "revision": "e72a4c717ce4f2b62e5011d365ef7768"
   },
   {
     "url": "js/controllers/royaleMmakingController.js",
-    "revision": "6c156d1cd784e11e0654df21e4719cac"
+    "revision": "4105a46c89475e02ffb4482d93715c8b"
   },
   {
     "url": "js/controllers/royaleNewMatchController.js",
-    "revision": "9eb16aaf8b26f8b8e862d19a989416ce"
+    "revision": "0dc4e5aa8be40fa304d0a76ecc810a58"
   },
   {
     "url": "js/controllers/splashController.js",
-    "revision": "f0ebcef2a95bc496f3c947559ed06b44"
+    "revision": "55c2d66c65e9bc6d03f52cc53ca19158"
   },
   {
     "url": "js/gameData.js",
@@ -415,11 +583,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/main.js",
-    "revision": "c6ff72b5ec893587ea7a34fda984824d"
+    "revision": "5bc736b46c178e5eeab55c2ec45122d9"
   },
   {
     "url": "js/navigationHandler.js",
-    "revision": "eb13aa87adc1d2960d4b1df01cdbd54e"
+    "revision": "ae89dec102c05c7d2236e3f082155c6d"
   },
   {
     "url": "js/pathHandler.js",
@@ -431,7 +599,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "a155daeec11d4214884cbe3cda00dffc"
+    "revision": "4713802dfd5dcb96253504e8b8bc7bab"
   },
   {
     "url": "js/scopeService.js",
@@ -439,7 +607,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "3d755dd674b14957faed6e80138d0a37"
+    "revision": "5720215c85def0e5d8b0064e87c23690"
   },
   {
     "url": "js/translationHandler.js",
@@ -454,7 +622,127 @@ workbox.precaching.precacheAndRoute([
     "revision": "8b9e755b33e4961ac40ab6a7f3ddc3f9"
   },
   {
-    "url": "js/vendor/stomp.min.js",
-    "revision": "00e1237a0ae9934f2eb4506801a206ea"
+    "url": "js/vendor/stomp.js",
+    "revision": "c48c7e12cb990717d1c7e4b23b0da12a"
+  },
+  {
+    "url": "bower_components/jquery/dist/jquery.min.js",
+    "revision": "220afd743d9e9643852e31a135a9f3ae"
+  },
+  {
+    "url": "bower_components/jquery-ui/jquery-ui.min.js",
+    "revision": "c15b1008dec3c8967ea657a7bb4baaec"
+  },
+  {
+    "url": "bower_components/angular/angular.min.js",
+    "revision": "0f146391dfc57e3e0506c4c0f72d51d1"
+  },
+  {
+    "url": "bower_components/angular-dragdrop/src/angular-dragdrop.min.js",
+    "revision": "68c7c58943631b2c73eda382ff50a732"
+  },
+  {
+    "url": "bower_components/angular-route/angular-route.min.js",
+    "revision": "c429fba7f57cd2306843295bc29aa571"
+  },
+  {
+    "url": "bower_components/angular-animate/angular-animate.min.js",
+    "revision": "72c2f5ab2972d75161f2e1447dcc2758"
+  },
+  {
+    "url": "bower_components/angular-cookies/angular-cookies.min.js",
+    "revision": "bf11427c55c465560b91a34c22cc0498"
+  },
+  {
+    "url": "bower_components/angular-translate/angular-translate.min.js",
+    "revision": "043ca33cd1a9b97ffbbb33671c3d38c8"
+  },
+  {
+    "url": "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
+    "revision": "0d0f49ccc75db0eed91d792227e3cab4"
+  },
+  {
+    "url": "bower_components/angular-sanitize/angular-sanitize.min.js",
+    "revision": "337cb810793e337cff921a292de44935"
+  },
+  {
+    "url": "bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js",
+    "revision": "5491ea6a28c1355d344df7afaf2fd7e0"
+  },
+  {
+    "url": "bower_components/firebase/firebase-app.js",
+    "revision": "ea4f80e43d1ffb922cafef20f5cefdd8"
+  },
+  {
+    "url": "bower_components/firebase/firebase-auth.js",
+    "revision": "d531146426b5bdb6ad68d90d73200c01"
+  },
+  {
+    "url": "bower_components/firebaseui/dist/firebaseui.js",
+    "revision": "d74e7980688d4eb01a893a35435aced6"
+  },
+  {
+    "url": "bower_components/components-font-awesome/css/all.min.css",
+    "revision": "dbf9d822cefe851ba6f66e1ad57e8987"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.eot",
+    "revision": "03783c5172ee1ad128c576bf88fac168"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.svg",
+    "revision": "073c2f3ce60eaf69cc2767ef3d989078"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.ttf",
+    "revision": "ed2b8bf117160466ba6220a8f1da54a4"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.woff",
+    "revision": "fe9d62e0d16a333a20e63c3e7595f82e"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.woff2",
+    "revision": "7559b3774a0625e8ca6c0160f8f6cfd8"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.eot",
+    "revision": "fc9c63c8224fb341fc933641cbdd12ef"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.svg",
+    "revision": "8fdea4e89ac405d9f8db327adb331d8d"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.ttf",
+    "revision": "59215032a4397507b80e5625dc323de3"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.woff",
+    "revision": "e5770f9863963fb576942e25214a226d"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.woff2",
+    "revision": "e07d9e40b26048d9abe2ef966cd6e263"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.eot",
+    "revision": "ef3df98419d143d9617fe163bf4edc0b"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.svg",
+    "revision": "b557f56e367e59344ca95f9d1fb44352"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.ttf",
+    "revision": "acf50f59802f20d8b45220eaae532a1c"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.woff",
+    "revision": "4bced7c4c0d61d4f988629bb8ae80b8b"
+  },
+  {
+    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.woff2",
+    "revision": "b5cf8ae26748570d8fb95a47f46b69e1"
   }
 ], { cleanupOutdatedCaches: true });

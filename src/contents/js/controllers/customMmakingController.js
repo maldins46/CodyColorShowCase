@@ -2,7 +2,7 @@
  * Controller partita con avversario custom
  */
 angular.module('codyColor').controller('customMmakingCtrl',
-    function ($scope, rabbit, navigationHandler, $translate, translationHandler,
+    function ($scope, rabbit, navigationHandler, $translate, translationHandler, authHandler,
               audioHandler, $location, sessionHandler, gameData, scopeService,
               chatHandler, settings) {
         console.log("New match custom controller ready.");
@@ -18,9 +18,28 @@ angular.module('codyColor').controller('customMmakingCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
         }
+
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+            $scope.nickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+        }
+        authHandler.setCookieNickCallback(function () {
+            scopeService.safeApply($scope, function () {
+                $scope.userLogged = authHandler.loginCompleted();
+                if (authHandler.loginCompleted()) {
+                    $scope.userNickname = authHandler.getServerUserData().nickname;
+                    $scope.nickname = authHandler.getServerUserData().nickname;
+                } else {
+                    translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+                }
+            });
+        });
 
         // cambia schermata in modo 'sicuro', evitando flickering durante le animazioni
         let changeScreen = function(newScreen) {
@@ -51,8 +70,10 @@ angular.module('codyColor').controller('customMmakingCtrl',
 
         // tenta la connessione, se necessario
         $scope.connected = rabbit.getBrokerConnectionState();
+        let requiredDelayedGameRequest = false;
         if (!$scope.connected) {
             rabbit.connect();
+            requiredDelayedGameRequest = true;
         } else {
             // connessione già pronta: richiedi i dati della battle al server
             if (gameData.getGeneral().code !== '0000' || gameData.getUserPlayer().organizer) {
@@ -63,11 +84,14 @@ angular.module('codyColor').controller('customMmakingCtrl',
 
         rabbit.setPageCallbacks({
             onConnected: function () {
-                if (gameData.getGeneral().code !== '0000' || gameData.getUserPlayer().organizer) {
-                    rabbit.sendGameRequest();
-                    scopeService.safeApply($scope, function () {
-                        translationHandler.setTranslation($scope, 'joinMessage', 'SEARCH_MATCH_INFO');
-                    });
+                if (requiredDelayedGameRequest) {
+                    if (gameData.getGeneral().code !== '0000' || gameData.getUserPlayer().organizer) {
+                        rabbit.sendGameRequest();
+                        scopeService.safeApply($scope, function () {
+                            translationHandler.setTranslation($scope, 'joinMessage', 'SEARCH_MATCH_INFO');
+                        });
+                    }
+                    requiredDelayedGameRequest = false;
                 }
 
             }, onGameRequestResponse: function (message) {
@@ -109,7 +133,9 @@ angular.module('codyColor').controller('customMmakingCtrl',
 
             }, onStartMatch: function (message) {
                 gameData.syncGameData(message.gameData);
-                navigationHandler.goToPage($location, $scope, '/arcade-match', true);
+                scopeService.safeApply($scope, function () {
+                    navigationHandler.goToPage($location, '/arcade-match');
+                });
 
             },onGameQuit: function () {
                 quitGame();
@@ -154,7 +180,7 @@ angular.module('codyColor').controller('customMmakingCtrl',
         // click per schermata newmatch
         $scope.goToCreateMatch = function() {
             audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, "/custom-new-match");
+            navigationHandler.goToPage($location, "/custom-new-match");
         };
 
         // click su 'unisciti', invio code
@@ -180,8 +206,8 @@ angular.module('codyColor').controller('customMmakingCtrl',
         };
 
 
-        $scope.validPlayer = function(nicknameValue) {
-            gameData.getUserPlayer().nickname = nicknameValue;
+        $scope.validPlayer = function() {
+            gameData.getUserPlayer().nickname = $scope.nickname;
             changeScreen(screens.enemyFound);
             rabbit.sendValidationMessage();
         };
@@ -228,7 +254,7 @@ angular.module('codyColor').controller('customMmakingCtrl',
             audioHandler.playSound('menu-click');
             rabbit.sendPlayerQuitRequest();
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -240,7 +266,7 @@ angular.module('codyColor').controller('customMmakingCtrl',
         $scope.continueForceExit = function() {
             audioHandler.playSound('menu-click');
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
 
         // impostazioni multi language

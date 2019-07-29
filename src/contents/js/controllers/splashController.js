@@ -12,29 +12,31 @@ angular.module('codyColor').controller('splashCtrl',
 
         // inizializza il flusso di autenticazione (automatico, se rilevati cookies)
         authHandler.initializeAuth();
+        authHandler.enableCookieSignIn();
 
         // tenta subito la connessione al broker
-        rabbit.connect();
+        if (!rabbit.getServerConnectionState())
+            rabbit.connect();
 
         let customMatch = $routeParams.custom;
         if (customMatch !== undefined && customMatch.length > 0) {
             gameData.getGeneral().code = customMatch.toString();
             console.log("Custom match!");
-            navigationHandler.goToPage($location, $scope, '/custom-mmaking');
+            navigationHandler.goToPage($location, '/custom-mmaking');
         }
 
         let agaMatch = $routeParams.royale;
         if (agaMatch !== undefined && agaMatch.length > 0) {
             gameData.getGeneral().code = agaMatch.toString();
-            console.log("Aga match!");
-            navigationHandler.goToPage($location, $scope, '/royale-mmaking');
+            console.log("Royale match!");
+            navigationHandler.goToPage($location, '/royale-mmaking');
         }
 
         $scope.clientVersion = sessionHandler.getClientVersion();
 
         // vai alla schermata home al click e avvia la base musicale
         $scope.goToHome = function () {
-            navigationHandler.goToPage($location, $scope, '/home');
+            navigationHandler.goToPage($location, '/home');
             audioHandler.splashStartBase();
         }
     }

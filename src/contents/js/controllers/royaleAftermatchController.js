@@ -3,7 +3,7 @@
  * portarne avanti una con lo stesso avversario
  */
 angular.module('codyColor').controller('royaleAftermatchCtrl',
-    function ($scope, rabbit, gameData, scopeService, $location, $translate,
+    function ($scope, rabbit, gameData, scopeService, $location, $translate, authHandler,
               navigationHandler, audioHandler, sessionHandler, chatHandler, translationHandler) {
         console.log("Controller aftermatch ready.");
         let newMatchTimer;
@@ -23,8 +23,15 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
+        }
+
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
         }
 
         $scope.newMatchTimerValue = 60000;
@@ -107,7 +114,9 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
 
                 gameData.initializeMatchData();
                 gameData.syncGameData(message.gameData);
-                navigationHandler.goToPage($location, $scope, '/royale-match', true);
+                scopeService.safeApply($scope, function () {
+                    navigationHandler.goToPage($location, '/royale-match');
+                });
 
             }, onGameQuit: function () {
                 quitGame();
@@ -163,7 +172,7 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
             audioHandler.playSound('menu-click');
             rabbit.sendPlayerQuitRequest();
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -171,7 +180,7 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
         };
         $scope.continueForceExit = function() {
             audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
 
         // impostazioni multi-language

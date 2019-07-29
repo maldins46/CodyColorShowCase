@@ -12,8 +12,9 @@
                         <label for="nickname">{{'NICKNAME' | translate}}</label>
                     </li>
                     <li class="list--spaced-element">
-                        <input type="text" name="nickname" maxlength="22" ng-model="nickname" class="standard-input"
-                               placeholder="{{'NICKNAME_EXAMPLE' | translate}}"  id="nickname" required autofocus/>
+                        <input type="text" name="nickname" maxlength="22" ng-model="nickname" id="nickname"
+                               placeholder="{{'NICKNAME_EXAMPLE' | translate}}" class="standard-input"
+                               ng-disabled="userLogged" required autofocus/>
                     </li>
                     <li class="list--simple-element">
                         {{ 'ENEMY' | translate }}
@@ -47,7 +48,7 @@
                     <li class="list--spaced-element">
                         <button class="navigation--button flashing-animation" type="submit"
                                 ng-disabled="customMatchForm.nickname.$invalid"
-                                ng-click="createBootcamp(customMatchForm.nickname.$viewValue)">
+                                ng-click="createBootcamp()">
                             {{ 'CREATE_MATCH  ' | translate }}
                             <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                         </button>
@@ -73,8 +74,9 @@
             </button>
         </div>
         <div class="page--footer-column-right ellipsize">
-            <button class="page--footer-button" ng-click="">
-                <i class="far fa-user-circle page--footer-icons"></i> {{ 'NOT_LOGGED' | translate }}
+            <button class="page--footer-button" ng-click=""> <span class="ellipsize">
+                <i ng-class="userLogged ? 'fas fa-user-circle': 'far fa-user-circle'"
+                   class="page--footer-icons"></i> {{ userNickname }} </span>
             </button>
         </div>
     </div>

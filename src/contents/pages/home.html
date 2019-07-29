@@ -26,7 +26,7 @@
                     <button class="navigation--disabled-button">{{ 'RANKINGS' | translate }}</button>
                 </li>
                 <li class="list--simple-element">
-                    <button class="navigation--button" ng-click="goToLogin()">{{ 'LOGIN' | translate }}</button>
+                    <button class="navigation--button" ng-click="goToLogin()">{{ loginOrProfile }}</button>
                 </li>
                 <li class="list--simple-element" ng-show="connected">
                     <div ng-class="(connected ? 'flashing-animation' : '')">
@@ -54,8 +54,8 @@
         </div>
         <div class="page--footer-column-right ellipsize">
             <button class="page--footer-button" ng-click="goToLogin()"> <span class="ellipsize">
-                <i ng-class="username !== undefined ? 'fas fa-user-circle': 'far fa-user-circle'"
-                   class="page--footer-icons"></i> {{ username !== undefined ? username : 'Non loggato' }} </span>
+                <i ng-class="userLogged ? 'fas fa-user-circle': 'far fa-user-circle'"
+                   class="page--footer-icons"></i> {{ userNickname }} </span>
             </button>
         </div>
     </div>

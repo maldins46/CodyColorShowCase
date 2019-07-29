@@ -3,7 +3,7 @@
  * casuale dei giocatori
  */
 angular.module('codyColor').controller('randomMmakingCtrl',
-    function ($scope, rabbit, gameData, $location, scopeService, $translate,
+    function ($scope, rabbit, gameData, $location, scopeService, $translate, authHandler,
               navigationHandler, audioHandler, sessionHandler, chatHandler, translationHandler) {
         console.log("Controller random matchmaking ready.");
         gameData.getGeneral().gameType = gameData.getGameTypes().random;
@@ -27,8 +27,16 @@ angular.module('codyColor').controller('randomMmakingCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
+        }
+
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+            $scope.nickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
         }
 
         // cambia schermata (senza lasciare la pagina) evitando flickering durante le animazioni
@@ -93,7 +101,9 @@ angular.module('codyColor').controller('randomMmakingCtrl',
 
             }, onStartMatch: function (message) {
                 gameData.syncGameData(message.gameData);
-                navigationHandler.goToPage($location, $scope, '/arcade-match', true);
+                scopeService.safeApply($scope, function () {
+                    navigationHandler.goToPage($location, '/arcade-match');
+                });
 
             }, onGameQuit: function () {
                 quitGame();
@@ -135,10 +145,10 @@ angular.module('codyColor').controller('randomMmakingCtrl',
         };
 
         // una volta che l'utente ha scelto un nickname, invia una richiesta di gioco al server
-        $scope.requestMMaking = function (nicknameValue) {
+        $scope.requestMMaking = function () {
             audioHandler.playSound('menu-click');
             changeScreen(screens.waitingEnemy);
-            gameData.getUserPlayer().nickname = nicknameValue;
+            gameData.getUserPlayer().nickname = $scope.nickname;
             rabbit.sendGameRequest();
 
             mmakingTimer = setInterval(function () {
@@ -181,7 +191,7 @@ angular.module('codyColor').controller('randomMmakingCtrl',
             audioHandler.playSound('menu-click');
             rabbit.sendPlayerQuitRequest();
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
         $scope.stopExitGame = function () {
             audioHandler.playSound('menu-click');
@@ -192,7 +202,7 @@ angular.module('codyColor').controller('randomMmakingCtrl',
         $scope.forceExitText = '';
         $scope.continueForceExit = function () {
             audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
 
         // impostazioni multi language

@@ -3,10 +3,12 @@
  * portarne avanti una con lo stesso avversario
  */
 angular.module('codyColor').controller('arcadeAftermatchCtrl',
-    function ($scope, rabbit, gameData, scopeService, $location, $translate,
+    function ($scope, rabbit, gameData, scopeService, $location, $translate, authHandler,
               navigationHandler, audioHandler, sessionHandler, chatHandler, translationHandler) {
         console.log("Controller aftermatch ready.");
 
+        // esci dalla partita in modo sicuro, chiudendo la connessione e effettuando il
+        // clean dei dati di gioco
         let quitGame = function () {
             rabbit.quitGame();
             gameData.initializeGameData();
@@ -17,10 +19,19 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
         }
 
+        // imposta nickname utente registrato
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+        }
+
+        // imposta dati e stats dell'ultima partita, da mostrare all'utente
         $scope.timeFormatter = gameData.formatTimeDecimals;
         $scope.player = gameData.getUserPlayer();
         $scope.enemy = gameData.getEnemy1vs1();
@@ -52,7 +63,9 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl',
             }, onStartMatch: function (message) {
                 gameData.initializeMatchData();
                 gameData.syncGameData(message.gameData);
-                navigationHandler.goToPage($location, $scope, '/arcade-match', true);
+                scopeService.safeApply($scope, function () {
+                    navigationHandler.goToPage($location, '/arcade-match');
+                });
 
             }, onGameQuit: function () {
                 quitGame();
@@ -102,7 +115,7 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl',
             audioHandler.playSound('menu-click');
             rabbit.sendPlayerQuitRequest();
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -110,7 +123,7 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl',
         };
         $scope.continueForceExit = function() {
             audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
 
         // impostazioni multi-language

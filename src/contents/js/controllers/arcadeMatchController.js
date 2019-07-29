@@ -3,8 +3,8 @@
  */
 angular.module('codyColor').controller('arcadeMatchCtrl',
     function ($scope, rabbit, gameData, scopeService, pathHandler, $location, $translate, chatHandler,
-              navigationHandler, audioHandler, sessionHandler, translationHandler) {
-        console.log("Controller match ready.");
+              navigationHandler, audioHandler, sessionHandler, translationHandler, authHandler) {
+        console.log("Controller arcade match ready.");
 
         let startCountdownTimer;
         let gameTimer;
@@ -32,8 +32,15 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
+        }
+
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
         }
 
         $scope.showDraggableRoby = true;
@@ -300,8 +307,11 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
             }, onEndMatch: function (message) {
                 gameData.syncGameData(message.gameData);
                 pathHandler.quitGame();
-                if ($scope.forceExitModal !== true)
-                    navigationHandler.goToPage($location, $scope, '/arcade-aftermatch', true);
+                if ($scope.forceExitModal !== true) {
+                    scopeService.safeApply($scope, function () {
+                        navigationHandler.goToPage($location, '/arcade-aftermatch');
+                    })
+                }
             }
         });
 
@@ -334,7 +344,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
             audioHandler.playSound('menu-click');
             rabbit.sendPlayerQuitRequest();
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
         $scope.stopExitGame = function() {
             audioHandler.playSound('menu-click');
@@ -343,7 +353,7 @@ angular.module('codyColor').controller('arcadeMatchCtrl',
 
         $scope.continueForceExit = function() {
             audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
 
         $scope.skip = function() {

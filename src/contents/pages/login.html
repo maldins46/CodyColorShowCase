@@ -2,28 +2,96 @@
     <div class="page--wrapper">
         <div class="page--body">
             <!-- Schermata iniziale, opzioni ins. code e newMatch -->
-            <div class="page--component">
-                <ul class="list">
-                    <li ng-show="loginState === screens.login" class="list--spaced-element">
-                        Due righe di indicazioni sul login, lorem ipsum dolor sit amet, consectetur adipiscing;
-                        lorem ipsum dolor sit amet, consectetur adipiscing, dolor sit amet, consectetur adipiscing.
+            <div ng-show="loginState === screens.login" class="page--component">
+                <ul class="list" ng-hide="pendingRedirect">
+                    <li class="list--spaced-element">
+                        Effettua il login per avere dettagliate statistiche sulle partite giocate, e per avere la
+                        possibilità di competere nel ranking globale CodyColor!
                     </li>
                     <li class="list--simple-element">
                         <div id="firebaseui-auth-container"></div>
                     </li>
                 </ul>
+                <ul class="list" ng-show="pendingRedirect">
+                    <li class="list--spaced-element">
+                        <div class="loading-spinner">
+                            <div></div><div></div><div></div>
+                            <div></div><div></div><div></div>
+                            <div></div><div></div><div></div>
+                        </div>
+                    </li>
+                    <li class="list--spaced-element">
+                        <div class="flashing-animation">
+                            Terminando la procedura di login...
+                        </div>
+                    </li>
+                </ul>
             </div>
+
+            <!-- Inserimento nickname -->
+            <div ng-show="loginState === screens.nicknameSelection" class="page--component">
+                <form name="nickForm">
+                    <ul class="list">
+                        <li class="list--simple-element"><h2>Ci siamo quasi!</h2></li>
+                        <li class="list--spaced-element">
+                            Inserisci un nickname con il quale venire visualizzato ai tuoi avversari per completare la registrazione.
+                        </li>
+                        <li class="list--simple-element">
+                            <label for="nickname">{{ 'NICKNAME' | translate }}</label>
+                        </li>
+                        <li class="list--spaced-element">
+                            <input type="text" name="username" maxlength="22" ng-model="username" id="nickname"
+                                   placeholder="{{'NICKNAME_EXAMPLE' | translate}}" class="standard-input"
+                                   required autofocus/>
+                        </li>
+                        <li class="list--spaced-element">
+                            <button class="navigation--button flashing-animation"
+                                    ng-click="ultimateSignUp(nickForm.username.$viewValue)"
+                                    ng-hide="hideSignUpButton"
+                                    ng-disabled="nickForm.username.$invalid">
+                                <span>Completa registrazione</span>
+                                <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
 
             <div ng-show="loginState === screens.profile" class="page--component">
                 <ul class="list">
                     <li class="list--simple-element">
-                        <h2>Welcome, {{ username }}!</h2>
+                        <img class="profile--image" src="{{(firebaseUserData.photoURL !== undefined
+                        && firebaseUserData.photoURL !== '' && firebaseUserData.photoURL !== null) ?
+                            firebaseUserData.photoURL : 'img/user-avatar.png'}}" alt="User Avatar">
+                    </li>
+                    <li class="list--spaced-element">
+                        <h2>Welcome, {{ serverUserData.nickname }}!</h2>
+                    </li>
+                    <li class="list--spaced-element">
+                        <div class="stats">
+                            <span class>Statistiche utente</span>
+                            <p class="stats--line"><i class="fas fa-shoe-prints"></i> Info statistica:
+                                <span class="stats--player-text"> valore</span>
+                            </p>
+                            <p class="stats--line"><i class="fas fa-shoe-prints"></i> Info statistica:
+                                <span class="stats--player-text"> valore</span>
+                            </p>
+                            <p class="stats--line"><i class="fas fa-shoe-prints"></i> Info statistica:
+                                <span class="stats--player-text"> valore</span>
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="list--simple-element">
+                        <button class="navigation--button" ng-click="logout()">
+                            Logout <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
+                        </button>
                     </li>
                     <li class="list--simple-element">
-                        <button class="navigation--button" ng-click="logout()">Logout</button>
-                    </li>
-                    <li class="list--simple-element">
-                        <button class="navigation--button" ng-click="deleteAccount()">Elimina account</button>
+                        <button class="navigation--button" ng-click="deleteAccount()">
+                            Elimina account  <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -47,12 +115,38 @@
         </button>
     </div>
     <div class="page--footer-column-right ellipsize">
-        <button class="page--footer-button" ng-click=""> <span class="ellipsize">
-            <i ng-class="username !== undefined ? 'fas fa-user-circle': 'far fa-user-circle'"
-                    class="page--footer-icons"></i> {{ username !== undefined ? username : 'Non loggato' }} </span>
+        <button class="page--footer-button" ng-click="">
+            <span class="ellipsize">
+                <i ng-class="userLogged ? 'fas fa-user-circle': 'far fa-user-circle'"
+                   class="page--footer-icons"></i> {{ userNickname }}
+        </span>
         </button>
     </div>
 </div>
+
+    <!-- SingleOption modal -->
+    <div class="modal" ng-show="singleOptionModal">
+        <div class="modal--content">
+            <p>{{singleOptionText}}</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-primary" ng-click="singleOptionOk()">{{ 'OK' | translate }}</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MultiOptions modal -->
+    <div class="modal" ng-show="multiOptionsModal">
+        <div class="modal--content">
+            <p>{{multiOptionsText}}</p>
+            <div class="modal--buttons-container">
+                <button class="modal--button-secondary" ng-click="multiOptionsCancel()">{{ 'UNDO' | translate }}</button>
+                <button class="modal--button-primary" ng-click="multiOptionsOk()">{{ 'OK' | translate }}</button>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Language modal -->
     <div class="modal" ng-show="languageModal">

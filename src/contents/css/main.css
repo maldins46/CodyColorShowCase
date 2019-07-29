@@ -99,6 +99,16 @@ textarea {
  * Tag di base
  * ------------------------------------------------------------------------- */
 
+@font-face {
+    font-family: "Baloo Chettan";
+    src: url(fonts/baloo-chettan-v5-latin-regular.ttf);
+}
+
+@font-face {
+    font-family: "Play";
+    src: url(fonts/play-v11-latin-regular.ttf);
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -191,6 +201,15 @@ input[type=number].timepicker--text {
     input[type=number].timepicker--text {
         width: auto;
     }
+}
+
+/* -------------------------------------------------------------------------
+ * Modulo profile: implementa la schermata profilo e alcuni suoi componenti
+ * ------------------------------------------------------------------------- */
+img.profile--image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px
 }
 
 /* -------------------------------------------------------------------------

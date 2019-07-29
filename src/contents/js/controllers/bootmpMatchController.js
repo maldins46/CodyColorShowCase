@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('bootmpMatchCtrl',
     function ($scope, gameData, scopeService, pathHandler, $location, $translate,
-              navigationHandler, audioHandler, sessionHandler) {
+              navigationHandler, audioHandler, sessionHandler, authHandler, translationHandler) {
         console.log("Bootcamp match controller ready.");
 
         let startCountdownTimer;
@@ -26,8 +26,15 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
+        }
+
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
         }
 
         // inizializzazione componenti generali interfaccia
@@ -324,7 +331,9 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
 
                 pathHandler.animateActiveRobys(function () {
                     pathHandler.quitGame();
-                    navigationHandler.goToPage($location, $scope, '/bootmp-aftermatch', true);
+                    scopeService.safeApply($scope, function () {
+                        navigationHandler.goToPage($location, '/bootmp-aftermatch');
+                    });
                 }, gameData.getGeneral().bootEnemySetting);
             }
         };
@@ -338,7 +347,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
         $scope.continueExitGame = function () {
             audioHandler.playSound('menu-click');
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
         $scope.stopExitGame = function () {
             audioHandler.playSound('menu-click');
@@ -348,7 +357,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
         $scope.skip = function () {
             pathHandler.quitGame();
             if ($scope.forceExitModal !== true)
-                navigationHandler.goToPage($location, $scope, '/bootmp-aftermatch', false);
+                navigationHandler.goToPage($location, '/bootmp-aftermatch');
             audioHandler.playSound('menu-click');
         };
 

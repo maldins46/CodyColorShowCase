@@ -6,7 +6,7 @@ angular.module('codyColor').factory("audioHandler", function($cookies) {
     let audioHandler = {};
 
     let musicBase = new Audio();
-    musicBase.src = 'audio/music.wav';
+    musicBase.src = 'audio/music.mp3';
     musicBase.loop = true;
 
     let isAudioEnabled;
@@ -45,7 +45,7 @@ angular.module('codyColor').factory("audioHandler", function($cookies) {
     audioHandler.playSound = function(soundName) {
         if (audioHandler.isAudioEnabled()) {
             let sound = new Audio();
-            sound.src = 'audio/' + soundName + '.wav';
+            sound.src = 'audio/' + soundName + '.mp3';
             sound.play();
         }
     };

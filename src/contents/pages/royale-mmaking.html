@@ -26,13 +26,13 @@
                             <label for="code">{{'CODE' | translate}}</label>
                         </li>
                         <li class="list--spaced-element">
-                            <input type="number" name="code" max="9999" min="1" ID="code" class="standard-input"
-                                   ng-model="code" placeholder="{{'CODE_EXAMPLE' | translate}}" required autofocus/>
+                            <input type="number" name="codeValue" max="9999" min="1" ID="code" class="standard-input"
+                                   ng-model="codeValue" placeholder="{{'CODE_EXAMPLE' | translate}}" required autofocus/>
                         </li>
                         <li class="list--spaced-element">
                             <button class="navigation--button flashing-animation"
-                                    ng-click="joinGame(customMatchForm.code.$viewValue)"
-                                    ng-disabled="customMatchForm.code.$invalid">
+                                    ng-click="joinGame(customMatchForm.codeValue.$viewValue)"
+                                    ng-disabled="customMatchForm.codeValue.$invalid">
                                 {{ 'JOIN' | translate }}
                                 <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
                             </button>
@@ -56,12 +56,13 @@
                             <label for="nickname">{{ 'NICKNAME' | translate }}</label>
                         </li>
                         <li class="list--spaced-element">
-                            <input type="text" name="nickname" maxlength="22" id="nickname" class="standard-input"
-                                   ng-model="nickname" placeholder="{{'NICKNAME_EXAMPLE' | translate}}" required/>
+                            <input type="text" name="nickname" maxlength="22" ng-model="nickname" id="nickname"
+                                   placeholder="{{'NICKNAME_EXAMPLE' | translate}}" class="standard-input"
+                                   ng-disabled="userLogged" required autofocus/>
                         </li>
                         <li class="list--spaced-element">
                             <button class="navigation--button flashing-animation"
-                                    ng-click="validPlayer(landingMatchForm.nickname.$viewValue)"
+                                    ng-click="validPlayer()"
                                     ng-disabled="landingMatchForm.nickname.$invalid">{{ 'START' | translate}}
                                 <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                             </button>
@@ -175,7 +176,10 @@
         </div>
         <div class="page--footer-column-right ellipsize">
             <button class="page--footer-button" ng-click="">
-                <i class="far fa-user-circle page--footer-icons"></i> {{ 'NOT_LOGGED' | translate }}
+                <span class="ellipsize">
+                    <i ng-class="userLogged ? 'fas fa-user-circle': 'far fa-user-circle'"
+                       class="page--footer-icons"></i> {{ userNickname }}
+                </span>
             </button>
         </div>
     </div>

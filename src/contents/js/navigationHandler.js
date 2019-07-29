@@ -1,7 +1,7 @@
 /*
  * NavigationHandler: permette la navigazione tra le pagine, ed applica un blocco al tasto back
  */
-angular.module('codyColor').factory("navigationHandler", function () {
+angular.module('codyColor').factory("navigationHandler", function (authHandler) {
     let navigationHandler = {};
     let backBlock = true;
 
@@ -16,12 +16,10 @@ angular.module('codyColor').factory("navigationHandler", function () {
         });
     };
 
-    navigationHandler.goToPage = function ($location, $scope, page, notFromClick) {
+    navigationHandler.goToPage = function ($location, page) {
         backBlock = false;
         $location.search({});
         $location.path(page).replace();
-        if (notFromClick !== undefined && notFromClick === true)
-            $scope.$apply();
     };
 
     return navigationHandler;
@@ -33,9 +31,6 @@ angular.module('codyColor').config(function ($routeProvider) {
         .when("/home", {templateUrl: "pages/home.html", controller: "homeCtrl"})
         .when("/login", {templateUrl: "pages/login.html", controller: "loginCtrl"})
         .when("/rules", {templateUrl: "pages/rules.html", controller: "emptyCtrl"})
-        .when("/register", {templateUrl: "pages/register.html", controller: "registerCtrl"})
-        .when("/ranking", {templateUrl: "pages/ranking.html", controller: "rankingCtrl"})
-        .when("/profile", {templateUrl: "pages/login.html", controller: "loginCtrl"})
         .when("/random-mmaking", {templateUrl: "pages/random-mmaking.html", controller: "randomMmakingCtrl"})
         .when("/custom-mmaking", {templateUrl: "pages/custom-mmaking.html", controller: "customMmakingCtrl"})
         .when("/royale-mmaking", {templateUrl: "pages/royale-mmaking.html", controller: "royaleMmakingCtrl"})
@@ -48,5 +43,7 @@ angular.module('codyColor').config(function ($routeProvider) {
         .when("/bootmp-mmaking", {templateUrl: "pages/bootmp-mmaking.html", controller: "bootmpMmakingCtrl"})
         .when("/bootmp-match", {templateUrl: "pages/bootmp-match.html", controller: "bootmpMatchCtrl"})
         .when("/bootmp-aftermatch", {templateUrl: "pages/bootmp-aftermatch.html", controller: "bootmpAftermatchCtrl"})
+        .when("/terms", {templateUrl: "pages/terms.html", controller: "emptyCtrl"})
+        .when("/privacy", {templateUrl: "pages/privacy.html", controller: "emptyCtrl"})
         .otherwise({templateUrl: "pages/404.html", controller: "emptyCtrl"});
 });

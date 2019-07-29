@@ -28,11 +28,10 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="manifest" href="manifest.json">
 
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Play" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/firebase-ui-custom.css" />
 </head>
 
 <body ng-app="codyColor">
@@ -70,14 +69,12 @@
 <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
-<script src="js/vendor/stomp.min.js"></script>
+<script src="js/vendor/stomp.js"></script>
 
 <!-- Firebase -->
 <script src="bower_components/firebase/firebase-app.js"></script>
 <script src="bower_components/firebase/firebase-auth.js"></script>
 <script src="bower_components/firebaseui/dist/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="css/firebase-ui-custom.css" />
-
 
 <!-- Game scripts -->
 <script src="js/main.js"></script>
@@ -95,8 +92,6 @@
 <script src="js/controllers/emptyController.js"></script>
 <script src="js/controllers/customMmakingController.js"></script>
 <script src="js/controllers/loginController.js"></script>
-<script src="js/controllers/rankingController.js"></script>
-<script src="js/controllers/registerController.js"></script>
 <script src="js/controllers/splashController.js"></script>
 <script src="js/controllers/customNewMatchController.js"></script>
 <script src="js/controllers/royaleNewMatchController.js"></script>

@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('royaleNewMatchCtrl',
     function ($scope, rabbit, navigationHandler, scopeService, $translate, translationHandler,
-              audioHandler, $location, sessionHandler, gameData) {
+              audioHandler, $location, sessionHandler, gameData, authHandler) {
         console.log("New match royale controller ready.");
 
         let quitGame = function () {
@@ -15,14 +15,16 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
         navigationHandler.initializeBackBlock($scope);
         if (sessionHandler.isSessionInvalid()) {
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/');
+            navigationHandler.goToPage($location, '/');
             return;
         }
 
-        // tenta la connessione, se necessario
-        $scope.connected = rabbit.getBrokerConnectionState();
-        if (!$scope.connected) {
-            rabbit.connect();
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().nickname;
+            $scope.nickname = authHandler.getServerUserData().nickname;
+        } else {
+            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
         }
 
         // timer setting selector
@@ -43,11 +45,8 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
             else
                 $scope.currentTimerIndex = ($scope.currentTimerIndex > 0 ? $scope.currentTimerIndex - 1 : 0);
 
-            gameData.editGeneral({
-                timerSetting: $scope.timerSettings[$scope.currentTimerIndex].value
-            });
+            gameData.getGeneral().timerSetting = $scope.timerSettings[$scope.currentTimerIndex].value;
         };
-
 
         // maxPlayers setting selector
         $scope.currentMaxPlayersIndex = 1;
@@ -67,11 +66,8 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
             else
                 $scope.currentMaxPlayersIndex = ($scope.currentMaxPlayersIndex > 0 ? $scope.currentMaxPlayersIndex - 1 : 0);
 
-            gameData.editGeneral({
-                maxPlayersSetting: $scope.maxPlayersSettings[$scope.currentMaxPlayersIndex].value
-            });
+            gameData.getGeneral().maxPlayersSetting = $scope.maxPlayersSettings[$scope.currentMaxPlayersIndex].value;
         };
-
 
         // start mode selector
         $scope.currentStartIndex = 0;
@@ -101,21 +97,21 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
             }
         });
 
-        $scope.requestMMaking = function (nicknameValue, gameNameValue, hours, minutes) {
+        $scope.requestMMaking = function () {
             audioHandler.playSound('menu-click');
             if ($scope.currentStartIndex === 0) {
-                if (matchDateValid(hours, minutes)) {
+                if (matchDateValid($scope.hours, $scope.minutes)) {
                     let startDateGenerator = new Date();
-                    startDateGenerator.setHours(hours, minutes);
+                    startDateGenerator.setHours($scope.hours, $scope.minutes);
                     gameData.getGeneral().startDate = startDateGenerator.getTime();
                 } else {
                     return;
                 }
             }
-            gameData.getGeneral().gameName = gameNameValue;
-            gameData.getUserPlayer().nickname = nicknameValue;
+            gameData.getGeneral().gameName = $scope.gameName;
+            gameData.getUserPlayer().nickname = $scope.nickname;
             gameData.getUserPlayer().organizer = true;
-            navigationHandler.goToPage($location, $scope, '/royale-mmaking', false);
+            navigationHandler.goToPage($location, '/royale-mmaking');
         };
 
         // controlla che l'ora settata come inizio match sia valida
@@ -146,7 +142,7 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
             audioHandler.playSound('menu-click');
             rabbit.sendPlayerQuitRequest();
             quitGame();
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
         $scope.stopExitGame = function () {
             audioHandler.playSound('menu-click');
@@ -155,7 +151,7 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
 
         $scope.continueForceExit = function () {
             audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, $scope, '/home', false);
+            navigationHandler.goToPage($location, '/home');
         };
 
         // impostazioni multi language
