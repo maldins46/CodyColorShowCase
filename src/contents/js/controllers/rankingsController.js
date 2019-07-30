@@ -136,6 +136,10 @@ angular.module('codyColor').controller('rankingsCtrl',
                         translations['TOP_10_POINTS_GLOBAL_SUBT']
                     ];
                 });
+
+            if (!authHandler.loginCompleted()) {
+                translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+            }
         };
 
         // impostazioni audio

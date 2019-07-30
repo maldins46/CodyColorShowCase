@@ -401,6 +401,10 @@ angular.module('codyColor').controller('royaleMatchCtrl',
             $translate.use(langKey);
             $scope.languageModal = false;
             audioHandler.playSound('menu-click');
+
+            if (!authHandler.loginCompleted()) {
+                translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+            }
         };
 
         // impostazioni audio

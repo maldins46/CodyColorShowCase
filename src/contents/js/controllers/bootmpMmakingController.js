@@ -143,6 +143,10 @@ angular.module('codyColor').controller('bootmpMmakingCtrl',
 
             $scope.languageModal = false;
             audioHandler.playSound('menu-click');
+
+            if (!authHandler.loginCompleted()) {
+                translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+            }
         };
 
         // impostazioni audio

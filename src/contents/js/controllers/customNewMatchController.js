@@ -113,6 +113,10 @@ angular.module('codyColor').controller('customNewMatchCtrl',
                 ];
             });
 
+            if (!authHandler.loginCompleted()) {
+                translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+            }
+
             audioHandler.playSound('menu-click');
         };
 

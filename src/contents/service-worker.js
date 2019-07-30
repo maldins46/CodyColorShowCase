@@ -387,35 +387,35 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/arcadeAftermatchController.js",
-    "revision": "c9796325d7d4ab090d9cd877ca4e66d6"
+    "revision": "85d36c75dfa752664708a1bf5d591d5c"
   },
   {
     "url": "js/controllers/arcadeMatchController.js",
-    "revision": "beb675a2ae9db5732f24cfc8dc69605c"
+    "revision": "07fadaf58a09b5d492f908e642ea4998"
   },
   {
     "url": "js/controllers/bootmpAftermatchController.js",
-    "revision": "3ae12efe9ff5f0f896c65e6a1c8a62fb"
+    "revision": "5b5014fca55d4c457bc07eb416ce3ec9"
   },
   {
     "url": "js/controllers/bootmpMatchController.js",
-    "revision": "30bba06ee9a39358bd2b4419921d51b3"
+    "revision": "63229306b0ec8f296d79683a7661ef79"
   },
   {
     "url": "js/controllers/bootmpMmakingController.js",
-    "revision": "8872aad5023d1ab702afd337286291f7"
+    "revision": "5dfa3d7257bee35549205df77d947e44"
   },
   {
     "url": "js/controllers/customMmakingController.js",
-    "revision": "3cb65cda1c1d25574269316e8102d7a8"
+    "revision": "cd6f2cecc96c83deb60c3eb8c600ca4f"
   },
   {
     "url": "js/controllers/customNewMatchController.js",
-    "revision": "f3a3eb6c043adbc0c15e2d61335d7871"
+    "revision": "2639aea26ef05e9834f4ce57030be065"
   },
   {
     "url": "js/controllers/emptyController.js",
-    "revision": "4c1eafcab5f7ca1104d9be0e298565bb"
+    "revision": "6be32d71c103c91b7abdc7008da4e917"
   },
   {
     "url": "js/controllers/homeController.js",
@@ -423,31 +423,31 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/loginController.js",
-    "revision": "59bd5b31f06c35b8f7c1efed4dc4ea1b"
+    "revision": "7e11fcbb58c3169e232a453e28062666"
   },
   {
     "url": "js/controllers/randomMmakingController.js",
-    "revision": "21d20c4e2ed2e80157253802d1822bdd"
+    "revision": "0db491c4786d23c499d0dff9de7faf4d"
   },
   {
     "url": "js/controllers/rankingsController.js",
-    "revision": "48a39b4f0883809271008481bc53f8c1"
+    "revision": "bad29496dd5eeb44d08c15df3d405f17"
   },
   {
     "url": "js/controllers/royaleAftermatchController.js",
-    "revision": "0c34fe179eccdeecfe867c5278dc2b7f"
+    "revision": "b66822e8f0fd2e3960219b37c5c9ba34"
   },
   {
     "url": "js/controllers/royaleMatchController.js",
-    "revision": "e72a4c717ce4f2b62e5011d365ef7768"
+    "revision": "8c7f7d4be5af9431ea4be16326f1a3c2"
   },
   {
     "url": "js/controllers/royaleMmakingController.js",
-    "revision": "4105a46c89475e02ffb4482d93715c8b"
+    "revision": "c432279f8efdc54c3581af5b5e1b6465"
   },
   {
     "url": "js/controllers/royaleNewMatchController.js",
-    "revision": "0dc4e5aa8be40fa304d0a76ecc810a58"
+    "revision": "5ddd040267b2ff357dcd2f7cc18830bf"
   },
   {
     "url": "js/controllers/splashController.js",

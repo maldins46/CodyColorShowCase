@@ -285,6 +285,10 @@ angular.module('codyColor').controller('loginCtrl',
             audioHandler.playSound('menu-click');
             $translate.use(langKey);
             $scope.languageModal = false;
+
+            if (!authHandler.loginCompleted()) {
+                translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+            }
         };
 
         // impostazioni audio

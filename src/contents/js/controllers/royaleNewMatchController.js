@@ -192,6 +192,10 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
                 ];
             });
 
+            if (!authHandler.loginCompleted()) {
+                translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+            }
+
             audioHandler.playSound('menu-click');
         };
 
