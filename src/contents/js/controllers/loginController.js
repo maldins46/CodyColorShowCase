@@ -3,7 +3,7 @@
  */
 angular.module('codyColor').controller('loginCtrl',
     function (navigationHandler, $scope, audioHandler, $location, sessionHandler,
-              $translate, scopeService, authHandler, rabbit, translationHandler) {
+              $translate, scopeService, authHandler, rabbit, translationHandler, gameData) {
         console.log("Controller login ready.");
 
         // inizializzazione sessione
@@ -28,6 +28,7 @@ angular.module('codyColor').controller('loginCtrl',
             nicknameSelection: 'nicknameSelection' // schermata di selezione nickname nuovo utente
         };
         $scope.screens = screens;
+        $scope.timeFormatter = gameData.formatTimeDecimals;
 
         // inizializza il flusso di autenticazione disabilitando la cookie authentication,
         // in quanto si potrebbe provenire da pendingRedirect
@@ -48,10 +49,11 @@ angular.module('codyColor').controller('loginCtrl',
             return;
 
         } else if (authHandler.loginCompleted()) {
-            // utente già autenticato: mostra profile screen
+            // utente già autenticato: mostra profile screen, richiedi dati utente
             $scope.firebaseUserData = authHandler.getFirebaseUserData();
             $scope.serverUserData = authHandler.getServerUserData();
             $scope.pendingRedirect = false;
+            rabbit.sendLogInRequest();
             changeScreen(screens.profile);
 
         } else {
@@ -85,10 +87,12 @@ angular.module('codyColor').controller('loginCtrl',
                 scopeService.safeApply($scope, function () {
                     translationHandler.setTranslation($scope, 'singleOptionText', 'ERR_LOGIN');
                     $scope.singleOptionModal = true;
+                    $scope.pendingRedirect = false;
                     $scope.firebaseUserData = undefined;
                     $scope.serverUserData = undefined;
-                    $scope.pendingRedirect = false;
                 });
+
+                console.log(error.toString());
                 authHandler.logout();
                 authHandler.initializeUi();
                 authHandler.startUi();
@@ -101,7 +105,6 @@ angular.module('codyColor').controller('loginCtrl',
                     $scope.serverUserData = undefined;
                     $scope.userLogged = false;
                     translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
-                    $scope.pendingRedirect = false;
                 });
                 authHandler.initializeUi();
                 authHandler.startUi();
@@ -114,7 +117,6 @@ angular.module('codyColor').controller('loginCtrl',
                     $scope.serverUserData = undefined;
                     $scope.userLogged = false;
                     translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
-                    $scope.pendingRedirect = false;
                 });
                 authHandler.initializeUi();
                 authHandler.startUi();
@@ -158,8 +160,11 @@ angular.module('codyColor').controller('loginCtrl',
                     // message.success === true indica che la registrazione è avvenuta con successo. Mostra
                     // quindi la schermata profilo popolata adeguatamente
                     authHandler.setServerUserData({
-                        nickname: message.nickname
-                        // todo altre stats utente
+                        nickname: message.nickname,
+                        totalPoints: message.totalPoints,
+                        wonMatches: message.wonMatches,
+                        avgPoints: message.avgPoints,
+                        bestMatch: message.bestMatch
                     });
                     scopeService.safeApply($scope, function () {
                         $scope.firebaseUserData = authHandler.getFirebaseUserData();
@@ -167,11 +172,13 @@ angular.module('codyColor').controller('loginCtrl',
                         $scope.userLogged = true;
                         $scope.userNickname = authHandler.getServerUserData().nickname;
                     });
-                    changeScreen(screens.profile);
+
+                    if ($scope.loginState !== screens.profile)
+                        changeScreen(screens.profile);
 
                 } else {
                     // message.success === false indica che è avvenuto un errore durante la registrazione lato server.
-                    // Mostra quindi un messaggio di errore, e rimanda alla schermata di login
+                    // Mostra quindi un messaggio di errore, rimuovi l'account, e rimanda alla schermata di login
                     scopeService.safeApply($scope, function () {
                         translationHandler.setTranslation($scope, 'singleOptionText', 'ERR_LOGIN');
                         $scope.singleOptionModal = true;
@@ -179,7 +186,9 @@ angular.module('codyColor').controller('loginCtrl',
                         $scope.serverUserData = undefined;
                         $scope.pendingRedirect = false;
                     });
-                    authHandler.logout();
+
+                    console.log('Error auth response false.');
+                    authHandler.deleteAccount();
                     authHandler.initializeUi();
                     authHandler.startUi();
                     changeScreen(screens.login);
@@ -239,6 +248,7 @@ angular.module('codyColor').controller('loginCtrl',
         // click sul tasto home. In caso di flusso di autenticazione non completato, annullalo completamente
         $scope.goToHome = function () {
             audioHandler.playSound('menu-click');
+            audioHandler.splashStartBase();
             authHandler.setAuthCallbacks({});
             if (!authHandler.loginCompleted())
                 authHandler.logout();

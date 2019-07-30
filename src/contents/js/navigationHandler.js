@@ -1,15 +1,15 @@
 /*
  * NavigationHandler: permette la navigazione tra le pagine, ed applica un blocco al tasto back
  */
-angular.module('codyColor').factory("navigationHandler", function (authHandler) {
+angular.module('codyColor').factory("navigationHandler", function () {
     let navigationHandler = {};
     let backBlock = true;
 
     navigationHandler.initializeBackBlock = function ($scope) {
-        $scope.$on('$locationChangeStart', function (evnt, next, current) {
+        $scope.$on('$locationChangeStart', function (event) {
             if (backBlock) {
                 alert("Utilizza i comandi interni alla pagina per navigare tra le schermate!");
-                evnt.preventDefault();
+                event.preventDefault();
             } else {
                 backBlock = true;
             }
@@ -45,5 +45,6 @@ angular.module('codyColor').config(function ($routeProvider) {
         .when("/bootmp-aftermatch", {templateUrl: "pages/bootmp-aftermatch.html", controller: "bootmpAftermatchCtrl"})
         .when("/terms", {templateUrl: "pages/terms.html", controller: "emptyCtrl"})
         .when("/privacy", {templateUrl: "pages/privacy.html", controller: "emptyCtrl"})
+        .when("/rankings", {templateUrl: "pages/rankings.html", controller: "rankingsCtrl"})
         .otherwise({templateUrl: "pages/404.html", controller: "emptyCtrl"});
 });

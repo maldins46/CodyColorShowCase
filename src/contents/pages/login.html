@@ -1,12 +1,11 @@
-<div id="home" class="page">
+<div id="login" class="page">
     <div class="page--wrapper">
         <div class="page--body">
             <!-- Schermata iniziale, opzioni ins. code e newMatch -->
             <div ng-show="loginState === screens.login" class="page--component">
                 <ul class="list" ng-hide="pendingRedirect">
                     <li class="list--spaced-element">
-                        Effettua il login per avere dettagliate statistiche sulle partite giocate, e per avere la
-                        possibilità di competere nel ranking globale CodyColor!
+                       {{'LOGIN_DESC' | translate}}
                     </li>
                     <li class="list--simple-element">
                         <div id="firebaseui-auth-container"></div>
@@ -22,7 +21,7 @@
                     </li>
                     <li class="list--spaced-element">
                         <div class="flashing-animation">
-                            Terminando la procedura di login...
+                            {{'ENDING_LOGIN' | translate}}
                         </div>
                     </li>
                 </ul>
@@ -32,9 +31,9 @@
             <div ng-show="loginState === screens.nicknameSelection" class="page--component">
                 <form name="nickForm">
                     <ul class="list">
-                        <li class="list--simple-element"><h2>Ci siamo quasi!</h2></li>
+                        <li class="list--simple-element"><h2>{{'LOGIN_SETNICK' | translate}}</h2></li>
                         <li class="list--spaced-element">
-                            Inserisci un nickname con il quale venire visualizzato ai tuoi avversari per completare la registrazione.
+                            {{'LOGIN_SETNICK_DESC' | translate}}
                         </li>
                         <li class="list--simple-element">
                             <label for="nickname">{{ 'NICKNAME' | translate }}</label>
@@ -49,7 +48,7 @@
                                     ng-click="ultimateSignUp(nickForm.username.$viewValue)"
                                     ng-hide="hideSignUpButton"
                                     ng-disabled="nickForm.username.$invalid">
-                                <span>Completa registrazione</span>
+                                <span>{{'LOGIN_SETNICK_CONFIRM' | translate}}</span>
                                 <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
                             </button>
                         </li>
@@ -66,31 +65,42 @@
                             firebaseUserData.photoURL : 'img/user-avatar.png'}}" alt="User Avatar">
                     </li>
                     <li class="list--spaced-element">
-                        <h2>Welcome, {{ serverUserData.nickname }}!</h2>
+                        <h2>{{'WELCOME_USER' | translate : { 'user': serverUserData.nickname } }}</h2>
                     </li>
                     <li class="list--spaced-element">
                         <div class="stats">
-                            <span class>Statistiche utente</span>
-                            <p class="stats--line"><i class="fas fa-shoe-prints"></i> Info statistica:
-                                <span class="stats--player-text"> valore</span>
+                            <span class>{{ 'USER_STATS' | translate }}</span>
+                            <p class="stats--line">{{ 'TOTAL_POINTS' | translate }}
+                                <span class="stats--player-text">{{serverUserData.totalPoints}}</span>
                             </p>
-                            <p class="stats--line"><i class="fas fa-shoe-prints"></i> Info statistica:
-                                <span class="stats--player-text"> valore</span>
+                            <p class="stats--line">{{ 'TOTAL_WINS' | translate }}
+                                <span class="stats--player-text">{{serverUserData.wonMatches}}</span>
                             </p>
-                            <p class="stats--line"><i class="fas fa-shoe-prints"></i> Info statistica:
-                                <span class="stats--player-text"> valore</span>
+                            <p class="stats--line">{{'AVG_MATCH' | translate }}
+                                <span class="stats--player-text">{{serverUserData.avgPoints}}</span>
+                            </p>
+                            <p class="stats--line" ng-show="serverUserData.bestMatch !== undefined">
+                                {{'BEST_MATCH' | translate}}
+                                <span class="stats--player-text">
+                                    {{'BEST_MATCH_DESC' | translate : { 'points': serverUserData.bestMatch.points, 'pathLength': serverUserData.bestMatch.pathLength, 'time': timeFormatter(serverUserData.bestMatch.time) } }}
+                                </span>
                             </p>
                         </div>
                     </li>
 
                     <li class="list--simple-element">
                         <button class="navigation--button" ng-click="logout()">
-                            Logout <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
+                            {{ 'LOGOUT' | translate }} <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
+                        </button>
+                    </li>
+                    <li class="list--spaced-element">
+                        <button class="navigation--button" ng-click="deleteAccount()">
+                            {{ 'DELETE_ACCOUNT' | translate }}  <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                         </button>
                     </li>
                     <li class="list--simple-element">
-                        <button class="navigation--button" ng-click="deleteAccount()">
-                            Elimina account  <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
+                        <button class="navigation--button" ng-click="goToHome()">
+                            {{ 'GOTO_GAME' | translate }}  <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                         </button>
                     </li>
                 </ul>

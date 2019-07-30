@@ -5,7 +5,6 @@
 angular.module('codyColor').factory("translationHandler", function($translate) {
     let traductionHandler = {};
 
-    // todo da testare
     traductionHandler.setTranslation = function ($scope, container, traductionId) {
         $translate(traductionId).then(function (finalText) {
             $scope[container] = finalText;

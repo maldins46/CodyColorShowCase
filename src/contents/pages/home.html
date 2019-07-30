@@ -23,14 +23,14 @@
                     <button class="navigation--button" ng-click="goToBootcamp()">{{ 'BOOT_CAMP' | translate }}</button>
                 </li>
                 <li class="list--simple-element">
-                    <button class="navigation--disabled-button">{{ 'RANKINGS' | translate }}</button>
+                    <button class="navigation--button" ng-click="goToRankings()">{{ 'RANKINGS' | translate }}</button>
                 </li>
                 <li class="list--simple-element">
-                    <button class="navigation--button" ng-click="goToLogin()">{{ loginOrProfile }}</button>
+                    <button class="navigation--button" ng-click="goToLoginProfile()">{{ loginOrProfile }}</button>
                 </li>
                 <li class="list--simple-element" ng-show="connected">
                     <div ng-class="(connected ? 'flashing-animation' : '')">
-                        {{ 'NOTIF_GENERAL' | translate:{'totalMatches': totalMatches, 'connectedPlayers': connectedPlayers} }}
+                        {{ 'NOTIF_GENERAL' | translate: {'totalMatches': totalMatches, 'connectedPlayers': connectedPlayers} }}
                     </div>
                 </li>
                 <li class="list--simple-element" ng-hide="connected">
@@ -53,7 +53,7 @@
             </button>
         </div>
         <div class="page--footer-column-right ellipsize">
-            <button class="page--footer-button" ng-click="goToLogin()"> <span class="ellipsize">
+            <button class="page--footer-button" ng-click="goToLoginProfile()"> <span class="ellipsize">
                 <i ng-class="userLogged ? 'fas fa-user-circle': 'far fa-user-circle'"
                    class="page--footer-icons"></i> {{ userNickname }} </span>
             </button>

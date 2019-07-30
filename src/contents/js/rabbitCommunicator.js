@@ -47,7 +47,10 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         s_authResponse:  "s_authResponse",   // fornisci il nickname utente - o messaggio error
 
         c_userDeleteRequest:   "c_userDeleteRequest",  // richiedi l'eliminazione di un utente
-        s_userDeleteResponse:  "s_userDeleteResponse"  // conferma l'eliminazione di un utente
+        s_userDeleteResponse:  "s_userDeleteResponse",  // conferma l'eliminazione di un utente
+
+        c_rankingsRequest: "c_rankingsRequest",   // richiedi le classifiche
+        s_rankingsResponse: "s_rankingsResponse", // restituisci le classifiche
     };
 
     let connectedToBroker;
@@ -136,6 +139,13 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
             msgType:           messageTypes.c_logInRequest,
             correlationId:     sessionHandler.getSessionId(),
             userId:            authHandler.getFirebaseUserData().uid
+        });
+    };
+
+    rabbit.sendRankingsRequest = function () {
+        sendInServerControlQueue({
+            msgType:           messageTypes.c_rankingsRequest,
+            correlationId:     sessionHandler.getSessionId(),
         });
     };
 
@@ -349,6 +359,12 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
             case messageTypes.s_userDeleteResponse:
                 if (pageCallbacks.onUserDeletedResponse !== undefined) {
                     pageCallbacks.onUserDeletedResponse(message);
+                }
+                return;
+
+            case messageTypes.s_rankingsResponse:
+                if (pageCallbacks.onRankingsResponse !== undefined) {
+                    pageCallbacks.onRankingsResponse(message);
                 }
                 return;
 

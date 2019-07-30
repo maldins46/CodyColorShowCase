@@ -1,3 +1,8 @@
+/*
+ * File di configurazione del service worker. Permette di effettuare la build di quest'ultimo tramite il comando
+ * 'workbox injectManifest workbox-config.js'. Permette in particolare di impostare i path dei file da
+ * pre-cachare, così da permettere l'utilizzo del gioco anche offline.
+ */
 module.exports = {
     "globDirectory": ".",
     /*"globIgnores": ['bower_components/**'],*/
@@ -7,8 +12,9 @@ module.exports = {
         "icons/*.png",              /* Icons */
         "favicon.ico",              /* Icons */
         "css/*.*",                    /* css */
+        "locales/*.*",                    /* locales */
         "**/*.html",                   /* html */
-        "**/*.{json,webmanifest,xml}", /* auxiliary */
+        "*.{json,webmanifest,xml}", /* auxiliary */
         "js/**/*.js",                   /* javascript */
         /* minified libraries */
         "bower_components/jquery/dist/jquery.min.js",
@@ -29,6 +35,6 @@ module.exports = {
         "bower_components/components-font-awesome/webfonts/*.*"
     ],
     "swSrc": "src-service-worker.js",
-    "maximumFileSizeToCacheInBytes": 12 * 1024 * 1024, // 12mb
+    /*"maximumFileSizeToCacheInBytes": 12 * 1024 * 1024, // 12mb */
     "swDest": "service-worker.js"
 };

@@ -97,10 +97,10 @@ angular.module('codyColor').factory("authHandler", function($cookies) {
 
             // controlla che sia memorizzato tra i cookie anche il nickname. Se non memorizzato, l'ultimo login
             // non si è concluso con successo: effettua il logout anche da firebaseAuth
-            let cookieNickname = $cookies.get('nickname');
-            if (cookieNickname !== undefined) {
-                console.log('2/2 [CookieSignIn] - Cookie nickname validated. Welcome in, ' + cookieNickname + '.');
-                serverUserData.nickname = cookieNickname;
+            let cookieServerUserData = $cookies.get('serverUserData');
+            if (cookieServerUserData !== undefined) {
+                console.log('2/2 [CookieSignIn] - Cookie nickname validated. Welcome, user.');
+                serverUserData = JSON.parse(cookieServerUserData);
 
             } else {
                 console.log('2/2 [CookieSignIn] - Cookie nickname not found. Logging out from FirebaseAuth.');
@@ -156,7 +156,7 @@ angular.module('codyColor').factory("authHandler", function($cookies) {
     // effettua il logout in maniera 'safe', cancellando sia i dati salvati automaticamente da FirebaseAuth che
     // quelli personalizzati provenienti dal db server (sia quelli di sessione che nei cookies)
     authHandler.logout = function () {
-        $cookies.remove('nickname');
+        $cookies.remove('serverUserData');
         serverUserData = {};
         firebaseUserData = {};
         firebase.auth().signOut().then(function () {
@@ -171,7 +171,7 @@ angular.module('codyColor').factory("authHandler", function($cookies) {
     // richiesta di rimozione dei dati utente al server (nel callback onFirebaseUserDeleted)
     authHandler.deleteAccount = function () {
         firebase.auth().currentUser.delete().then(function() {
-            $cookies.remove('nickname');
+            $cookies.remove('serverUserData');
             serverUserData = {};
             firebaseUserData = {};
             callbacks.onFirebaseUserDeleted();
@@ -206,7 +206,7 @@ angular.module('codyColor').factory("authHandler", function($cookies) {
 
 
     authHandler.setServerUserData = function (newUserData) {
-        $cookies.put('nickname', newUserData.nickname);
+        $cookies.put('serverUserData', JSON.stringify(newUserData));
         serverUserData = newUserData;
     };
 

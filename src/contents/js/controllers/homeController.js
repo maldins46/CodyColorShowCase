@@ -136,6 +136,28 @@ angular.module('codyColor').controller('homeCtrl',
                 navigationHandler.goToPage($location, "/royale-mmaking");
             }
         };
+        $scope.goToRankings = function () {
+            audioHandler.playSound('menu-click');
+            if (!$scope.connected) {
+                $scope.noOnlineModal = true;
+                $translate('NO_CONNECT_DESC').then(function (enemyLeft) {
+                    $scope.noOnlineModalText = enemyLeft;
+                }, function (translationId) {
+                    $scope.noOnlineModalText = translationId;
+                });
+
+            } else if (!sessionHandler.isClientVersionValid()) {
+                $scope.noOnlineModal = true;
+                $translate('OUTDATED_VERSION_DESC').then(function (enemyLeft) {
+                    $scope.noOnlineModalText = enemyLeft;
+                }, function (translationId) {
+                    $scope.noOnlineModalText = translationId;
+                });
+
+            } else {
+                navigationHandler.goToPage($location, "/rankings");
+            }
+        };
         $scope.goToLoginProfile = function () {
             audioHandler.playSound('menu-click');
             if (!$scope.connected) {
@@ -171,10 +193,6 @@ angular.module('codyColor').controller('homeCtrl',
             audioHandler.playSound('menu-click');
             navigationHandler.goToPage($location, "/profile");
         };
-        $scope.goToLogin = function () {
-            audioHandler.playSound('menu-click');
-            navigationHandler.goToPage($location, "/login");
-        };
 
         $scope.closeNoConnectionModal = function() {
             audioHandler.playSound('menu-click');
@@ -196,6 +214,13 @@ angular.module('codyColor').controller('homeCtrl',
             audioHandler.playSound('menu-click');
             $translate.use(langKey);
             $scope.languageModal = false;
+
+            if (authHandler.loginCompleted()) {
+                translationHandler.setTranslation($scope, 'loginOrProfile', 'PROFILE');
+            } else {
+                translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
+                translationHandler.setTranslation($scope, 'loginOrProfile', 'LOGIN');
+            }
         };
 
         // impostazioni audio

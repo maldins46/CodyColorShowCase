@@ -227,11 +227,19 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/main.css",
-    "revision": "cfb27517bcd4ee3157f39043cc0a8ea5"
+    "revision": "03556e132a25876025f127ff4cb01bb8"
   },
   {
     "url": "css/normalize.css",
     "revision": "112272e51c80ffe5bd01becd2ce7d656"
+  },
+  {
+    "url": "locales/locale-en.json",
+    "revision": "a594501db10983edd7d97eacff0cc1ad"
+  },
+  {
+    "url": "locales/locale-it.json",
+    "revision": "b4c23b61c35d6ab4f4a911d773919e61"
   },
   {
     "url": "bower_components/firebaseui/buildtools/all_tests.html",
@@ -263,7 +271,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "33048d95395016a924ed78754cbd0736"
+    "revision": "b5e8608b83cf8e7f42c231f90ebe24fd"
   },
   {
     "url": "pages/404.html",
@@ -299,11 +307,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/home.html",
-    "revision": "4786c7d571944d5d9024d08e9f15a241"
+    "revision": "f0e6896f03e9bb6d9bf96110d4e64561"
   },
   {
     "url": "pages/login.html",
-    "revision": "6234ba6e2d8590db2e0eed2ecfa42105"
+    "revision": "9e1f1b1d18f108bf2a5ff38d7a4ccb97"
   },
   {
     "url": "pages/privacy.html",
@@ -312,6 +320,10 @@ workbox.precaching.precacheAndRoute([
   {
     "url": "pages/random-mmaking.html",
     "revision": "b7663e424cb5dbcf965b2d520382451e"
+  },
+  {
+    "url": "pages/rankings.html",
+    "revision": "b708199fc928e2415a98b4466ca5ee93"
   },
   {
     "url": "pages/royale-aftermatch.html",
@@ -350,148 +362,8 @@ workbox.precaching.precacheAndRoute([
     "revision": "3fa28e680a5209544ddb0c8bc9ed4eea"
   },
   {
-    "url": "bower_components/angular-animate/bower.json",
-    "revision": "143abaf2f8c6557a3c64c226efe1d815"
-  },
-  {
-    "url": "bower_components/angular-animate/package.json",
-    "revision": "ae38c7ba43f9ed36054403b48c367ca1"
-  },
-  {
-    "url": "bower_components/angular-cookies/bower.json",
-    "revision": "fb8602c4b46e38cd15b016fe2a881a40"
-  },
-  {
-    "url": "bower_components/angular-cookies/package.json",
-    "revision": "7c9c6f6be8c934a445931eae9d33c1d1"
-  },
-  {
-    "url": "bower_components/angular-dragdrop/bower.json",
-    "revision": "e667182e4c2a2b8ba83eeda7a4007a76"
-  },
-  {
-    "url": "bower_components/angular-route/bower.json",
-    "revision": "e47197bf0513f8079252481d63cc37ec"
-  },
-  {
-    "url": "bower_components/angular-route/package.json",
-    "revision": "1e2ae5431d45b8d62820167259f5e50f"
-  },
-  {
-    "url": "bower_components/angular-sanitize/bower.json",
-    "revision": "bda7239ef05aa0f7eb8107597b8aa3df"
-  },
-  {
-    "url": "bower_components/angular-sanitize/package.json",
-    "revision": "fa5647c3c52743a5e59225d0a44a3d29"
-  },
-  {
-    "url": "bower_components/angular-translate-loader-static-files/bower.json",
-    "revision": "2737e3e5c01968d0381f13bca555b554"
-  },
-  {
-    "url": "bower_components/angular-translate-loader-static-files/package.json",
-    "revision": "7ced9de90cbdfa534bf579124f509f4e"
-  },
-  {
-    "url": "bower_components/angular-translate-storage-cookie/bower.json",
-    "revision": "c20b3f84ec63d086e34a95aa4ca72c1e"
-  },
-  {
-    "url": "bower_components/angular-translate-storage-cookie/package.json",
-    "revision": "7ed65f56ec0a8610ae5c2ad888b8898f"
-  },
-  {
-    "url": "bower_components/angular-translate/bower.json",
-    "revision": "1f49d8f6e46e4672cb1a4a629027ac37"
-  },
-  {
-    "url": "bower_components/angular/bower.json",
-    "revision": "1ccf6162f3f2857fc3174c931d6b04d2"
-  },
-  {
-    "url": "bower_components/angular/package.json",
-    "revision": "662e0d2c00209e32c1ac04ad7742a71d"
-  },
-  {
-    "url": "bower_components/components-font-awesome/bower.json",
-    "revision": "f4de236dcabb0f3fc9106bd8279e409b"
-  },
-  {
-    "url": "bower_components/components-font-awesome/package.json",
-    "revision": "aee5c6dc19b23607390fa0ec9f8033de"
-  },
-  {
-    "url": "bower_components/firebase/bower.json",
-    "revision": "bfe1578f09d5f16bcdd27d7278faafc0"
-  },
-  {
-    "url": "bower_components/firebaseui/bower.json",
-    "revision": "934b87afd0424c1568f7846769fcf15c"
-  },
-  {
-    "url": "bower_components/firebaseui/buildtools/country_data/full_country_data.json",
-    "revision": "c1d959779a986064aeca0cac2d834e57"
-  },
-  {
-    "url": "bower_components/firebaseui/buildtools/country_data/package.json",
-    "revision": "d3fd188fbb398411fdbe2bddafe738e9"
-  },
-  {
-    "url": "bower_components/firebaseui/demo/database.rules.json",
-    "revision": "a5cc2552a021f155336cc59c3cfd7379"
-  },
-  {
-    "url": "bower_components/firebaseui/demo/firebase.json",
-    "revision": "2c15266bdc5c2e5b88c662559cf9621b"
-  },
-  {
-    "url": "bower_components/firebaseui/demo/public/manifest.json",
-    "revision": "e5d5d0f61f178bee8a47e2ec7fd14e67"
-  },
-  {
-    "url": "bower_components/firebaseui/package-lock.json",
-    "revision": "e72c3fee4b8e281415d7ba111727e1f0"
-  },
-  {
-    "url": "bower_components/firebaseui/package.json",
-    "revision": "fd44d80ec614fe5a8478cc7a9cb1705e"
-  },
-  {
-    "url": "bower_components/firebaseui/sauce_browsers.json",
-    "revision": "2a553cedae11577b30ad9e553fb1ce52"
-  },
-  {
-    "url": "bower_components/jquery-ui/bower.json",
-    "revision": "9daf20df48669e11776d27fe7248d5a3"
-  },
-  {
-    "url": "bower_components/jquery-ui/component.json",
-    "revision": "8b58751abe18cd9d45704d12db83b57d"
-  },
-  {
-    "url": "bower_components/jquery-ui/composer.json",
-    "revision": "e69a9d05ca71fe0614749ca744a9d12c"
-  },
-  {
-    "url": "bower_components/jquery-ui/package.json",
-    "revision": "efa9e364274c77ff592fe0c793292c05"
-  },
-  {
-    "url": "bower_components/jquery/bower.json",
-    "revision": "5dc00f10d3c2752e1a1d6f27abbc2062"
-  },
-  {
     "url": "browserconfig.xml",
     "revision": "905720e1544539f066d6e6c2017abe2c"
-  },
-  {
-    "url": "locales/locale-en.json",
-    "revision": "0aa37e10a3682c269a10058e6df0a23f"
-  },
-  {
-    "url": "locales/locale-it.json",
-    "revision": "cc7fb3cce518749dad946b75ae4c2542"
   },
   {
     "url": "manifest.json",
@@ -503,11 +375,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/audioHandler.js",
-    "revision": "2f4945433da8ea8dd7976a1119ba5a00"
+    "revision": "0ee5ece4a490a913619dd0da4a91dbc7"
   },
   {
     "url": "js/authHandler.js",
-    "revision": "1b762f239d4fb4eb65e86bc7dfe6fe0e"
+    "revision": "26dae58a83688481fd3510ec373c9460"
   },
   {
     "url": "js/chatHandler.js",
@@ -547,15 +419,19 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/homeController.js",
-    "revision": "62fd875313f9a9eec240a89323917abe"
+    "revision": "9604807449aced2a43d0860122379c9c"
   },
   {
     "url": "js/controllers/loginController.js",
-    "revision": "d4fb897e8cf37469f2a4a7da1aaa1562"
+    "revision": "59bd5b31f06c35b8f7c1efed4dc4ea1b"
   },
   {
     "url": "js/controllers/randomMmakingController.js",
     "revision": "21d20c4e2ed2e80157253802d1822bdd"
+  },
+  {
+    "url": "js/controllers/rankingsController.js",
+    "revision": "48a39b4f0883809271008481bc53f8c1"
   },
   {
     "url": "js/controllers/royaleAftermatchController.js",
@@ -587,7 +463,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/navigationHandler.js",
-    "revision": "ae89dec102c05c7d2236e3f082155c6d"
+    "revision": "6605dd60e50882e4aee830a3b781d991"
   },
   {
     "url": "js/pathHandler.js",
@@ -599,7 +475,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "4713802dfd5dcb96253504e8b8bc7bab"
+    "revision": "8b02a723aec159c475547bc28a9fb78c"
+  },
+  {
+    "url": "js/rankingsHandler.js",
+    "revision": "f5d0981b934d518b9a631dde7733367d"
   },
   {
     "url": "js/scopeService.js",
@@ -611,7 +491,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/translationHandler.js",
-    "revision": "d3e1c13bf6967bacb9e32147aad203cf"
+    "revision": "d22cf03c3d2ca68e1840474778c4e854"
   },
   {
     "url": "js/vendor/jquery.ui.touch-punch.min.js",
