@@ -347,7 +347,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/splash.html",
-    "revision": "2a19a3e995e43efd1c4edc834ecf1866"
+    "revision": "34699ebc7f3abfa81f2199aae067683f"
   },
   {
     "url": "pages/terms.html",
