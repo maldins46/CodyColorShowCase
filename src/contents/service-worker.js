@@ -235,11 +235,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "a594501db10983edd7d97eacff0cc1ad"
+    "revision": "2c332874509120124f3560d2e11f0e9b"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "b4c23b61c35d6ab4f4a911d773919e61"
+    "revision": "4ec095dcee2abbe50162d793f8c9604f"
   },
   {
     "url": "bower_components/firebaseui/buildtools/all_tests.html",
