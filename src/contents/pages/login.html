@@ -7,9 +7,6 @@
                     <li class="list--spaced-element">
                        {{'LOGIN_DESC' | translate}}
                     </li>
-                    <li class="list--simple-element">
-                        <div id="firebaseui-auth-container"></div>
-                    </li>
                 </ul>
                 <ul class="list" ng-show="pendingRedirect">
                     <li class="list--spaced-element">
@@ -25,6 +22,8 @@
                         </div>
                     </li>
                 </ul>
+
+                <div id="firebaseui-auth-container"></div>
             </div>
 
             <!-- Inserimento nickname -->
@@ -39,7 +38,7 @@
                             <label for="nickname">{{ 'NICKNAME' | translate }}</label>
                         </li>
                         <li class="list--spaced-element">
-                            <input type="text" name="username" maxlength="22" ng-model="username" id="nickname"
+                            <input type="text" name="username" ng-maxlength="22" ng-model="username" id="nickname"
                                    placeholder="{{'NICKNAME_EXAMPLE' | translate}}" class="standard-input"
                                    required autofocus/>
                         </li>

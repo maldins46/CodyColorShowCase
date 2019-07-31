@@ -87,9 +87,9 @@ angular.module('codyColor').controller('loginCtrl',
                 scopeService.safeApply($scope, function () {
                     translationHandler.setTranslation($scope, 'singleOptionText', 'ERR_LOGIN');
                     $scope.singleOptionModal = true;
-                    $scope.pendingRedirect = false;
                     $scope.firebaseUserData = undefined;
                     $scope.serverUserData = undefined;
+                    $scope.pendingRedirect = false;
                 });
 
                 console.log(error.toString());
@@ -104,6 +104,7 @@ angular.module('codyColor').controller('loginCtrl',
                     $scope.firebaseUserData = undefined;
                     $scope.serverUserData = undefined;
                     $scope.userLogged = false;
+                    $scope.pendingRedirect = false;
                     translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
                 });
                 authHandler.initializeUi();
@@ -116,6 +117,7 @@ angular.module('codyColor').controller('loginCtrl',
                     $scope.firebaseUserData = undefined;
                     $scope.serverUserData = undefined;
                     $scope.userLogged = false;
+                    $scope.pendingRedirect = false;
                     translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
                 });
                 authHandler.initializeUi();
@@ -177,7 +179,7 @@ angular.module('codyColor').controller('loginCtrl',
                         changeScreen(screens.profile);
 
                 } else {
-                    // message.success === false indica che è avvenuto un errore durante la registrazione lato server.
+                    // message.success === false indica che non è presente un record utente nel db server
                     // Mostra quindi un messaggio di errore, rimuovi l'account, e rimanda alla schermata di login
                     scopeService.safeApply($scope, function () {
                         translationHandler.setTranslation($scope, 'singleOptionText', 'ERR_LOGIN');

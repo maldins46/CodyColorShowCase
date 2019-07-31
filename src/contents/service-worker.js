@@ -311,7 +311,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/login.html",
-    "revision": "9e1f1b1d18f108bf2a5ff38d7a4ccb97"
+    "revision": "f1a7b627e1fd8d252806f19ccac46aff"
   },
   {
     "url": "pages/privacy.html",
@@ -379,7 +379,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/authHandler.js",
-    "revision": "26dae58a83688481fd3510ec373c9460"
+    "revision": "72733b993550ba73439cb0d93be49822"
   },
   {
     "url": "js/chatHandler.js",
@@ -423,7 +423,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/loginController.js",
-    "revision": "7e11fcbb58c3169e232a453e28062666"
+    "revision": "3e572d3b2283308b4efb12f812840f35"
   },
   {
     "url": "js/controllers/randomMmakingController.js",

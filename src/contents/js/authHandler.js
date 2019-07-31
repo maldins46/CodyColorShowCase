@@ -49,11 +49,7 @@ angular.module('codyColor').factory("authHandler", function($cookies) {
         privacyPolicyUrl: function() {
             if (callbacks.onPrivacyClick !== undefined)
                 callbacks.onPrivacyClick();
-        },
-        // i vari servizi credentialHelper quali accountchooser.com o Google One Tap Sign In generano problemi
-        // nel flusso di autenticazione custom. E' stato quindi disabilitato
-        // todo prova a riattivarla, forse ora va
-        credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+        }
     };
 
     let initialized = false;
