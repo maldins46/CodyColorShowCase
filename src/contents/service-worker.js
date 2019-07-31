@@ -295,15 +295,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/bootmp-mmaking.html",
-    "revision": "c4ff95c21c907796509afb875903a19f"
+    "revision": "ac3cce03173ae0541be9117d2cc78b24"
   },
   {
     "url": "pages/custom-mmaking.html",
-    "revision": "5be7346c8ff2bf6f1a74b74c5f9dab7b"
+    "revision": "9a2630160542f10425b35480a30f067c"
   },
   {
     "url": "pages/custom-new-match.html",
-    "revision": "daaf3f99f4bd3284f6de0b2afdcbd999"
+    "revision": "5579b9da9f2b5604b79d35a3f401e1de"
   },
   {
     "url": "pages/home.html",
@@ -311,7 +311,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/login.html",
-    "revision": "f1a7b627e1fd8d252806f19ccac46aff"
+    "revision": "1020f26526de85876097b66a9c4de845"
   },
   {
     "url": "pages/privacy.html",
@@ -319,7 +319,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/random-mmaking.html",
-    "revision": "b7663e424cb5dbcf965b2d520382451e"
+    "revision": "de13bbb792e50abedb66b3d610c78b3e"
   },
   {
     "url": "pages/rankings.html",
@@ -335,11 +335,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-mmaking.html",
-    "revision": "d8bd9b001102ab2a0b29afbdefa206eb"
+    "revision": "016610a0e9a7d5bd26747dc890df5b45"
   },
   {
     "url": "pages/royale-new-match.html",
-    "revision": "e324f9906411ae4a85cd01cbc75b1aca"
+    "revision": "33e4cc66dc51332f1f427a2e6ae4b346"
   },
   {
     "url": "pages/rules.html",
@@ -379,7 +379,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/authHandler.js",
-    "revision": "72733b993550ba73439cb0d93be49822"
+    "revision": "8a130998f3dc7c0b151e9129d439f495"
   },
   {
     "url": "js/chatHandler.js",
@@ -423,7 +423,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/loginController.js",
-    "revision": "3e572d3b2283308b4efb12f812840f35"
+    "revision": "70d0d023cd7ca91c0571ec9eadcffafc"
   },
   {
     "url": "js/controllers/randomMmakingController.js",
