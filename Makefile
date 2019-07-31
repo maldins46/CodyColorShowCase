@@ -16,6 +16,12 @@ up:
 	@echo 'CodyColor client service is now up'
 	@echo
 
+.PHONY: rebuild
+rebuild:
+	${DC} rm -sf server
+	${DC} build server
+	${DC} up -d
+
 .PHONY: ps
 ps:
 	${DC} ps
