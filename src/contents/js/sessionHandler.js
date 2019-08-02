@@ -20,6 +20,12 @@ angular.module('codyColor').factory("sessionHandler", function() {
     // numero univoco associato a questa sessione
     const sessionId = (Math.floor(Math.random() * 100000)).toString();
 
+    // oggetto che permette di
+    const noSleep = new NoSleep();
+
+    sessionHandler.enableNoSleep = function () {
+        noSleep.enable();
+    };
 
     sessionHandler.validateSession = function() {
         isSessionValid = true;

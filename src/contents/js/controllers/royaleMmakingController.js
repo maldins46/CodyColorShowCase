@@ -238,6 +238,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
             gameData.getUserPlayer().nickname = $scope.nickname;
             changeScreen(screens.waitingEnemies);
             rabbit.sendValidationMessage();
+            sessionHandler.enableNoSleep();
         };
 
         // chat

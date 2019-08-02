@@ -271,7 +271,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "b5e8608b83cf8e7f42c231f90ebe24fd"
+    "revision": "b88a15f451e7fa05b58da0db8988f343"
   },
   {
     "url": "pages/404.html",
@@ -407,7 +407,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/customMmakingController.js",
-    "revision": "cd6f2cecc96c83deb60c3eb8c600ca4f"
+    "revision": "f35784237590f630ba698df1cc24a6d8"
   },
   {
     "url": "js/controllers/customNewMatchController.js",
@@ -443,7 +443,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/royaleMmakingController.js",
-    "revision": "c432279f8efdc54c3581af5b5e1b6465"
+    "revision": "fcc7ecea051fb40bf855415738376f02"
   },
   {
     "url": "js/controllers/royaleNewMatchController.js",
@@ -451,7 +451,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/splashController.js",
-    "revision": "55c2d66c65e9bc6d03f52cc53ca19158"
+    "revision": "d9d2247e8c16203498e5b0c8753f5eb8"
   },
   {
     "url": "js/gameData.js",
@@ -487,7 +487,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "a2632b3aa52a4aad3cc741cb68d4ba3b"
+    "revision": "747fe583423ac5dee57c40f551b4b31b"
   },
   {
     "url": "js/translationHandler.js",
@@ -624,5 +624,9 @@ workbox.precaching.precacheAndRoute([
   {
     "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.woff2",
     "revision": "b5cf8ae26748570d8fb95a47f46b69e1"
+  },
+  {
+    "url": "bower_components/nosleep/dist/NoSleep.min.js",
+    "revision": "8f0b82464694b1e337bcadd504bdcf0c"
   }
 ], { cleanupOutdatedCaches: true });
