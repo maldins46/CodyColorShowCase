@@ -58,7 +58,6 @@ angular.module('codyColor').controller('royaleMatchCtrl',
 
         for (let i = 0; i < gameData.getAllPlayers().length; i++) {
             gameData.editPlayer({
-                ranking: (i + 1).toString() + ".",
                 match: { timerValue: gameData.getGeneral().timerSetting  }
             }, gameData.getAllPlayers()[i].playerId);
         }
@@ -298,16 +297,18 @@ angular.module('codyColor').controller('royaleMatchCtrl',
                 });
 
             }, onPlayerRemoved: function (message) {
-                scopeService.safeApply($scope, function () {
-                    gameData.syncGameData(message.gameData);
+                if (message.removedPlayerId === gameData.getUserPlayer().playerId) {
+                    quitGame();
+                    scopeService.safeApply($scope, function () {
+                        translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
+                        $scope.forceExitModal = true;
+                    });
 
-                    for (let i = 0; i < gameData.getAllPlayers().length; i++) {
-                        gameData.editPlayer({
-                            ranking: (i + 1).toString() + ".",
-                        }, gameData.getAllPlayers()[i].playerId);
-                    }
-                });
-
+                } else {
+                    scopeService.safeApply($scope, function () {
+                        gameData.syncGameData(message.gameData);
+                    });
+                }
 
             }, onGameQuit: function () {
                 quitGame();

@@ -58,26 +58,39 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
         }, 1000);
 
         let updateRanking = function() {
-           // riordina classifica
+           // riordina classifica generale
             $scope.players = gameData.getAllPlayers();
             gameData.getAllPlayers().sort(function (a, b) {
-                return b.points - a.points;
-            });
-            for (let i = 0; i < gameData.getAllPlayers().length; i++) {
-                let player = gameData.getAllPlayers()[i];
-                gameData.editPlayer({
-                    ranking: (i + 1).toString() + "."
-                },  player.playerId);
-            }
+                if (b.points - a.points !== 0) {
+                    return b.points - a.points;
+                } else if (b.wonMatches - a.wonMatches !== 0) {
+                    return b.wonMatches - a.wonMatches;
 
-            // riordina classifica players match
+                } else if (b.match.points - a.match.points !== 0) {
+                    return b.match.points - a.match.points;
+
+                } else if (b.match.pathLength - a.match.pathLength !== 0) {
+                    return b.match.pathLength - a.match.pathLength;
+
+                } else {
+                    return b.match.time - a.match.time;
+                }
+            });
+
+            // riordina classifica match
             $scope.matchPlayers = gameData.duplicateAllPlayers();
             $scope.matchPlayers.sort(function (a, b) {
-                return b.match.points - a.match.points;
+
+                if (b.match.points - a.match.points !== 0) {
+                    return b.match.points - a.match.points;
+
+                } else if (b.match.pathLength - a.match.pathLength !== 0) {
+                    return b.match.pathLength - a.match.pathLength;
+
+                } else {
+                    return b.match.time - a.match.time;
+                }
             });
-            for (let i = 0; i < $scope.matchPlayers.length; i++) {
-                $scope.matchPlayers[i].match.ranking = (i + 1).toString() + ".";
-            }
         };
 
         // aggiorna punteggio players
@@ -126,10 +139,19 @@ angular.module('codyColor').controller('royaleAftermatchCtrl',
                 });
 
             }, onPlayerRemoved: function (message) {
-                scopeService.safeApply($scope, function () {
-                    gameData.syncGameData(message.gameData);
-                    updateRanking();
-                });
+                if (message.removedPlayerId === gameData.getUserPlayer().playerId) {
+                    quitGame();
+                    scopeService.safeApply($scope, function () {
+                        translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
+                        $scope.forceExitModal = true;
+                    });
+
+                } else {
+                    scopeService.safeApply($scope, function () {
+                        gameData.syncGameData(message.gameData);
+                        updateRanking();
+                    });
+                }
 
             }, onConnectionLost: function () {
                 quitGame();

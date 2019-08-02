@@ -153,13 +153,21 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
 
 
             }, onPlayerRemoved: function (message) {
-                scopeService.safeApply($scope, function () {
-                    gameData.syncGameData(message.gameData);
-                    $scope.connectedEnemies = gameData.getEnemies();
-                    translationHandler.setTranslation($scope, 'totTime',
-                        gameData.formatTimeStatic(gameData.getGeneral().timerSetting));
-                });
+                if (message.removedPlayerId === gameData.getUserPlayer().playerId) {
+                    quitGame();
+                    scopeService.safeApply($scope, function () {
+                        translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
+                        $scope.forceExitModal = true;
+                    });
 
+                } else {
+                    scopeService.safeApply($scope, function () {
+                        gameData.syncGameData(message.gameData);
+                        $scope.connectedEnemies = gameData.getEnemies();
+                        translationHandler.setTranslation($scope, 'totTime',
+                            gameData.formatTimeStatic(gameData.getGeneral().timerSetting));
+                    });
+                }
 
             }, onStartMatch: function (message) {
                 gameData.syncGameData(message.gameData);

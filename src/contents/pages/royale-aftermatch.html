@@ -23,7 +23,7 @@
                                 <th>{{ 'STATS_WINS_R' | translate }}</th>
                             </tr>
                             <tr ng-repeat="player in players">
-                                <td>{{player.ranking}}</td>
+                                <td>{{$index + 1}}.</td>
                                 <td>{{player.nickname}}</td>
                                 <td>{{player.points}}</td>
                                 <td>{{player.wonMatches}}</td>
@@ -48,7 +48,7 @@
                                 <th>{{ 'STATS_TIME_R' | translate }}</th>
                             </tr>
                             <tr ng-repeat="player in matchPlayers">
-                                <td>{{player.match.ranking}}</td>
+                                <td>{{$index + 1}}.</td>
                                 <td>{{player.nickname}}</td>
                                 <td>{{player.match.points}}</td>
                                 <td>{{player.match.pathLength}}</td>
