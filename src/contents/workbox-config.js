@@ -32,7 +32,8 @@ module.exports = {
         "bower_components/firebase/firebase-auth.js",
         "bower_components/firebaseui/dist/firebaseui.js",
         "bower_components/components-font-awesome/css/all.min.css",
-        "bower_components/components-font-awesome/webfonts/*.*"
+        "bower_components/components-font-awesome/webfonts/*.*",
+        "bower_components/nosleep/dist/NoSleep.min.js"
     ],
     "swSrc": "src-service-worker.js",
     /*"maximumFileSizeToCacheInBytes": 12 * 1024 * 1024, // 12mb */

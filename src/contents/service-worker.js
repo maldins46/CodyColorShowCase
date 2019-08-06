@@ -235,11 +235,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "a594501db10983edd7d97eacff0cc1ad"
+    "revision": "2c332874509120124f3560d2e11f0e9b"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "b4c23b61c35d6ab4f4a911d773919e61"
+    "revision": "4ec095dcee2abbe50162d793f8c9604f"
   },
   {
     "url": "bower_components/firebaseui/buildtools/all_tests.html",
@@ -271,7 +271,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "b5e8608b83cf8e7f42c231f90ebe24fd"
+    "revision": "b88a15f451e7fa05b58da0db8988f343"
   },
   {
     "url": "pages/404.html",
@@ -327,11 +327,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-aftermatch.html",
-    "revision": "ca9f4a5608079b13699325759b82a9ee"
+    "revision": "474deccd155326d6b0e8fb2b28b0651d"
   },
   {
     "url": "pages/royale-match.html",
-    "revision": "7d3ccc27263741a62e575c7e5e6aae94"
+    "revision": "2884b0e77c35db86bca7424640d4aec7"
   },
   {
     "url": "pages/royale-mmaking.html",
@@ -347,7 +347,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/splash.html",
-    "revision": "2a19a3e995e43efd1c4edc834ecf1866"
+    "revision": "56245dd599ac30a6047cb7234f42d81f"
   },
   {
     "url": "pages/terms.html",
@@ -407,7 +407,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/customMmakingController.js",
-    "revision": "cd6f2cecc96c83deb60c3eb8c600ca4f"
+    "revision": "f35784237590f630ba698df1cc24a6d8"
   },
   {
     "url": "js/controllers/customNewMatchController.js",
@@ -435,15 +435,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/royaleAftermatchController.js",
-    "revision": "b66822e8f0fd2e3960219b37c5c9ba34"
+    "revision": "8981437768ebaa372ed2b1f4f0072dd5"
   },
   {
     "url": "js/controllers/royaleMatchController.js",
-    "revision": "8c7f7d4be5af9431ea4be16326f1a3c2"
+    "revision": "d73f6a6b161804258044660dd4a29e71"
   },
   {
     "url": "js/controllers/royaleMmakingController.js",
-    "revision": "c432279f8efdc54c3581af5b5e1b6465"
+    "revision": "fcc7ecea051fb40bf855415738376f02"
   },
   {
     "url": "js/controllers/royaleNewMatchController.js",
@@ -451,7 +451,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/splashController.js",
-    "revision": "55c2d66c65e9bc6d03f52cc53ca19158"
+    "revision": "d9d2247e8c16203498e5b0c8753f5eb8"
   },
   {
     "url": "js/gameData.js",
@@ -487,7 +487,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "5720215c85def0e5d8b0064e87c23690"
+    "revision": "747fe583423ac5dee57c40f551b4b31b"
   },
   {
     "url": "js/translationHandler.js",
@@ -624,5 +624,9 @@ workbox.precaching.precacheAndRoute([
   {
     "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.woff2",
     "revision": "b5cf8ae26748570d8fb95a47f46b69e1"
+  },
+  {
+    "url": "bower_components/nosleep/dist/NoSleep.min.js",
+    "revision": "8f0b82464694b1e337bcadd504bdcf0c"
   }
 ], { cleanupOutdatedCaches: true });

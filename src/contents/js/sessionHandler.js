@@ -7,7 +7,7 @@ angular.module('codyColor').factory("sessionHandler", function() {
     let isSessionValid;
 
     // todo da impostare manualmente ad ogni nuova release
-    const clientVersion = '3.0.0';
+    const clientVersion = '3.0.1';
 
     // informazioni sul sistema, aggiornate automaticamente dal server non appena connessi
     let generalInfo = {
@@ -20,6 +20,12 @@ angular.module('codyColor').factory("sessionHandler", function() {
     // numero univoco associato a questa sessione
     const sessionId = (Math.floor(Math.random() * 100000)).toString();
 
+    // oggetto che permette di
+    const noSleep = new NoSleep();
+
+    sessionHandler.enableNoSleep = function () {
+        noSleep.enable();
+    };
 
     sessionHandler.validateSession = function() {
         isSessionValid = true;

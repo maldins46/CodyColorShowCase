@@ -38,6 +38,7 @@ angular.module('codyColor').controller('splashCtrl',
         $scope.goToHome = function () {
             navigationHandler.goToPage($location, '/home');
             audioHandler.splashStartBase();
+            sessionHandler.enableNoSleep();
         }
     }
 );

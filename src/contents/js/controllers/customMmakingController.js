@@ -210,6 +210,7 @@ angular.module('codyColor').controller('customMmakingCtrl',
             gameData.getUserPlayer().nickname = $scope.nickname;
             changeScreen(screens.enemyFound);
             rabbit.sendValidationMessage();
+            sessionHandler.enableNoSleep();
         };
 
         $scope.linkCopied = false;

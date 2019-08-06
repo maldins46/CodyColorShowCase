@@ -130,6 +130,8 @@
     "TOP_10_POINTS_GLOBAL_SUBT":"Top 10 of authenticated players who scored the most points ever.",
     "MAT_START_COUNTDOWN": "Next match will start in {{countdown}}",
     "ENEMY_LEFT": "The opponent left the match.",
+    "GEN_RANKING": "General ranking",
+    "MAT_RANKING": "Match ranking",
     "FORCE_EXIT": "An error occurred in the server connection. Match aborted.",
     "NO_NEW_ENEMY": "There are no opponents at the moment. Match aborted.",
     "ERR_LOGIN": "Error during the signUp or logIn process. Aborted.",
