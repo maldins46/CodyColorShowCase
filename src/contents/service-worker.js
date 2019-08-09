@@ -271,7 +271,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "b88a15f451e7fa05b58da0db8988f343"
+    "revision": "477cf6a8868a16c8900cc2bdbf3e6740"
   },
   {
     "url": "pages/404.html",
@@ -502,8 +502,16 @@ workbox.precaching.precacheAndRoute([
     "revision": "8b9e755b33e4961ac40ab6a7f3ddc3f9"
   },
   {
+    "url": "js/vendor/noSleepMod.min.js",
+    "revision": "a68240931372fc206db6f5c5e7c6a328"
+  },
+  {
     "url": "js/vendor/stomp.js",
     "revision": "c48c7e12cb990717d1c7e4b23b0da12a"
+  },
+  {
+    "url": "js/vendor/stomp.min.js",
+    "revision": "f61cc52d03bc8f459fd27c4173b9b247"
   },
   {
     "url": "bower_components/jquery/dist/jquery.min.js",
@@ -624,9 +632,5 @@ workbox.precaching.precacheAndRoute([
   {
     "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.woff2",
     "revision": "b5cf8ae26748570d8fb95a47f46b69e1"
-  },
-  {
-    "url": "bower_components/nosleep/dist/NoSleep.min.js",
-    "revision": "8f0b82464694b1e337bcadd504bdcf0c"
   }
 ], { cleanupOutdatedCaches: true });
