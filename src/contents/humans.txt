@@ -13,5 +13,5 @@
 
     Technologies: CSS3, HTML5, JavaScript
     Framework:    AngularJs
-    Libraries:    Angular-dragdrop, Angular-animate, angular-cookies, Stomp.js,
+    Libraries:    Angular-dragdrop, Angular-animate, angular-cookies, Stomp.js, NoSleep.js
                   Apache Server Configs, jQuery, Modernizr, Normalize.css

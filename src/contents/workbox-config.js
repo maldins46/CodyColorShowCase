@@ -5,18 +5,18 @@
  */
 module.exports = {
     "globDirectory": ".",
-    /*"globIgnores": ['bower_components/**'],*/
     "globPatterns": [
-        "audio/*.mp3",                 /* Audio */
-        "img/*.png",              /* Images */
+        "audio/*.mp3",              /* Audio */
+        "img/*.png",                /* Images */
         "icons/*.png",              /* Icons */
         "favicon.ico",              /* Icons */
-        "css/*.*",                    /* css */
-        "locales/*.*",                    /* locales */
-        "**/*.html",                   /* html */
+        "css/*.*",                  /* css */
+        "locales/*.*",              /* locales */
+        "**/*.html",                /* html */
         "*.{json,webmanifest,xml}", /* auxiliary */
-        "js/**/*.js",                   /* javascript */
-        /* minified libraries */
+        "js/**/*.js",               /* javascript */
+
+        /* bower minified libraries */
         "bower_components/jquery/dist/jquery.min.js",
         "bower_components/jquery-ui/jquery-ui.min.js",
         "bower_components/angular/angular.min.js",
@@ -32,8 +32,7 @@ module.exports = {
         "bower_components/firebase/firebase-auth.js",
         "bower_components/firebaseui/dist/firebaseui.js",
         "bower_components/components-font-awesome/css/all.min.css",
-        "bower_components/components-font-awesome/webfonts/*.*",
-        "bower_components/nosleep/dist/NoSleep.min.js"
+        "bower_components/components-font-awesome/webfonts/*.*"
     ],
     "swSrc": "src-service-worker.js",
     /*"maximumFileSizeToCacheInBytes": 12 * 1024 * 1024, // 12mb */
