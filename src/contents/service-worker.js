@@ -250,7 +250,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "477cf6a8868a16c8900cc2bdbf3e6740"
+    "revision": "184c71bf505c49bbe6bd655184939b80"
   },
   {
     "url": "pages/404.html",
@@ -434,7 +434,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/gameData.js",
-    "revision": "0d0cafd5a0fb30afb4580cede286e3bb"
+    "revision": "78d06d61c24c51b14fbde114e85e9b64"
   },
   {
     "url": "js/main.js",
@@ -486,11 +486,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/vendor/stomp.js",
-    "revision": "c48c7e12cb990717d1c7e4b23b0da12a"
-  },
-  {
-    "url": "js/vendor/stomp.min.js",
-    "revision": "f61cc52d03bc8f459fd27c4173b9b247"
+    "revision": "623529f15039cd886c5c4c9afbd577ba"
   },
   {
     "url": "bower_components/jquery/dist/jquery.min.js",
