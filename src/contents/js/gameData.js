@@ -55,6 +55,7 @@ angular.module('codyColor').factory('gameData', function () {
         return {
             gameName:          undefined,
             startDate:         undefined,
+            scheduledStart:    false,
             gameRoomId:       -1,
             matchCount:        0,
             timerSetting:      30000,
