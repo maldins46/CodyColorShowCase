@@ -116,15 +116,17 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                 let formattedTranslateCode = gameData.formatTimeStatic(gameData.getGeneral().timerSetting);
                 translationHandler.setTranslation($scope, 'battleTime', formattedTranslateCode);
 
-                if (gameData.getGeneral().startDate !== undefined) {
+                if (gameData.getGeneral().scheduledStart) {
                     scopeService.safeApply($scope, function () {
-                        $scope.startMatchTimerValue = gameData.getGeneral().startDate - (new Date()).getTime();
+                        // calcola la data di avvio della partita in base al valore millisecondi mancanti comunicato dal server
+                        $scope.relativeStartDate = (new Date()).getTime() + message.msToStart;
+                        $scope.startMatchTimerValue = message.msToStart;
                     });
 
                     startMatchTimer = setInterval(function () {
                         if ($scope.startMatchTimerValue > 1000) {
                             scopeService.safeApply($scope, function () {
-                                $scope.startMatchTimerValue = gameData.getGeneral().startDate - (new Date()).getTime();
+                                $scope.startMatchTimerValue = $scope.relativeStartDate - (new Date()).getTime();
                             });
                         } else {
                             scopeService.safeApply($scope, function () {
