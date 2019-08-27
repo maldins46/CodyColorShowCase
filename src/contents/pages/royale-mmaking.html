@@ -80,16 +80,16 @@
                     </li>
                     <li class="list--simple-element"><h2> {{'WHEN_START' | translate }}</h2></li>
                     <li class="list--spaced-element">
-                        <div ng-show="generalData.startDate !== undefined">
+                        <div ng-show="generalData.scheduledStart">
                             {{ 'WHEN_TIMER' | translate }}<br>
                             <h2>{{ countdownFormatter(startMatchTimerValue) }}</h2>
                         </div>
-                        <div ng-hide="generalData.startDate !== undefined">
+                        <div ng-hide="generalData.scheduledStart">
                             {{ 'WHEN_INSTANT' | translate }}
                         </div>
                     </li>
                     <li class="list--spaced-element"
-                        ng-show="generalData.startDate === undefined && userPlayer.organizer && readyClicked !== true">
+                        ng-show="!generalData.scheduledStart && userPlayer.organizer && readyClicked !== true">
                         <button class="navigation--button flashing-animation"
                                 ng-click="playerReady()">
                             {{ 'START' | translate }}
