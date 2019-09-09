@@ -6,17 +6,24 @@ angular.module('codyColor').factory("chatHandler", function() {
     let chatHandler = {};
 
     let chatMessages = [];
-    const chatHintsPreMatch = [  "Ciao!", "Tutto bene?", "No", "Sì", "Sei pronto?", "Ci sei?", "Iniziamo!",
-        "Sono fortissimo!", "😄", "😂", "😘", "😎", "😭", "😱", "🤬", "🤖"];
+    let chatHintsPreMatch = [];
 
-    const chatHintsAfterMatch = ["Bella partita!", "Che sfortuna!", "Devo andare", "Giochiamo ancora?", "Ciao!",
-        "Sei un grande!", "No", "Sì", "Sei pronto?", "Ci sei?", "Iniziamo!", "😄", "😂", "😘", "😎", "😭", "😱", "🤬", "🤖"];
+    let chatHintsAfterMatch = [];
+
+
+    // inizializza manualmente gli id dei messaggi della chat
+    for (let i = 1; i <= 16; i++) {
+        chatHintsPreMatch.push("CHAT_PREMATCH."+i);
+    }
+    for (let i = 1; i <= 20; i++) {
+        chatHintsAfterMatch.push("CHAT_POSTMATCH."+i);
+    }
+
 
 
     chatHandler.getChatMessages = function() {
         return chatMessages;
     };
-
 
     chatHandler.getChatHintsPreMatch = function () {
         return chatHintsPreMatch;
