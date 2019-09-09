@@ -378,7 +378,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/bootmpMatchController.js",
-    "revision": "63229306b0ec8f296d79683a7661ef79"
+    "revision": "40f682f8e209abef0d89017051095143"
   },
   {
     "url": "js/controllers/bootmpMmakingController.js",
@@ -466,7 +466,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "f8c08cd0b0c9fd016828ed7fa0732dbf"
+    "revision": "b348599ec50b4e06b6b334563bbd97f4"
   },
   {
     "url": "js/translationHandler.js",

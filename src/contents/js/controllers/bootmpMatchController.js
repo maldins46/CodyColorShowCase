@@ -319,8 +319,8 @@ angular.module('codyColor').controller('bootmpMatchCtrl',
 
         // cosa fare una volta terminata senza intoppi la partita; mostra la schermata aftermatch
         let startAnimation = function () {
-            gameData.getGeneral().matchCount++;
             if (!$scope.startAnimation) {
+                gameData.getGeneral().matchCount++;
                 if ($scope.enemy !== undefined)
                     pathHandler.positionRoby(false, gameData.getEnemy1vs1().match.startPosition);
 
