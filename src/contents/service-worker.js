@@ -214,11 +214,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "2c332874509120124f3560d2e11f0e9b"
+    "revision": "6c141608a5d8c4786bcbd5cff4e9b5f8"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "4ec095dcee2abbe50162d793f8c9604f"
+    "revision": "c528563cf7d15734d252c9cb73b248af"
   },
   {
     "url": "bower_components/firebaseui/buildtools/all_tests.html",
@@ -258,7 +258,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/arcade-aftermatch.html",
-    "revision": "684639b5c84dca1a429568eb923be75a"
+    "revision": "a8673940ede69c97454411c04a7d5dad"
   },
   {
     "url": "pages/arcade-match.html",
@@ -278,7 +278,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/custom-mmaking.html",
-    "revision": "9a2630160542f10425b35480a30f067c"
+    "revision": "b7ca45d83f3ef2e725e98d4630d2b216"
   },
   {
     "url": "pages/custom-new-match.html",
@@ -298,7 +298,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/random-mmaking.html",
-    "revision": "de13bbb792e50abedb66b3d610c78b3e"
+    "revision": "ec8b07086dae3f5b4b178fdad27c9594"
   },
   {
     "url": "pages/rankings.html",
@@ -306,7 +306,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-aftermatch.html",
-    "revision": "474deccd155326d6b0e8fb2b28b0651d"
+    "revision": "1990366b306bab800b012a5276a111e9"
   },
   {
     "url": "pages/royale-match.html",
@@ -314,7 +314,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-mmaking.html",
-    "revision": "5e55662323812139b9c6ea778bb582b3"
+    "revision": "8fc50babeab1e1f5b534e41299488cf1"
   },
   {
     "url": "pages/royale-new-match.html",
@@ -362,7 +362,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/chatHandler.js",
-    "revision": "3a6749134dff089b1751be593eaa0e32"
+    "revision": "e18d78fd47b0d98154e51f1b68d42959"
   },
   {
     "url": "js/controllers/arcadeAftermatchController.js",
@@ -466,7 +466,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "55d3b61d60b0c597613739390729a83b"
+    "revision": "f8c08cd0b0c9fd016828ed7fa0732dbf"
   },
   {
     "url": "js/translationHandler.js",

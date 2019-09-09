@@ -146,7 +146,7 @@
                         <div class="chat--bubble-row">
                             <div ng-class="getBubbleStyle(bubble)">
                                 <div class="chat--bubble-sender">{{bubble.sender}}</div>
-                                {{bubble.body}}
+                                {{bubble.body | translate}}
                             </div>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                 <div class="chat--hints-container">
                     {{ 'CHAT_SEND' | translate }}
                     <div class="chat--hints-sub-container" ng-repeat="hint in chatHints">
-                        <button class="chat--hint" ng-click="sendChatMessage(hint)">{{hint}}</button>
+                        <button class="chat--hint" ng-click="sendChatMessage(hint)">{{hint | translate}}</button>
                     </div>
                 </div>
             </div>
