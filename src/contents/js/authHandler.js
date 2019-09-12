@@ -2,7 +2,7 @@
  * AuthHandler: factory per la gestione del flusso di autenticazione legato alle librerie firebase Auth, firebase UI
  * e ai vari provider oAuth
  */
-angular.module('codyColor').factory("authHandler", function($cookies) {
+angular.module('codyColor').factory("authHandler", ['$cookies', function($cookies) {
     let authHandler = {};
 
     // oggetto di configurazione Firebse SDK
@@ -213,4 +213,4 @@ angular.module('codyColor').factory("authHandler", function($cookies) {
 
 
     return authHandler;
-});
+}]);

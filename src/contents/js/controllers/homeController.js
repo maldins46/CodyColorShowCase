@@ -1,9 +1,10 @@
 /*
  * Controller Home, il menù principale, dal quale è possibile accedere alle varie sezioni del gioco
  */
-angular.module('codyColor').controller('homeCtrl',
-    function ($scope, rabbit, navigationHandler, audioHandler,
-              $location, sessionHandler, scopeService, $translate, authHandler, translationHandler) {
+angular.module('codyColor').controller('homeCtrl', ['$scope', 'rabbit', 'navigationHandler', 'audioHandler',
+    '$location', 'sessionHandler', 'scopeService', '$translate', 'authHandler', 'translationHandler',
+    function ($scope, rabbit, navigationHandler, audioHandler, $location, sessionHandler,
+              scopeService, $translate, authHandler, translationHandler) {
         console.log("Controller home ready.");
 
         // inizializzazione sessione
@@ -230,4 +231,4 @@ angular.module('codyColor').controller('homeCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

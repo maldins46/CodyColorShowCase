@@ -1,7 +1,8 @@
 /*
  * Controller Empty, gestisce le schermate che non necessitano di funzioni specifiche.
  */
-angular.module('codyColor').controller('emptyCtrl',
+angular.module('codyColor').controller('emptyCtrl', ['$scope', 'rabbit', 'navigationHandler', '$translate',
+    'authHandler', 'audioHandler', '$location', 'sessionHandler', 'translationHandler',
     function ($scope, rabbit, navigationHandler, $translate, authHandler,
               audioHandler, $location, sessionHandler, translationHandler) {
         console.log("Empty controller ready.");
@@ -55,4 +56,4 @@ angular.module('codyColor').controller('emptyCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

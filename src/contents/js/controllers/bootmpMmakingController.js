@@ -1,7 +1,8 @@
 /*
  * Controller Empty, gestisce le schermate che non necessitano di funzioni specifiche.
  */
-angular.module('codyColor').controller('bootmpMmakingCtrl',
+angular.module('codyColor').controller('bootmpMmakingCtrl', ['$scope', 'rabbit', 'navigationHandler', '$translate',
+    'authHandler', 'translationHandler', 'audioHandler', '$location', 'sessionHandler', 'gameData', 'scopeService',
     function ($scope, rabbit, navigationHandler, $translate, authHandler, translationHandler,
               audioHandler, $location, sessionHandler, gameData, scopeService) {
         console.log("Bootcamp making controller ready.");
@@ -156,4 +157,4 @@ angular.module('codyColor').controller('bootmpMmakingCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

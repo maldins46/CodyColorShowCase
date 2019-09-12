@@ -2,7 +2,7 @@
  * TraductionHandler: fornisce metodi utili per gestire le traduzioni ed evutare relativo
  * codice duplicato sparso per i controllers
  */
-angular.module('codyColor').factory("translationHandler", function($translate) {
+angular.module('codyColor').factory("translationHandler", [ '$translate', function($translate) {
     let traductionHandler = {};
 
     traductionHandler.setTranslation = function ($scope, container, traductionId) {
@@ -14,4 +14,4 @@ angular.module('codyColor').factory("translationHandler", function($translate) {
     };
 
     return traductionHandler;
-});
+}]);

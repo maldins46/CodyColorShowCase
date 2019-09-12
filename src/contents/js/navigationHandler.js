@@ -25,7 +25,7 @@ angular.module('codyColor').factory("navigationHandler", function () {
     return navigationHandler;
 });
 
-angular.module('codyColor').config(function ($routeProvider) {
+angular.module('codyColor').config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when("/", {templateUrl: "pages/splash.html", controller: "splashCtrl"})
         .when("/home", {templateUrl: "pages/home.html", controller: "homeCtrl"})
@@ -47,4 +47,4 @@ angular.module('codyColor').config(function ($routeProvider) {
         .when("/privacy", {templateUrl: "pages/privacy.html", controller: "emptyCtrl"})
         .when("/rankings", {templateUrl: "pages/rankings.html", controller: "rankingsCtrl"})
         .otherwise({templateUrl: "pages/404.html", controller: "emptyCtrl"});
-});
+}]);

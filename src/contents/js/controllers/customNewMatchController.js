@@ -1,7 +1,9 @@
 /*
  * Controller partita con avversario custom
  */
-angular.module('codyColor').controller('customNewMatchCtrl',
+angular.module('codyColor').controller('customNewMatchCtrl', ['$scope', 'rabbit', 'navigationHandler',
+    'scopeService', '$translate', 'translationHandler', 'audioHandler', '$location', 'sessionHandler', 'gameData',
+    'authHandler',
     function ($scope, rabbit, navigationHandler, scopeService, $translate, translationHandler,
               audioHandler, $location, sessionHandler, gameData, authHandler) {
         console.log("Empty controller ready.");
@@ -127,4 +129,4 @@ angular.module('codyColor').controller('customNewMatchCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

@@ -2,7 +2,8 @@
  * Controller responsabile della schermata post partita. Mostra dati sull'esito della partita e dà la possibilità di
  * portarne avanti una con lo stesso avversario
  */
-angular.module('codyColor').controller('bootmpAftermatchCtrl',
+angular.module('codyColor').controller('bootmpAftermatchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
+    '$location', 'navigationHandler', 'audioHandler', 'sessionHandler', '$translate', 'authHandler', 'translationHandler',
     function ($scope, rabbit, gameData, scopeService, $location, navigationHandler,
               audioHandler, sessionHandler, $translate, authHandler, translationHandler) {
         console.log("Controller aftermatch ready.");
@@ -101,4 +102,4 @@ angular.module('codyColor').controller('bootmpAftermatchCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

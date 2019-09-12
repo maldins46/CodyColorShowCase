@@ -201,18 +201,6 @@ workbox.precaching.precacheAndRoute([
     "revision": "8a7fd8e460595bafc6f1a4b32efd1a28"
   },
   {
-    "url": "css/firebase-ui-custom.css",
-    "revision": "f616cb3698398300bb729a3b34765ff8"
-  },
-  {
-    "url": "css/main.css",
-    "revision": "03556e132a25876025f127ff4cb01bb8"
-  },
-  {
-    "url": "css/normalize.css",
-    "revision": "112272e51c80ffe5bd01becd2ce7d656"
-  },
-  {
     "url": "locales/locale-en.json",
     "revision": "6c141608a5d8c4786bcbd5cff4e9b5f8"
   },
@@ -250,7 +238,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "184c71bf505c49bbe6bd655184939b80"
+    "revision": "2974dfef9ee10f3c548046708004663d"
   },
   {
     "url": "pages/404.html",
@@ -349,263 +337,23 @@ workbox.precaching.precacheAndRoute([
     "revision": "319f0ce547818d0a541a1abe4f818400"
   },
   {
+    "url": "package-lock.json",
+    "revision": "986ce2cb101a1c8e137b9fdb5274458e"
+  },
+  {
+    "url": "package.json",
+    "revision": "ad64d3f81186b47c66130a0139eb873e"
+  },
+  {
     "url": "site.webmanifest",
     "revision": "a1c81b5cb1033a0be5130ab456c6436b"
   },
   {
-    "url": "js/audioHandler.js",
-    "revision": "0ee5ece4a490a913619dd0da4a91dbc7"
+    "url": "build/app.min.css",
+    "revision": "c2039b54b7bb3bd91ce0de15c2eade3d"
   },
   {
-    "url": "js/authHandler.js",
-    "revision": "8a130998f3dc7c0b151e9129d439f495"
-  },
-  {
-    "url": "js/chatHandler.js",
-    "revision": "e18d78fd47b0d98154e51f1b68d42959"
-  },
-  {
-    "url": "js/controllers/arcadeAftermatchController.js",
-    "revision": "85d36c75dfa752664708a1bf5d591d5c"
-  },
-  {
-    "url": "js/controllers/arcadeMatchController.js",
-    "revision": "07fadaf58a09b5d492f908e642ea4998"
-  },
-  {
-    "url": "js/controllers/bootmpAftermatchController.js",
-    "revision": "5b5014fca55d4c457bc07eb416ce3ec9"
-  },
-  {
-    "url": "js/controllers/bootmpMatchController.js",
-    "revision": "40f682f8e209abef0d89017051095143"
-  },
-  {
-    "url": "js/controllers/bootmpMmakingController.js",
-    "revision": "5dfa3d7257bee35549205df77d947e44"
-  },
-  {
-    "url": "js/controllers/customMmakingController.js",
-    "revision": "f35784237590f630ba698df1cc24a6d8"
-  },
-  {
-    "url": "js/controllers/customNewMatchController.js",
-    "revision": "2639aea26ef05e9834f4ce57030be065"
-  },
-  {
-    "url": "js/controllers/emptyController.js",
-    "revision": "6be32d71c103c91b7abdc7008da4e917"
-  },
-  {
-    "url": "js/controllers/homeController.js",
-    "revision": "9604807449aced2a43d0860122379c9c"
-  },
-  {
-    "url": "js/controllers/loginController.js",
-    "revision": "70d0d023cd7ca91c0571ec9eadcffafc"
-  },
-  {
-    "url": "js/controllers/randomMmakingController.js",
-    "revision": "0db491c4786d23c499d0dff9de7faf4d"
-  },
-  {
-    "url": "js/controllers/rankingsController.js",
-    "revision": "bad29496dd5eeb44d08c15df3d405f17"
-  },
-  {
-    "url": "js/controllers/royaleAftermatchController.js",
-    "revision": "8981437768ebaa372ed2b1f4f0072dd5"
-  },
-  {
-    "url": "js/controllers/royaleMatchController.js",
-    "revision": "d73f6a6b161804258044660dd4a29e71"
-  },
-  {
-    "url": "js/controllers/royaleMmakingController.js",
-    "revision": "284f099964397c29ef04557fb87a87f0"
-  },
-  {
-    "url": "js/controllers/royaleNewMatchController.js",
-    "revision": "5ddd040267b2ff357dcd2f7cc18830bf"
-  },
-  {
-    "url": "js/controllers/splashController.js",
-    "revision": "d9d2247e8c16203498e5b0c8753f5eb8"
-  },
-  {
-    "url": "js/gameData.js",
-    "revision": "78d06d61c24c51b14fbde114e85e9b64"
-  },
-  {
-    "url": "js/main.js",
-    "revision": "5bc736b46c178e5eeab55c2ec45122d9"
-  },
-  {
-    "url": "js/navigationHandler.js",
-    "revision": "6605dd60e50882e4aee830a3b781d991"
-  },
-  {
-    "url": "js/pathHandler.js",
-    "revision": "ee750c13ba5175ea4f82223407531a00"
-  },
-  {
-    "url": "js/plugins.js",
-    "revision": "048e67836eb558d0854f558a4f3a5663"
-  },
-  {
-    "url": "js/rabbitCommunicator.js",
-    "revision": "8b02a723aec159c475547bc28a9fb78c"
-  },
-  {
-    "url": "js/rankingsHandler.js",
-    "revision": "f5d0981b934d518b9a631dde7733367d"
-  },
-  {
-    "url": "js/scopeService.js",
-    "revision": "18e8e96b233ee84a1e9cf283188e5339"
-  },
-  {
-    "url": "js/sessionHandler.js",
-    "revision": "b348599ec50b4e06b6b334563bbd97f4"
-  },
-  {
-    "url": "js/translationHandler.js",
-    "revision": "d22cf03c3d2ca68e1840474778c4e854"
-  },
-  {
-    "url": "js/vendor/jquery.ui.touch-punch.min.js",
-    "revision": "700b877cd3ade98ce6cd4be349d81a5c"
-  },
-  {
-    "url": "js/vendor/modernizr.min.js",
-    "revision": "8b9e755b33e4961ac40ab6a7f3ddc3f9"
-  },
-  {
-    "url": "js/vendor/noSleepMod.min.js",
-    "revision": "a68240931372fc206db6f5c5e7c6a328"
-  },
-  {
-    "url": "js/vendor/stomp.js",
-    "revision": "623529f15039cd886c5c4c9afbd577ba"
-  },
-  {
-    "url": "bower_components/jquery/dist/jquery.min.js",
-    "revision": "220afd743d9e9643852e31a135a9f3ae"
-  },
-  {
-    "url": "bower_components/jquery-ui/jquery-ui.min.js",
-    "revision": "c15b1008dec3c8967ea657a7bb4baaec"
-  },
-  {
-    "url": "bower_components/angular/angular.min.js",
-    "revision": "0f146391dfc57e3e0506c4c0f72d51d1"
-  },
-  {
-    "url": "bower_components/angular-dragdrop/src/angular-dragdrop.min.js",
-    "revision": "68c7c58943631b2c73eda382ff50a732"
-  },
-  {
-    "url": "bower_components/angular-route/angular-route.min.js",
-    "revision": "c429fba7f57cd2306843295bc29aa571"
-  },
-  {
-    "url": "bower_components/angular-animate/angular-animate.min.js",
-    "revision": "72c2f5ab2972d75161f2e1447dcc2758"
-  },
-  {
-    "url": "bower_components/angular-cookies/angular-cookies.min.js",
-    "revision": "bf11427c55c465560b91a34c22cc0498"
-  },
-  {
-    "url": "bower_components/angular-translate/angular-translate.min.js",
-    "revision": "043ca33cd1a9b97ffbbb33671c3d38c8"
-  },
-  {
-    "url": "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
-    "revision": "0d0f49ccc75db0eed91d792227e3cab4"
-  },
-  {
-    "url": "bower_components/angular-sanitize/angular-sanitize.min.js",
-    "revision": "337cb810793e337cff921a292de44935"
-  },
-  {
-    "url": "bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js",
-    "revision": "5491ea6a28c1355d344df7afaf2fd7e0"
-  },
-  {
-    "url": "bower_components/firebase/firebase-app.js",
-    "revision": "ea4f80e43d1ffb922cafef20f5cefdd8"
-  },
-  {
-    "url": "bower_components/firebase/firebase-auth.js",
-    "revision": "d531146426b5bdb6ad68d90d73200c01"
-  },
-  {
-    "url": "bower_components/firebaseui/dist/firebaseui.js",
-    "revision": "d74e7980688d4eb01a893a35435aced6"
-  },
-  {
-    "url": "bower_components/components-font-awesome/css/all.min.css",
-    "revision": "dbf9d822cefe851ba6f66e1ad57e8987"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.eot",
-    "revision": "03783c5172ee1ad128c576bf88fac168"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.svg",
-    "revision": "073c2f3ce60eaf69cc2767ef3d989078"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.ttf",
-    "revision": "ed2b8bf117160466ba6220a8f1da54a4"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.woff",
-    "revision": "fe9d62e0d16a333a20e63c3e7595f82e"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-brands-400.woff2",
-    "revision": "7559b3774a0625e8ca6c0160f8f6cfd8"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.eot",
-    "revision": "fc9c63c8224fb341fc933641cbdd12ef"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.svg",
-    "revision": "8fdea4e89ac405d9f8db327adb331d8d"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.ttf",
-    "revision": "59215032a4397507b80e5625dc323de3"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.woff",
-    "revision": "e5770f9863963fb576942e25214a226d"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-regular-400.woff2",
-    "revision": "e07d9e40b26048d9abe2ef966cd6e263"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.eot",
-    "revision": "ef3df98419d143d9617fe163bf4edc0b"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.svg",
-    "revision": "b557f56e367e59344ca95f9d1fb44352"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.ttf",
-    "revision": "acf50f59802f20d8b45220eaae532a1c"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.woff",
-    "revision": "4bced7c4c0d61d4f988629bb8ae80b8b"
-  },
-  {
-    "url": "bower_components/components-font-awesome/webfonts/fa-solid-900.woff2",
-    "revision": "b5cf8ae26748570d8fb95a47f46b69e1"
+    "url": "build/app.min.js",
+    "revision": "64736351ffcc8f2af7faf4dbb16a2261"
   }
 ], { cleanupOutdatedCaches: true });

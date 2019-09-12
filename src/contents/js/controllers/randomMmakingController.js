@@ -2,7 +2,9 @@
  * Controller responsabile della funzione di matchmaking nelle partite a accoppiamento
  * casuale dei giocatori
  */
-angular.module('codyColor').controller('randomMmakingCtrl',
+angular.module('codyColor').controller('randomMmakingCtrl',['$scope', 'rabbit', 'gameData', '$location',
+    'scopeService', '$translate', 'authHandler', 'navigationHandler', 'audioHandler', 'sessionHandler', 'chatHandler',
+    'translationHandler',
     function ($scope, rabbit, gameData, $location, scopeService, $translate, authHandler,
               navigationHandler, audioHandler, sessionHandler, chatHandler, translationHandler) {
         console.log("Controller random matchmaking ready.");
@@ -231,4 +233,4 @@ angular.module('codyColor').controller('randomMmakingCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

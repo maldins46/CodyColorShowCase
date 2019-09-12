@@ -1,7 +1,9 @@
 /*
  * Controller partita con avversario custom
  */
-angular.module('codyColor').controller('customMmakingCtrl',
+angular.module('codyColor').controller('customMmakingCtrl', ['$scope', 'rabbit', 'navigationHandler', '$translate',
+    'translationHandler', 'authHandler', 'audioHandler', '$location', 'sessionHandler', 'gameData', 'scopeService',
+    'chatHandler', 'settings',
     function ($scope, rabbit, navigationHandler, $translate, translationHandler, authHandler,
               audioHandler, $location, sessionHandler, gameData, scopeService,
               chatHandler, settings) {
@@ -296,4 +298,4 @@ angular.module('codyColor').controller('customMmakingCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

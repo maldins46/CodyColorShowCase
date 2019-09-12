@@ -1,7 +1,9 @@
 /*
  * Controller royale mmaking: gestisce la creazione di partite e l'accoppiamento dei giocatori
  */
-angular.module('codyColor').controller('royaleMmakingCtrl',
+angular.module('codyColor').controller('royaleMmakingCtrl', ['$scope', 'rabbit', 'navigationHandler', '$translate',
+    'translationHandler', 'audioHandler', '$location', 'sessionHandler', 'gameData', 'scopeService', 'chatHandler',
+    'settings', 'authHandler',
     function ($scope, rabbit, navigationHandler, $translate, translationHandler,
               audioHandler, $location, sessionHandler, gameData, scopeService,
               chatHandler, settings, authHandler) {
@@ -341,4 +343,4 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

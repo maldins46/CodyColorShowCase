@@ -1,7 +1,8 @@
 /*
  * Controller Splash Screen, la schermata mostrata non appena si accede al sito
  */
-angular.module('codyColor').controller('splashCtrl',
+angular.module('codyColor').controller('splashCtrl', ['$scope', 'rabbit', 'navigationHandler', 'audioHandler',
+    '$location', 'sessionHandler', '$routeParams', 'gameData', 'authHandler',
     function ($scope, rabbit, navigationHandler, audioHandler,
               $location, sessionHandler, $routeParams, gameData, authHandler) {
         console.log("Controller splash ready.");
@@ -41,4 +42,4 @@ angular.module('codyColor').controller('splashCtrl',
             sessionHandler.enableNoSleep();
         }
     }
-);
+]);

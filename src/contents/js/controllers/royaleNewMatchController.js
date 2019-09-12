@@ -1,7 +1,9 @@
 /*
  * Controller partita con avversario custom
  */
-angular.module('codyColor').controller('royaleNewMatchCtrl',
+angular.module('codyColor').controller('royaleNewMatchCtrl', ['$scope', 'rabbit', 'navigationHandler',
+    'scopeService', '$translate', 'translationHandler', 'audioHandler', '$location', 'sessionHandler', 'gameData',
+    'authHandler',
     function ($scope, rabbit, navigationHandler, scopeService, $translate, translationHandler,
               audioHandler, $location, sessionHandler, gameData, authHandler) {
         console.log("New match royale controller ready.");
@@ -206,4 +208,4 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

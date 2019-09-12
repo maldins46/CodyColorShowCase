@@ -101,12 +101,12 @@ textarea {
 
 @font-face {
     font-family: "Baloo Chettan";
-    src: url(fonts/baloo-chettan-v5-latin-regular.ttf);
+    src: url(../fonts/baloo-chettan-v5-latin-regular.ttf);
 }
 
 @font-face {
     font-family: "Play";
-    src: url(fonts/play-v11-latin-regular.ttf);
+    src: url(../fonts/play-v11-latin-regular.ttf);
 }
 
 html, body {

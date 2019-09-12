@@ -1,7 +1,9 @@
 /*
  * Controller Empty, gestisce le schermate che non necessitano di funzioni specifiche.
  */
-angular.module('codyColor').controller('rankingsCtrl',
+angular.module('codyColor').controller('rankingsCtrl', ['$scope', 'rabbit', 'navigationHandler', '$translate',
+    'authHandler', 'gameData', 'rankingsHandler', 'audioHandler', '$location', 'sessionHandler', 'translationHandler',
+    'scopeService',
     function ($scope, rabbit, navigationHandler, $translate, authHandler, gameData, rankingsHandler,
               audioHandler, $location, sessionHandler, translationHandler, scopeService) {
         console.log("Rankings controller ready.");
@@ -149,4 +151,4 @@ angular.module('codyColor').controller('rankingsCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

@@ -2,7 +2,9 @@
  * Controller responsabile della schermata post partita. Mostra dati sull'esito della partita e dà la possibilità di
  * portarne avanti una con lo stesso avversario
  */
-angular.module('codyColor').controller('arcadeAftermatchCtrl',
+angular.module('codyColor').controller('arcadeAftermatchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
+    '$location', '$translate', 'authHandler', 'navigationHandler', 'audioHandler', 'sessionHandler', 'chatHandler',
+    'translationHandler',
     function ($scope, rabbit, gameData, scopeService, $location, $translate, authHandler,
               navigationHandler, audioHandler, sessionHandler, chatHandler, translationHandler) {
         console.log("Controller aftermatch ready.");
@@ -152,4 +154,4 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

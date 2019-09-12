@@ -2,7 +2,7 @@
  * RobyMoveHandler: servizio che permette di gestire i robot nella scacchiera, calcolando il percorso che
  * ogni robot robot deve compiere, animandoli a comando, e calcolandone il percorso
  */
-angular.module('codyColor').factory("pathHandler", function(gameData, scopeService) {
+angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', function(gameData, scopeService) {
     let pathHandler = {};
 
     // rirerimenti jQuery agli elementi del DOM utilizzati nell'elaborazione delle animaizoni
@@ -490,4 +490,4 @@ angular.module('codyColor').factory("pathHandler", function(gameData, scopeServi
 
 
     return pathHandler;
-});
+}]);

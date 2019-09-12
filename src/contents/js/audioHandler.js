@@ -2,7 +2,7 @@
  * AudioHandler: factory ausiliario responsabile della gestione dell'audio, dalla base
  * musicale ai vari suoni
  */
-angular.module('codyColor').factory("audioHandler", function($cookies) {
+angular.module('codyColor').factory("audioHandler", ['$cookies', function($cookies) {
     let audioHandler = {};
 
     let musicBase = new Audio();
@@ -51,4 +51,4 @@ angular.module('codyColor').factory("audioHandler", function($cookies) {
     };
 
     return audioHandler;
-});
+}]);

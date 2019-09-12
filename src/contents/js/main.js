@@ -5,7 +5,7 @@ angular.module('codyColor', ['ngRoute', 'ngAnimate', 'ngDragDrop',
     'ngCookies', 'pascalprecht.translate', 'ngSanitize']);
 
 // global module configuration
-angular.module('codyColor').config(function ($translateProvider) {
+angular.module('codyColor').config(['$translateProvider', function ($translateProvider) {
     $translateProvider.useStaticFilesLoader({
         prefix: 'locales/locale-',
         suffix: '.json'
@@ -29,4 +29,4 @@ angular.module('codyColor').config(function ($translateProvider) {
     $translateProvider.fallbackLanguage('en');
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
     $translateProvider.useCookieStorage();
-});
+}]);

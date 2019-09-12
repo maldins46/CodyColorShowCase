@@ -1,7 +1,8 @@
 /*
  * Controller login
  */
-angular.module('codyColor').controller('loginCtrl',
+angular.module('codyColor').controller('loginCtrl', ['navigationHandler', '$scope', 'audioHandler', '$location',
+    'sessionHandler', '$translate', 'scopeService', 'authHandler', 'rabbit', 'translationHandler', 'gameData',
     function (navigationHandler, $scope, audioHandler, $location, sessionHandler,
               $translate, scopeService, authHandler, rabbit, translationHandler, gameData) {
         console.log("Controller login ready.");
@@ -300,4 +301,4 @@ angular.module('codyColor').controller('loginCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

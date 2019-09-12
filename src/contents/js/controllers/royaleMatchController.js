@@ -1,7 +1,9 @@
 /*
  * Controller responsabile della schermata partita
  */
-angular.module('codyColor').controller('royaleMatchCtrl',
+angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
+    'pathHandler', '$location', '$translate', 'chatHandler', 'navigationHandler', 'audioHandler', 'sessionHandler',
+    'translationHandler', 'authHandler',
     function ($scope, rabbit, gameData, scopeService, pathHandler, $location, $translate, chatHandler,
               navigationHandler, audioHandler, sessionHandler, translationHandler, authHandler) {
         console.log("Controller match ready.");
@@ -415,4 +417,4 @@ angular.module('codyColor').controller('royaleMatchCtrl',
             $scope.basePlaying = audioHandler.isAudioEnabled();
         };
     }
-);
+]);

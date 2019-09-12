@@ -4,7 +4,8 @@
  * e l'invio di messaggi al broker
  */
 
-angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler, settings, authHandler) {
+angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 'settings', 'authHandler',
+    function (gameData, sessionHandler, settings, authHandler) {
     let rabbit = {};
 
     const endpoints = {
@@ -437,5 +438,5 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
     };
 
     return rabbit;
-});
+}]);
 
