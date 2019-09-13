@@ -9,9 +9,13 @@ module.exports = function(grunt) {
         bower_concat: {
             all: {
                 options: { separator : ';' },
+                mainFiles: {
+                    'firebase': ['firebase-app.js', 'firebase-auth.js'],
+                },
+                exclude: ['components-font-awesome'],
                 dest: {
                     js: 'js/vendor/bower.js',
-                    css: 'css/bower.css',
+                    css: 'css/bower.css'
                 },
             }
         },
@@ -44,10 +48,13 @@ module.exports = function(grunt) {
         cssmin: {
             target: {
                 files: {
-                    'build/app.min.css': ['css/**/*.css']
+                    'build/app.min.css': ['css/normalize.css', 'css/fontawesome.css', 'bower.css', 'css/main.css', 'css/firebase-ui-custom.css']
                 }
             }
         },
+
+        // delete intermediate files
+        clean: ['build/app.js']
     });
 
     // load in the grunt plugins
@@ -55,10 +62,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-ng-annotate');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     // the default task can be run just by typing "grunt" on the command line
-    grunt.registerTask('default', ['bower_concat', 'concat', 'uglify', 'cssmin']);
-    grunt.registerTask('build', ['bower_concat', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['bower_concat', 'concat', 'uglify', 'cssmin', 'clean']);
+    grunt.registerTask('build', ['bower_concat', 'concat', 'uglify', 'cssmin', 'clean']);
     grunt.registerTask('update_dependencies', ['bower_concat']);
 };

@@ -201,6 +201,34 @@ workbox.precaching.precacheAndRoute([
     "revision": "8a7fd8e460595bafc6f1a4b32efd1a28"
   },
   {
+    "url": "fonts/baloo-chettan.ttf",
+    "revision": "6be69c2d657a1d53bae098fa68432d33"
+  },
+  {
+    "url": "fonts/baloo-chettan.woff",
+    "revision": "a42e44bb157506632b1eb4905f977071"
+  },
+  {
+    "url": "fonts/fa-brands-400.woff",
+    "revision": "fe9d62e0d16a333a20e63c3e7595f82e"
+  },
+  {
+    "url": "fonts/fa-regular-400.woff",
+    "revision": "e5770f9863963fb576942e25214a226d"
+  },
+  {
+    "url": "fonts/fa-solid-900.woff",
+    "revision": "4bced7c4c0d61d4f988629bb8ae80b8b"
+  },
+  {
+    "url": "fonts/play.ttf",
+    "revision": "85a4800fa5e9aa1053184e29f77f30a0"
+  },
+  {
+    "url": "fonts/play.woff",
+    "revision": "9ecb17102a498e2d06fce8559d6eaba4"
+  },
+  {
     "url": "locales/locale-en.json",
     "revision": "6c141608a5d8c4786bcbd5cff4e9b5f8"
   },
@@ -209,36 +237,12 @@ workbox.precaching.precacheAndRoute([
     "revision": "c528563cf7d15734d252c9cb73b248af"
   },
   {
-    "url": "bower_components/firebaseui/buildtools/all_tests.html",
-    "revision": "a804685d6a54412445269458d21cf813"
+    "url": "build/app.min.css",
+    "revision": "15e973a724213c0223f157924c5df7d8"
   },
   {
-    "url": "bower_components/firebaseui/buildtools/test_template.html",
-    "revision": "4bfc458a724432ad9a3a59f64217c485"
-  },
-  {
-    "url": "bower_components/firebaseui/demo/public/index.html",
-    "revision": "f525a41290c5c506cdb728a35604b618"
-  },
-  {
-    "url": "bower_components/firebaseui/demo/public/widget.html",
-    "revision": "505e21921f09bf6df39fce67c0d59cb2"
-  },
-  {
-    "url": "bower_components/firebaseui/javascript/ui/mdl_test_dom.html",
-    "revision": "5b631f895bac9e9e49a38971e9a803fa"
-  },
-  {
-    "url": "bower_components/firebaseui/soy/elements_test_dom.html",
-    "revision": "009952fe4c6199a56e5f6f2db8e20002"
-  },
-  {
-    "url": "bower_components/firebaseui/soy/pages_test_dom.html",
-    "revision": "2d5659f736def12b16c843cfd105fb9b"
-  },
-  {
-    "url": "index.html",
-    "revision": "2974dfef9ee10f3c548046708004663d"
+    "url": "build/app.min.js",
+    "revision": "0bc55e3a05de884e4eef8c0b4e5259ac"
   },
   {
     "url": "pages/404.html",
@@ -321,39 +325,27 @@ workbox.precaching.precacheAndRoute([
     "revision": "43337ad2159f4ba3d30ccc1ebff3d8ed"
   },
   {
-    "url": "static/privacy-policy/index.html",
-    "revision": "ef2992b14cbc08c8f2d3948dda84b8b6"
-  },
-  {
-    "url": "static/terms-of-service/index.html",
-    "revision": "3fa28e680a5209544ddb0c8bc9ed4eea"
+    "url": "index.html",
+    "revision": "319055e110c49f1e398fe23e839de485"
   },
   {
     "url": "browserconfig.xml",
     "revision": "905720e1544539f066d6e6c2017abe2c"
   },
   {
+    "url": "humans.txt",
+    "revision": "a5ca446552514c2815a6f4524211bb8f"
+  },
+  {
     "url": "manifest.json",
     "revision": "319f0ce547818d0a541a1abe4f818400"
   },
   {
-    "url": "package-lock.json",
-    "revision": "986ce2cb101a1c8e137b9fdb5274458e"
-  },
-  {
-    "url": "package.json",
-    "revision": "ad64d3f81186b47c66130a0139eb873e"
+    "url": "robots.txt",
+    "revision": "00733c197e59662cf705a2ec6d881d44"
   },
   {
     "url": "site.webmanifest",
     "revision": "a1c81b5cb1033a0be5130ab456c6436b"
-  },
-  {
-    "url": "build/app.min.css",
-    "revision": "c2039b54b7bb3bd91ce0de15c2eade3d"
-  },
-  {
-    "url": "build/app.min.js",
-    "revision": "64736351ffcc8f2af7faf4dbb16a2261"
   }
 ], { cleanupOutdatedCaches: true });

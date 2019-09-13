@@ -100,13 +100,14 @@ textarea {
  * ------------------------------------------------------------------------- */
 
 @font-face {
-    font-family: "Baloo Chettan";
-    src: url(../fonts/baloo-chettan-v5-latin-regular.ttf);
+    font-family: 'Baloo Chettan';
+    src: url('../fonts/baloo-chettan.ttf');
 }
 
+
 @font-face {
-    font-family: "Play";
-    src: url(../fonts/play-v11-latin-regular.ttf);
+    font-family: 'Play';
+    src: url('../fonts/play.ttf');
 }
 
 html, body {
