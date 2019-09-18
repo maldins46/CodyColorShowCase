@@ -1,6 +1,5 @@
-
 // wrapper function
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     // configuration object
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -8,7 +7,7 @@ module.exports = function(grunt) {
         // bower libraries concatenation
         bower_concat: {
             all: {
-                options: { separator : ';' },
+                options: {separator: ';'},
                 mainFiles: {
                     'firebase': ['firebase-app.js', 'firebase-auth.js'],
                 },
@@ -18,6 +17,7 @@ module.exports = function(grunt) {
                     css: 'css/bower.css'
                 },
             }
+
         },
 
         // js concatenation
@@ -26,12 +26,13 @@ module.exports = function(grunt) {
                 separator: ';'
             },
             dist: {
-                src: ['js/vendor/bower.js','js/main.js','js/**/*.js'],
+                src: ['js/vendor/bower.js', 'js/main.js', 'js/**/*.js'],
                 dest: 'build/app.js',
             }
+
         },
 
-        // js minification and compression
+        // js minification and compression with ES6 plugin
         uglify: {
             options: {
                 // the banner is inserted at the top of the output
@@ -48,7 +49,58 @@ module.exports = function(grunt) {
         cssmin: {
             target: {
                 files: {
-                    'build/app.min.css': ['css/normalize.css', 'css/fontawesome.css', 'bower.css', 'css/main.css', 'css/firebase-ui-custom.css']
+                    // it is important to concatenate in this order
+                    'build/app.min.css': [
+                        'css/normalize.css',
+                        'css/fontawesome.css',
+                        'bower.css',
+                        'css/main.css',
+                        'css/firebase-ui-custom.css'
+                    ]
+                }
+            }
+
+        },
+
+        // create index files using different imports based on the release type
+        'string-replace': {
+            build: {
+                dist: {
+                    files: {
+                        dest: 'index.html',
+                        src: ['./index-model/index-model.html']
+                    }
+                },
+                options: {
+                    replacements: [
+                        {
+                            pattern: '<!--javascript-import-->',
+                            replacement: '<%= grunt.file.read(\'index-model/javascript-import.html\') %>'
+                        },
+                        {
+                            pattern: '<!--css-import-->',
+                            replacement: '<%= grunt.file.read(\'index-model/css-import.html\') %>'
+                        }
+                    ]
+                }
+            },
+            'build-beta': {
+                dist: {
+                    files: {
+                        'index.html': 'index-model/index-model.html'
+                    }
+                },
+                options: {
+                    replacements: [
+                        {
+                            pattern: /<!--javascript-import-->/ig,
+                            replacement: '<%= grunt.file.read(\'index-model/javascript-import-beta.html\') %>'
+                        },
+                        {
+                            pattern: /<!--css-import-->/ig,
+                            replacement: '<%= grunt.file.read(\'index-model/css-import-beta.html\') %>'
+                        }
+                    ]
                 }
             }
         },
@@ -63,9 +115,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     // the default task can be run just by typing "grunt" on the command line
-    grunt.registerTask('default', ['bower_concat', 'concat', 'uglify', 'cssmin', 'clean']);
-    grunt.registerTask('build', ['bower_concat', 'concat', 'uglify', 'cssmin', 'clean']);
+    grunt.registerTask('build', ['bower_concat', 'concat', 'uglify', 'cssmin', 'clean', 'string-replace:build']);
+    grunt.registerTask('build-beta', ['string-replace:build-beta']);
     grunt.registerTask('update_dependencies', ['bower_concat']);
 };
