@@ -426,7 +426,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/royaleNewMatchController.js",
-    "revision": "5ddd040267b2ff357dcd2f7cc18830bf"
+    "revision": "0421d12019a6295c39fb52f998d31192"
   },
   {
     "url": "js/controllers/splashController.js",
@@ -466,7 +466,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "9884621f8c9aa98f2f84d2918573e994"
+    "revision": "d9608370f22c14160bd250c2f3aba264"
   },
   {
     "url": "js/translationHandler.js",
