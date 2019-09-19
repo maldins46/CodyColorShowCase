@@ -378,7 +378,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/bootmpMatchController.js",
-    "revision": "40f682f8e209abef0d89017051095143"
+    "revision": "0fd7a61c10ccf316e4185231a9ef168d"
   },
   {
     "url": "js/controllers/bootmpMmakingController.js",
@@ -386,7 +386,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/customMmakingController.js",
-    "revision": "f35784237590f630ba698df1cc24a6d8"
+    "revision": "9b85fb6604a528561a538a80e1333d9f"
   },
   {
     "url": "js/controllers/customNewMatchController.js",
@@ -422,7 +422,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/royaleMmakingController.js",
-    "revision": "284f099964397c29ef04557fb87a87f0"
+    "revision": "29256f99b596edff93c1c70ec437276e"
   },
   {
     "url": "js/controllers/royaleNewMatchController.js",
@@ -454,7 +454,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "8b02a723aec159c475547bc28a9fb78c"
+    "revision": "f9ab44261685b1940f881d220a84b044"
   },
   {
     "url": "js/rankingsHandler.js",
@@ -466,7 +466,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "b348599ec50b4e06b6b334563bbd97f4"
+    "revision": "9884621f8c9aa98f2f84d2918573e994"
   },
   {
     "url": "js/translationHandler.js",

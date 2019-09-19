@@ -120,7 +120,8 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
            timerSetting:      gameData.getGeneral().timerSetting,
            maxPlayersSetting: gameData.getGeneral().maxPlayersSetting,
            code:              gameData.getGeneral().code,
-           startDate:         gameData.getGeneral().startDate
+           startDate:         gameData.getGeneral().startDate,
+           clientVersion:     sessionHandler.getClientVersion()
        });
     };
 

@@ -7,7 +7,7 @@ angular.module('codyColor').factory("sessionHandler", function() {
     let isSessionValid;
 
     // todo da impostare manualmente ad ogni nuova release
-    const clientVersion = '3.0.5';
+    const clientVersion = '3.0.6';
 
     // informazioni sul sistema, aggiornate automaticamente dal server non appena connessi
     let generalInfo = {
