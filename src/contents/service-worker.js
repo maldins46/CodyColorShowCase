@@ -454,7 +454,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "f9ab44261685b1940f881d220a84b044"
+    "revision": "713e7055f77cb0dbce4365723b123608"
   },
   {
     "url": "js/rankingsHandler.js",
@@ -466,7 +466,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "d9608370f22c14160bd250c2f3aba264"
+    "revision": "b8264a8a63cb56a166bb02f04a81510c"
   },
   {
     "url": "js/translationHandler.js",
@@ -485,8 +485,12 @@ workbox.precaching.precacheAndRoute([
     "revision": "a68240931372fc206db6f5c5e7c6a328"
   },
   {
+    "url": "js/vendor/stomp-mod.js",
+    "revision": "d4255f8ac23426ab087086acff3c5778"
+  },
+  {
     "url": "js/vendor/stomp.js",
-    "revision": "623529f15039cd886c5c4c9afbd577ba"
+    "revision": "09eb4b6bdd3ee95315a7880f6260d018"
   },
   {
     "url": "bower_components/jquery/dist/jquery.min.js",

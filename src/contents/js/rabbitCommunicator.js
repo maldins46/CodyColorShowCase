@@ -88,6 +88,9 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
             onConnectionLost,
             settings.rabbitVHost
         );
+
+        // Add the following if you need automatic reconnect (delay is in milli seconds)
+        //client.reconnect_delay = 5000;
     };
 
     rabbit.subscribeGameRoom = function () {
