@@ -88,6 +88,9 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
             onConnectionLost,
             settings.rabbitVHost
         );
+
+        // Add the following if you need automatic reconnect (delay is in milli seconds)
+        //client.reconnect_delay = 5000;
     };
 
     rabbit.subscribeGameRoom = function () {
@@ -120,7 +123,8 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
            timerSetting:      gameData.getGeneral().timerSetting,
            maxPlayersSetting: gameData.getGeneral().maxPlayersSetting,
            code:              gameData.getGeneral().code,
-           startDate:         gameData.getGeneral().startDate
+           startDate:         gameData.getGeneral().startDate,
+           clientVersion:     sessionHandler.getClientVersion()
        });
     };
 

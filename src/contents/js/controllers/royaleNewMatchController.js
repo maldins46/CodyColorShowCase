@@ -55,14 +55,15 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
                 {text: translations['PLAYERS_10'], value: 10},
                 {text: translations['PLAYERS_20'], value: 20},
                 {text: translations['PLAYERS_40'], value: 40},
-                {text: translations['PLAYERS_100'], value: 100}
+                {text: translations['PLAYERS_100'], value: 100},
+                {text: '∞', value: 10000}
             ];
         });
 
         $scope.editMaxPlayers = function (increment) {
             audioHandler.playSound('menu-click');
             if (increment)
-                $scope.currentMaxPlayersIndex = ($scope.currentMaxPlayersIndex < 3 ? $scope.currentMaxPlayersIndex + 1 : 3);
+                $scope.currentMaxPlayersIndex = ($scope.currentMaxPlayersIndex < 4 ? $scope.currentMaxPlayersIndex + 1 : 4);
             else
                 $scope.currentMaxPlayersIndex = ($scope.currentMaxPlayersIndex > 0 ? $scope.currentMaxPlayersIndex - 1 : 0);
 
@@ -181,7 +182,8 @@ angular.module('codyColor').controller('royaleNewMatchCtrl',
                     {text: translations['PLAYERS_10'], value: 10},
                     {text: translations['PLAYERS_20'], value: 20},
                     {text: translations['PLAYERS_40'], value: 40},
-                    {text: translations['PLAYERS_100'], value: 100}
+                    {text: translations['PLAYERS_100'], value: 100},
+                    {text: '∞', value: 10000}
                 ];
             });
 

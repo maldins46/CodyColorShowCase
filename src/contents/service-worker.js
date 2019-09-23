@@ -378,7 +378,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/bootmpMatchController.js",
-    "revision": "40f682f8e209abef0d89017051095143"
+    "revision": "0fd7a61c10ccf316e4185231a9ef168d"
   },
   {
     "url": "js/controllers/bootmpMmakingController.js",
@@ -386,7 +386,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/customMmakingController.js",
-    "revision": "f35784237590f630ba698df1cc24a6d8"
+    "revision": "9b85fb6604a528561a538a80e1333d9f"
   },
   {
     "url": "js/controllers/customNewMatchController.js",
@@ -422,11 +422,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/royaleMmakingController.js",
-    "revision": "284f099964397c29ef04557fb87a87f0"
+    "revision": "29256f99b596edff93c1c70ec437276e"
   },
   {
     "url": "js/controllers/royaleNewMatchController.js",
-    "revision": "5ddd040267b2ff357dcd2f7cc18830bf"
+    "revision": "0421d12019a6295c39fb52f998d31192"
   },
   {
     "url": "js/controllers/splashController.js",
@@ -454,7 +454,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "8b02a723aec159c475547bc28a9fb78c"
+    "revision": "713e7055f77cb0dbce4365723b123608"
   },
   {
     "url": "js/rankingsHandler.js",
@@ -466,7 +466,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "b348599ec50b4e06b6b334563bbd97f4"
+    "revision": "b8264a8a63cb56a166bb02f04a81510c"
   },
   {
     "url": "js/translationHandler.js",
@@ -485,8 +485,12 @@ workbox.precaching.precacheAndRoute([
     "revision": "a68240931372fc206db6f5c5e7c6a328"
   },
   {
+    "url": "js/vendor/stomp-mod.js",
+    "revision": "d4255f8ac23426ab087086acff3c5778"
+  },
+  {
     "url": "js/vendor/stomp.js",
-    "revision": "623529f15039cd886c5c4c9afbd577ba"
+    "revision": "09eb4b6bdd3ee95315a7880f6260d018"
   },
   {
     "url": "bower_components/jquery/dist/jquery.min.js",
