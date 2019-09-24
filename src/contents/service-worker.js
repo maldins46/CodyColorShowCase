@@ -250,7 +250,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "184c71bf505c49bbe6bd655184939b80"
+    "revision": "66a1c2411eecac1700958a8c8f25ea16"
   },
   {
     "url": "pages/404.html",
@@ -454,7 +454,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "713e7055f77cb0dbce4365723b123608"
+    "revision": "b367d2a09ac3477fcb5bf88631665671"
   },
   {
     "url": "js/rankingsHandler.js",
@@ -466,11 +466,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "b8264a8a63cb56a166bb02f04a81510c"
+    "revision": "10ab8373dc8a2916bed81a680c5b892b"
   },
   {
     "url": "js/translationHandler.js",
     "revision": "d22cf03c3d2ca68e1840474778c4e854"
+  },
+  {
+    "url": "js/vendor/encoding.min.js",
+    "revision": "905f26600ad609ec0c3be86fdbe95beb"
   },
   {
     "url": "js/vendor/jquery.ui.touch-punch.min.js",
@@ -485,12 +489,12 @@ workbox.precaching.precacheAndRoute([
     "revision": "a68240931372fc206db6f5c5e7c6a328"
   },
   {
-    "url": "js/vendor/stomp-mod.js",
-    "revision": "d4255f8ac23426ab087086acff3c5778"
+    "url": "js/vendor/object-assign-auto.min.js",
+    "revision": "0a881449e78a55af745edba35e31d922"
   },
   {
     "url": "js/vendor/stomp.js",
-    "revision": "09eb4b6bdd3ee95315a7880f6260d018"
+    "revision": "3e7e80859b9a8604ef80ae31e4749b57"
   },
   {
     "url": "bower_components/jquery/dist/jquery.min.js",
