@@ -250,7 +250,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "66a1c2411eecac1700958a8c8f25ea16"
+    "revision": "8c4b722903285d4bb8e45e1956c6f929"
   },
   {
     "url": "pages/404.html",
@@ -454,7 +454,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/rabbitCommunicator.js",
-    "revision": "b367d2a09ac3477fcb5bf88631665671"
+    "revision": "af39b95ec9c132efa9de23bb81b5ab08"
   },
   {
     "url": "js/rankingsHandler.js",
@@ -466,7 +466,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "10ab8373dc8a2916bed81a680c5b892b"
+    "revision": "63398349ded025fd465aa1704657eccb"
   },
   {
     "url": "js/translationHandler.js",
@@ -479,6 +479,10 @@ workbox.precaching.precacheAndRoute([
   {
     "url": "js/vendor/jquery.ui.touch-punch.min.js",
     "revision": "700b877cd3ade98ce6cd4be349d81a5c"
+  },
+  {
+    "url": "js/vendor/lzutf8.js",
+    "revision": "cc0309430f810097d08a44acfce8e7ab"
   },
   {
     "url": "js/vendor/modernizr.min.js",
