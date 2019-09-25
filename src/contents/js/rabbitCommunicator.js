@@ -53,7 +53,8 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
         s_rankingsResponse: "s_rankingsResponse", // restituisci le classifiche
     };
 
-    const debug = settings.rabbitSocketUrl === "wss://codycolor.codemooc.net/api/ws"
+    // const debug = settings.rabbitSocketUrl !== "wss://codycolor.codemooc.net/api/ws";
+    const debug = true; // todo provvisorio: per maggiore controllo nei test di questi giorni
 
     let connectedToBroker;
     let connectedToServer;
@@ -353,6 +354,13 @@ angular.module('codyColor').factory("rabbit", function (gameData, sessionHandler
             console.log('DEBUG: Received message: ' + rawMessage.body);
 
         let message = JSON.parse(rawMessage.body);
+
+        // decompressione gameData
+        if(message.gameData !== undefined) {
+            message.gameData = JSON.parse(
+                LZUTF8.decompress(message.gameData, {inputEncoding: 'StorageBinaryString'})
+            );
+        }
 
         if (lastMsgId === undefined || lastMsgId !== message.msgId) {
             lastMsgId = message.msgId;
