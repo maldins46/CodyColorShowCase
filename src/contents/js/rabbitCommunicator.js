@@ -54,6 +54,9 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         s_rankingsResponse: "s_rankingsResponse", // restituisci le classifiche
     };
 
+    // const debug = settings.rabbitSocketUrl !== "wss://codycolor.codemooc.net/api/ws";
+    const debug = true; // todo provvisorio: per maggiore controllo nei test di questi giorni
+
     let connectedToBroker;
     let connectedToServer;
     let client;
@@ -81,14 +84,24 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
     };
 
     rabbit.connect = function () {
-        client = Stomp.client(settings.rabbitSocketUrl);
-        client.connect(
-            settings.rabbitUsername,
-            settings.rabbitPassword,
-            onConnected,
-            onConnectionLost,
-            settings.rabbitVHost
-        );
+        client = new StompJs.Client({
+            brokerURL: settings.rabbitSocketUrl, // "wss://codycolor.codemooc.net/api/ws"
+            connectHeaders: {
+                login: settings.rabbitUsername,
+                passcode: settings.rabbitPassword
+            },
+            debug: function (stringLog) {
+                if (debug)
+                    console.log(stringLog);
+            },
+            reconnectDelay: 5000,
+            heartbeatIncoming: 5000,
+            heartbeatOutgoing: 5000
+        });
+
+        client.onConnect = onConnected;
+        client.onWebSocketClose = onConnectionLost;
+        client.activate();
     };
 
     rabbit.subscribeGameRoom = function () {
@@ -121,7 +134,8 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
            timerSetting:      gameData.getGeneral().timerSetting,
            maxPlayersSetting: gameData.getGeneral().maxPlayersSetting,
            code:              gameData.getGeneral().code,
-           startDate:         gameData.getGeneral().startDate
+           startDate:         gameData.getGeneral().startDate,
+           clientVersion:     sessionHandler.getClientVersion()
        });
     };
 
@@ -278,32 +292,34 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
 
     // invocato in caso di errore di connessione con il broker
     let onConnectionLost = function (message) {
-        if(message === 'connectionLost') {
-            connectedToBroker = false;
-            connectedToServer = false;
+        connectedToBroker = false;
+        connectedToServer = false;
 
-            // ritenta connessione dopo 10 secondi
-            setTimeout(function () {
-                rabbit.connect();
-            }, 10000);
+        // ritenta connessione dopo tot secondi in automatico
 
-            // eventuali azioni addizionali
-            if (pageCallbacks.onConnectionLost !== undefined)
-                pageCallbacks.onConnectionLost();
-        }
+        // eventuali azioni addizionali
+        if (pageCallbacks.onConnectionLost !== undefined)
+            pageCallbacks.onConnectionLost();
     };
 
 
     let sendInServerControlQueue = function(message) {
-        // invia un messaggio nella queue riservata al server
+        if (debug)
+            console.log('DEBUG: Sent message in server queue: ' + JSON.stringify(message));
+
         $.extend(true, message, { msgId: (Math.floor(Math.random() * 100000)).toString() });
-        client.send(endpoints.serverControlQueue, // destination
-            { durable: false, exclusive: false }, // headers
-            JSON.stringify(message));             // message
+        client.publish({
+            destination: endpoints.serverControlQueue,
+            headers: { durable: false, exclusive: false },
+            body: JSON.stringify(message)
+        });
     };
 
 
     let sendInGameRoomTopic = function(message) {
+        if (debug)
+            console.log('DEBUG: Sent message in topic: ' + JSON.stringify(message));
+
         if (gameData.getGeneral().gameRoomId === -1 || gameData.getUserPlayer().playerId === -1)
             return;
 
@@ -311,9 +327,11 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         $.extend(true, message, { msgId: (Math.floor(Math.random() * 100000)).toString() });
 
         // invia un messaggio alla game room sottoscritta dal giocatore
-        client.send(getGameRoomEndpoint(),        // destination
-            { durable: false, exclusive: false }, // headers
-            JSON.stringify(message));             // message
+        client.publish({
+            destination: getGameRoomEndpoint(),
+            headers: { durable: false, exclusive: false },
+            body: JSON.stringify(message)
+        });
     };
 
 
@@ -333,7 +351,17 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
 
 
     let handleIncomingMessage = function (rawMessage) {
+        if (debug)
+            console.log('DEBUG: Received message: ' + rawMessage.body);
+
         let message = JSON.parse(rawMessage.body);
+
+        // decompressione gameData
+        if(message.gameData !== undefined) {
+            message.gameData = JSON.parse(
+                LZUTF8.decompress(message.gameData, {inputEncoding: 'StorageBinaryString'})
+            );
+        }
 
         if (lastMsgId === undefined || lastMsgId !== message.msgId) {
             lastMsgId = message.msgId;

@@ -101,6 +101,15 @@ angular.module('codyColor').controller('royaleMmakingCtrl', ['$scope', 'rabbit',
                     requiredDelayedGameRequest = false;
                 }
 
+            }, onGeneralInfoMessage: function(message) {
+                if (!sessionHandler.isClientVersionValid()) {
+                    quitGame();
+                    scopeService.safeApply($scope, function () {
+                        translationHandler.setTranslation($scope, 'forceExitText', 'OUTDATED_VERSION_DESC');
+                        $scope.forceExitModal = true;
+                    });
+                }
+
             }, onGameRequestResponse: function (message) {
                 if (message.code.toString() === '0000') {
                     scopeService.safeApply($scope, function () {
