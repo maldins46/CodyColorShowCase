@@ -226,6 +226,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl', ['$scope', 'rabbit',
 
         // click su 'unisciti', invio code
         $scope.joinGame = function (codeValue) {
+            $scope.mmakingRequested = true;
             audioHandler.playSound('menu-click');
             $translate('SEARCH_MATCH_INFO').then(function (text) {
                 $scope.joinMessage = text;
@@ -248,6 +249,7 @@ angular.module('codyColor').controller('royaleMmakingCtrl', ['$scope', 'rabbit',
 
         // associa il nickname al giocatore e trasmettilo alla game room, convalidando la partecipazione alla partita
         $scope.validPlayer = function () {
+            $scope.playerValidated = true;
             gameData.getUserPlayer().nickname = $scope.nickname;
             changeScreen(screens.waitingEnemies);
             rabbit.sendValidationMessage();

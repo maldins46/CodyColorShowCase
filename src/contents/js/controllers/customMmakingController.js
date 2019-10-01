@@ -196,6 +196,7 @@ angular.module('codyColor').controller('customMmakingCtrl', ['$scope', 'rabbit',
 
         // click su 'unisciti', invio code
         $scope.joinGame = function(codeValue) {
+            $scope.mmakingRequested = true;
             audioHandler.playSound('menu-click');
             $translate('SEARCH_MATCH_INFO').then(function (text) {
                 $scope.joinMessage = text;
@@ -208,6 +209,7 @@ angular.module('codyColor').controller('customMmakingCtrl', ['$scope', 'rabbit',
 
         // click su 'iniziamo' dall'inserimento nickname
         $scope.playerReady = function() {
+            $scope.readyClicked = true;
             gameData.getUserPlayer().ready = true;
 
             if (gameData.getEnemy1vs1().ready === false)
@@ -218,6 +220,7 @@ angular.module('codyColor').controller('customMmakingCtrl', ['$scope', 'rabbit',
 
 
         $scope.validPlayer = function() {
+            $scope.playerValidated = true;
             gameData.getUserPlayer().nickname = $scope.nickname;
             changeScreen(screens.enemyFound);
             rabbit.sendValidationMessage();

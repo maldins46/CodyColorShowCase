@@ -52,20 +52,19 @@ angular.module('codyColor').controller('royaleNewMatchCtrl', ['$scope', 'rabbit'
 
         // maxPlayers setting selector
         $scope.currentMaxPlayersIndex = 1;
-        $translate(['PLAYERS_10', 'PLAYERS_20', 'PLAYERS_40', 'PLAYERS_100']).then(function (translations) {
+        $translate(['PLAYERS_10', 'PLAYERS_20', 'PLAYERS_40', 'PLAYERS_60']).then(function (translations) {
             $scope.maxPlayersSettings = [
                 {text: translations['PLAYERS_10'], value: 10},
                 {text: translations['PLAYERS_20'], value: 20},
                 {text: translations['PLAYERS_40'], value: 40},
-                {text: translations['PLAYERS_100'], value: 100},
-                {text: '∞', value: 10000}
+                {text: translations['PLAYERS_60'], value: 60}
             ];
         });
 
         $scope.editMaxPlayers = function (increment) {
             audioHandler.playSound('menu-click');
             if (increment)
-                $scope.currentMaxPlayersIndex = ($scope.currentMaxPlayersIndex < 4 ? $scope.currentMaxPlayersIndex + 1 : 4);
+                $scope.currentMaxPlayersIndex = ($scope.currentMaxPlayersIndex < 3 ? $scope.currentMaxPlayersIndex + 1 : 3);
             else
                 $scope.currentMaxPlayersIndex = ($scope.currentMaxPlayersIndex > 0 ? $scope.currentMaxPlayersIndex - 1 : 0);
 
@@ -179,13 +178,12 @@ angular.module('codyColor').controller('royaleNewMatchCtrl', ['$scope', 'rabbit'
                 ];
             });
 
-            $translate(['PLAYERS_10', 'PLAYERS_20', 'PLAYERS_40', 'PLAYERS_100']).then(function (translations) {
+            $translate(['PLAYERS_10', 'PLAYERS_20', 'PLAYERS_40', 'PLAYERS_60']).then(function (translations) {
                 $scope.maxPlayersSettings = [
                     {text: translations['PLAYERS_10'], value: 10},
                     {text: translations['PLAYERS_20'], value: 20},
                     {text: translations['PLAYERS_40'], value: 40},
-                    {text: translations['PLAYERS_100'], value: 100},
-                    {text: '∞', value: 10000}
+                    {text: translations['PLAYERS_60'], value: 60}
                 ];
             });
 
