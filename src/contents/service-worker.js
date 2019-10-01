@@ -214,11 +214,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "6c141608a5d8c4786bcbd5cff4e9b5f8"
+    "revision": "9cdc70399a37e4afadadd47736fb1b66"
+  },
+  {
+    "url": "locales/locale-hu.json",
+    "revision": "a20e0f499a1d06e1de8ad8dd554002e3"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "c528563cf7d15734d252c9cb73b248af"
+    "revision": "177ad97e5633b174417e0d6d48893b4a"
   },
   {
     "url": "bower_components/firebaseui/buildtools/all_tests.html",
@@ -254,75 +258,75 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/404.html",
-    "revision": "e83ad3cd1bc3d85e789543f4635a3dd3"
+    "revision": "45008abd5a6dadcb780cae3946522269"
   },
   {
     "url": "pages/arcade-aftermatch.html",
-    "revision": "a8673940ede69c97454411c04a7d5dad"
+    "revision": "bc34e138e35faa6e4f871e109ca5a1c7"
   },
   {
     "url": "pages/arcade-match.html",
-    "revision": "97c44fc85496cb43eaee7c23ec6baf1e"
+    "revision": "7d134ca09fac348d1d330e6130d1932f"
   },
   {
     "url": "pages/bootmp-aftermatch.html",
-    "revision": "fe3008ec5f85d29da383239bb3321e1a"
+    "revision": "4e1a713fe11c90454a417f0b9dbab8de"
   },
   {
     "url": "pages/bootmp-match.html",
-    "revision": "5cbd48ba408947c9c31a079d78bcd183"
+    "revision": "3b4dee10c011600e1e62de92055db268"
   },
   {
     "url": "pages/bootmp-mmaking.html",
-    "revision": "ac3cce03173ae0541be9117d2cc78b24"
+    "revision": "6f6a5645c8f566acf500bd10a841cd79"
   },
   {
     "url": "pages/custom-mmaking.html",
-    "revision": "b7ca45d83f3ef2e725e98d4630d2b216"
+    "revision": "4f892fe9d6d3f99f3fb6126f3efe5c1c"
   },
   {
     "url": "pages/custom-new-match.html",
-    "revision": "5579b9da9f2b5604b79d35a3f401e1de"
+    "revision": "e463c12d4ba32909d4dc3b058e95ac3c"
   },
   {
     "url": "pages/home.html",
-    "revision": "f0e6896f03e9bb6d9bf96110d4e64561"
+    "revision": "913e19c22fd025ffea4920577059d2cc"
   },
   {
     "url": "pages/login.html",
-    "revision": "1020f26526de85876097b66a9c4de845"
+    "revision": "2b76b4d768ce4f6b7b3ed4a502aac698"
   },
   {
     "url": "pages/privacy.html",
-    "revision": "1d456b68b1394ed4fc4ca8c718759d73"
+    "revision": "893b4f2de5cc316a655644c90956687f"
   },
   {
     "url": "pages/random-mmaking.html",
-    "revision": "ec8b07086dae3f5b4b178fdad27c9594"
+    "revision": "905e04d3018d0ea5845471a643f40c97"
   },
   {
     "url": "pages/rankings.html",
-    "revision": "b708199fc928e2415a98b4466ca5ee93"
+    "revision": "818e2913c76344755ddd702641109337"
   },
   {
     "url": "pages/royale-aftermatch.html",
-    "revision": "1990366b306bab800b012a5276a111e9"
+    "revision": "fc769813b333d9bc8b64d776fea48705"
   },
   {
     "url": "pages/royale-match.html",
-    "revision": "2884b0e77c35db86bca7424640d4aec7"
+    "revision": "065850a265c663b4e32c02559ee1e9e0"
   },
   {
     "url": "pages/royale-mmaking.html",
-    "revision": "8fc50babeab1e1f5b534e41299488cf1"
+    "revision": "818d8580e48fb032f80f068a43d4dfc9"
   },
   {
     "url": "pages/royale-new-match.html",
-    "revision": "33e4cc66dc51332f1f427a2e6ae4b346"
+    "revision": "4fff980e40d2136481250bb6a466d22b"
   },
   {
     "url": "pages/rules.html",
-    "revision": "cdc96d5fca10a8ce3d5ac84e57a1fdd6"
+    "revision": "25d3d8420a7d31b61880593d4f44c3b3"
   },
   {
     "url": "pages/splash.html",
@@ -330,7 +334,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/terms.html",
-    "revision": "43337ad2159f4ba3d30ccc1ebff3d8ed"
+    "revision": "19b5c750b1064528fb5eae109238bc1d"
   },
   {
     "url": "static/privacy-policy/index.html",
@@ -362,7 +366,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/chatHandler.js",
-    "revision": "e18d78fd47b0d98154e51f1b68d42959"
+    "revision": "c4a87b8f13926316b3cbc8a920769e75"
   },
   {
     "url": "js/controllers/arcadeAftermatchController.js",
@@ -438,7 +442,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/main.js",
-    "revision": "5bc736b46c178e5eeab55c2ec45122d9"
+    "revision": "0053c2e905e28390425a40916ff6216f"
   },
   {
     "url": "js/navigationHandler.js",
@@ -466,7 +470,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/sessionHandler.js",
-    "revision": "63398349ded025fd465aa1704657eccb"
+    "revision": "fea7f8a0ecaa0e59d9442d971468676e"
   },
   {
     "url": "js/translationHandler.js",
@@ -482,7 +486,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/vendor/lzutf8.js",
-    "revision": "cc0309430f810097d08a44acfce8e7ab"
+    "revision": "5e032e39ef318f5e4734ef350c4d684e"
   },
   {
     "url": "js/vendor/modernizr.min.js",
