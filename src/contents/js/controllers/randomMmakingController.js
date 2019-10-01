@@ -146,6 +146,7 @@ angular.module('codyColor').controller('randomMmakingCtrl',
 
         // una volta che l'utente ha scelto un nickname, invia una richiesta di gioco al server
         $scope.requestMMaking = function () {
+            $scope.mmakingRequested = true;
             audioHandler.playSound('menu-click');
             changeScreen(screens.waitingEnemy);
             gameData.getUserPlayer().nickname = $scope.nickname;
@@ -173,6 +174,7 @@ angular.module('codyColor').controller('randomMmakingCtrl',
 
         // invocata una volta premuto il tasto 'iniziamo'
         $scope.playerReady = function () {
+            $scope.readyClicked = true;
             gameData.getUserPlayer().ready = true;
 
             if(gameData.getEnemy1vs1().ready === false)

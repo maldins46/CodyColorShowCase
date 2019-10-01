@@ -214,15 +214,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "9cdc70399a37e4afadadd47736fb1b66"
+    "revision": "59be2def61ea50edb6fe09b8983fe653"
   },
   {
     "url": "locales/locale-hu.json",
-    "revision": "a20e0f499a1d06e1de8ad8dd554002e3"
+    "revision": "ec979ed62fb132819bebd7d69d3c39ea"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "177ad97e5633b174417e0d6d48893b4a"
+    "revision": "f458fbef14eef3d48e3f2340208bf60a"
   },
   {
     "url": "bower_components/firebaseui/buildtools/all_tests.html",
@@ -282,7 +282,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/custom-mmaking.html",
-    "revision": "4f892fe9d6d3f99f3fb6126f3efe5c1c"
+    "revision": "a0fff58bc35279271b8454cf43e3a7f4"
   },
   {
     "url": "pages/custom-new-match.html",
@@ -302,7 +302,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/random-mmaking.html",
-    "revision": "905e04d3018d0ea5845471a643f40c97"
+    "revision": "479d9491bc207d053f887912fab91b40"
   },
   {
     "url": "pages/rankings.html",
@@ -318,7 +318,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-mmaking.html",
-    "revision": "818d8580e48fb032f80f068a43d4dfc9"
+    "revision": "eea61c603d5608ac6f8b9b6893664e81"
   },
   {
     "url": "pages/royale-new-match.html",
@@ -390,7 +390,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/customMmakingController.js",
-    "revision": "9b85fb6604a528561a538a80e1333d9f"
+    "revision": "341a2ae366742511acbde4c5fa2cf80d"
   },
   {
     "url": "js/controllers/customNewMatchController.js",
@@ -410,7 +410,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/randomMmakingController.js",
-    "revision": "0db491c4786d23c499d0dff9de7faf4d"
+    "revision": "aa075bf655c4efcb58ab94a790a96e61"
   },
   {
     "url": "js/controllers/rankingsController.js",
@@ -426,11 +426,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/controllers/royaleMmakingController.js",
-    "revision": "29256f99b596edff93c1c70ec437276e"
+    "revision": "2a4e7e81edb7e2023f30a44ba4f004b9"
   },
   {
     "url": "js/controllers/royaleNewMatchController.js",
-    "revision": "0421d12019a6295c39fb52f998d31192"
+    "revision": "e135690e2c34d4c8772a66d5558971a7"
   },
   {
     "url": "js/controllers/splashController.js",

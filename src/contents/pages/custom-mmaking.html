@@ -32,7 +32,7 @@
                         <li class="list--spaced-element">
                             <button class="navigation--button flashing-animation"
                                     ng-click="joinGame(customMatchForm.codeValue.$viewValue)"
-                                    ng-disabled="customMatchForm.codeValue.$invalid">
+                                    ng-disabled="customMatchForm.codeValue.$invalid || mmakingRequested">
                                 {{ 'JOIN' | translate }}
                                 <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
                             </button>
@@ -63,7 +63,7 @@
                         <li class="list--spaced-element">
                             <button class="navigation--button flashing-animation"
                                     ng-click="validPlayer()"
-                                    ng-disabled="landingMatchForm.nickname.$invalid">
+                                    ng-disabled="landingMatchForm.nickname.$invalid || playerValidated">
                                 {{ 'START' | translate}}
                                 <i class="fas fa-angle-double-right floating-right-animation navigation--icon-in-text"></i>
                             </button>
@@ -114,7 +114,8 @@
                         {{ 'NEW_ENEMY' | translate : { 'enemyNickname': enemyPlayer.nickname } }}
                     </li>
                     <li class="list--simple-element">
-                        <button class="navigation--button flashing-animation" ng-click="playerReady()">
+                        <button class="navigation--button flashing-animation"
+                                ng-click="playerReady()" ng-disabled="readyClicked">
                             {{ 'START' | translate}}
                             <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
                         </button>

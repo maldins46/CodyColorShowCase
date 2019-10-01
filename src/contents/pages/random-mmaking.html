@@ -21,7 +21,7 @@
                         <li class="list--spaced-element">
                             <button class="navigation--button flashing-animation"
                                     ng-click="requestMMaking()"
-                                    ng-disabled="nickForm.nickname.$invalid">
+                                    ng-disabled="nickForm.nickname.$invalid || mmakingRequested">
                                 <span translate="FIND_ENEMY"></span>
                                 <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
                             </button>
@@ -65,7 +65,8 @@
                         {{ 'NEW_ENEMY' | translate : { 'enemyNickname': enemyNickname } }}
                     </li>
                     <li class="list--simple-element">
-                        <button class="navigation--button flashing-animation" ng-click="playerReady()">
+                        <button class="navigation--button flashing-animation"
+                                ng-click="playerReady()" ng-disabled="readyClicked">
                             {{ 'START' | translate}}
                             <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
                         </button>
