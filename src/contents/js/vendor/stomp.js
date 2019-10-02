@@ -1769,4 +1769,3 @@
 
         /******/ });
 });
-//# sourceMappingURL=stomp.umd.js.map

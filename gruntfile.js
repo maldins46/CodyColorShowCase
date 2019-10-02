@@ -20,7 +20,7 @@ module.exports = function (grunt) {
                             '!contents/css/**',
                             '!contents/bower_components/**'
                         ],
-                        dest: 'build/'
+                        dest: 'build/',
                     },
                 ],
             },
@@ -36,7 +36,21 @@ module.exports = function (grunt) {
                             '!contents/index.html',
                             '!contents/bower_components/**'
                         ],
-                        dest: 'build/'
+                        dest: 'build/',
+                        rename: function(dest, src) {
+                            // crea un ordinamento alfabetico ai file di libreria,
+                            // dando precedenza a jquery, angular e translate
+                            console.log(dest);
+                            console.log(src);
+                            if (src === 'contents/js/bower/jquery.js')
+                                return dest + 'contents/js/bower/1-jquery.js';
+                            else if (src === 'contents/js/bower/angular.js')
+                                return dest + 'contents/js/bower/2-angular.js';
+                            else if (src === 'contents/js/bower/angular-translate.js')
+                                return dest + 'contents/js/bower/3-angular-translate.js';
+                            else
+                                return dest + src;
+                        }
                     },
                 ],
             },
@@ -54,7 +68,7 @@ module.exports = function (grunt) {
                     packageSpecific: {
                         'firebase': {
                             files: [ 'firebase-app.js', 'firebase-auth.js' ]
-                        }
+                        },
                     },
                 }
             }
@@ -67,9 +81,13 @@ module.exports = function (grunt) {
             },
             build: {
                 src: [
+                    'src/contents/js/bower/jquery.js',
+                    'src/contents/js/bower/angular.js',
+                    'src/contents/js/bower/angular-translate.js',
                     'src/contents/js/bower/*.js',
-                    'src/contents/js/main.js',
-                    'src/contents/js/**/*.js'
+                    'src/contents/js/vendor/*.js',
+                    'src/contents/js/app/main.js',
+                    'src/contents/js/app/**/*.js'
                 ],
                 dest: 'build/contents/js/app/app.js',
             }

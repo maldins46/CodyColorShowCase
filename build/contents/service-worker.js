@@ -238,7 +238,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/app/app.min.js",
-    "revision": "cd4da5420c089459251671d72b39cbfa"
+    "revision": "1e39683db5b4c0ca86d3c01539ed5cfc"
   },
   {
     "url": "locales/locale-en.json",
@@ -330,7 +330,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/splash.html",
-    "revision": "56245dd599ac30a6047cb7234f42d81f"
+    "revision": "6f16429f7d131b5c56b3cfcdf76ce5f3"
   },
   {
     "url": "pages/terms.html",

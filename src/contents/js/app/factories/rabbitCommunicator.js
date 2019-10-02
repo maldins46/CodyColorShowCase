@@ -54,8 +54,7 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         s_rankingsResponse: "s_rankingsResponse", // restituisci le classifiche
     };
 
-    // const debug = settings.rabbitSocketUrl !== "wss://codycolor.codemooc.net/api/ws";
-    const debug = true; // todo provvisorio: per maggiore controllo nei test di questi giorni
+    const debug = settings.rabbitSocketUrl !== "wss://codycolor.codemooc.net/api/ws";
 
     let connectedToBroker;
     let connectedToServer;
