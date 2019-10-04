@@ -6,7 +6,7 @@ networks:
 
 services:
   server:
-    build: ./src
+    build: ./build
     networks:
     - web
     expose:

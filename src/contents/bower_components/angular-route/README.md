@@ -17,7 +17,7 @@ npm install angular-route
 Then add `ngRoute` as a dependency for your app:
 
 ```javascript
-angular.module('myApp', [require('angular-route')]);
+angular.module('myApp', [require('src/contents/bower_components/angular-route/angular-route')]);
 ```
 
 ### bower

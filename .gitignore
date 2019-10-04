@@ -1,3 +1,5 @@
 \.vscode
 \.idea
 src/settings.js
+build/settings.js
+node_modules

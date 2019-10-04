@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>CodyColor</title>
-    <meta name="description" content="Implementazione online del metodo di coding unplugged CodyColor.">
+    <meta name="description" content="Online implementation of the unplugged coding method CodyColor.">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
@@ -28,88 +28,34 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="manifest" href="manifest.json">
 
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/all.min.css" />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/firebase-ui-custom.css" />
+    <!-- This specific CSS ordering is required -->
+    <!-- include: "type": "css", "files": "css/normalize.css" -->
+    <!-- include: "type": "css", "files": "css/fontawesome.css" -->
+    <!-- include: "type": "css", "files": "css/bower/**/*.css" -->
+    <!-- include: "type": "css", "files": "css/main.css" -->
+    <!-- include: "type": "css", "files": "css/firebase-ui-custom.css" -->
+    <!-- include: "type": "css", "files": "css/app.min.css" -->
 </head>
 
 <body ng-app="codyColor">
-<!--[if lte IE 9]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser.
-    Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-<![endif]-->
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser.
+        Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
 
-<div class="page--container" ng-view></div>
+    <div class="page--container" ng-view></div>
 
-<!-- Register the service worker -->
-<script>
-    // Check that service workers are registered
-    if ('serviceWorker' in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('service-worker.js');
-        });
-    }
-</script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }
+    </script>
 
-<!-- Angular and libraries -->
-<script src="js/vendor/modernizr.min.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
-<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
-<script src="js/vendor/jquery.ui.touch-punch.min.js"></script>
-<script src="js/plugins.js"></script>
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
-<script src="bower_components/angular-route/angular-route.min.js"></script>
-<script src="bower_components/angular-animate/angular-animate.min.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-<script src="bower_components/angular-translate/angular-translate.min.js"></script>
-<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
-<script src="js/vendor/noSleepMod.min.js"></script>
-<script src="js/vendor/object-assign-auto.min.js"></script>
-<script src="js/vendor/encoding.min.js"></script>
-<script src="js/vendor/stomp.js"></script>
-<script src="js/vendor/lzutf8.js"></script>
-
-<!-- Firebase -->
-<script src="bower_components/firebase/firebase-app.js"></script>
-<script src="bower_components/firebase/firebase-auth.js"></script>
-<script src="bower_components/firebaseui/dist/firebaseui.js"></script>
-
-<!-- Game scripts -->
-<script src="js/main.js"></script>
-<script src="js/scopeService.js"></script>
-<script src="js/gameData.js"></script>
-<script src="js/pathHandler.js"></script>
-<script src="js/navigationHandler.js"></script>
-<script src="js/chatHandler.js"></script>
-<script src="js/audioHandler.js"></script>
-<script src="js/authHandler.js"></script>
-<script src="js/settings.js"></script>
-<script src="js/sessionHandler.js"></script>
-<script src="js/translationHandler.js"></script>
-<script src="js/controllers/homeController.js"></script>
-<script src="js/controllers/emptyController.js"></script>
-<script src="js/controllers/customMmakingController.js"></script>
-<script src="js/controllers/loginController.js"></script>
-<script src="js/controllers/splashController.js"></script>
-<script src="js/controllers/customNewMatchController.js"></script>
-<script src="js/controllers/royaleNewMatchController.js"></script>
-<script src="js/controllers/arcadeMatchController.js"></script>
-<script src="js/controllers/royaleMatchController.js"></script>
-<script src="js/controllers/royaleAftermatchController.js"></script>
-<script src="js/controllers/randomMmakingController.js"></script>
-<script src="js/controllers/arcadeAftermatchController.js"></script>
-<script src="js/controllers/royaleMmakingController.js"></script>
-<script src="js/controllers/bootmpMmakingController.js"></script>
-<script src="js/controllers/bootmpMatchController.js"></script>
-<script src="js/controllers/bootmpAftermatchController.js"></script>
-<script src="js/controllers/rankingsController.js"></script>
-<script src="js/rankingsHandler.js"></script>
-<script src="js/rabbitCommunicator.js"></script>
+    <!-- include: "type": "js", "files": "js/bower/*.js" -->
+    <!-- include: "type": "js", "files": "js/vendor/*.js", "ordering":"top-down" -->
+    <!-- include: "type": "js", "files": "js/app/**/*.js", "ordering":"top-down" -->
+    <script src="js/settings.js"></script>
 </body>
 </html>
