@@ -356,8 +356,12 @@ angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', '
                 gameData.calculateRoyaleMatchPoints();
 
                 pathHandler.animateActiveRobys(function () {
-                     if ($scope.askedForSkip !== true)
-                        rabbit.sendEndAnimationMessage();
+                     if ($scope.askedForSkip !== true) {
+                         // ricalcola path (in caso di abbandono di avversari)
+                         pathHandler.calculateAllPlayersPath();
+                         gameData.calculateRoyaleMatchPoints();
+                         rabbit.sendEndAnimationMessage();
+                     }
                 });
             }
         };
