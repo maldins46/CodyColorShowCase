@@ -8,40 +8,40 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
     // rirerimenti jQuery agli elementi del DOM utilizzati nell'elaborazione delle animaizoni
     let startPositionsTiles;
     let completeGridTiles;
-    let playerRoby = {};
-    let enemiesRoby = [];
+    let botPlayerRoby = {};
+    let enemiePlayersRoby = [];
 
 
     // permette di uscire dal gioco in modo sicuro, interrompendo tutti i timers e pulendo le variabili
     pathHandler.quitGame = function() {
         for (let side = 0; side < 4; side++) {
             for (let distance = 0; distance < 5; distance++) {
-                if (enemiesRoby[side] !== undefined &&
-                    enemiesRoby[side][distance] !== undefined &&
-                    enemiesRoby[side][distance].walkingTimer !== undefined) {
-                    clearInterval(enemiesRoby[side][distance].walkingTimer);
-                    enemiesRoby[side][distance].walkingTimer = undefined;
+                if (enemiePlayersRoby[side] !== undefined &&
+                    enemiePlayersRoby[side][distance] !== undefined &&
+                    enemiePlayersRoby[side][distance].walkingTimer !== undefined) {
+                    clearInterval(enemiePlayersRoby[side][distance].walkingTimer);
+                    enemiePlayersRoby[side][distance].walkingTimer = undefined;
                 }
             }
         }
 
-        if (playerRoby.walkingTimer !== undefined) {
-            clearInterval(playerRoby.walkingTimer);
-            playerRoby.walkingTimer = undefined;
+        if (botPlayerRoby.walkingTimer !== undefined) {
+            clearInterval(botPlayerRoby.walkingTimer);
+            botPlayerRoby.walkingTimer = undefined;
         }
 
-        playerRoby = {};
-        enemiesRoby = [];
+        botPlayerRoby = {};
+        enemiePlayersRoby = [];
     };
 
 
     pathHandler.getPlayerRoby = function() {
-        return playerRoby;
+        return botPlayerRoby;
     };
 
 
     pathHandler.getEnemiesRoby = function() {
-        return enemiesRoby;
+        return enemiePlayersRoby;
     };
 
 
@@ -64,12 +64,12 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
             }
         }
 
-        playerRoby = {
+        botPlayerRoby = {
             element: $('#player-roby'),
             show: false,
             setShow: function (show) {
                 scopeService.safeApply($scope, function () {
-                    playerRoby.show = show;
+                    botPlayerRoby.show = show;
                 });
             },
             animationFinished: false,
@@ -79,28 +79,28 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
             positionedImage: 'roby-positioned',
             walkingImages: ['roby-walking-1', 'roby-walking-2'],
             brokenImage: 'roby-broken',
-            image: playerRoby.positionedImage,
+            image: botPlayerRoby.positionedImage,
             startPosition: {
                 side: -1,
                 distance: -1
             },
             changeImage: function (image) {
                 scopeService.safeApply($scope, function () {
-                        playerRoby.image = image;
+                        botPlayerRoby.image = image;
                 });
             }
        };
 
-        enemiesRoby = new Array(4);
+        enemiePlayersRoby = new Array(4);
         for (let side = 0; side < 4; side++) {
-            enemiesRoby[side] = new Array(5);
+            enemiePlayersRoby[side] = new Array(5);
             for (let distance = 0; distance < 5; distance++) {
-                enemiesRoby[side][distance] = {
+                enemiePlayersRoby[side][distance] = {
                     element:  $('#enemy-roby-' + side.toString() + distance.toString()),
                     show: false,
                     setShow: function (show) {
                         scopeService.safeApply($scope, function () {
-                            enemiesRoby[side][distance].show = show;
+                            enemiePlayersRoby[side][distance].show = show;
                         });
                     },
                     animationFinished: false,
@@ -112,7 +112,7 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
                     image:  'enemy-positioned',
                     changeImage: function (image) {
                         scopeService.safeApply($scope, function () {
-                            enemiesRoby[side][distance].image = image;
+                            enemiePlayersRoby[side][distance].image = image;
                         });
                     }
                 };
@@ -127,7 +127,7 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
         if (selectedStart.side === -1 && selectedStart.distance === -1)
             return;
 
-        let roby = (isPlayer ? playerRoby : enemiesRoby[selectedStart.side][selectedStart.distance]);
+        let roby = (isPlayer ? botPlayerRoby : enemiePlayersRoby[selectedStart.side][selectedStart.distance]);
 
         if (roby === undefined) return;
 
@@ -145,12 +145,12 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
 
     // anima tutti i roby che sono stati posizionati nella griglia
     pathHandler.animateActiveRobys = function(endMatchCallback) {
-        animateRoby(playerRoby, endMatchCallback, true);
+        animateRoby(botPlayerRoby, endMatchCallback, true);
 
         for (let side = 0; side < 4; side++) {
             for (let distance = 0; distance < 5; distance++) {
-                if(enemiesRoby[side][distance].show === true)
-                    animateRoby(enemiesRoby[side][distance], endMatchCallback, false);
+                if(enemiePlayersRoby[side][distance].show === true)
+                    animateRoby(enemiePlayersRoby[side][distance], endMatchCallback, false);
             }
         }
     };
@@ -232,13 +232,13 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
     let executeIfEnd = function(endCallback) {
         let allAnimationFinished = true;
 
-        if (!playerRoby.animationFinished)
+        if (!botPlayerRoby.animationFinished)
             allAnimationFinished = false;
 
-        if (enemiesRoby.length > 0) {
+        if (enemiePlayersRoby.length > 0) {
             for (let side = 0; side < 4; side++) {
                 for (let distance = 0; distance < 5; distance++) {
-                    if (enemiesRoby[side][distance].show && !enemiesRoby[side][distance].animationFinished) {
+                    if (enemiePlayersRoby[side][distance].show && !enemiePlayersRoby[side][distance].animationFinished) {
                         allAnimationFinished = false;
                         break;
                     }
@@ -259,12 +259,12 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
     };
 
     pathHandler.calculateUserPlayerPath = function() {
-        calculatePath({ player: gameData.getUserPlayer() });
+        calculatePath({ player: gameData.getBotPlayer() });
     };
 
 
     // algoritmo di calcolo del percorso dell'IA, in base al livello di difficoltà selezionato
-    pathHandler.calculateBootEnemyPath = function() {
+    pathHandler.calculateBotPlayerPath = function() {
         let allPaths = [];
         for (let sideValue = 0; sideValue < 4; sideValue++) {
             for (let distanceValue = 0; distanceValue < 5; distanceValue++) {
@@ -281,7 +281,8 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
         });
 
         let selectedPath;
-        switch (gameData.getGeneral().bootEnemySetting) {
+
+        switch (2) {
             case 1:
                 // facile: seleziona un percorso casuale tra i più corti
                 selectedPath = allPaths[Math.floor(Math.random() * 10)];
@@ -298,9 +299,8 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
                 break;
         }
 
-        gameData.editEnemy1vs1({ match: selectedPath });
-        $.extend(true, enemiesRoby[selectedPath.startPosition.side][selectedPath.startPosition.distance],
-            selectedPath);
+        gameData.editPlayer({ match: selectedPath }, 0);
+        $.extend(true, botPlayerRoby, selectedPath);
     };
 
 
@@ -433,9 +433,9 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
             //gameData.editPlayer({ match: pathInfo }, args.player.playerId);
 
             if (args.player.userPlayer)
-                $.extend(true, playerRoby, pathInfo);
+                $.extend(true, botPlayerRoby, pathInfo);
             else
-                $.extend(true, enemiesRoby[pathInfo.startPosition.side][pathInfo.startPosition.distance], pathInfo);
+                $.extend(true, enemiePlayersRoby[pathInfo.startPosition.side][pathInfo.startPosition.distance], pathInfo);
         }
         return pathInfo;
     };

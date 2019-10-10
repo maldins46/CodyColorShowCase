@@ -47,8 +47,8 @@ angular.module('codyColor').controller('royaleAftermatchCtrl', ['$scope', 'rabbi
                     $scope.newMatchTimerValue = 0;
                 });
 
-                if (!gameData.getUserPlayer().ready) {
-                    gameData.getUserPlayer().ready = true;
+                if (!gameData.getBotPlayer().ready) {
+                    gameData.getBotPlayer().ready = true;
                     rabbit.sendReadyMessage();
                 }
 
@@ -102,14 +102,14 @@ angular.module('codyColor').controller('royaleAftermatchCtrl', ['$scope', 'rabbi
         $scope.winner = gameData.getMatchWinner().nickname;
         $scope.matchCount = gameData.getGeneral().matchCount;
 
-        if ($scope.winner === gameData.getUserPlayer().nickname) {
+        if ($scope.winner === gameData.getBotPlayer().nickname) {
             audioHandler.playSound('win');
         }
 
         // richiede all'avversario l'avvio di una nuova partita tra i due
         $scope.newMatch = function () {
-            if (!gameData.getUserPlayer().ready) {
-                gameData.getUserPlayer().ready = true;
+            if (!gameData.getBotPlayer().ready) {
+                gameData.getBotPlayer().ready = true;
                 rabbit.sendReadyMessage();
             }
             scopeService.safeApply($scope, function () {
@@ -141,7 +141,7 @@ angular.module('codyColor').controller('royaleAftermatchCtrl', ['$scope', 'rabbi
                 });
 
             }, onPlayerRemoved: function (message) {
-                if (message.removedPlayerId === gameData.getUserPlayer().playerId) {
+                if (message.removedPlayerId === gameData.getBotPlayer().playerId) {
                     quitGame();
                     scopeService.safeApply($scope, function () {
                         translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
@@ -174,7 +174,7 @@ angular.module('codyColor').controller('royaleAftermatchCtrl', ['$scope', 'rabbi
         // impostazioni chat
         $scope.chatBubbles = chatHandler.getChatMessages();
         $scope.getBubbleStyle = function(chatMessage) {
-            if (chatMessage.playerId === gameData.getUserPlayer().playerId)
+            if (chatMessage.playerId === gameData.getBotPlayer().playerId)
                 return 'chat--bubble-player';
             else
                 return 'chat--bubble-enemy';

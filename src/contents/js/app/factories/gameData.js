@@ -38,7 +38,7 @@ angular.module('codyColor').factory('gameData', function () {
 
     let generateEmptyPlayer = function() {
         return {
-            nickname:  "Anonymous",
+            nickname:  "CodyColor",
             points:     0,
             wonMatches: 0,
             playerId:  -1,
@@ -103,13 +103,13 @@ angular.module('codyColor').factory('gameData', function () {
      * Getter-setter:funzioni ausiliarie per accedere ai dati
      * -------------------------------------------------------------------- */
 
-    gameData.addEnemy = function (playerId) {
+    gameData.addEnemyPlayer = function (playerId) {
         data.players.push(generateEmptyPlayer());
         data.players[data.players.length - 1].playerId = playerId;
     };
 
 
-    gameData.removeEnemy = function(playerId) {
+    gameData.removeEnemyPlayer = function(playerId) {
         let index = getPlayerIndexById(playerId);
         if(index !== undefined && !data.players[index].userPlayer) {
             if (data.players[index].match.timer !== undefined)
@@ -119,8 +119,8 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
-    gameData.editEnemy1vs1 = function(modifiedProperties) {
-        let enemyIndex = getEnemy1vs1Index();
+    gameData.editEnemyPlayer1vs1 = function(modifiedProperties) {
+        let enemyIndex = getEnemyPlayer1vs1Index();
         if (enemyIndex !== undefined && data.players[enemyIndex] !== undefined)
             $.extend(true, data.players[enemyIndex], modifiedProperties);
     };
@@ -130,10 +130,9 @@ angular.module('codyColor').factory('gameData', function () {
         if (playerId !== undefined) {
             $.extend(true, data.players[getPlayerIndexById(playerId)], modifiedProperties);
         } else {
-            $.extend(true, data.players[getUserPlayerIndex()], modifiedProperties);
+            $.extend(true, data.players[getBotPlayerIndex()], modifiedProperties);
         }
     };
-
 
     gameData.syncGameData = function(newData) {
         if (newData.general.tiles !== undefined) {
@@ -155,13 +154,13 @@ angular.module('codyColor').factory('gameData', function () {
 
         for (let i = 0; i < data.players.length; i++) {
             if (data.players[i].toRemove !== false) {
-                gameData.removeEnemy(data.players[i].playerId);
+                gameData.removeEnemyPlayer(data.players[i].playerId);
             }
         }
 
         for (let i = 0; i < newData.players.length; i++) {
             if (newData.players[i].presentYet !== true) {
-                gameData.addEnemy(i);
+                gameData.addEnemyPlayer(i);
                 $.extend(true, data.players[data.players.length - 1], newData.players[i]);
             }
         }
@@ -177,9 +176,9 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
-    gameData.getEnemies = function () {
+    gameData.getEnemyPlayers = function () {
         let enemies = JSON.parse(JSON.stringify(data.players));
-        enemies.splice(getUserPlayerIndex(), 1);
+        enemies.splice(getBotPlayerIndex(), 1);
         return enemies;
     };
 
@@ -189,13 +188,13 @@ angular.module('codyColor').factory('gameData', function () {
     };
 
 
-    gameData.getUserPlayer = function () {
-        return data.players[getUserPlayerIndex()];
+    gameData.getBotPlayer = function () {
+        return data.players[getBotPlayerIndex()];
     };
 
-    gameData.getEnemy1vs1 = function () {
-        if(getEnemy1vs1Index() !== undefined)
-            return data.players[getEnemy1vs1Index()];
+    gameData.getEnemyPlayer1vs1 = function () {
+        if(getEnemyPlayer1vs1Index() !== undefined)
+            return data.players[getEnemyPlayer1vs1Index()];
     };
 
 
@@ -226,7 +225,7 @@ angular.module('codyColor').factory('gameData', function () {
         }
     };
 
-    let getEnemy1vs1Index = function() {
+    let getEnemyPlayer1vs1Index = function() {
         for (let i = 0; i < data.players.length; i++) {
             if (data.players[i].userPlayer !== true) {
                 return i;
@@ -234,7 +233,7 @@ angular.module('codyColor').factory('gameData', function () {
         }
     };
 
-    let getUserPlayerIndex = function() {
+    let getBotPlayerIndex = function() {
         for (let i = 0; i < data.players.length; i++)
             if (data.players[i].userPlayer === true)
                 return i;

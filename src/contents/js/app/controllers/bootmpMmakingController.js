@@ -85,13 +85,13 @@ angular.module('codyColor').controller('bootmpMmakingCtrl', ['$scope', 'rabbit',
 
         // tasto 'inizia partita'
         $scope.createBootcamp = function() {
-            gameData.getUserPlayer().nickname = $scope.nickname;
-            gameData.getUserPlayer().playerId = 0;
+            gameData.getBotPlayer().nickname = $scope.nickname;
+            gameData.getBotPlayer().playerId = 0;
 
             if (gameData.getGeneral().bootEnemySetting !== 0) {
                 gameData.addEnemy(1);
-                gameData.getEnemy1vs1().nickname = 'CodyColor';
-                gameData.getEnemy1vs1().playerId = 1;
+                gameData.getEnemyPlayer1vs1().nickname = 'CodyColor';
+                gameData.getEnemyPlayer1vs1().playerId = 1;
             }
             gameData.getGeneral().tiles = gameData.generateNewMatchTiles();
             navigationHandler.goToPage($location, '/bootmp-match');

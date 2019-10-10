@@ -3,9 +3,9 @@
  * portarne avanti una con lo stesso avversario
  */
 angular.module('codyColor').controller('bootmpAftermatchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
-    '$location', 'navigationHandler', 'audioHandler', 'sessionHandler', '$translate', 'authHandler', 'translationHandler',
+    '$location', 'navigationHandler', 'audioHandler', 'sessionHandler', '$translate', 'translationHandler',
     function ($scope, rabbit, gameData, scopeService, $location, navigationHandler,
-              audioHandler, sessionHandler, $translate, authHandler, translationHandler) {
+              audioHandler, sessionHandler, $translate, translationHandler) {
         console.log("Controller aftermatch ready.");
 
         // chiusura 'sicura' della partita
@@ -21,33 +21,27 @@ angular.module('codyColor').controller('bootmpAftermatchCtrl', ['$scope', 'rabbi
             return;
         }
 
-        $scope.userLogged = authHandler.loginCompleted();
-        if (authHandler.loginCompleted()) {
-            $scope.userNickname = authHandler.getServerUserData().nickname;
-        } else {
-            translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
-        }
 
         gameData.editPlayer({
-            points: gameData.getUserPlayer().points + gameData.getUserPlayer().match.points
+            points: gameData.getBotPlayer().points + gameData.getBotPlayer().match.points
         });
 
-        if (gameData.getEnemy1vs1() !== undefined)
-            gameData.editEnemy1vs1({
-                points: gameData.getEnemy1vs1().points + gameData.getEnemy1vs1().match.points
+        if (gameData.getEnemyPlayer1vs1() !== undefined)
+            gameData.editEnemyPlayer1vs1({
+                points: gameData.getEnemyPlayer1vs1().points + gameData.getEnemyPlayer1vs1().match.points
             });
 
         // informazioni sul risultato della partita
-        $scope.withEnemy = gameData.getEnemy1vs1() !== undefined;
+        $scope.withEnemy = gameData.getEnemyPlayer1vs1() !== undefined;
         $scope.timeFormatter = gameData.formatTimeDecimals;
-        $scope.player = gameData.getUserPlayer();
-        $scope.enemy = gameData.getEnemy1vs1();
+        $scope.player = gameData.getBotPlayer();
+        $scope.enemy = gameData.getEnemyPlayer1vs1();
         $scope.winner = gameData.getMatchWinner().nickname;
         $scope.matchCount = gameData.getGeneral().matchCount;
 
-        if ($scope.winner === gameData.getUserPlayer().nickname) {
+        if ($scope.winner === gameData.getBotPlayer().nickname) {
             audioHandler.playSound('win');
-        } else if ($scope.withEnemy && $scope.winner === gameData.getEnemy1vs1().nickname) {
+        } else if ($scope.withEnemy && $scope.winner === gameData.getEnemyPlayer1vs1().nickname) {
             audioHandler.playSound('lost');
         }
 
@@ -90,9 +84,6 @@ angular.module('codyColor').controller('bootmpAftermatchCtrl', ['$scope', 'rabbi
             $scope.languageModal = false;
             audioHandler.playSound('menu-click');
 
-            if (!authHandler.loginCompleted()) {
-                translationHandler.setTranslation($scope, 'userNickname', 'NOT_LOGGED');
-            }
         };
 
         // impostazioni audio

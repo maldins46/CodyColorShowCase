@@ -41,8 +41,8 @@ angular.module('codyColor').controller('bootmpMatchCtrl', [ '$scope', 'gameData'
         // inizializzazione componenti generali interfaccia
         $scope.showDraggableRoby = true;
         pathHandler.initialize($scope);
-        $scope.player = gameData.getUserPlayer();
-        $scope.enemy = (gameData.getAllPlayers().length > 1) ? gameData.getEnemy1vs1() : undefined;
+        $scope.player = gameData.getBotPlayer();
+        $scope.enemy = (gameData.getAllPlayers().length > 1) ? gameData.getEnemyPlayer1vs1() : undefined;
         $scope.playerRoby = pathHandler.getPlayerRoby();
         $scope.enemiesRoby = pathHandler.getEnemiesRoby();
         $scope.timerFormatter = gameData.formatTimeDecimals;
@@ -52,7 +52,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl', [ '$scope', 'gameData'
             match: {timerValue: gameData.getGeneral().timerSetting}
         });
         if ($scope.enemy !== undefined) {
-            gameData.editEnemy1vs1({
+            gameData.editEnemyPlayer1vs1({
                 match: {timerValue: gameData.getGeneral().timerSetting}
             });
         }
@@ -188,13 +188,13 @@ angular.module('codyColor').controller('bootmpMatchCtrl', [ '$scope', 'gameData'
                 let finish = gameTimerValue <= 0 || allPlayersPositioned();
 
                 scopeService.safeApply($scope, function () {
-                    if (gameData.getUserPlayer().match.time === -1) {
-                        gameData.getUserPlayer().match.timerValue = gameTimerValue;
+                    if (gameData.getBotPlayer().match.time === -1) {
+                        gameData.getBotPlayer().match.timerValue = gameTimerValue;
 
                         if (finish) {
-                            gameData.getUserPlayer().match.positioned = true;
-                            gameData.getUserPlayer().match.timerValue = 0;
-                            gameData.getUserPlayer().match.time = 0;
+                            gameData.getBotPlayer().match.positioned = true;
+                            gameData.getBotPlayer().match.timerValue = 0;
+                            gameData.getBotPlayer().match.time = 0;
 
 
                             $scope.showCompleteGrid = true;
@@ -204,15 +204,15 @@ angular.module('codyColor').controller('bootmpMatchCtrl', [ '$scope', 'gameData'
                         }
                     }
 
-                    if (gameData.getEnemy1vs1() !== undefined) {
-                        if (gameData.getEnemy1vs1().match.time === -1) {
-                            gameData.getEnemy1vs1().match.timerValue = gameTimerValue;
+                    if (gameData.getEnemyPlayer1vs1() !== undefined) {
+                        if (gameData.getEnemyPlayer1vs1().match.time === -1) {
+                            gameData.getEnemyPlayer1vs1().match.timerValue = gameTimerValue;
 
-                            if (gameData.getEnemy1vs1().match.timerValue <= positionEnemyTrigger) {
+                            if (gameData.getEnemyPlayer1vs1().match.timerValue <= positionEnemyTrigger) {
                                 // posiziona l'avversario se si supera il limite di tempo stabilito
-                                gameData.getEnemy1vs1().match.positioned = true;
-                                gameData.getEnemy1vs1().match.time = positionEnemyTrigger;
-                                gameData.getEnemy1vs1().match.timerValue = positionEnemyTrigger;
+                                gameData.getEnemyPlayer1vs1().match.positioned = true;
+                                gameData.getEnemyPlayer1vs1().match.time = positionEnemyTrigger;
+                                gameData.getEnemyPlayer1vs1().match.timerValue = positionEnemyTrigger;
                                 pathHandler.calculateBootEnemyPath();
                             }
                         }
@@ -296,20 +296,20 @@ angular.module('codyColor').controller('bootmpMatchCtrl', [ '$scope', 'gameData'
             console.log("Roby dropped");
             audioHandler.playSound('roby-positioned');
             if (!$scope.startAnimation) {
-                gameData.getUserPlayer().match.positioned = true;
-                gameData.getUserPlayer().match.startPosition = {side: sideValue, distance: distanceValue};
-                gameData.getUserPlayer().match.time = gameData.getUserPlayer().match.timerValue;
+                gameData.getBotPlayer().match.positioned = true;
+                gameData.getBotPlayer().match.startPosition = {side: sideValue, distance: distanceValue};
+                gameData.getBotPlayer().match.time = gameData.getBotPlayer().match.timerValue;
 
                 $scope.showCompleteGrid = true;
                 $scope.showDraggableRoby = false;
-                pathHandler.positionRoby(true, gameData.getUserPlayer().match.startPosition);
+                pathHandler.positionRoby(true, gameData.getBotPlayer().match.startPosition);
                 pathHandler.calculateUserPlayerPath();
 
                 // posiziona l'avversario se si supera il limite di tempo stabilito
-                if (gameData.getEnemy1vs1() !== undefined) {
-                    gameData.getEnemy1vs1().match.positioned = true;
-                    gameData.getEnemy1vs1().match.time = positionEnemyTrigger;
-                    gameData.getEnemy1vs1().match.timerValue = positionEnemyTrigger;
+                if (gameData.getEnemyPlayer1vs1() !== undefined) {
+                    gameData.getEnemyPlayer1vs1().match.positioned = true;
+                    gameData.getEnemyPlayer1vs1().match.time = positionEnemyTrigger;
+                    gameData.getEnemyPlayer1vs1().match.timerValue = positionEnemyTrigger;
                     pathHandler.calculateBootEnemyPath();
                 }
 
@@ -323,7 +323,7 @@ angular.module('codyColor').controller('bootmpMatchCtrl', [ '$scope', 'gameData'
             if (!$scope.startAnimation) {
                 gameData.getGeneral().matchCount++;
                 if ($scope.enemy !== undefined)
-                    pathHandler.positionRoby(false, gameData.getEnemy1vs1().match.startPosition);
+                    pathHandler.positionRoby(false, gameData.getEnemyPlayer1vs1().match.startPosition);
 
                 scopeService.safeApply($scope, function () {
                     $scope.startAnimation = true;

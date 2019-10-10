@@ -111,8 +111,8 @@ angular.module('codyColor').controller('royaleNewMatchCtrl', ['$scope', 'rabbit'
                 }
             }
             gameData.getGeneral().gameName = $scope.gameName;
-            gameData.getUserPlayer().nickname = $scope.nickname;
-            gameData.getUserPlayer().organizer = true;
+            gameData.getBotPlayer().nickname = $scope.nickname;
+            gameData.getBotPlayer().organizer = true;
             navigationHandler.goToPage($location, '/royale-mmaking');
         };
 

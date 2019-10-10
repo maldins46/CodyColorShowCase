@@ -64,8 +64,8 @@ angular.module('codyColor').controller('customNewMatchCtrl', ['$scope', 'rabbit'
         $scope.requestMMaking = function () {
             audioHandler.playSound('menu-click');
             $scope.creatingMatch = true;
-            gameData.getUserPlayer().nickname = $scope.nickname;
-            gameData.getUserPlayer().organizer = true;
+            gameData.getBotPlayer().nickname = $scope.nickname;
+            gameData.getBotPlayer().organizer = true;
             navigationHandler.goToPage($location, '/custom-mmaking');
         };
 

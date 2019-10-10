@@ -53,7 +53,7 @@ angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', '
         $scope.showDraggableRoby = true;
         pathHandler.initialize($scope);
         $scope.players = gameData.getAllPlayers();
-        $scope.userPlayer = gameData.getUserPlayer();
+        $scope.userPlayer = gameData.getBotPlayer();
         $scope.timerFormatter = gameData.formatTimeDecimals;
         $scope.playerRoby = pathHandler.getPlayerRoby();
         $scope.enemiesRoby = pathHandler.getEnemiesRoby();
@@ -277,13 +277,13 @@ angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', '
                     gameData.editPlayer({
                         match: {
                             startPosition: {side: sideValue, distance: distanceValue},
-                            time: gameData.getUserPlayer().match.timerValue,
+                            time: gameData.getBotPlayer().match.timerValue,
                             positioned: true
                         }
                     });
                     $scope.showDraggableRoby = false;
                 });
-                pathHandler.positionRoby(true, gameData.getUserPlayer().match.startPosition);
+                pathHandler.positionRoby(true, gameData.getBotPlayer().match.startPosition);
                 rabbit.sendPlayerPositionedMessage();
             }
         };
@@ -299,7 +299,7 @@ angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', '
                 });
 
             }, onPlayerRemoved: function (message) {
-                if (message.removedPlayerId === gameData.getUserPlayer().playerId) {
+                if (message.removedPlayerId === gameData.getBotPlayer().playerId) {
                     quitGame();
                     scopeService.safeApply($scope, function () {
                         translationHandler.setTranslation($scope, 'forceExitText', 'ENEMY_LEFT');
@@ -344,8 +344,8 @@ angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', '
         // cosa fare una volta terminata senza intoppi la partita; mostra la schermata aftermatch
         let startAnimation = function () {
             if (!$scope.startAnimation) {
-                for (let i = 0; i < gameData.getEnemies().length; i++){
-                    pathHandler.positionRoby(false, gameData.getEnemies()[i].match.startPosition);
+                for (let i = 0; i < gameData.getEnemyPlayers().length; i++){
+                    pathHandler.positionRoby(false, gameData.getEnemyPlayers()[i].match.startPosition);
                 }
 
                 scopeService.safeApply($scope, function () {

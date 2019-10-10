@@ -4,8 +4,8 @@
  * e l'invio di messaggi al broker
  */
 
-angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 'settings', 'authHandler',
-    function (gameData, sessionHandler, settings, authHandler) {
+angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 'settings',
+    function (gameData, sessionHandler, settings) {
     let rabbit = {};
 
     const endpoints = {
@@ -114,7 +114,7 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
             sendInServerControlQueue({
                 msgType:    messageTypes.c_heartbeat,
                 gameRoomId: gameData.getGeneral().gameRoomId,
-                playerId:   gameData.getUserPlayer().playerId,
+                playerId:   gameData.getBotPlayer().playerId,
                 gameType:   gameData.getGeneral().gameType
             });
         }, 5000);
@@ -125,11 +125,10 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
     rabbit.sendGameRequest = function () {
        sendInServerControlQueue({
            msgType:           messageTypes.c_gameRequest,
-           nickname:          gameData.getUserPlayer().nickname,
+           nickname:          gameData.getBotPlayer().nickname,
            correlationId:     sessionHandler.getSessionId(),
            gameType:          gameData.getGeneral().gameType,
            gameName:          gameData.getGeneral().gameName,
-           userId:            authHandler.getFirebaseUserData().uid,
            timerSetting:      gameData.getGeneral().timerSetting,
            maxPlayersSetting: gameData.getGeneral().maxPlayersSetting,
            code:              gameData.getGeneral().code,
@@ -138,23 +137,7 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
        });
     };
 
-    rabbit.sendSignUpRequest = function (nickname) {
-        sendInServerControlQueue({
-            msgType:           messageTypes.c_signUpRequest,
-            nickname:          nickname,
-            email:             authHandler.getFirebaseUserData().email,
-            correlationId:     sessionHandler.getSessionId(),
-            userId:            authHandler.getFirebaseUserData().uid
-        });
-    };
 
-    rabbit.sendLogInRequest = function () {
-        sendInServerControlQueue({
-            msgType:           messageTypes.c_logInRequest,
-            correlationId:     sessionHandler.getSessionId(),
-            userId:            authHandler.getFirebaseUserData().uid
-        });
-    };
 
     rabbit.sendRankingsRequest = function () {
         sendInServerControlQueue({
@@ -163,23 +146,15 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         });
     };
 
-    rabbit.sendUserDeleteRequest = function () {
-        sendInServerControlQueue({
-            msgType:           messageTypes.c_userDeleteRequest,
-            correlationId:     sessionHandler.getSessionId(),
-            userId:            authHandler.getFirebaseUserData().uid
-        });
-    };
-
 
     // notifica all'avversario che si è pronti a iniziare la partita
     rabbit.sendReadyMessage = function () {
         sendInGameRoomTopic({
             msgType:     messageTypes.c_ready,
-            organizer:   gameData.getUserPlayer().organizer,
+            organizer:   gameData.getBotPlayer().organizer,
             gameRoomId:  gameData.getGeneral().gameRoomId,
-            playerId:    gameData.getUserPlayer().playerId,
-            nickname:    gameData.getUserPlayer().nickname,
+            playerId:    gameData.getBotPlayer().playerId,
+            nickname:    gameData.getBotPlayer().nickname,
             gameType:    gameData.getGeneral().gameType,
             clientDirect: true
         });
@@ -189,10 +164,10 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
     rabbit.sendValidationMessage = function () {
         sendInGameRoomTopic({
             msgType:    messageTypes.c_validation,
-            organizer:  gameData.getUserPlayer().organizer,
+            organizer:  gameData.getBotPlayer().organizer,
             gameRoomId: gameData.getGeneral().gameRoomId,
-            playerId:   gameData.getUserPlayer().playerId,
-            nickname:   gameData.getUserPlayer().nickname,
+            playerId:   gameData.getBotPlayer().playerId,
+            nickname:   gameData.getBotPlayer().nickname,
             gameType:   gameData.getGeneral().gameType,
         });
     };
@@ -203,11 +178,11 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         sendInGameRoomTopic({
             msgType:    messageTypes.c_positioned,
             gameRoomId: gameData.getGeneral().gameRoomId,
-            playerId:   gameData.getUserPlayer().playerId,
+            playerId:   gameData.getBotPlayer().playerId,
             gameType:   gameData.getGeneral().gameType,
-            matchTime:  gameData.getUserPlayer().match.time,
-            side:       gameData.getUserPlayer().match.startPosition.side,
-            distance:   gameData.getUserPlayer().match.startPosition.distance,
+            matchTime:  gameData.getBotPlayer().match.time,
+            side:       gameData.getBotPlayer().match.startPosition.side,
+            distance:   gameData.getBotPlayer().match.startPosition.distance,
         });
     };
 
@@ -217,7 +192,7 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         sendInGameRoomTopic({
             msgType:    messageTypes.c_playerQuit,
             gameRoomId: gameData.getGeneral().gameRoomId,
-            playerId:   gameData.getUserPlayer().playerId,
+            playerId:   gameData.getBotPlayer().playerId,
             gameType:   gameData.getGeneral().gameType
         });
     };
@@ -228,9 +203,9 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         sendInGameRoomTopic({
             msgType:    messageTypes.c_endAnimation,
             gameRoomId: gameData.getGeneral().gameRoomId,
-            playerId:   gameData.getUserPlayer().playerId,
-            matchPoints: gameData.getUserPlayer().match.points,
-            pathLength:  gameData.getUserPlayer().match.pathLength,
+            playerId:   gameData.getBotPlayer().playerId,
+            matchPoints: gameData.getBotPlayer().match.points,
+            pathLength:  gameData.getBotPlayer().match.pathLength,
             winner: gameData.getMatchWinner().userPlayer === true,
             gameType:   gameData.getGeneral().gameType
         });
@@ -242,8 +217,8 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         let message = {
             msgType:      messageTypes.c_chat,
             gameRoomId:   gameData.getGeneral().gameRoomId,
-            playerId:     gameData.getUserPlayer().playerId,
-            sender:       gameData.getUserPlayer().nickname,
+            playerId:     gameData.getBotPlayer().playerId,
+            sender:       gameData.getBotPlayer().nickname,
             body:         messageBody,
             date:         (new Date()).getTime(),
             clientDirect: true,
@@ -319,7 +294,7 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         if (debug)
             console.log('DEBUG: Sent message in topic: ' + JSON.stringify(message));
 
-        if (gameData.getGeneral().gameRoomId === -1 || gameData.getUserPlayer().playerId === -1)
+        if (gameData.getGeneral().gameRoomId === -1 || gameData.getBotPlayer().playerId === -1)
             return;
 
         // aggiunge un id univoco al messaggio
@@ -378,18 +353,6 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
                 }
                 return;
 
-            case messageTypes.s_authResponse:
-                if (pageCallbacks.onLogInResponse !== undefined) {
-                    pageCallbacks.onLogInResponse(message);
-                }
-                return;
-
-            case messageTypes.s_userDeleteResponse:
-                if (pageCallbacks.onUserDeletedResponse !== undefined) {
-                    pageCallbacks.onUserDeletedResponse(message);
-                }
-                return;
-
             case messageTypes.s_rankingsResponse:
                 if (pageCallbacks.onRankingsResponse !== undefined) {
                     pageCallbacks.onRankingsResponse(message);
@@ -415,19 +378,25 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
         switch (message.msgType) {
             case messageTypes.c_ready:
                 if (pageCallbacks.onReadyMessage !== undefined
-                    && message.playerId !== gameData.getUserPlayer().playerId)
+                    && message.playerId !== gameData.getBotPlayer().playerId)
                     pageCallbacks.onReadyMessage(message);
                 break;
 
             case messageTypes.c_positioned:
                 if (pageCallbacks.onEnemyPositioned !== undefined
-                    && message.playerId !== gameData.getUserPlayer().playerId)
+                    && message.playerId !== gameData.getBotPlayer().playerId)
                     pageCallbacks.onEnemyPositioned(message);
+                break;
+
+            case messageTypes.c_endAnimation:
+                if (pageCallbacks.onEndAnimation !== undefined
+                    && message.playerId !== gameData.getBotPlayer().playerId)
+                    pageCallbacks.onEndAnimation(message);
                 break;
 
             case messageTypes.c_chat:
                 if (pageCallbacks.onChatMessage !== undefined
-                    && message.playerId !== gameData.getUserPlayer().playerId)
+                    && message.playerId !== gameData.getBotPlayer().playerId)
                     pageCallbacks.onChatMessage(message);
                 break;
 
@@ -453,7 +422,7 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
 
             case messageTypes.s_playerAdded:
                 if (pageCallbacks.onPlayerAdded !== undefined
-                    && message.playerId !== gameData.getUserPlayer().playerId)
+                    && message.playerId !== gameData.getBotPlayer().playerId)
                     pageCallbacks.onPlayerAdded(message);
                 break;
 

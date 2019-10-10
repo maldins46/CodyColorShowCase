@@ -48,9 +48,25 @@ module.exports = function (grunt) {
                                 return dest + 'contents/js/bower/2-angular.js';
                             else if (src === 'contents/js/bower/angular-translate.js')
                                 return dest + 'contents/js/bower/3-angular-translate.js';
+                            else if (src === 'contents/js/bower/qrcode.js') {
+                                return dest + 'contents/js/bower/4-qrcode.js';
+                            }
                             else
                                 return dest + src;
                         }
+                    },
+                ],
+            },
+            'build-beta-local': {
+                files: [
+                    // copy all files excluded bower and index
+                    {
+                        expand: true,
+                        cwd: 'src/',
+                        src: [
+                            'settings.js',
+                        ],
+                        dest: 'build/contents/js/',
                     },
                 ],
             },
@@ -84,6 +100,7 @@ module.exports = function (grunt) {
                     'src/contents/js/bower/jquery.js',
                     'src/contents/js/bower/angular.js',
                     'src/contents/js/bower/angular-translate.js',
+                    'src/contents/js/bower/qrcode.js',
                     'src/contents/js/bower/*.js',
                     'src/contents/js/vendor/*.js',
                     'src/contents/js/app/main.js',
@@ -177,5 +194,7 @@ module.exports = function (grunt) {
     ]);
     grunt.registerTask('build-beta', ['clean:preclean', 'bower', 'copy:build-beta',
         'clean:build-beta','includeSource', 'shell']);
+    grunt.registerTask('build-beta-local', ['clean:preclean', 'bower', 'copy:build-beta',
+        'clean:build-beta','includeSource', 'shell', 'copy:build-beta-local']);
 
 };
