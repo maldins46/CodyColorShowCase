@@ -61,23 +61,6 @@
                         </p>
                     </div>
                 </li>
-
-                <!-- Chat module -->
-                <li class="list--spaced-element">
-                    <div class="chat">
-                        <div class="chat--bubbles-container">
-                            {{ 'CHAT_TITLE' | translate }}
-                            <div class="chat--bubbles-sub-container" ng-repeat="bubble in chatBubbles">
-                                <div class="chat--bubble-row">
-                                    <div ng-class="getBubbleStyle(bubble)">
-                                        <div class="chat--bubble-sender">{{bubble.sender}}</div>
-                                        {{bubble.body | translate}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
             </ul>
         </div>
 

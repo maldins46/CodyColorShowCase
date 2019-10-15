@@ -7,18 +7,20 @@
             </div>
 
             <!-- match ready, show qr -->
-            <div ng-show="mmakingState === screens.matchReady" class="page--component">
+            <div ng-show="mmakingState === screens.matchReady" class="page--component" >
                 <ul class="list">
-                    <li class="list--simple-element">
-                        Descrizione
+                    <li class="list--super-spaced-element">
+                        <img class="big-image floating-up-animation" src="img/title.png" alt="Game logo">
                     </li>
 
-                    <li class="list--simple-element">
-                        <qr text="matchUrl"></qr>
+                    <li class="list--super-spaced-element">
+                        <div class="qr">
+                            <qr text="matchUrl" size="300" image="true"></qr>
+                        </div>
                     </li>
 
-                    <li class="list--simple-element">
-                        {{ matchUrl }}
+                    <li class="list--spaced-element">
+                         Per giocare contro di me, inquadra il codice QR dal tuo smartphone, oppure vai al link {{ matchUrl }}.
                     </li>
                 </ul>
             </div>
@@ -27,34 +29,32 @@
             <div ng-show="mmakingState === screens.enemyReady" class="page--component">
                 <ul class="list">
                     <li class="list--simple-element">
-                        Descrizione
-                    </li>
-
-                    <li class="list--simple-element">
-                        Nome enemy
-                    </li>
-
-                    <li class="list--simple-element">
-                        Chat
+                        <h2>Benvenuto, {{enemyPlayer.nickname}}!</h2>
+                        <p>
+                            Stai per sfidare il bot in vetrina a una partita a CodyColor, un gioco educativo creato da Digit.
+                        </p>
+                        <p>
+                            Come funziona il gioco? Una volta premuto il tasto "iniziamo",
+                            ti troverai di fronte una scacchiera colorata e un robottino di nome Roby. Dovrai posizionare
+                            Roby, trascinandolo, in una delle posizioni di partenza
+                            (indicate dalle frecce ai bordi della scacchiera) entro il tempo limite.
+                            Anche il bot in vetrina farà la sua mossa; quindi il tuo Roby e quello posizionato dal bot
+                            inizieranno a muoversi
+                            all'interno della scacchiera, prendendo una direzione differente a seconda del colore delle
+                            tessere:</p>
+                        <p>In corrispondenza delle tessere gialle, Roby si girerà di 90 gradi verso sinistra.</p>
+                        <p>In corrispondenza delle tessere rosse, di 90 gradi verso destra.</p>
+                        <p>In corrispondenza delle tessere grigie, proseguirà diritto.</p>
+                        <p>Scopo del gioco è scegliere una posizione di partenza tale da far rimanere il proprio
+                            robottino all'interno della scacchiera il più a lungo possibile. Vince il giocatore
+                            che totalizza più punti fra i due a fine partita; punti che possono essere guadagnati
+                            effettuando un percorso più lungo possibile, o posizionando più velocemente dell'avversario
+                            il proprio robottino. In caso di pareggio assoluto, vince chi ha posizionato per primo il proprio Roby.</p>
+                        <p> Una volta terminata la partita, potrai decidere di effettuarne un'altra in sequenza.</p>
+                        <p>Sei pronto? Iniziamo!</p>
                     </li>
                 </ul>
             </div>
-        </div>
-        <div class="page--push"></div>
-    </div>
-
-    <!-- Footer module -->
-    <div class="page--footer">
-        <div class="page--footer-column-left ellipsize">
-            <button class="page--footer-button" ng-click="toggleBase()">
-                <i class="page--footer-icons" ng-class="basePlaying ? 'fas fa-volume-up': 'fas fa-volume-mute'"></i>
-            </button>
-            <button class="page--footer-button" ng-click="openLanguageModal()">
-                <i class="page--footer-icons fas"
-                   ng-class="('LANGUAGE' | translate) == 'it' ? 'fa-globe-europe' : 'fa-globe-americas'"></i>
-            </button>
-        </div>
-        <div class="page--footer-column-right ellipsize">
         </div>
     </div>
 </div>
