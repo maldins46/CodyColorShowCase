@@ -1,0 +1,113 @@
+<div id="create-match" class="page">
+    <div class="page--wrapper">
+        <div class="page--body">
+            <!-- Create match -->
+            <form name="createMatchForm">
+                <ul class="list">
+                    <li class="list--super-spaced-element">
+                        <img class="big-image floating-up-animation" src="img/title.png" alt="Game logo">
+                    </li>
+                    <li class="list--spaced-element">
+                       {{ 'WELCOME' | translate }}
+                    </li>
+
+                    <li class="list--spaced-element">
+                        <div class="centered-columns">
+                            <div class="centered-columns--pair">
+                                <div class="centered-columns--column">
+                                    <div class="label"><label for="username">{{ 'USERNAME_SELECT' | translate }}</label></div>
+                                    <input type="text" name="username" maxlength="22" ng-model="username" id="username"
+                                           placeholder="{{ 'USERNAME_SELECT' | translate }}" class="standard-input" required autofocus />
+                                </div>
+                                <div class="centered-columns--column">
+                                    <div class="label"><label for="password">{{ 'PASSWORD_SELECT' | translate }}</label></div>
+                                    <input type="password" name="password" ng-maxlength="100" ng-model="password" id="password"
+                                           placeholder="{{ 'PASSWORD_SELECT' | translate }}" class="standard-input" required />
+                                </div>
+                            </div>
+
+                            <div class="centered-columns--pair">
+                                <div class="centered-columns--column">
+                                    <div class="label">{{ 'DIFF_SELECT' | translate }}</div>
+                                    <div class="selector">
+                                        <div class="selector--button" ng-click="editDiff(false)">
+                                            <i class="fas fa-minus"></i>
+                                        </div>
+                                        <div class="selector--text">{{diffSettings[diffIndex].text}}</div>
+                                        <div class="selector--button" ng-click="editDiff(true)">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="centered-columns--column">
+                                    <div class="label">{{ 'TIME_SELECT' | translate }}</div>
+                                    <div class="selector">
+                                        <div class="selector--button" ng-click="editTimer(false)">
+                                            <i class="fas fa-minus"></i>
+                                        </div>
+                                        <div class="selector--text">{{ timerSettings[timerIndex].text }}</div>
+                                        <div class="selector--button" ng-click="editTimer(true)">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="centered-columns--pair">
+                                <div class="centered-columns--column ellipsize">
+                                    <div class="label">{{ 'LANG_SELECT' | translate }}</div>
+                                    <div class="selector">
+                                        <div class="selector--button" ng-click="editLang(false)">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </div>
+                                        <div class="selector--text">{{langSettings[langIndex].text}}</div>
+                                        <div class="selector--button" ng-click="editLang(true)">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="centered-columns--column ellipsize">
+                                    <div class="label">{{ 'AUDIO_SELECT' | translate }}</div>
+                                    <div class="selector">
+                                        <div class="selector--button" ng-click="editAudio(false)">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </div>
+                                        <div class="selector--text">{{audioSettings[audioIndex].text}}</div>
+                                        <div class="selector--button" ng-click="editAudio(true)">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list--spaced-element" ng-show="!creatingMatch && connected && !outdatedClient">
+                        <button class="navigation--button flashing-animation" type="submit"
+                                ng-click="createMatch()"
+                                ng-disabled="creatingMatch || !connected || outdatedClient">
+                            {{ 'CREATE_MATCH ' | translate }}
+                            <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
+                        </button>
+                    </li>
+
+                    <li class="list--spaced-element" ng-show="wrongCredentials">
+                        <div class="yellow-text">{{ 'WARN_WRONG_CREDENTIALS' | translate }}</div>
+                    </li>
+
+                    <li class="list--spaced-element" ng-show="outdatedClient">
+                        <div class="yellow-text">{{ 'WARN_OUTDATED_CLIENT' | translate }}</div>
+                    </li>
+
+                    <li class="list--spaced-element" ng-hide="connected">
+                        <div class="yellow-text flashing-animation">{{ 'WARN_CONNECTING' | translate }}.</div>
+                    </li>
+
+                    <li class="list--spaced-element" ng-show="connected">
+                        <div class="green-text flashing-animation">{{ 'WARN_CONNECTED' | translate }}</div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>

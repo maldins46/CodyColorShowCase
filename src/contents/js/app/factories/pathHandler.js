@@ -9,18 +9,18 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
     let startPositionsTiles;
     let completeGridTiles;
     let botPlayerRoby = {};
-    let enemiePlayersRoby = [];
+    let enemyPlayersRoby = [];
 
 
     // permette di uscire dal gioco in modo sicuro, interrompendo tutti i timers e pulendo le variabili
     pathHandler.quitGame = function() {
         for (let side = 0; side < 4; side++) {
             for (let distance = 0; distance < 5; distance++) {
-                if (enemiePlayersRoby[side] !== undefined &&
-                    enemiePlayersRoby[side][distance] !== undefined &&
-                    enemiePlayersRoby[side][distance].walkingTimer !== undefined) {
-                    clearInterval(enemiePlayersRoby[side][distance].walkingTimer);
-                    enemiePlayersRoby[side][distance].walkingTimer = undefined;
+                if (enemyPlayersRoby[side] !== undefined &&
+                    enemyPlayersRoby[side][distance] !== undefined &&
+                    enemyPlayersRoby[side][distance].walkingTimer !== undefined) {
+                    clearInterval(enemyPlayersRoby[side][distance].walkingTimer);
+                    enemyPlayersRoby[side][distance].walkingTimer = undefined;
                 }
             }
         }
@@ -31,7 +31,7 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
         }
 
         botPlayerRoby = {};
-        enemiePlayersRoby = [];
+        enemyPlayersRoby = [];
     };
 
 
@@ -41,7 +41,7 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
 
 
     pathHandler.getEnemiesRoby = function() {
-        return enemiePlayersRoby;
+        return enemyPlayersRoby;
     };
 
 
@@ -91,16 +91,16 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
             }
        };
 
-        enemiePlayersRoby = new Array(4);
+        enemyPlayersRoby = new Array(4);
         for (let side = 0; side < 4; side++) {
-            enemiePlayersRoby[side] = new Array(5);
+            enemyPlayersRoby[side] = new Array(5);
             for (let distance = 0; distance < 5; distance++) {
-                enemiePlayersRoby[side][distance] = {
+                enemyPlayersRoby[side][distance] = {
                     element:  $('#enemy-roby-' + side.toString() + distance.toString()),
                     show: false,
                     setShow: function (show) {
                         scopeService.safeApply($scope, function () {
-                            enemiePlayersRoby[side][distance].show = show;
+                            enemyPlayersRoby[side][distance].show = show;
                         });
                     },
                     animationFinished: false,
@@ -112,7 +112,7 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
                     image:  'enemy-positioned',
                     changeImage: function (image) {
                         scopeService.safeApply($scope, function () {
-                            enemiePlayersRoby[side][distance].image = image;
+                            enemyPlayersRoby[side][distance].image = image;
                         });
                     }
                 };
@@ -127,7 +127,7 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
         if (selectedStart.side === -1 && selectedStart.distance === -1)
             return;
 
-        let roby = (isPlayer ? botPlayerRoby : enemiePlayersRoby[selectedStart.side][selectedStart.distance]);
+        let roby = (isPlayer ? botPlayerRoby : enemyPlayersRoby[selectedStart.side][selectedStart.distance]);
 
         if (roby === undefined) return;
 
@@ -149,8 +149,8 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
 
         for (let side = 0; side < 4; side++) {
             for (let distance = 0; distance < 5; distance++) {
-                if(enemiePlayersRoby[side][distance].show === true)
-                    animateRoby(enemiePlayersRoby[side][distance], endMatchCallback, false);
+                if(enemyPlayersRoby[side][distance].show === true)
+                    animateRoby(enemyPlayersRoby[side][distance], endMatchCallback, false);
             }
         }
     };
@@ -235,10 +235,10 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
         if (!botPlayerRoby.animationFinished)
             allAnimationFinished = false;
 
-        if (enemiePlayersRoby.length > 0) {
+        if (enemyPlayersRoby.length > 0) {
             for (let side = 0; side < 4; side++) {
                 for (let distance = 0; distance < 5; distance++) {
-                    if (enemiePlayersRoby[side][distance].show && !enemiePlayersRoby[side][distance].animationFinished) {
+                    if (enemyPlayersRoby[side][distance].show && !enemyPlayersRoby[side][distance].animationFinished) {
                         allAnimationFinished = false;
                         break;
                     }
@@ -282,18 +282,18 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
 
         let selectedPath;
 
-        switch (2) {
-            case 1:
+        switch (gameData.getFixedSetting().diffSetting) {
+            case 0:
                 // facile: seleziona un percorso casuale tra i più corti
                 selectedPath = allPaths[Math.floor(Math.random() * 10)];
                 break;
 
-            case 2:
+            case 1:
                 // medio: seleziona un percorso casuale tra i più lunghi
                 selectedPath = allPaths[Math.floor(Math.random() * 10) + 10];
                 break;
 
-            case 3:
+            case 2:
                 // difficile: seleziona il percorso più lungo
                 selectedPath = allPaths[19];
                 break;
@@ -435,7 +435,7 @@ angular.module('codyColor').factory("pathHandler", ['gameData','scopeService', f
             if (args.player.userPlayer)
                 $.extend(true, botPlayerRoby, pathInfo);
             else
-                $.extend(true, enemiePlayersRoby[pathInfo.startPosition.side][pathInfo.startPosition.distance], pathInfo);
+                $.extend(true, enemyPlayersRoby[pathInfo.startPosition.side][pathInfo.startPosition.distance], pathInfo);
         }
         return pathInfo;
     };

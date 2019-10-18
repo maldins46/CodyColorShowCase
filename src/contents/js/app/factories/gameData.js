@@ -15,6 +15,15 @@ angular.module('codyColor').factory('gameData', function () {
         royale: 'royale'
     };
 
+    let fixedSettings = {
+        botName: "CodyColor",
+        diffSetting: 1,
+        timerSetting: 30000
+    }
+
+    gameData.getFixedSetting = function() {
+        return fixedSettings;
+    }
 
     let generateEmptyPlayerMatch = function() {
         return {

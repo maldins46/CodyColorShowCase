@@ -190,11 +190,11 @@ module.exports = function (grunt) {
     // the default task can be run just by typing "grunt" on the command line
     grunt.registerTask('build', [
         'clean:preclean', 'copy:build','bower', 'concat',
-        'uglify', 'cssmin', 'clean:build', 'includeSource', 'shell'
+        'uglify', 'cssmin', 'clean:build', 'includeSource'
     ]);
     grunt.registerTask('build-beta', ['clean:preclean', 'bower', 'copy:build-beta',
-        'clean:build-beta','includeSource', 'shell']);
+        'clean:build-beta','includeSource']);
     grunt.registerTask('build-beta-local', ['clean:preclean', 'bower', 'copy:build-beta',
-        'clean:build-beta','includeSource', 'shell', 'copy:build-beta-local']);
+        'clean:build-beta','includeSource', 'copy:build-beta-local']);
 
 };

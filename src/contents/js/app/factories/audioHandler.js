@@ -2,33 +2,24 @@
  * AudioHandler: factory ausiliario responsabile della gestione dell'audio, dalla base
  * musicale ai vari suoni
  */
-angular.module('codyColor').factory("audioHandler", ['$cookies', function($cookies) {
+angular.module('codyColor').factory("audioHandler", [function() {
     let audioHandler = {};
 
     let musicBase = new Audio();
     musicBase.src = 'audio/music.mp3';
     musicBase.loop = true;
 
-    let isAudioEnabled = false;;
+    let isAudioEnabled = false;
 
-    audioHandler.isAudioEnabled = function() {
-        return false;
-    };
-
-    audioHandler.toggleBase = function () {
-        if (!audioHandler.isAudioEnabled()) {
+    audioHandler.initializeAudio = function(enabled) {
+        if (enabled) {
             isAudioEnabled = true;
-            $cookies.put('audioEnabled', 'true');
             musicBase.play();
-        } else {
-            isAudioEnabled = false;
-            $cookies.put('audioEnabled', 'false');
-            musicBase.pause();
         }
     };
 
     audioHandler.playSound = function(soundName) {
-        if (audioHandler.isAudioEnabled()) {
+        if (isAudioEnabled) {
             let sound = new Audio();
             sound.src = 'audio/' + soundName + '.mp3';
             sound.play();

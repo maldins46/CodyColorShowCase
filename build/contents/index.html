@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>CodyColor</title>
-    <meta name="description" content="Online implementation of the unplugged coding method CodyColor.">
+    <title>CodyColor Wall</title>
+    <meta name="description" content="Showcase implementation for CodyColor MultiPlayer.">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
@@ -29,12 +29,12 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- This specific CSS ordering is required -->
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/fontawesome.css" />
     
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" href="css/firebase-ui-custom.css" />
     
+    
+    
+    
+    <link rel="stylesheet" type="text/css" href="css/app.min.css" />
 </head>
 
 <body ng-app="codyColor">
@@ -45,56 +45,9 @@
 
     <div class="page--container" ng-view></div>
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js');
-            });
-        }
-    </script>
-
-    <script src="js/bower/1-jquery.js"></script>
-    <script src="js/bower/2-angular.js"></script>
-    <script src="js/bower/3-angular-translate.js"></script>
-    <script src="js/bower/4-qrcode.js"></script>
-    <script src="js/bower/angular-animate.js"></script>
-    <script src="js/bower/angular-cookies.js"></script>
-    <script src="js/bower/angular-dragdrop.js"></script>
-    <script src="js/bower/angular-qr.js"></script>
-    <script src="js/bower/angular-route.js"></script>
-    <script src="js/bower/angular-sanitize.js"></script>
-    <script src="js/bower/angular-translate-loader-static-files.js"></script>
-    <script src="js/bower/angular-translate-storage-cookie.js"></script>
-    <script src="js/bower/jquery-ui.js"></script>
-    <script src="js/vendor/encoding.js"></script>
-    <script src="js/vendor/jquery.ui.touch-punch.js"></script>
-    <script src="js/vendor/lzutf8.js"></script>
-    <script src="js/vendor/modernizr.min.js"></script>
-    <script src="js/vendor/noSleep.js"></script>
-    <script src="js/vendor/object-assign-auto.js"></script>
-    <script src="js/vendor/plugins.js"></script>
-    <script src="js/vendor/stomp.js"></script>
-    <script src="js/app/main.js"></script>
-    <script src="js/app/controllers/arcadeAftermatchController.js"></script>
-    <script src="js/app/controllers/arcadeMatchController.js"></script>
-    <script src="js/app/controllers/bootmpAftermatchController.js"></script>
-    <script src="js/app/controllers/bootmpMatchController.js"></script>
-    <script src="js/app/controllers/bootmpMmakingController.js"></script>
-    <script src="js/app/controllers/customMmakingController.js"></script>
-    <script src="js/app/controllers/customNewMatchController.js"></script>
-    <script src="js/app/controllers/emptyController.js"></script>
-    <script src="js/app/controllers/royaleAftermatchController.js"></script>
-    <script src="js/app/controllers/royaleMatchController.js"></script>
-    <script src="js/app/controllers/royaleMmakingController.js"></script>
-    <script src="js/app/controllers/royaleNewMatchController.js"></script>
-    <script src="js/app/factories/audioHandler.js"></script>
-    <script src="js/app/factories/gameData.js"></script>
-    <script src="js/app/factories/navigationHandler.js"></script>
-    <script src="js/app/factories/pathHandler.js"></script>
-    <script src="js/app/factories/rabbitCommunicator.js"></script>
-    <script src="js/app/factories/scopeService.js"></script>
-    <script src="js/app/factories/sessionHandler.js"></script>
-    <script src="js/app/factories/translationHandler.js"></script>
+    
+    
+    <script src="js/app/app.min.js"></script>
     <script src="js/settings.js"></script>
 </body>
 </html>

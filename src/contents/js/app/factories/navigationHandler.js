@@ -27,8 +27,9 @@ angular.module('codyColor').factory("navigationHandler", function () {
 
 angular.module('codyColor').config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-        .when("/", {templateUrl: "pages/custom-mmaking.html", controller: "customMmakingCtrl"})
-        .when("/arcade-match", {templateUrl: "pages/arcade-match.html", controller: "arcadeMatchCtrl"})
-        .when("/arcade-aftermatch", {templateUrl: "pages/arcade-aftermatch.html", controller: "arcadeAftermatchCtrl"})
+        .when("/", {templateUrl: "pages/create-match.html", controller: "createMatchCtrl"})
+        .when("/mmaking", {templateUrl: "pages/mmaking.html", controller: "mmakingCtrl"})
+        .when("/match", {templateUrl: "pages/match.html", controller: "matchCtrl"})
+        .when("/aftermatch", {templateUrl: "pages/aftermatch.html", controller: "aftermatchCtrl"})
         .otherwise({templateUrl: "pages/404.html", controller: "emptyCtrl"});
 }]);

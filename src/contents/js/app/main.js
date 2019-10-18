@@ -11,9 +11,8 @@ angular.module('codyColor').config(['$translateProvider', function ($translatePr
         suffix: '.json'
     });
 
-    $translateProvider.registerAvailableLanguageKeys(['en', 'it', 'hu'], {
+    $translateProvider.registerAvailableLanguageKeys(['en', 'it'], {
         'it*': 'it',
-        'hu*': 'hu',
         '*': 'en'
     });
 

@@ -355,11 +355,19 @@ img.profile--image {
     animation: fadeout 0.2s both ease-in;
 }
 
-#arcade-match .page--component.ng-hide-remove,
+#bot-match .page--component.ng-hide-remove,
 #bootmp-match .page--component.ng-hide-remove,
-#arcade-match .page--component.ng-hide-add,
+#bot-match .page--component.ng-hide-add,
 #bootmp-match .page--component.ng-hide-add {
     animation: none;
+}
+
+.yellow-text {
+    color: #faf548;
+}
+
+.green-text {
+    color: #86e26e;
 }
 
 
@@ -840,7 +848,16 @@ button.modal--button-secondary:hover {
  * parallele tra loro, con contenuto centrato al loro interno
  * ------------------------------------------------------------------------- */
 
+.label {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 .centered-columns {
+    margin: 0 auto 20px auto;
+}
+
+#aftermatch .centered-columns {
     margin: 40px auto 80px auto;
     font-size: 20px;
 }
