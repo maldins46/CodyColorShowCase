@@ -2,48 +2,24 @@
  * AudioHandler: factory ausiliario responsabile della gestione dell'audio, dalla base
  * musicale ai vari suoni
  */
-angular.module('codyColor').factory("audioHandler", ['$cookies', function($cookies) {
+angular.module('codyColor').factory("audioHandler", [function() {
     let audioHandler = {};
 
     let musicBase = new Audio();
     musicBase.src = 'audio/music.mp3';
     musicBase.loop = true;
 
-    let isAudioEnabled;
+    let isAudioEnabled = false;
 
-    audioHandler.isAudioEnabled = function() {
-        if (isAudioEnabled === undefined) {
-            let cookiesAudioEnabled = $cookies.get('audioEnabled');
-            if (cookiesAudioEnabled === undefined) {
-                $cookies.put('audioEnabled', 'true');
-                isAudioEnabled = true;
-            } else {
-                isAudioEnabled = (cookiesAudioEnabled === 'true');
-            }
-        }
-        return isAudioEnabled;
-    };
-
-    audioHandler.toggleBase = function () {
-        if (!audioHandler.isAudioEnabled()) {
+    audioHandler.initializeAudio = function(enabled) {
+        if (enabled) {
             isAudioEnabled = true;
-            $cookies.put('audioEnabled', 'true');
-            musicBase.play();
-        } else {
-            isAudioEnabled = false;
-            $cookies.put('audioEnabled', 'false');
-            musicBase.pause();
-        }
-    };
-
-    audioHandler.splashStartBase = function () {
-        if (audioHandler.isAudioEnabled() && musicBase.paused) {
             musicBase.play();
         }
     };
 
     audioHandler.playSound = function(soundName) {
-        if (audioHandler.isAudioEnabled()) {
+        if (isAudioEnabled) {
             let sound = new Audio();
             sound.src = 'audio/' + soundName + '.mp3';
             sound.play();

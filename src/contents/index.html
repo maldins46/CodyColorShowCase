@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>CodyColor</title>
-    <meta name="description" content="Online implementation of the unplugged coding method CodyColor.">
+    <title>CodyColor Wall</title>
+    <meta name="description" content="Showcase implementation for CodyColor MultiPlayer.">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
@@ -44,14 +44,6 @@
     <![endif]-->
 
     <div class="page--container" ng-view></div>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js');
-            });
-        }
-    </script>
 
     <!-- include: "type": "js", "files": "js/bower/*.js" -->
     <!-- include: "type": "js", "files": "js/vendor/*.js", "ordering":"top-down" -->
