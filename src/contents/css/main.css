@@ -922,7 +922,7 @@ button.modal--button-secondary:hover {
 
 @media only screen and (min-width: 320px) {
     .playground {
-        width: 280px;
+        width: 70%;
     }
 }
 
@@ -951,7 +951,7 @@ button.modal--button-secondary:hover {
 
 @media only screen and (min-width: 320px) {
     .playground--table {
-        width: 280px;
+        width: 100%;
     }
 }
 
@@ -1237,8 +1237,8 @@ table.playerlist-match-table {
 
 /* proprietà dei Roby che si muovono nella griglia */
 .roby-automove {
-    width: 36px;
-    height: 36px;
+    width: 66px;
+    height: 66px;
     position: absolute;
     left: 0;
     top: 0;
