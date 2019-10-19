@@ -4,11 +4,20 @@
             <!-- Waiting for connection and match request -->
             <div ng-show="mmakingState === screens.waiting" class="page--component">
                 <ul class="list">
-                    <li class="list--super-spaced-element">
+                    <li class="list--spaced-element">
                         <div class="yellow-text flashing-animation">
                             {{ 'WARN_CREATING_MATCH' | translate}}
                         </div>
                     </li>
+
+                    <li class="list--spaced-element" ng-hide="connected">
+                        <div class="yellow-text flashing-animation">{{ 'WARN_CONNECTING' | translate }}.</div>
+                    </li>
+
+                    <li class="list--spaced-element" ng-show="connected">
+                        <div class="green-text flashing-animation">{{ 'WARN_CONNECTED' | translate }}</div>
+                    </li>
+
                     <li class="list--spaced-element" ng-show="requestRefused">
                         <div class="yellow-text">
                             {{ 'WARN_GAME_REQ_REFUSED' | translate}}
@@ -25,8 +34,8 @@
                     </li>
 
                     <li class="list--super-spaced-element">
-                        <div class="qr">
-                            <qr text="matchUrl" size="300" image="true"></qr>
+                        <div class="qr" ng-init="matchUrl = ' '">
+                            <qr text="matchUrl" size="300" input-mode="ALPHA_NUM"></qr>
                         </div>
                     </li>
 

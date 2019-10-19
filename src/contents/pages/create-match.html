@@ -82,10 +82,10 @@
                         </div>
                     </li>
 
-                    <li class="list--spaced-element" ng-show="!creatingMatch && connected && !outdatedClient">
+                    <li class="list--spaced-element" ng-show="connected && !outdatedClient">
                         <button class="navigation--button flashing-animation" type="submit"
                                 ng-click="createMatch()"
-                                ng-disabled="creatingMatch || !connected || outdatedClient">
+                                ng-disabled="!connected || outdatedClient">
                             {{ 'CREATE_MATCH ' | translate }}
                             <i class="fas fa-angle-double-right navigation--icon-in-text floating-right-animation"></i>
                         </button>
@@ -105,6 +105,11 @@
 
                     <li class="list--spaced-element" ng-show="connected">
                         <div class="green-text flashing-animation">{{ 'WARN_CONNECTED' | translate }}</div>
+                    </li>
+
+                    <!-- Inizializza il qr -->
+                    <li class="list--spaced-element">
+                        <qr text="' '" size="1"></qr>
                     </li>
                 </ul>
             </form>

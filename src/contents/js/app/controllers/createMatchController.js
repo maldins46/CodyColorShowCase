@@ -61,7 +61,6 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
                 $scope.diffIndex = ($scope.diffIndex > 0 ? $scope.diffIndex - 1 : 0);
         };
 
-
         // timer selector
         $scope.timerIndex = 1;
         $scope.editTimer = function (increment) {
@@ -93,16 +92,14 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
         };
 
         $scope.wrongCredentials = false;
-        $scope.creatingMatch = false;
         $scope.createMatch = function () {
             $scope.wrongCredentials = false;
-            $scope.creatingMatch = true;
 
             gameData.getFixedSetting().botName = $scope.username;
             gameData.getFixedSetting().diffSetting = $scope.diffSettings[$scope.diffIndex].value;
             gameData.getFixedSetting().timerSetting = $scope.timerSettings[$scope.timerIndex].value;
 
-            // todo flusso autenticazione. Provvisoriamente, vengono accettate a priori queste credenziali:
+            // todo flusso autenticazione. Provvisoriamente, vengono accettate a priori le credenziali:
             // username: CodyColor, password: d1g1t
             if ($scope.username === 'CodyColor' && $scope.password === 'd1g1t') {
                 audioHandler.initializeAudio($scope.audioSettings[$scope.audioIndex].value);
@@ -110,7 +107,6 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
 
             } else {
                 $scope.wrongCredentials = true;
-                $scope.creatingMatch = false;
             }
         };
 

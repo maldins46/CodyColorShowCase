@@ -9,16 +9,30 @@ angular.module('codyColor').controller('mmakingCtrl',
         console.log("Matchmaking controller ready.");
 
         let restartTimer = undefined;
-        $scope.matchUrl = '';
 
         let quitGame = function() {
+            rabbit.quitGame();
+            rabbit.setPageCallbacks(rabbitCallbacks);
+            initializeMatch();
+        };
+
+        let initializeMatch = function() {
+            changeScreen(screens.waiting);
             if (restartTimer !== undefined) {
                 clearTimeout(restartTimer);
             }
             restartTimer = undefined;
+            gameData.initializeGameData();
+            gameData.getGeneral().gameType = gameData.getGameTypes().custom;
+            gameData.getGeneral().timerSetting = gameData.getFixedSetting().timerSetting;
+            gameData.getBotPlayer().nickname = gameData.getFixedSetting().botName;
+            gameData.getBotPlayer().organizer = true;
+            $scope.generalData = gameData.getGeneral();
+            $scope.userPlayer = gameData.getBotPlayer();
 
-            rabbit.quitGame();
-            initializeMatch();
+            $scope.connected = rabbit.getServerConnectionState();
+            if ($scope.connected)
+                rabbit.sendGameRequest();
         };
 
         // inizializzazione sessione
@@ -48,81 +62,71 @@ angular.module('codyColor').controller('mmakingCtrl',
         };
         $scope.screens = screens;
 
-        let initializeMatch = function() {
-            changeScreen(screens.waiting);
-            restartTimer = undefined;
-            gameData.initializeGameData();
-            gameData.getGeneral().gameType = gameData.getGameTypes().custom;
-            gameData.getGeneral().timerSetting = gameData.getFixedSetting().timerSetting;
-            gameData.getBotPlayer().nickname = gameData.getFixedSetting().botName;
-            gameData.getBotPlayer().organizer = true;
-            $scope.generalData = gameData.getGeneral();
-            $scope.userPlayer = gameData.getBotPlayer();
-            $scope.matchUrl = settings.webBaseUrl;
-            $scope.connected = rabbit.getBrokerConnectionState();
-
-            if (!$scope.connected) {
-                rabbit.connect();
-            } else {
-                rabbit.sendGameRequest();
-            }
-        };
-
         initializeMatch();
-
         $scope.requestRefused = false;
-        rabbit.setPageCallbacks({
+
+        let rabbitCallbacks = {
             onConnected: function () {
-                rabbit.sendGameRequest();
+                scopeService.safeApply($scope, function () {
+                    $scope.connected = true;
+                    rabbit.sendGameRequest();
+                });
 
             }, onGameRequestResponse: function (message) {
-                if (message.code.toString() === '0000') {
+                if (message.code.toString() !== '0000') {
+                    scopeService.safeApply($scope, function () {
+                        gameData.getGeneral().gameRoomId = message.gameRoomId;
+                        gameData.getBotPlayer().playerId = message.playerId;
+                        gameData.syncGameData(message.gameData);
+                        $scope.requestRefused = false;
+                        $scope.matchUrl = settings.webBaseUrl + '/#!?custom=' + gameData.getGeneral().code;
+                        rabbit.subscribeGameRoom();
+                        changeScreen(screens.matchReady);
+                    });
+                } else {
                     // richiesta non accettata dal server; rinviala dopo 10 secondi
                     scopeService.safeApply($scope, function () {
                         $scope.requestRefused = true;
+                        restartTimer = setTimeout(function () {
+                            scopeService.safeApply($scope, function () {
+                                initializeMatch();
+                            });
+                        }, 5000);
                     });
-
-                    restartTimer = setTimeout(function () {
-                        initializeMatch();
-                    }, 5000);
-
-                } else {
-                    gameData.getGeneral().gameRoomId = message.gameRoomId;
-                    gameData.getBotPlayer().playerId = message.playerId;
-                    gameData.syncGameData(message.gameData);
-                    rabbit.subscribeGameRoom();
-                    scopeService.safeApply($scope, function () {
-                        $scope.requestRefused = false;
-                        $scope.matchUrl = settings.webBaseUrl + '/#!?custom=' + gameData.getGeneral().code;
-                    });
-
-                    changeScreen(screens.matchReady);
                 }
 
             }, onPlayerAdded: function(message) {
-                audioHandler.playSound('enemy-found');
                 scopeService.safeApply($scope, function () {
+                    audioHandler.playSound('enemy-found');
                     gameData.syncGameData(message.gameData);
                     $scope.enemyPlayer = gameData.getEnemyPlayer1vs1();
+                    rabbit.sendReadyMessage();
+                    changeScreen(screens.enemyReady);
                 });
-                rabbit.sendReadyMessage();
-                changeScreen(screens.enemyReady);
 
             }, onReadyMessage: function () {
-                gameData.getEnemyPlayer1vs1().ready = true;
+                scopeService.safeApply($scope, function () {
+                    gameData.getEnemyPlayer1vs1().ready = true;
+                });
 
             }, onStartMatch: function (message) {
-                gameData.syncGameData(message.gameData);
                 scopeService.safeApply($scope, function () {
+                    gameData.syncGameData(message.gameData);
                     navigationHandler.goToPage($location, '/match');
                 });
 
             }, onGameQuit: function () {
-                quitGame();
+                scopeService.safeApply($scope, function () {
+                    quitGame();
+                });
 
             }, onConnectionLost: function () {
-                quitGame();
+                scopeService.safeApply($scope, function () {
+                    $scope.connected = false;
+                    quitGame();
+                });
             }
-        });
+        };
+        rabbit.setPageCallbacks(rabbitCallbacks);
     }
 ]);
