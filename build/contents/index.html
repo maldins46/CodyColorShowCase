@@ -45,6 +45,14 @@
 
     <div class="page--container" ng-view></div>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }
+    </script>
+
     
     
     <script src="js/app/app.min.js"></script>

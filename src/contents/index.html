@@ -45,6 +45,14 @@
 
     <div class="page--container" ng-view></div>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }
+    </script>
+
     <!-- include: "type": "js", "files": "js/bower/*.js" -->
     <!-- include: "type": "js", "files": "js/vendor/*.js", "ordering":"top-down" -->
     <!-- include: "type": "js", "files": "js/app/**/*.js", "ordering":"top-down" -->

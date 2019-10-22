@@ -40,7 +40,6 @@
     "commit": "1134e40510ab773d45cc26a066ef6c787a96011a"
   },
   "_source": "https://github.com/janantala/angular-qr.git",
-  "_target": "^0.2.0",
-  "_originalSource": "angular-qr",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "angular-qr"
 }
