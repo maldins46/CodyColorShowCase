@@ -1,14 +1,8 @@
-# CodyColor front-end service
+# CodyColor Wall
 
-[CodyColor Multiplayer](https://codycolor.codemooc.net/#!/) is an educational game developed by Digit S.r.l., inspired by the unplugged coding method **CodyColor**. Additional information about the game can be found in the [Digit blog](https://digit.srl/codycolor-multiplayer-learn-by-having-fun/). The software infrastructure on which the game is based is based on two main components:
+[CodyColor Multiplayer](https://codycolor.codemooc.net/#!/) is an educational game developed by Digit S.r.l., inspired by the unplugged coding method **CodyColor**. Additional information about the game can be found in the [Digit blog](https://digit.srl/codycolor-multiplayer-learn-by-having-fun/).
 
-* the **back-end**, composed by a [message broker and a NodeJS executable](https://github.com/digit-srl/CodyColorServer); all the back-end code is contained and handled in a Docker infrastructure;
-* the **font-end**, composed by a web app developed on the AngularJS framework.
-
-![CodyColor Multiplayer Component Diagram](docs/CodyColorComponents.jpeg)
-
-The front-end of the game is essentially a cross-platform, single-page web app, built following PWA specifications. This repository includes all the files that form the front-end system of the game.
-
+**CodyColor Wall** is a fork of the client component. It is a special implementation thought to be used in Digit Showcase for the CodeWeek. The Wall shows a QR code that allows users to play against a bot, showing the match in the screen. The Wall is completely autonomous: it auto-configures itself after every match. It just requires an Internet connection to connect to the server, that is the same as the regular client.
 
 ## Source code organization
 
