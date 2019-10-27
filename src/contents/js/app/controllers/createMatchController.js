@@ -16,6 +16,7 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
 
         $scope.connected = rabbit.getServerConnectionState();
         $scope.creatingMatch = false;
+        $scope.clientVersion = sessionHandler.getClientVersion();
 
         let setSelectorTranslations = function() {
             $translate(['15_SECONDS', '30_SECONDS', '1_MINUTE', '2_MINUTES']).then(function (translations) {

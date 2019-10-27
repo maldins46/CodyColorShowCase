@@ -51,6 +51,9 @@ module.exports = function (grunt) {
                             else if (src === 'contents/js/bower/qrcode.js') {
                                 return dest + 'contents/js/bower/4-qrcode.js';
                             }
+                            else if (src === 'contents/js/bower/qrcode_UTF8.js') {
+                                    return dest + 'contents/js/bower/5-qrcode_UTF8.js';
+                            }
                             else
                                 return dest + src;
                         }
@@ -101,6 +104,7 @@ module.exports = function (grunt) {
                     'src/contents/js/bower/angular.js',
                     'src/contents/js/bower/angular-translate.js',
                     'src/contents/js/bower/qrcode.js',
+                    'src/contents/js/bower/qrcode_UTF8.js',
                     'src/contents/js/bower/*.js',
                     'src/contents/js/vendor/*.js',
                     'src/contents/js/app/main.js',
@@ -194,6 +198,7 @@ module.exports = function (grunt) {
     ]);
     grunt.registerTask('build-beta', ['clean:preclean', 'bower', 'copy:build-beta',
         'clean:build-beta','includeSource', 'shell']);
+
     grunt.registerTask('build-beta-local', ['clean:preclean', 'bower', 'copy:build-beta',
         'clean:build-beta','includeSource', 'copy:build-beta-local']);
 

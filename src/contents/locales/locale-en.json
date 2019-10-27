@@ -6,7 +6,7 @@
     "404": "404",
     "PAGE_NOT_FOUND": "Page not found",
     
-    "WELCOME": "Welcome to CodyColor Wall! This modified version of CodyColor allows you to challenge a configurable bot and show the game to on-screen viewers. Log in with your CodeMOOC.net credentials, configure the bot and enjoy the show!",
+    "WELCOME": "Welcome to CodyColor Wall, version {{ clientVersion }}! This modified version of CodyColor allows you to challenge a configurable bot and show the game to on-screen viewers. Log in with your CodeMOOC.net credentials, configure the bot and enjoy the show!",
     "LANG_SELECT": "Language",
     "LANG_ITALIAN": "Italian",
     "LANG_ENGLISH": "English",

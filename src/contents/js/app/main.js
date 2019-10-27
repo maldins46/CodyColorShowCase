@@ -2,7 +2,7 @@
  * Main AngularJS Web Application: crea il modulo applicazione
  */
 angular.module('codyColor', ['ngRoute', 'ngAnimate', 'ngDragDrop',
-    'ngCookies', 'pascalprecht.translate', 'ngSanitize', 'ja.qr']);
+    'ngCookies', 'pascalprecht.translate', 'ngSanitize', 'monospaced.qrcode' ]);
 
 // global module configuration
 angular.module('codyColor').config(['$translateProvider', function ($translateProvider) {

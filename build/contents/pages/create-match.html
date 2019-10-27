@@ -8,7 +8,7 @@
                         <img class="big-image floating-up-animation" src="img/title.png" alt="Game logo">
                     </li>
                     <li class="list--spaced-element">
-                       {{ 'WELCOME' | translate }}
+                        {{'WELCOME' | translate : { 'clientVersion': clientVersion } }}
                     </li>
 
                     <li class="list--spaced-element">
@@ -105,11 +105,6 @@
 
                     <li class="list--spaced-element" ng-show="connected">
                         <div class="green-text flashing-animation">{{ 'WARN_CONNECTED' | translate }}</div>
-                    </li>
-
-                    <!-- Inizializza il qr -->
-                    <li class="list--spaced-element">
-                        <qr text="' '" size="1"></qr>
                     </li>
                 </ul>
             </form>
