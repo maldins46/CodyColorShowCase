@@ -58,7 +58,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/app.min.css",
-    "revision": "06798de9290b41df95126143b230299c"
+    "revision": "23e0538e0cbe1aa6e45ca71c14d39b4d"
   },
   {
     "url": "favicon.ico",
@@ -242,7 +242,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/app/app.min.js",
-    "revision": "8cc4a94a03a8cf22b8a300cd05a31045"
+    "revision": "5441395c8234e59bd91d07deeb20b895"
   },
   {
     "url": "locales/locale-en.json",
@@ -262,19 +262,19 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/aftermatch.html",
-    "revision": "09a2fd20570106d5475b9dca4b7fee01"
+    "revision": "7ac9a41bdab12ccaa3459af535fc3c3e"
   },
   {
     "url": "pages/create-match.html",
-    "revision": "da8e786ddb8887806f1cbd806732b75c"
+    "revision": "ff0347b67158b1194462e7b0c0f3a1b8"
   },
   {
     "url": "pages/match.html",
-    "revision": "3567399f9f6057b0b01abe4807eca459"
+    "revision": "12851d5dfd9c448330a8dae5face6e27"
   },
   {
     "url": "pages/mmaking.html",
-    "revision": "c3b5b566759fe79ebe59b8a013d93ab2"
+    "revision": "a0881a8b305c6f3347ac1c3748c67189"
   },
   {
     "url": "robots.txt",

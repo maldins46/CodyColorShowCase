@@ -907,6 +907,21 @@ button.modal--button-secondary:hover {
 }
 
 
+
+/* -------------------------------------------------------------------------
+ * Modulo clock: struttura di base dei nuovi timer di gioco
+ * ------------------------------------------------------------------------- */
+
+.clock {
+    font-size: 40px;
+    font-family: 'Baloo Chettan', cursive;
+    color: white;
+}
+
+.clock--end {
+    color: red;
+}
+
 /* -------------------------------------------------------------------------
  * Modulo playground: implementa il campo da gioco, ovvero la griglia con
  * le tiles colorate, e i vari componenti collegati
@@ -1186,6 +1201,22 @@ table.playerlist-match-table {
     }
 }
 
+
+.clock-ending-animation {
+    animation: clock-flash 0.5s ease-in-out infinite;
+}
+
+@keyframes clock-flash {
+    0% {
+        color: white;
+    }
+    50% {
+        color: red;
+    }
+    100% {
+        color: white;
+    }
+}
 
 /* -------------------------------------------------------------------------
  * Moduli singoli e-o funzionalità applicabili 'out-of-the-box' ad altri moduli

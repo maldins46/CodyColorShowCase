@@ -5,7 +5,6 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
     'scopeService', '$translate', 'translationHandler', 'audioHandler', '$location', 'sessionHandler', 'gameData',
     function ($scope, rabbit, navigationHandler, scopeService, $translate, translationHandler,
               audioHandler, $location, sessionHandler, gameData) {
-        console.log("Create match controller ready.");
 
         // validazione sessione
         navigationHandler.initializeBackBlock($scope);
@@ -16,7 +15,7 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
 
         $scope.connected = rabbit.getServerConnectionState();
         $scope.creatingMatch = false;
-        $scope.clientVersion = sessionHandler.getClientVersion();
+        $scope.wallVersion = sessionHandler.getWallVersion();
 
         let setSelectorTranslations = function() {
             $translate(['15_SECONDS', '30_SECONDS', '1_MINUTE', '2_MINUTES']).then(function (translations) {
@@ -96,13 +95,14 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
         $scope.createMatch = function () {
             $scope.wrongCredentials = false;
 
-            gameData.getFixedSetting().botName = $scope.username;
-            gameData.getFixedSetting().diffSetting = $scope.diffSettings[$scope.diffIndex].value;
-            gameData.getFixedSetting().timerSetting = $scope.timerSettings[$scope.timerIndex].value;
-
             // todo flusso autenticazione. Provvisoriamente, vengono accettate a priori le credenziali:
             // username: CodyColor, password: d1g1t
             if ($scope.username === 'CodyColor' && $scope.password === 'd1g1t') {
+                gameData.editFixedSettings({
+                    nickname: $scope.username,
+                    botSetting: $scope.diffSettings[$scope.diffIndex].value,
+                    timerSetting: $scope.timerSettings[$scope.timerIndex].value
+                });
                 audioHandler.initializeAudio($scope.audioSettings[$scope.audioIndex].value);
                 navigationHandler.goToPage($location, '/mmaking');
 
@@ -114,16 +114,15 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
         $scope.outdatedClient = false;
         rabbit.setPageCallbacks({
             onGeneralInfoMessage: function () {
-                if (!sessionHandler.isClientVersionValid()) {
-                    scopeService.safeApply($scope, function () {
-                        $scope.outdatedClient = true;
-                    });
-                }
                 scopeService.safeApply($scope, function () {
+                    if (!sessionHandler.isWallVersionValid()) {
+                        $scope.outdatedClient = true;
+                    }
+
                     $scope.connected = true;
                 });
-            },
-            onConnectionLost: function () {
+
+            }, onConnectionLost: function () {
                 scopeService.safeApply($scope, function () {
                     $scope.connected = false;
                 });

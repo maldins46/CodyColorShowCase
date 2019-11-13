@@ -4,10 +4,8 @@
  */
 angular.module('codyColor').controller('aftermatchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
     '$location', '$translate', 'navigationHandler', 'audioHandler', 'sessionHandler',
-    'translationHandler',
     function ($scope, rabbit, gameData, scopeService, $location, $translate,
-              navigationHandler, audioHandler, sessionHandler, translationHandler) {
-        console.log("Aftermatch controller ready.");
+              navigationHandler, audioHandler, sessionHandler) {
 
         let autoCloseTimer = undefined;
 
@@ -19,9 +17,7 @@ angular.module('codyColor').controller('aftermatchCtrl', ['$scope', 'rabbit', 'g
                 autoCloseTimer = undefined;
             }
             rabbit.quitGame();
-            scopeService.safeApply($scope, function () {
-                navigationHandler.goToPage($location, '/mmaking');
-            });
+            navigationHandler.goToPage($location, '/mmaking');
         };
 
         // inizializzazione sessione
@@ -33,48 +29,58 @@ angular.module('codyColor').controller('aftermatchCtrl', ['$scope', 'rabbit', 'g
 
         // imposta dati e stats dell'ultima partita, da mostrare all'utente
         $scope.timeFormatter = gameData.formatTimeDecimals;
-        $scope.player = gameData.getBotPlayer();
-        $scope.enemy = gameData.getEnemyPlayer1vs1();
+        $scope.timeFormatterCountdown = gameData.formatTimeSeconds;
+        $scope.user = gameData.getUser();
+        $scope.enemy = gameData.getEnemy();
+        $scope.draw = gameData.getMatch().winnerId === -1;
         $scope.winner = gameData.getMatchWinner().nickname;
-        $scope.matchCount = gameData.getGeneral().matchCount;
+        $scope.matchCount = gameData.getAggregated().matchCount;
+        $scope.userMatch = gameData.getUserMatchResult();
+        $scope.userGlobal = gameData.getUserGlobalResult();
+        $scope.enemyMatch = gameData.getEnemyMatchResult();
+        $scope.enemyGlobal = gameData.getEnemyGlobalResult();
 
-        if ($scope.winner === gameData.getBotPlayer().nickname) {
+        if ($scope.winner === gameData.getUser().nickname) {
             audioHandler.playSound('win');
-        } else if ($scope.winner === gameData.getEnemyPlayer1vs1().nickname) {
+        } else if ($scope.winner === gameData.getEnemy().nickname) {
             audioHandler.playSound('lost');
         }
 
         autoCloseTimer = setTimeout(function () {
-            rabbit.sendPlayerQuitRequest();
-            quitGame();
+            scopeService.safeApply($scope, function () {
+                rabbit.sendPlayerQuitRequest();
+                quitGame();
+            });
         }, 60000);
 
         rabbit.setPageCallbacks({
             onReadyMessage: function () {
-                gameData.getEnemyPlayer1vs1().ready = true;
                 scopeService.safeApply($scope, function () {
-                    $scope.enemyRequestNewMatch = true;
+                    rabbit.sendReadyMessage();
                 });
-                gameData.getBotPlayer().ready = true;
-                rabbit.sendReadyMessage();
 
             }, onStartMatch: function (message) {
-                gameData.initializeMatchData();
-                gameData.syncGameData(message.gameData);
-                if (autoCloseTimer !== undefined) {
-                    clearTimeout(autoCloseTimer);
-                    autoCloseTimer = undefined;
-                }
                 scopeService.safeApply($scope, function () {
+                    gameData.initializeMatchData();
+                    gameData.editMatch({ tiles: gameData.formatMatchTiles(message.tiles) });
+
+                    if (autoCloseTimer !== undefined) {
+                        clearTimeout(autoCloseTimer);
+                        autoCloseTimer = undefined;
+                    }
+
                     navigationHandler.goToPage($location, '/match');
                 });
 
             }, onGameQuit: function () {
-                quitGame();
+                scopeService.safeApply($scope, function () {
+                    quitGame();
+                });
 
             }, onConnectionLost: function () {
-                quitGame();
-
+                scopeService.safeApply($scope, function () {
+                    quitGame();
+                });
             }
         });
     }

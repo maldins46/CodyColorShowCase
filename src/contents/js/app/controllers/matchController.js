@@ -5,7 +5,6 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
     'pathHandler', '$location', '$translate', 'navigationHandler', 'audioHandler', 'sessionHandler',
     function ($scope, rabbit, gameData, scopeService, pathHandler, $location, $translate,
               navigationHandler, audioHandler, sessionHandler) {
-        console.log("Controller match ready.");
 
         let startCountdownTimer;
         let gameTimer;
@@ -25,9 +24,7 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
 
             rabbit.quitGame();
             pathHandler.quitGame();
-            scopeService.safeApply($scope, function () {
-                navigationHandler.goToPage($location, '/mmaking');
-            });
+            navigationHandler.goToPage($location, '/mmaking');
         };
 
         // inizializzazione sessione
@@ -38,22 +35,46 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
         }
 
         pathHandler.initialize($scope);
-        $scope.player = gameData.getBotPlayer();
-        $scope.enemy  = gameData.getEnemyPlayer1vs1();
+        $scope.user = gameData.getUser();
+        $scope.enemy  = gameData.getEnemy();
+        $scope.match = gameData.getMatch();
+        $scope.userGlobal = gameData.getUserGlobalResult();
+        $scope.enemyGlobal = gameData.getEnemyGlobalResult();
+        $scope.userTimerValue = gameData.getGeneral().timerSetting;
+        $scope.enemyTimerValue = gameData.getGeneral().timerSetting;
+        $scope.userTimerAnimation = '';
+        $scope.enemyTimerAnimation = '';
+        let nextGameTimerValue = gameData.getGeneral().timerSetting;
+
         $scope.playerRoby = pathHandler.getPlayerRoby();
         $scope.enemiesRoby = pathHandler.getEnemiesRoby();
         $scope.timerFormatter = gameData.formatTimeDecimals;
+        $scope.finalTimeFormatter = gameData.formatTimeDecimals;
 
-        // inizializzazione componenti generali interfaccia
-        gameData.getBotPlayer().match.timerValue = gameData.getGeneral().timerSetting;
-        gameData.getEnemyPlayer1vs1().match.timerValue = gameData.getGeneral().timerSetting;
+        $scope.startAnimation = false;
+        let endAnimationSent = false;
+
+        let startCountdownValue = 3;
+        audioHandler.playSound('countdown');
+        $scope.startCountdownText = startCountdownValue.toString();
+        $scope.countdownInProgress = true;
+
+        // il tempo di gioco del bot
+        let positionEnemyTrigger = gameData.getGeneral().timerSetting / 2;
+
+        // il percorso del bot può essere calcolato subito
+        let botPath = pathHandler.calculateBotPath(gameData.getGeneral().botSetting);
+        gameData.editMatch({
+            time: positionEnemyTrigger,
+            startPosition: botPath.startPosition
+        });
 
         // inizializzazione tiles
         $scope.tilesCss = new Array(5);
         for (let x = 0; x < 5; x++) {
             $scope.tilesCss[x] = new Array(5);
             for (let y = 0; y < 5; y++) {
-                switch (gameData.getGeneral().tiles[x][y]) {
+                switch (gameData.getMatch().tiles[x][y]) {
                     case 'Y':
                         $scope.tilesCss[x][y] = 'playground--tile-yellow';
                         break;
@@ -67,166 +88,162 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
             }
         }
 
-        let startCountdownValue = 3;
-        audioHandler.playSound('countdown');
-        $scope.startCountdownText = startCountdownValue.toString();
-        $scope.countdownInProgress = true;
         startCountdownTimer = setInterval(function () {
-            startCountdownValue--;
-            if (startCountdownValue > 0) {
-                audioHandler.playSound('countdown');
-                scopeService.safeApply($scope, function () {
+            scopeService.safeApply($scope, function () {
+                startCountdownValue--;
+                if (startCountdownValue > 0) {
+                    audioHandler.playSound('countdown');
                     $scope.startCountdownText = startCountdownValue.toString();
-                });
 
-            } else if (startCountdownValue === 0) {
-                audioHandler.playSound('start');
-                scopeService.safeApply($scope, function () {
+                } else if (startCountdownValue === 0) {
+                    audioHandler.playSound('start');
                     $scope.startCountdownText = "Let's Cody!";
-                });
 
-            } else {
-                // interrompi countdown e mostra schermata di gioco
-                clearInterval(startCountdownTimer);
-                startCountdownTimer = undefined;
-
-                scopeService.safeApply($scope, function () {
+                } else {
+                    // interrompi countdown e mostra schermata di gioco
+                    clearInterval(startCountdownTimer);
+                    startCountdownTimer = undefined;
                     $scope.countdownInProgress = false;
-                });
-
-                startMatchTimers();
-            }
+                    startMatchTimers();
+                }
+            });
         }, 1000);
 
-        // il tempo di gioco del bot, che viene fissato a seconda della difficoltà
-        let positionEnemyTrigger = gameData.getGeneral().timerSetting / 2;
 
         // avvia i timer per visualizzare tempo rimanente di giocatore e avversario; questo timer non utilizza
         // direttamente la funzione setInterval(), ma implementa un procedimento per evitare l'interruzione del tempo
         // a tab inattivo
         let startMatchTimers = function () {
-            let gameTimerValue = gameData.getGeneral().timerSetting;
             let interval = 10; // ms
             let expected = Date.now() + interval;
             gameTimer = setTimeout(step, interval);
 
             function step() {
-                let drift = Date.now() - expected;
-                if (drift > interval) {
-                    console.log("Timer lagged!")
-                }
-
-                gameTimerValue -= (interval + drift);
-                let finish = gameTimerValue <= 0 || allPositioned();
-
                 scopeService.safeApply($scope, function () {
-                    if (gameData.getBotPlayer().match.time === -1) {
-                        // ad ogni step, aggiorna il valore del timer visualizzato del bot
-                        gameData.getBotPlayer().match.timerValue = gameTimerValue;
+                    let drift = Date.now() - expected;
+                    if (drift > interval) {
+                        console.log("Timer lagged!")
+                    }
+                    nextGameTimerValue -= (interval + drift);
 
-                        // se si supera il time trigger, posiziona il bot
-                        if (gameData.getBotPlayer().match.timerValue <= positionEnemyTrigger) {
-                            gameData.getBotPlayer().match.positioned = true;
-                            gameData.getBotPlayer().match.time       = positionEnemyTrigger;
-                            gameData.getBotPlayer().match.timerValue = positionEnemyTrigger;
-                            pathHandler.calculateBotPlayerPath();
+                    if (nextGameTimerValue > 0) {
+                        // condizione di decremento ordinario
+
+                        // fai avanzare il timer visivo
+                        if (!gameData.getMatch().positioned)
+                            $scope.userTimerValue = nextGameTimerValue;
+
+                        if (!gameData.getMatch().enemyPositioned)
+                            $scope.enemyTimerValue = nextGameTimerValue;
+
+                        // animazione degli ultimi 10 secondi
+                        if ($scope.userTimerValue < 10000 && !gameData.getMatch().positioned)
+                            $scope.userTimerAnimation = "clock-ending-animation";
+
+                        if ($scope.enemyTimerValue < 10000 && !gameData.getMatch().enemyPositioned)
+                            $scope.enemyTimerAnimation = "clock-ending-animation";
+
+                        // piazza il bot user se si raggiunge il trigger
+                        if ($scope.userTimerValue <= positionEnemyTrigger && !gameData.getMatch().enemyPositioned) {
+                            gameData.editMatch({
+                                positioned: true
+                            });
+                            $scope.userTimerValue = gameData.getMatch().time;
+                            $scope.userTimerAnimation = "clock--end";
                             rabbit.sendPlayerPositionedMessage();
                         }
-                    }
 
-                    if (gameData.getEnemyPlayer1vs1().match.time === -1) {
-                        // ad ogni step, aggiorna il valore del timer visualizzato dell'enemyPlayer
-                        gameData.getEnemyPlayer1vs1().match.timerValue = gameTimerValue;
-
-                        // se il valore del timer raggiunge lo zero, piazza il giocatore
-                        if (finish) {
-                            gameData.getEnemyPlayer1vs1().match.positioned = true;
-                            gameData.getEnemyPlayer1vs1().match.time       = 0;
-                            gameData.getEnemyPlayer1vs1().match.timerValue = 0;
+                        // schedula nuovo decremento se necessario
+                        if (!$scope.startAnimation) {
+                            expected = Date.now() + interval;
+                            gameTimer = setTimeout(step, interval); // take into account drift
+                        } else {
+                            nextGameTimerValue = 0;
                         }
+
+                    } else {
+                        // animazione iniziata o fine del tempo
+
+                        // se l'avversario non si è ancora posizionato, ferma il suo
+                        // timer in attesa del messaggio positioned
+                        if (!gameData.getMatch().enemyPositioned) {
+                            $scope.enemyTimerAnimation = "clock--end";
+                            $scope.enemyTimerValue = 0;
+                        }
+
+                        // non rinnovare il nextTimerValue e il trigger
                     }
                 });
-
-                // se non tutti i giocatori sono piazzati, o non si è raggiunto lo 0, prepara il possimo timer
-                if (!finish) {
-                    expected = Date.now() + interval;
-                    gameTimer = setTimeout(step, interval); // take into account drift
-                }
             }
         };
-
-        let allPositioned = function () {
-            let allPositioned = true;
-            for (let i = 0; i < gameData.getAllPlayers().length; i++) {
-                if (gameData.getAllPlayers()[i].match.positioned !== true) {
-                    allPositioned = false;
-                }
-            }
-            return allPositioned;
-        };
-
-        $scope.startAnimation = false;
-        let endAnimationSent = false;
 
         // callback passati alla classe responsabile della comunicazione con il broker.
         // Invocati all'arrivo di nuovi messaggi
         rabbit.setPageCallbacks({
             onEnemyPositioned: function (message) {
                 scopeService.safeApply($scope, function () {
-                    gameData.getEnemyPlayer1vs1().match.timerValue = message.matchTime;
-                    gameData.getEnemyPlayer1vs1().match.time       = message.matchTime;
-                    gameData.getEnemyPlayer1vs1().match.positioned = true;
+                    // piazza l'enemy player
+                    gameData.editMatch({
+                        enemyTime: message.matchTime,
+                        enemyPositioned: true
+                    });
+                    $scope.enemyTimerAnimation = "clock--end";
+                    $scope.enemyTimerValue = message.matchTime;
 
-                    if (!gameData.getBotPlayer().match.positioned) {
-                        gameData.getBotPlayer().match.time       = positionEnemyTrigger;
-                        gameData.getBotPlayer().match.timerValue = positionEnemyTrigger;
-                        gameData.getBotPlayer().match.positioned = true;
-                        pathHandler.calculateBotPlayerPath();
+                    // piazza il bot user se il il trigger non è ancora scattato
+                    if (!gameData.getMatch().positioned) {
+                        gameData.editMatch({
+                            positioned: true
+                        });
+                        $scope.userTimerValue = gameData.getMatch().time;
+                        $scope.userTimerAnimation = "clock--end";
                         rabbit.sendPlayerPositionedMessage();
                     }
                 });
 
             }, onGameQuit: function () {
-                quitGame();
+                scopeService.safeApply($scope, function () {
+                    quitGame();
+                });
 
             }, onConnectionLost: function () {
-                quitGame();
+                scopeService.safeApply($scope, function () {
+                    quitGame();
+                });
 
             }, onStartAnimation: function (message) {
-                gameData.syncGameData(message.gameData);
-                if (!$scope.startAnimation) {
-                    scopeService.safeApply($scope, function () {
-                        $scope.startAnimation = true;
-                    });
+                scopeService.safeApply($scope, function () {
+                    $scope.startAnimation = true;
 
-                    pathHandler.positionRoby(true, gameData.getBotPlayer().match.startPosition);
-                    pathHandler.positionRoby(false, gameData.getEnemyPlayer1vs1().match.startPosition);
+                    // posiziona tutti i roby
+                    pathHandler.positionRoby(true, gameData.getMatch().startPosition);
+                    pathHandler.positionAllEnemies(message.startPositions);
 
-                    pathHandler.calculateAllPlayersPath();
-                    gameData.calculateArcadeMatchPoints();
-
-                    if (gameData.getMatchWinner().userPlayer === true)
-                        gameData.getBotPlayer().wonMatches++;
-
+                    // avvia le animazioni; al termine, invia il messaggio di endAnimation
                     pathHandler.animateActiveRobys(function () {
                         if (!endAnimationSent) {
                             endAnimationSent = true;
                             rabbit.sendEndAnimationMessage();
                         }
                     });
-                }
+                });
 
-            }, onEndAnimation: function () {
-                if (!endAnimationSent) {
-                    endAnimationSent = true;
-                    rabbit.sendEndAnimationMessage();
-                }
+            }, onEndAnimation: function (message) {
+                scopeService.safeApply($scope, function () {
+                    if (message.playerId !== gameData.getUser().playerId && !endAnimationSent) {
+                        endAnimationSent = true;
+                        rabbit.sendEndAnimationMessage();
+                    }
+                });
 
             }, onEndMatch: function (message) {
-                gameData.syncGameData(message.gameData);
-                pathHandler.quitGame();
-
                 scopeService.safeApply($scope, function () {
+                    gameData.editAggregated(message.aggregated);
+                    gameData.editMatch({ winnerId: message.winnerId });
+                    gameData.editMatchRanking(message.matchRanking);
+                    gameData.editGlobalRanking(message.globalRanking);
+
+                    pathHandler.quitGame();
                     navigationHandler.goToPage($location, '/aftermatch');
                 });
             }

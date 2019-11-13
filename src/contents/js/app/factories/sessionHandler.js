@@ -6,14 +6,15 @@ angular.module('codyColor').factory("sessionHandler", function() {
     let sessionHandler = {};
     let isSessionValid;
 
-    const clientVersion = '3.1.1';
+    const wallVersion = '3.2.0';
 
     // informazioni sul sistema, aggiornate automaticamente dal server non appena connessi
     let generalInfo = {
         totalMatches: 0,
         connectedEnemies: 0,
         randomWaitingPlayers: 0,
-        requiredClientVersion: undefined
+        requiredClientVersion: undefined,
+        requiredWallVersion: undefined
     };
 
     // numero univoco associato a questa sessione
@@ -55,21 +56,21 @@ angular.module('codyColor').factory("sessionHandler", function() {
     };
 
 
-    sessionHandler.getRequiredClientVersion = function () {
-        return generalInfo.requiredClientVersion;
+    sessionHandler.getRequiredWallVersion = function () {
+        return generalInfo.requiredWallVersion;
     };
 
 
-    sessionHandler.isClientVersionValid = function () {
-        if (generalInfo.requiredClientVersion === undefined)
+    sessionHandler.isWallVersionValid = function () {
+        if (generalInfo.requiredWallVersion === undefined)
             return true;
         else
-            return clientVersion === generalInfo.requiredClientVersion;
+            return wallVersion === generalInfo.requiredWallVersion;
     };
 
 
-    sessionHandler.getClientVersion = function () {
-        return clientVersion;
+    sessionHandler.getWallVersion = function () {
+        return wallVersion;
     };
 
 

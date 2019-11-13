@@ -6,7 +6,6 @@ angular.module('codyColor').controller('mmakingCtrl',
      'sessionHandler', 'gameData', 'scopeService', 'settings',
     function ($scope, rabbit, navigationHandler, $translate, translationHandler, audioHandler, $location,
               sessionHandler, gameData, scopeService, settings) {
-        console.log("Matchmaking controller ready.");
 
         let restartTimer = undefined;
 
@@ -23,12 +22,17 @@ angular.module('codyColor').controller('mmakingCtrl',
             }
             restartTimer = undefined;
             gameData.initializeGameData();
-            gameData.getGeneral().gameType = gameData.getGameTypes().custom;
-            gameData.getGeneral().timerSetting = gameData.getFixedSetting().timerSetting;
-            gameData.getBotPlayer().nickname = gameData.getFixedSetting().botName;
-            gameData.getBotPlayer().organizer = true;
-            $scope.generalData = gameData.getGeneral();
-            $scope.userPlayer = gameData.getBotPlayer();
+            gameData.editGeneral({
+                gameType: gameData.getGameTypes().custom,
+                timerSetting: gameData.getFixedSetting().timerSetting,
+                botSetting: gameData.getFixedSetting().botSetting
+            });
+            gameData.editUser({
+                nickname: gameData.getFixedSetting().nickname,
+                organizer: true
+            });
+            $scope.general = gameData.getGeneral();
+            $scope.enemy = gameData.getEnemy();
 
             $scope.connected = rabbit.getServerConnectionState();
             if ($scope.connected)
@@ -73,45 +77,45 @@ angular.module('codyColor').controller('mmakingCtrl',
                 });
 
             }, onGameRequestResponse: function (message) {
-                if (message.code.toString() !== '0000') {
-                    scopeService.safeApply($scope, function () {
-                        gameData.getGeneral().gameRoomId = message.gameRoomId;
-                        gameData.getBotPlayer().playerId = message.playerId;
-                        gameData.syncGameData(message.gameData);
+                scopeService.safeApply($scope, function () {
+                    if (message.code.toString() !== '0000') {
+                        gameData.editGeneral(message.general);
+                        gameData.editUser(message.user);
+                        gameData.editEnemy(message.enemy);
                         $scope.requestRefused = false;
-                        $scope.matchUrl = settings.webBaseUrl + '/#!?custom=' + gameData.getGeneral().code;
+                        $scope.matchUrl = settings.webBaseUrl + '/#!?custom=' + message.general.code;
                         rabbit.subscribeGameRoom();
                         changeScreen(screens.matchReady);
-                    });
-                } else {
-                    // richiesta non accettata dal server; rinviala dopo 10 secondi
-                    scopeService.safeApply($scope, function () {
+
+                    } else {
+                        // richiesta non accettata dal server; rinviala dopo 10 secondi
                         $scope.requestRefused = true;
                         restartTimer = setTimeout(function () {
                             scopeService.safeApply($scope, function () {
                                 initializeMatch();
                             });
                         }, 5000);
-                    });
-                }
+                    }
+                });
 
             }, onPlayerAdded: function(message) {
                 scopeService.safeApply($scope, function () {
-                    audioHandler.playSound('enemy-found');
-                    gameData.syncGameData(message.gameData);
-                    $scope.enemyPlayer = gameData.getEnemyPlayer1vs1();
-                    rabbit.sendReadyMessage();
-                    changeScreen(screens.enemyReady);
+                    if (message.addedPlayerId !== gameData.getUser().playerId) {
+                        audioHandler.playSound('enemy-found');
+                        gameData.editEnemy(message.addedPlayer);
+                        rabbit.sendReadyMessage();
+                        changeScreen(screens.enemyReady);
+                    }
                 });
 
             }, onReadyMessage: function () {
                 scopeService.safeApply($scope, function () {
-                    gameData.getEnemyPlayer1vs1().ready = true;
-                });
+                    $scope.enemyReady = true;
+                })
 
             }, onStartMatch: function (message) {
                 scopeService.safeApply($scope, function () {
-                    gameData.syncGameData(message.gameData);
+                    gameData.editMatch({ tiles: gameData.formatMatchTiles(message.tiles) });
                     navigationHandler.goToPage($location, '/match');
                 });
 
