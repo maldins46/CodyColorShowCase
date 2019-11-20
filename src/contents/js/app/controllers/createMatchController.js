@@ -97,7 +97,8 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
 
             // todo flusso autenticazione. Provvisoriamente, vengono accettate a priori le credenziali:
             // username: CodyColor, password: d1g1t
-            if ($scope.username === 'CodyColor' && $scope.password === 'd1g1t') {
+            if (($scope.username === 'CodyColor' && $scope.password === 'd1g1t') ||
+                ($scope.username === 'CodyRoby' && $scope.password === 'compleanno') ) {
                 gameData.editFixedSettings({
                     nickname: $scope.username,
                     botSetting: $scope.diffSettings[$scope.diffIndex].value,
