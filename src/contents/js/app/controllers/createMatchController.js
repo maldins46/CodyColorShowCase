@@ -2,9 +2,9 @@
  * Controller partita con avversario custom
  */
 angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', 'navigationHandler',
-    'scopeService', '$translate', 'translationHandler', 'audioHandler', '$location', 'sessionHandler', 'gameData',
+    'scopeService', '$translate', 'translationHandler', 'audioHandler', '$location', 'sessionHandler', 'gameData', '$http',
     function ($scope, rabbit, navigationHandler, scopeService, $translate, translationHandler,
-              audioHandler, $location, sessionHandler, gameData) {
+              audioHandler, $location, sessionHandler, gameData, $http) {
 
         // validazione sessione
         navigationHandler.initializeBackBlock($scope);
@@ -95,22 +95,45 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
         $scope.createMatch = function () {
             $scope.wrongCredentials = false;
 
-            // todo flusso autenticazione. Provvisoriamente, vengono accettate a priori le credenziali:
-            // username: CodyColor, password: d1g1t
-            if (($scope.username === 'CodyColor' && $scope.password === 'd1g1t') ||
-                ($scope.username === 'CodyRoby' && $scope.password === 'compleanno') ) {
-                gameData.editFixedSettings({
-                    nickname: $scope.username,
-                    botSetting: $scope.diffSettings[$scope.diffIndex].value,
-                    timerSetting: $scope.timerSettings[$scope.timerIndex].value
-                });
-                audioHandler.initializeAudio($scope.audioSettings[$scope.audioIndex].value);
-                navigationHandler.goToPage($location, '/mmaking');
+            // dummy credentials
+            if (($scope.email === 'CodyColor' && $scope.password === 'd1g1t') ||
+                ($scope.email === 'CodyRoby' && $scope.password === 'compleanno') ) {
+                startMatch();
 
             } else {
-                $scope.wrongCredentials = true;
+                let url = "https://dev.codemooc.net/api/members/verify?email=" + $scope.email;
+                let headers = {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": "Basic " + window.btoa($scope.email + ":" + $scope.password),
+                    "Access-Control-Allow-Origin": "https://dev.codemooc.net",
+                    "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                    "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+                };
+
+                $http.post(url, {headers: headers})
+                    .then(function (response) {
+                        scopeService.safeApply($scope, function () {
+                            let isMember = JSON.parse(response.data).isMember;
+                            if (isMember) {
+                                startMatch();
+                            } else {
+                                $scope.wrongCredentials = true;
+                            }
+                        });
+                });
             }
         };
+
+        let startMatch = function() {
+            gameData.editFixedSettings({
+                nickname: $scope.username,
+                botSetting: $scope.diffSettings[$scope.diffIndex].value,
+                timerSetting: $scope.timerSettings[$scope.timerIndex].value
+            });
+            audioHandler.initializeAudio($scope.audioSettings[$scope.audioIndex].value);
+            navigationHandler.goToPage($location, '/mmaking');
+        };
+
 
         $scope.outdatedClient = false;
         rabbit.setPageCallbacks({

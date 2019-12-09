@@ -843,6 +843,28 @@ button.modal--button-secondary:hover {
 }
 
 
+/** floating blocks */
+
+.floating-blocks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-flow: wrap;
+}
+
+@media only screen and (min-width: 716px) {
+    .floating-blocks {
+        flex-direction: row;
+    }
+}
+
+.floating-blocks--block {
+    padding: 5px 20px;
+    text-align: center;
+}
+
+
 /* -------------------------------------------------------------------------
  * Modulo centered-columns: fornisce un contenitore che contiene due colonne
  * parallele tra loro, con contenuto centrato al loro interno
@@ -869,9 +891,29 @@ button.modal--button-secondary:hover {
     justify-content: center;
 }
 
+#create-match .centered-columns--pair {
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 716px) {
+    #create-match .centered-columns--pair {
+        flex-direction: row;
+    }
+}
+
 .centered-columns--column {
     width: 50%;
     text-align: center;
+}
+
+#create-match .centered-columns--column {
+    width: 100%;
+}
+
+@media only screen and (min-width: 716px) {
+    #create-match .centered-columns--column {
+        width: 50%;
+    }
 }
 
 .centered-columns--column-big {
@@ -1249,7 +1291,7 @@ table.playerlist-match-table {
 
 /* formatta un'immagine di grandi dimensioni, come il logo della splash screen */
 .big-image {
-    height: 100px;
+    width: 80%;
 }
 
 /* formatta ul testo 'press to continue' della splash screen */
