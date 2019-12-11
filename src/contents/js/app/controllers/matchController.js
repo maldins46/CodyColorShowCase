@@ -60,12 +60,12 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
         $scope.countdownInProgress = true;
 
         // il tempo di gioco del bot
-        let positionEnemyTrigger = gameData.getGeneral().timerSetting / 2;
+        let positionBotTrigger = gameData.getGeneral().timerSetting / 2;
 
         // il percorso del bot può essere calcolato subito
         let botPath = pathHandler.calculateBotPath(gameData.getGeneral().botSetting);
         gameData.editMatch({
-            time: positionEnemyTrigger,
+            time: positionBotTrigger,
             startPosition: botPath.startPosition
         });
 
@@ -144,7 +144,7 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
                             $scope.enemyTimerAnimation = "clock-ending-animation";
 
                         // piazza il bot user se si raggiunge il trigger
-                        if ($scope.userTimerValue <= positionEnemyTrigger && !gameData.getMatch().enemyPositioned) {
+                        if ($scope.userTimerValue <= positionBotTrigger && !gameData.getMatch().positioned) {
                             gameData.editMatch({
                                 positioned: true
                             });

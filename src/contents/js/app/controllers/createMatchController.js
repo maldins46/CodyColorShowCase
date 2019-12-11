@@ -101,16 +101,12 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
                 startMatch();
 
             } else {
-                let url = "https://dev.codemooc.net/api/members/verify?email=" + $scope.email;
+                let url = "https://codemooc.net/api/members/verify?email=" + $scope.email;
                 let headers = {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    "Authorization": "Basic " + window.btoa($scope.email + ":" + $scope.password),
-                    "Access-Control-Allow-Origin": "https://dev.codemooc.net",
-                    "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-                    "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+                    "Authorization": "Basic " + window.btoa($scope.email + ":" + $scope.password)
                 };
 
-                $http.post(url, {headers: headers})
+                $http.post(url,{},{ headers: headers, withCredentials: true })
                     .then(function (response) {
                         scopeService.safeApply($scope, function () {
                             let isMember = JSON.parse(response.data).isMember;
