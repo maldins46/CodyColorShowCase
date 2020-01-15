@@ -18,7 +18,8 @@ angular.module('codyColor').factory('gameData', function () {
     let fixedSettings = {
         nickname: "CodyColor",
         botSetting: 1,
-        timerSetting: 30000
+        timerSetting: 30000,
+        gameType: gameTypes.custom
     };
 
 

@@ -1,13 +1,36 @@
 {
     "LANGUAGE": "it",
-    "APP_NAME": "CodyColor Multiplayer",
-    "APP_NAME_SHORT": "CodyColor",
+    "APP_NAME": "CodyColor Wall",
+    "APP_NAME_SHORT": "CodyColor Wall",
+    "APP_SUBTITLE": "Il CodyColor di sempre, ma più in grande!",
+    "PRESS_TO_CONTINUE": "Premi per continuare",
+    "SPLASH_FOOTER": "Sviluppato da <a href=\"https://www.riccardomaldini.it/\">Riccardo Maldini</a><br>Music by <a href=\"https://www.instagram.com/el.favelas\">ElFavelas</a><br>© Digit S.r.l. 2019 per <a href=\"https://codemooc.net\">CodeMOOC.net</a>",
+    
     
     "404": "404",
     "PAGE_NOT_FOUND": "Pagina non trovata",
     
+    "ERR_CODEMOOC": "L'email selezionata non appartiene ad un utente associato a Codemooc.net. Registrazione interrotta.",
+    "ERR_CODEMOOC_EXPIRED": "La tua iscrizione a Codemooc.net è scaduta! Puoi ad ogni modo utilizzare il Wall, ma ricordati di  rinnovarla.",
+    "ERR_LOGIN": "Errore durante il processo di registrazione. Registrazione utente interrotta.",
+    "ERR_DELETE": "Errore durante l'eliminazione dell'account. Probabilmente le credenziali utente sono troppo vecchie. Prova a effettuare il logout dal tuo account, quindi ad accedere nuovamente, e ritenta l'eliminazione.",
+    "SURE_TO_LOGOUT": "Sei sicuro di voler uscire dal tuo account?",
+    "SURE_TO_DELETE": "Sei sicuro di voler eliminare il tuo account? Perderai tutte le statistiche collegate.",
+    "LOGOUT": "Logout",
+    "DELETE_ACCOUNT": "Elimina account",
+    "UNDO": "Annulla",
+    "WELCOME_USER": "Benvenuto, {{ user }}!",
+    "NOT_LOGGED": "Non loggato",
+    
+    "USER_STATS": "Statistiche utente",
+    "PLAYED_MATCHES": "Match giocati:",
+    "BEST_MATCH_BOT": "Best match del bot:",
+    "BEST_MATCH_HUMAN": "Best match utente umano:",
+    "BEST_MATCH_DESC": "{{points}} punti, {{pathLength}} passi, tempo {{time}}",
+    
     "WELCOME": "Benvenuto in CodyColor Wall, versione {{ clientVersion }}! Questa versione modificata di CodyColor consente di sfidare un bot configurabile, e mostrare la partita agli spettatori su schermo. Accedi con le tue credenziali CodeMOOC.net, configura il bot e goditi lo spettacolo!",
     "LANG_SELECT": "Lingua",
+    "LANG_DESC": "Seleziona la lingua nella quale utilizzare CodyColor",
     "LANG_ITALIAN": "Italiano",
     "LANG_ENGLISH": "Inglese",
     "EMAIL_SELECT": "Email",

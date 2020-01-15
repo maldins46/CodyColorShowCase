@@ -2,9 +2,9 @@
  * Controller responsabile della schermata partita
  */
 angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
-    'pathHandler', '$location', '$translate', 'navigationHandler', 'audioHandler', 'sessionHandler',
+    'pathHandler', '$location', '$translate', 'navigationHandler', 'audioHandler', 'sessionHandler', 'authHandler',
     function ($scope, rabbit, gameData, scopeService, pathHandler, $location, $translate,
-              navigationHandler, audioHandler, sessionHandler) {
+              navigationHandler, audioHandler, sessionHandler, authHandler) {
 
         let startCountdownTimer;
         let gameTimer;
@@ -32,6 +32,12 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
         if (sessionHandler.isSessionInvalid()) {
             navigationHandler.goToPage($location, '/');
             return;
+        }
+
+        // testo iniziale visualizzato in fondo a dx
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().name;
         }
 
         pathHandler.initialize($scope);
@@ -248,5 +254,33 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
                 });
             }
         });
+
+        $scope.exitGame = function() {
+            navigationHandler.goToPage($location, '/create');
+        };
+
+        // impostazioni multi language
+        $scope.openLanguageModal = function() {
+            audioHandler.playSound('menu-click');
+            $scope.languageModal = true;
+        };
+
+        $scope.closeLanguageModal = function() {
+            audioHandler.playSound('menu-click');
+            $scope.languageModal = false;
+        };
+
+        $scope.changeLanguage = function(langKey) {
+            audioHandler.playSound('menu-click');
+            $translate.use(langKey);
+            $scope.languageModal = false;
+        };
+
+        // impostazioni audio
+        $scope.basePlaying = audioHandler.isAudioEnabled();
+        $scope.toggleBase = function () {
+            audioHandler.toggleBase();
+            $scope.basePlaying = audioHandler.isAudioEnabled();
+        };
     }
 ]);

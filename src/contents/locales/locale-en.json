@@ -1,12 +1,35 @@
 ﻿{
     "LANGUAGE": "en",
-    "APP_NAME": "CodyColor Multiplayer",
-    "APP_NAME_SHORT": "CodyColor",
+    "APP_NAME": "CodyColor Wall",
+    "APP_NAME_SHORT": "CodyColor Wall",
+    "APP_SUBTITLE": "The CodyColor you love, but bigger!",
+    "PRESS_TO_CONTINUE": "Press to continue",
+    "SPLASH_FOOTER": "Developed by <a href=\"https://www.riccardomaldini.it/\">Riccardo Maldini</a><br>Music by <a href=\"https://www.instagram.com/el.favelas\">ElFavelas</a><br>© Digit S.r.l. 2019 for <a href=\"https://codemooc.net\">CodeMOOC.net</a>",
+    
     
     "404": "404",
     "PAGE_NOT_FOUND": "Page not found",
     
+    "ERR_CODEMOOC": "The email is not associated with a Codemooc.net account. Aborted.",
+    "ERR_CODEMOOC_EXPIRED": "Your Codemooc.net account is expired! You can use the Wall anyway, but remember to renew it.",
+    "ERR_LOGIN": "Error during the signUp or logIn process. Aborted.",
+    "ERR_DELETE": "Error during the account removing process. Probably your user credentials are too old. Try to logout from your account, log in and retry the account deletion.",
+    "SURE_TO_LOGOUT": "Are you sure to log out from your account?",
+    "SURE_TO_DELETE": "Are you sure to delete your account? You will lose all your personal stats.",
+    "LOGOUT": "Logout",
+    "DELETE_ACCOUNT": "Delete account",
+    "UNDO": "Cancel",
+    "WELCOME_USER": "Welcome, {{ user }}!",
+    "NOT_LOGGED": "Not logged",
+    
+    "USER_STATS": "User stats",
+    "PLAYED_MATCHES": "Played matches:",
+    "BEST_MATCH_BOT": "Bot best match:",
+    "BEST_MATCH_HUMAN": "Human best match:",
+    "BEST_MATCH_DESC": "{{points}} points, {{pathLength}} steps, time {{time}}",
+    
     "WELCOME": "Welcome to CodyColor Wall, version {{ clientVersion }}! This modified version of CodyColor allows you to challenge a configurable bot and show the game to on-screen viewers. Log in with your CodeMOOC.net credentials, configure the bot and enjoy the show!",
+    "LANG_DESC": "Choose the language you wish to use for CodyColor",
     "LANG_SELECT": "Language",
     "LANG_ITALIAN": "Italian",
     "LANG_ENGLISH": "English",

@@ -27,9 +27,12 @@ angular.module('codyColor').factory("navigationHandler", function () {
 
 angular.module('codyColor').config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-        .when("/", {templateUrl: "pages/create-match.html", controller: "createMatchCtrl"})
+        .when("/", {templateUrl: "pages/splash.html", controller: "splashCtrl"})
+        .when("/create", {templateUrl: "pages/create-match.html", controller: "createMatchCtrl"})
         .when("/mmaking", {templateUrl: "pages/mmaking.html", controller: "mmakingCtrl"})
         .when("/match", {templateUrl: "pages/match.html", controller: "matchCtrl"})
         .when("/aftermatch", {templateUrl: "pages/aftermatch.html", controller: "aftermatchCtrl"})
+        .when("/terms", {templateUrl: "pages/terms.html", controller: "emptyCtrl"})
+        .when("/privacy", {templateUrl: "pages/privacy.html", controller: "emptyCtrl"})
         .otherwise({templateUrl: "pages/404.html", controller: "emptyCtrl"});
 }]);
