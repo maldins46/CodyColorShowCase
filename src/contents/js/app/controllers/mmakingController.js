@@ -9,10 +9,14 @@ angular.module('codyColor').controller('mmakingCtrl',
 
         let restartTimer = undefined;
 
-        let quitGame = function() {
+        let quitGame = function (fullExit) {
             rabbit.quitGame();
-            rabbit.setPageCallbacks(rabbitCallbacks);
-            initializeMatch();
+            if (fullExit === true) {
+                navigationHandler.goToPage($location, '/create');
+            } else {
+                rabbit.setPageCallbacks(rabbitCallbacks);
+                initializeMatch();
+            }
         };
 
         let initializeMatch = function() {
@@ -140,7 +144,8 @@ angular.module('codyColor').controller('mmakingCtrl',
         rabbit.setPageCallbacks(rabbitCallbacks);
 
         $scope.exitGame = function() {
-            navigationHandler.goToPage($location, '/create');
+            rabbit.sendPlayerQuitRequest();
+            quitGame(true);
         };
 
         // impostazioni multi language

@@ -3,7 +3,7 @@
  * portarne avanti una con lo stesso avversario
  */
 angular.module('codyColor').controller('aftermatchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
-    '$location', '$translate', 'navigationHandler', 'audioHandler', 'sessionHandler', 'authHandler',
+    '$location', '$translate', 'authHandler', 'navigationHandler', 'audioHandler', 'sessionHandler',
     function ($scope, rabbit, gameData, scopeService, $location, $translate, authHandler,
               navigationHandler, audioHandler, sessionHandler) {
 
@@ -11,13 +11,13 @@ angular.module('codyColor').controller('aftermatchCtrl', ['$scope', 'rabbit', 'g
 
         // esci dalla partita in modo sicuro, chiudendo la connessione e effettuando il
         // clean dei dati di gioco
-        let quitGame = function () {
+        let quitGame = function (fullExit) {
             if (autoCloseTimer !== undefined) {
                 clearTimeout(autoCloseTimer);
                 autoCloseTimer = undefined;
             }
             rabbit.quitGame();
-            navigationHandler.goToPage($location, '/mmaking');
+            navigationHandler.goToPage($location, fullExit === true ? '/create' : '/mmaking');
         };
 
         // inizializzazione sessione
@@ -91,7 +91,8 @@ angular.module('codyColor').controller('aftermatchCtrl', ['$scope', 'rabbit', 'g
         });
 
         $scope.exitGame = function() {
-            navigationHandler.goToPage($location, '/create');
+            rabbit.sendPlayerQuitRequest();
+            quitGame(true);
         };
 
         // impostazioni multi language

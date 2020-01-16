@@ -11,7 +11,7 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
 
         // metodo per terminare la partita in modo sicuro, disattivando i timer,
         // interrompendo animazioni e connessioni con il server
-        let quitGame = function () {
+        let quitGame = function (fullExit) {
             if (startCountdownTimer !== undefined) {
                 clearInterval(startCountdownTimer);
                 startCountdownTimer = undefined;
@@ -24,7 +24,7 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
 
             rabbit.quitGame();
             pathHandler.quitGame();
-            navigationHandler.goToPage($location, '/mmaking');
+            navigationHandler.goToPage($location, fullExit === true ? '/create' : '/mmaking');
         };
 
         // inizializzazione sessione
@@ -256,7 +256,8 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
         });
 
         $scope.exitGame = function() {
-            navigationHandler.goToPage($location, '/create');
+            rabbit.sendPlayerQuitRequest();
+            quitGame(true);
         };
 
         // impostazioni multi language
