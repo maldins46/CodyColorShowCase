@@ -24,11 +24,9 @@
             </button>
         </div>
         <div class="page--footer-column-right ellipsize">
-            <button class="page--footer-button" ng-click="">
-                <span class="ellipsize">
-                    <i ng-class="userLogged ? 'fas fa-user-circle': 'far fa-user-circle'"
-                       class="page--footer-icons"></i> {{ userNickname }}
-                </span>
+            <button class="page--footer-button"> <span class="ellipsize">
+                <i ng-class="userLogged ? 'fas fa-user-circle': 'far fa-user-circle'"
+                   class="page--footer-icons"></i> {{ userLogged ? userNickname : 'NOT_LOGGED' | translate }} </span>
             </button>
         </div>
     </div>
@@ -46,11 +44,6 @@
                 <li class="list--simple-element">
                     <button class="modal--button-language" ng-click="changeLanguage('en')">
                         {{ 'LANG_ENGLISH' | translate }}
-                    </button>
-                </li>
-                <li class="list--simple-element">
-                    <button class="modal--button-language" ng-click="changeLanguage('hu')">
-                        {{ 'LANG_HUNGARIAN' | translate }}
                     </button>
                 </li>
             </ul>

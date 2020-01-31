@@ -58,7 +58,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/app.min.css",
-    "revision": "d01e3d21eb7930ea3e7ac8e32867ef22"
+    "revision": "582ba21a3e089bc4e625d2eb4165985f"
   },
   {
     "url": "favicon.ico",
@@ -242,15 +242,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/app/app.min.js",
-    "revision": "a2404127b3371bbdaa11bac98f2460c9"
+    "revision": "76180d9d40c730edcf1ee9b354041123"
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "b0c9cc02d15c873fd69e97bf0b62411c"
+    "revision": "b670b391f7fef59fb655d923ab170f56"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "62688b14ff3ac81b782e994b0616addb"
+    "revision": "958dfb25549ab7b7093450499bd460a1"
   },
   {
     "url": "manifest.json",
@@ -278,7 +278,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/privacy.html",
-    "revision": "893b4f2de5cc316a655644c90956687f"
+    "revision": "e6481ff454d08b52b5d326f798f768e5"
   },
   {
     "url": "pages/splash.html",
@@ -286,7 +286,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/terms.html",
-    "revision": "19b5c750b1064528fb5eae109238bc1d"
+    "revision": "c65b8e513a244a1d8c8a9a2f0d1935fd"
   },
   {
     "url": "robots.txt",
