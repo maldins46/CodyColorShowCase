@@ -205,15 +205,6 @@ input[type=number].timepicker--text {
 }
 
 /* -------------------------------------------------------------------------
- * Modulo profile: implementa la schermata profilo e alcuni suoi componenti
- * ------------------------------------------------------------------------- */
-img.profile--image {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px
-}
-
-/* -------------------------------------------------------------------------
  * Modulo page: implementa lo scheletro di base comune a tutte le pagine,
  * oltre ad aggiungere eventuali personalizzazioni per determinate schermate
  * ------------------------------------------------------------------------- */
@@ -864,6 +855,63 @@ button.modal--button-secondary:hover {
     text-align: center;
 }
 
+.new-game-container {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    border-color: White;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* -------------------------------------------------------------------------
+ * Modulo profile: implementa la schermata profilo e alcuni suoi componenti
+ * ------------------------------------------------------------------------- */
+.profile--container {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    border-color: White;
+    padding: 10px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-flow: wrap;
+}
+
+img.profile--image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 0;
+}
+
+.profile--text {
+    text-align: center;
+}
+
+@media only screen and (min-width: 716px) {
+    .profile {
+        flex-direction: row;
+    }
+
+    .profile--text {
+        text-align: left;
+    }
+
+    img.profile--image {
+        margin-right: 20px;
+    }
+}
+
+.profile--buttons {
+    margin-top: 20px;
+}
+
 
 /* -------------------------------------------------------------------------
  * Modulo centered-columns: fornisce un contenitore che contiene due colonne
@@ -1062,6 +1110,10 @@ button.modal--button-secondary:hover {
 
 .stats--line {
     margin: 10px 0 0 0;
+}
+
+#create-match .stats--line {
+    margin: 0;
 }
 
 .stats--player-text {
@@ -1292,6 +1344,12 @@ table.playerlist-match-table {
 /* formatta un'immagine di grandi dimensioni, come il logo della splash screen */
 .big-image {
     width: 80%;
+}
+
+/* formatta un'immagine di grandi dimensioni, come il logo della splash screen */
+#splash .big-image {
+    width: 100px;
+    height: 100px;
 }
 
 /* formatta ul testo 'press to continue' della splash screen */

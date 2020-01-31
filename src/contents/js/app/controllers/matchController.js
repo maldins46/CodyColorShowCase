@@ -2,16 +2,16 @@
  * Controller responsabile della schermata partita
  */
 angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
-    'pathHandler', '$location', '$translate', 'navigationHandler', 'audioHandler', 'sessionHandler',
+    'pathHandler', '$location', '$translate', 'navigationHandler', 'audioHandler', 'sessionHandler', 'authHandler',
     function ($scope, rabbit, gameData, scopeService, pathHandler, $location, $translate,
-              navigationHandler, audioHandler, sessionHandler) {
+              navigationHandler, audioHandler, sessionHandler, authHandler) {
 
         let startCountdownTimer;
         let gameTimer;
 
         // metodo per terminare la partita in modo sicuro, disattivando i timer,
         // interrompendo animazioni e connessioni con il server
-        let quitGame = function () {
+        let quitGame = function (fullExit) {
             if (startCountdownTimer !== undefined) {
                 clearInterval(startCountdownTimer);
                 startCountdownTimer = undefined;
@@ -24,7 +24,7 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
 
             rabbit.quitGame();
             pathHandler.quitGame();
-            navigationHandler.goToPage($location, '/mmaking');
+            navigationHandler.goToPage($location, fullExit === true ? '/create' : '/mmaking');
         };
 
         // inizializzazione sessione
@@ -32,6 +32,12 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
         if (sessionHandler.isSessionInvalid()) {
             navigationHandler.goToPage($location, '/');
             return;
+        }
+
+        // testo iniziale visualizzato in fondo a dx
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().name;
         }
 
         pathHandler.initialize($scope);
@@ -248,5 +254,34 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
                 });
             }
         });
+
+        $scope.exitGame = function() {
+            rabbit.sendPlayerQuitRequest();
+            quitGame(true);
+        };
+
+        // impostazioni multi language
+        $scope.openLanguageModal = function() {
+            audioHandler.playSound('menu-click');
+            $scope.languageModal = true;
+        };
+
+        $scope.closeLanguageModal = function() {
+            audioHandler.playSound('menu-click');
+            $scope.languageModal = false;
+        };
+
+        $scope.changeLanguage = function(langKey) {
+            audioHandler.playSound('menu-click');
+            $translate.use(langKey);
+            $scope.languageModal = false;
+        };
+
+        // impostazioni audio
+        $scope.basePlaying = audioHandler.isAudioEnabled();
+        $scope.toggleBase = function () {
+            audioHandler.toggleBase();
+            $scope.basePlaying = audioHandler.isAudioEnabled();
+        };
     }
 ]);

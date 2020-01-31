@@ -3,16 +3,20 @@
  */
 angular.module('codyColor').controller('mmakingCtrl',
     ['$scope', 'rabbit', 'navigationHandler', '$translate', 'translationHandler', 'audioHandler', '$location',
-     'sessionHandler', 'gameData', 'scopeService', 'settings',
+     'sessionHandler', 'gameData', 'scopeService', 'settings', 'authHandler',
     function ($scope, rabbit, navigationHandler, $translate, translationHandler, audioHandler, $location,
-              sessionHandler, gameData, scopeService, settings) {
+              sessionHandler, gameData, scopeService, settings, authHandler) {
 
         let restartTimer = undefined;
 
-        let quitGame = function() {
+        let quitGame = function (fullExit) {
             rabbit.quitGame();
-            rabbit.setPageCallbacks(rabbitCallbacks);
-            initializeMatch();
+            if (fullExit === true) {
+                navigationHandler.goToPage($location, '/create');
+            } else {
+                rabbit.setPageCallbacks(rabbitCallbacks);
+                initializeMatch();
+            }
         };
 
         let initializeMatch = function() {
@@ -23,7 +27,7 @@ angular.module('codyColor').controller('mmakingCtrl',
             restartTimer = undefined;
             gameData.initializeGameData();
             gameData.editGeneral({
-                gameType: gameData.getGameTypes().custom,
+                gameType: gameData.getFixedSetting().gameType,
                 timerSetting: gameData.getFixedSetting().timerSetting,
                 botSetting: gameData.getFixedSetting().botSetting
             });
@@ -65,6 +69,12 @@ angular.module('codyColor').controller('mmakingCtrl',
             enemyReady:    'enemyReady'
         };
         $scope.screens = screens;
+
+        // testo iniziale visualizzato in fondo a dx
+        $scope.userLogged = authHandler.loginCompleted();
+        if (authHandler.loginCompleted()) {
+            $scope.userNickname = authHandler.getServerUserData().name;
+        }
 
         initializeMatch();
         $scope.requestRefused = false;
@@ -132,5 +142,34 @@ angular.module('codyColor').controller('mmakingCtrl',
             }
         };
         rabbit.setPageCallbacks(rabbitCallbacks);
+
+        $scope.exitGame = function() {
+            rabbit.sendPlayerQuitRequest();
+            quitGame(true);
+        };
+
+        // impostazioni multi language
+        $scope.openLanguageModal = function() {
+            audioHandler.playSound('menu-click');
+            $scope.languageModal = true;
+        };
+
+        $scope.closeLanguageModal = function() {
+            audioHandler.playSound('menu-click');
+            $scope.languageModal = false;
+        };
+
+        $scope.changeLanguage = function(langKey) {
+            audioHandler.playSound('menu-click');
+            $translate.use(langKey);
+            $scope.languageModal = false;
+        };
+
+        // impostazioni audio
+        $scope.basePlaying = audioHandler.isAudioEnabled();
+        $scope.toggleBase = function () {
+            audioHandler.toggleBase();
+            $scope.basePlaying = audioHandler.isAudioEnabled();
+        };
     }
 ]);

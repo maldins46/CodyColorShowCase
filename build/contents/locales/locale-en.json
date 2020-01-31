@@ -1,12 +1,35 @@
 ﻿{
     "LANGUAGE": "en",
-    "APP_NAME": "CodyColor Multiplayer",
-    "APP_NAME_SHORT": "CodyColor",
+    "APP_NAME": "CodyColor Wall",
+    "APP_NAME_SHORT": "CodyColor Wall",
+    "APP_SUBTITLE": "The CodyColor you love, but bigger!",
+    "PRESS_TO_CONTINUE": "Press to continue",
+    "SPLASH_FOOTER": "Developed by <a href=\"https://www.riccardomaldini.it/\">Riccardo Maldini</a><br>Music by <a href=\"https://www.instagram.com/el.favelas\">ElFavelas</a><br>© Digit S.r.l. 2019 for <a href=\"https://codemooc.net\">CodeMOOC.net</a>",
+    
     
     "404": "404",
     "PAGE_NOT_FOUND": "Page not found",
     
+    "ERR_CODEMOOC": "The email is not associated with a Codemooc.net account. Aborted.",
+    "ERR_CODEMOOC_EXPIRED": "Your Codemooc.net account is expired! You can use the Wall anyway, but remember to renew it.",
+    "ERR_LOGIN": "Error during the signUp or logIn process. Aborted.",
+    "ERR_DELETE": "Error during the account removing process. Probably your user credentials are too old. Try to logout from your account, log in and retry the account deletion.",
+    "SURE_TO_LOGOUT": "Are you sure to log out from your account?",
+    "SURE_TO_DELETE": "Are you sure to delete your account? You will lose all your personal stats.",
+    "LOGOUT": "Logout",
+    "DELETE_ACCOUNT": "Delete account",
+    "UNDO": "Cancel",
+    "WELCOME_USER": "Welcome, {{ user }}!",
+    "NOT_LOGGED": "Not logged",
+    
+    "USER_STATS": "User stats",
+    "PLAYED_MATCHES": "Played matches:",
+    "BEST_MATCH_BOT": "Bot best match:",
+    "BEST_MATCH_HUMAN": "Human best match:",
+    "BEST_MATCH_DESC": "{{points}} points, {{pathLength}} steps, time {{time}}",
+    
     "WELCOME": "Welcome to CodyColor Wall, version {{ clientVersion }}! This modified version of CodyColor allows you to challenge a configurable bot and show the game to on-screen viewers. Log in with your CodeMOOC.net credentials, configure the bot and enjoy the show!",
+    "LANG_DESC": "Choose the language you wish to use for CodyColor",
     "LANG_SELECT": "Language",
     "LANG_ITALIAN": "Italian",
     "LANG_ENGLISH": "English",
@@ -36,6 +59,14 @@
     "WARN_GAME_REQ_REFUSED": "Server refused the request. Retrying in 5 seconds…",
     "WELCOME_PLAYER": "Welcome, {{playerNickname}}!",
     "RULES": "<p>You're about to challenge the featured bot to CodyColor, an educational game created by Digit.</p><p> How does the game work? Once you press the \"let's start\" button, you'll find yourself facing a colorful chessboard and a little robot named Roby. You will have to place Roby, dragging it, in one of the starting positions (indicated by the arrows at the edges of the board) within the time limit. Even the bot in the window will make its move; then your Roby and the one placed by the bot will start moving inside the board, taking a different direction depending on the color of the tiles: </p> <p> At the yellow tiles, Roby will turn 90 degrees to the left. </p> <p> At the red tiles, 90 degrees to the right. </p> <p> At the gray tiles, it will continue straight. </p> <p> The aim of the game is to choose a location such as to leave the robot in the chessboard for as long as possible. The winner is the player who scores the most points between the two at the end of the game; points that can be earned by traveling as long as possible, or by positioning your robot more quickly than the opponent. In the event of an absolute draw, the one who first placed his Roby wins. </p> <p> Once the game is over, you can decide to do another one in sequence. </p> <p> Are you ready? Let's start! </p>",
+    
+    "TERMS_TITLE": "CodyColor Terms of service",
+    "TERMS_SUBTITLE": "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.",
+    "TERMS_TEXT": "Conditions of use: Access to the CodyColor game is offered to you for free. No registration is required and no personal information is stored in order to provide access to the service. Further information is available in our Privacy policy. No guarantees are given about availability and quality of the service.<br>Behaviour: The CodyColor game gives access to shared game rooms that allow limited interactions between players in order to provide a simultaneous game experience. Players may communicate through limited means and agree to be subject to basic decency rules during these interactions: rude, malicious, or unacceptable behaviour (as determined unilaterally by the service providers) is not allowed. If players persist in unacceptable behaviour, access to the service may be denied by the service providers.<br>Copyright: CodyRoby and derived materials released by CodyMOOC.org are licensed under the Creative Commons Attribution 4.0 International license.",
+    
+    "PRIVACY_TITLE": "CodyColor Privacy policy",
+    "PRIVACY_SUBTITLE": "CodyColor does not collect your personal data and respects your privacy.",
+    "PRIVACY_TEXT": "The CodyColor game does not collect private user information. For game session setup and game room management, connection and user information (such as the user's IP address and browser) may be temporarily stored in order to provide the service. No persistent data about the user is recorded. <br> User nicknames can be stored temporarily, in order to provide the match-making service, and permanently (to provide user leaderboards). Nicknames are not linked to any other personal information. <br> External services: User login features rely on Google's Firebase service and are subject to its own privacy policy.",
     
     "WINNER": "{{winner}} wins the {{matchCount}}° match!",
     "STATS_MOVES": "Moves: ",

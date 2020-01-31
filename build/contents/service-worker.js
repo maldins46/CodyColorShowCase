@@ -58,7 +58,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/app.min.css",
-    "revision": "70568a7dc6b4a331c84e261c0a3d08d7"
+    "revision": "582ba21a3e089bc4e625d2eb4165985f"
   },
   {
     "url": "favicon.ico",
@@ -238,19 +238,19 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "43836165a489e3ce67d74a21691baa35"
+    "revision": "d532eb79050d298baa7c96de9793ac07"
   },
   {
     "url": "js/app/app.min.js",
-    "revision": "62f849b7ca6a976bc049a74b2da18ca0"
+    "revision": "76180d9d40c730edcf1ee9b354041123"
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "c3ba02a6b2f572d7d8996d5c56e91bd4"
+    "revision": "b670b391f7fef59fb655d923ab170f56"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "1a3844c22b99b0aa704b77d4132ba397"
+    "revision": "958dfb25549ab7b7093450499bd460a1"
   },
   {
     "url": "manifest.json",
@@ -262,19 +262,31 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/aftermatch.html",
-    "revision": "7ac9a41bdab12ccaa3459af535fc3c3e"
+    "revision": "a4a667451c5c6a8f97828d12cf3eb0d0"
   },
   {
     "url": "pages/create-match.html",
-    "revision": "f54c094ada9512cd82ac681430672b4e"
+    "revision": "0ff1a96d6c7490833d96cbb926e86ecf"
   },
   {
     "url": "pages/match.html",
-    "revision": "12851d5dfd9c448330a8dae5face6e27"
+    "revision": "9f751eb8da9c9513fdfdb8a57658c773"
   },
   {
     "url": "pages/mmaking.html",
-    "revision": "a0881a8b305c6f3347ac1c3748c67189"
+    "revision": "475684b842aab19aee18f4e7cc975d99"
+  },
+  {
+    "url": "pages/privacy.html",
+    "revision": "e6481ff454d08b52b5d326f798f768e5"
+  },
+  {
+    "url": "pages/splash.html",
+    "revision": "d41ef000f42f767d6024428552eeabf0"
+  },
+  {
+    "url": "pages/terms.html",
+    "revision": "c65b8e513a244a1d8c8a9a2f0d1935fd"
   },
   {
     "url": "robots.txt",
@@ -283,5 +295,25 @@ workbox.precaching.precacheAndRoute([
   {
     "url": "site.webmanifest",
     "revision": "8bfc64118a70662c474bceff72b1e681"
+  },
+  {
+    "url": "static/privacy-policy/index.html",
+    "revision": "ef2992b14cbc08c8f2d3948dda84b8b6"
+  },
+  {
+    "url": "static/skeleton-2.0.4/normalize.css",
+    "revision": "4555077d49642ee7558d9e12bc9660e5"
+  },
+  {
+    "url": "static/skeleton-2.0.4/skeleton.css",
+    "revision": "cd542f65c9e43abc5ea195c9ddae1bb9"
+  },
+  {
+    "url": "static/style.css",
+    "revision": "b5fef6dc6524b84f14a794a7e6f69e90"
+  },
+  {
+    "url": "static/terms-of-service/index.html",
+    "revision": "74c0f944191f8c8535aabfeca4c8b52c"
   }
 ], { cleanupOutdatedCaches: true });
