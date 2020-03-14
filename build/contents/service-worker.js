@@ -242,15 +242,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/app/app.min.js",
-    "revision": "66ea445629f0a98ae1695c403b4a946d"
+    "revision": "a6358795ae2c046db30286acd291a49f"
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "b670b391f7fef59fb655d923ab170f56"
+    "revision": "7f4cff2061386cdb120a530f8bbc0b09"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "958dfb25549ab7b7093450499bd460a1"
+    "revision": "85df0220b2465dafd201702e492e20e7"
   },
   {
     "url": "manifest.json",
@@ -266,7 +266,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/create-match.html",
-    "revision": "0ff1a96d6c7490833d96cbb926e86ecf"
+    "revision": "20876cc59b682341ac3f47beb36ebe9a"
   },
   {
     "url": "pages/match.html",

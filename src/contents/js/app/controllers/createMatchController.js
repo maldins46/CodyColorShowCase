@@ -367,6 +367,13 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
                     {text: translations['AI_HARD'], value: 2},
                 ];
             });
+
+            $translate(['CUSTOM', 'ROYALE']).then(function (translations) {
+                $scope.gameModeSettings = [
+                    { text: translations['CUSTOM'], value: gameData.getGameTypes().custom },
+                    { text: translations['ROYALE'], value: gameData.getGameTypes().royale },
+                ];
+            });
         };
         setSelectorTranslations();
 
@@ -389,13 +396,22 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
                 $scope.timerIndex = ($scope.timerIndex > 0 ? $scope.timerIndex - 1 : 0);
         };
 
+        // gameMode selector
+        $scope.gameModeIndex = 0;
+        $scope.editGameMode = function () {
+            if ($scope.gameModeIndex === 0)
+                $scope.gameModeIndex = 1;
+            else
+                $scope.gameModeIndex = 0;
+        };
+
         $scope.wrongCredentials = false;
         $scope.createMatch = function () {
             gameData.editFixedSettings({
                 nickname: $scope.username,
                 botSetting: $scope.diffSettings[$scope.diffIndex].value,
                 timerSetting: $scope.timerSettings[$scope.timerIndex].value,
-                gameType: gameData.getGameTypes().custom
+                gameType: $scope.gameModeSettings[$scope.gameModeIndex].value
             });
             navigationHandler.goToPage($location, '/mmaking');
         };

@@ -96,6 +96,19 @@
                                     </div>
 
                                     <div class="floating-blocks--block">
+                                        <div class="label">{{ 'GAME_MODE' | translate }}</div>
+                                        <div class="selector">
+                                            <div class="selector--button" ng-click="editGameMode(false)">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="selector--text">{{ gameModeSettings[gameModeIndex].text }}</div>
+                                            <div class="selector--button" ng-click="editGameMode(true)">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="floating-blocks--block">
                                         <div class="label"><label for="username">{{ 'USERNAME_SELECT' | translate }}</label>
                                         </div>
                                         <input type="text" name="username" maxlength="22" ng-model="username"
