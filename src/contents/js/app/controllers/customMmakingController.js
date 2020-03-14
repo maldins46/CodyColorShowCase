@@ -1,7 +1,7 @@
 /*
  * Controller partita con avversario custom
  */
-angular.module('codyColor').controller('mmakingCtrl',
+angular.module('codyColor').controller('customMmakingCtrl',
     ['$scope', 'rabbit', 'navigationHandler', '$translate', 'translationHandler', 'audioHandler', '$location',
      'sessionHandler', 'gameData', 'scopeService', 'settings', 'authHandler',
     function ($scope, rabbit, navigationHandler, $translate, translationHandler, audioHandler, $location,
@@ -126,7 +126,7 @@ angular.module('codyColor').controller('mmakingCtrl',
             }, onStartMatch: function (message) {
                 scopeService.safeApply($scope, function () {
                     gameData.editMatch({ tiles: gameData.formatMatchTiles(message.tiles) });
-                    navigationHandler.goToPage($location, '/match');
+                    navigationHandler.goToPage($location, '/arcade-match');
                 });
 
             }, onGameQuit: function () {

@@ -413,7 +413,11 @@ angular.module('codyColor').controller('createMatchCtrl', ['$scope', 'rabbit', '
                 timerSetting: $scope.timerSettings[$scope.timerIndex].value,
                 gameType: $scope.gameModeSettings[$scope.gameModeIndex].value
             });
-            navigationHandler.goToPage($location, '/mmaking');
+
+            if ($scope.gameModeSettings[$scope.gameModeIndex].value === gameData.getGameTypes().custom)
+                navigationHandler.goToPage($location, '/custom-mmaking');
+            else
+                navigationHandler.goToPage($location, '/royale-mmaking');
         };
 
         $scope.outdatedClient = false;

@@ -29,9 +29,9 @@ angular.module('codyColor').config(['$routeProvider', function ($routeProvider) 
     $routeProvider
         .when("/", {templateUrl: "pages/splash.html", controller: "splashCtrl"})
         .when("/create", {templateUrl: "pages/create-match.html", controller: "createMatchCtrl"})
-        .when("/mmaking", {templateUrl: "pages/mmaking.html", controller: "mmakingCtrl"})
-        .when("/match", {templateUrl: "pages/match.html", controller: "matchCtrl"})
-        .when("/aftermatch", {templateUrl: "pages/aftermatch.html", controller: "aftermatchCtrl"})
+        .when("/custom-mmaking", {templateUrl: "pages/custom-mmaking.html", controller: "customMmakingCtrl"})
+        .when("/arcade-match", {templateUrl: "pages/arcade-match.html", controller: "arcadeMatchCtrl"})
+        .when("/arcade-aftermatch", {templateUrl: "pages/arcade-aftermatch.html", controller: "arcadeAftermatchCtrl"})
         .when("/terms", {templateUrl: "pages/terms.html", controller: "emptyCtrl"})
         .when("/privacy", {templateUrl: "pages/privacy.html", controller: "emptyCtrl"})
         .otherwise({templateUrl: "pages/404.html", controller: "emptyCtrl"});

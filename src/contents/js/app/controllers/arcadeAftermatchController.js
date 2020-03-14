@@ -2,7 +2,7 @@
  * Controller responsabile della schermata post partita. Mostra dati sull'esito della partita e dà la possibilità di
  * portarne avanti una con lo stesso avversario
  */
-angular.module('codyColor').controller('aftermatchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
+angular.module('codyColor').controller('arcadeAftermatchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
     '$location', '$translate', 'authHandler', 'navigationHandler', 'audioHandler', 'sessionHandler',
     function ($scope, rabbit, gameData, scopeService, $location, $translate, authHandler,
               navigationHandler, audioHandler, sessionHandler) {
@@ -17,7 +17,7 @@ angular.module('codyColor').controller('aftermatchCtrl', ['$scope', 'rabbit', 'g
                 autoCloseTimer = undefined;
             }
             rabbit.quitGame();
-            navigationHandler.goToPage($location, fullExit === true ? '/create' : '/mmaking');
+            navigationHandler.goToPage($location, fullExit === true ? '/create' : '/custom-mmaking');
         };
 
         // inizializzazione sessione
@@ -75,7 +75,7 @@ angular.module('codyColor').controller('aftermatchCtrl', ['$scope', 'rabbit', 'g
                         autoCloseTimer = undefined;
                     }
 
-                    navigationHandler.goToPage($location, '/match');
+                    navigationHandler.goToPage($location, '/arcade-match');
                 });
 
             }, onGameQuit: function () {

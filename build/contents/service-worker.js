@@ -242,7 +242,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/app/app.min.js",
-    "revision": "a6358795ae2c046db30286acd291a49f"
+    "revision": "faac006acfb895d63c4b4e1ab2193988"
   },
   {
     "url": "locales/locale-en.json",
@@ -261,19 +261,19 @@ workbox.precaching.precacheAndRoute([
     "revision": "f7d0d4cb52b72b01ff2b0c3e010037ea"
   },
   {
-    "url": "pages/aftermatch.html",
+    "url": "pages/arcade-aftermatch.html",
     "revision": "a4a667451c5c6a8f97828d12cf3eb0d0"
+  },
+  {
+    "url": "pages/arcade-match.html",
+    "revision": "9f751eb8da9c9513fdfdb8a57658c773"
   },
   {
     "url": "pages/create-match.html",
     "revision": "20876cc59b682341ac3f47beb36ebe9a"
   },
   {
-    "url": "pages/match.html",
-    "revision": "9f751eb8da9c9513fdfdb8a57658c773"
-  },
-  {
-    "url": "pages/mmaking.html",
+    "url": "pages/custom-mmaking.html",
     "revision": "475684b842aab19aee18f4e7cc975d99"
   },
   {

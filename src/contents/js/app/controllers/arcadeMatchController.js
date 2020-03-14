@@ -1,7 +1,7 @@
 /*
  * Controller responsabile della schermata partita
  */
-angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
+angular.module('codyColor').controller('arcadeMatchCtrl', ['$scope', 'rabbit', 'gameData', 'scopeService',
     'pathHandler', '$location', '$translate', 'navigationHandler', 'audioHandler', 'sessionHandler', 'authHandler',
     function ($scope, rabbit, gameData, scopeService, pathHandler, $location, $translate,
               navigationHandler, audioHandler, sessionHandler, authHandler) {
@@ -24,7 +24,7 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
 
             rabbit.quitGame();
             pathHandler.quitGame();
-            navigationHandler.goToPage($location, fullExit === true ? '/create' : '/mmaking');
+            navigationHandler.goToPage($location, fullExit === true ? '/create' : '/custom-mmaking');
         };
 
         // inizializzazione sessione
@@ -250,7 +250,7 @@ angular.module('codyColor').controller('matchCtrl', ['$scope', 'rabbit', 'gameDa
                     gameData.editGlobalRanking(message.globalRanking);
 
                     pathHandler.quitGame();
-                    navigationHandler.goToPage($location, '/aftermatch');
+                    navigationHandler.goToPage($location, '/arcade-aftermatch');
                 });
             }
         });
