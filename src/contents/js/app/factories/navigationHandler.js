@@ -32,6 +32,7 @@ angular.module('codyColor').config(['$routeProvider', function ($routeProvider) 
         .when("/custom-mmaking", {templateUrl: "pages/custom-mmaking.html", controller: "customMmakingCtrl"})
         .when("/arcade-match", {templateUrl: "pages/arcade-match.html", controller: "arcadeMatchCtrl"})
         .when("/arcade-aftermatch", {templateUrl: "pages/arcade-aftermatch.html", controller: "arcadeAftermatchCtrl"})
+        .when("/royale-mmaking", {templateUrl: "pages/royale-mmaking.html", controller: "royaleMmakingCtrl"})
         .when("/terms", {templateUrl: "pages/terms.html", controller: "emptyCtrl"})
         .when("/privacy", {templateUrl: "pages/privacy.html", controller: "emptyCtrl"})
         .otherwise({templateUrl: "pages/404.html", controller: "emptyCtrl"});

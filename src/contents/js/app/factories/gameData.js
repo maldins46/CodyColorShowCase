@@ -43,7 +43,7 @@ angular.module('codyColor').factory('gameData', function () {
     let generateEmptyGeneral = function() {
         return {
             // dati generali: settati a inizio partita
-            gameName:          undefined,
+            gameName:          "CodyColor Wall",
             startDate:         undefined,
             scheduledStart:    false,
             gameRoomId:       -1,

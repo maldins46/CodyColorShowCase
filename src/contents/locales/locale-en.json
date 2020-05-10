@@ -19,7 +19,7 @@
     "LOGOUT": "Logout",
     "DELETE_ACCOUNT": "Delete account",
     "UNDO": "Cancel",
-    "WELCOME_USER": "Welcome, {{ user }}!",
+    "WELCOME_USER": "Hi, {{ user }}!",
     "NOT_LOGGED": "Not logged",
     
     "USER_STATS": "User stats",
@@ -60,6 +60,11 @@
     "PLAY_WITH_ME": "To play against me, frame the QR code from your smartphone, or go to the link {{matchUrl}}",
     "WARN_CREATING_MATCH": "Generating the game…",
     "WARN_GAME_REQ_REFUSED": "Server refused the request. Retrying in 5 seconds…",
+    
+    "WELCOME_PLAYER_ROYALE": "Hi, {{playerNickname}}!",
+    "CONNECTED_PLAYERS_ROYALE": "Connected players now: {{connectedPlayers}}.",
+    "RULES_ROYALE": "<p> You are about to challenge the featured bot to CodyColor, an educational game created by Digit. </p> <p> The rules of the game are the same as for the custom mode. The only difference is that the bot can be challenged by multiple players at the same time! </p><p> Invite your friends to scan the QR code that appears above, or give them the code that appears in your mobile phone. Then, press the button 'Let's go!'.</p>",
+    
     "WELCOME_PLAYER": "Welcome, {{playerNickname}}!",
     "RULES": "<p>You're about to challenge the featured bot to CodyColor, an educational game created by Digit.</p><p> How does the game work? Once you press the \"let's start\" button, you'll find yourself facing a colorful chessboard and a little robot named Roby. You will have to place Roby, dragging it, in one of the starting positions (indicated by the arrows at the edges of the board) within the time limit. Even the bot in the window will make its move; then your Roby and the one placed by the bot will start moving inside the board, taking a different direction depending on the color of the tiles: </p> <p> At the yellow tiles, Roby will turn 90 degrees to the left. </p> <p> At the red tiles, 90 degrees to the right. </p> <p> At the gray tiles, it will continue straight. </p> <p> The aim of the game is to choose a location such as to leave the robot in the chessboard for as long as possible. The winner is the player who scores the most points between the two at the end of the game; points that can be earned by traveling as long as possible, or by positioning your robot more quickly than the opponent. In the event of an absolute draw, the one who first placed his Roby wins. </p> <p> Once the game is over, you can decide to do another one in sequence. </p> <p> Are you ready? Let's start! </p>",
     

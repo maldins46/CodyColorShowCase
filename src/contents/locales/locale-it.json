@@ -19,7 +19,7 @@
     "LOGOUT": "Logout",
     "DELETE_ACCOUNT": "Elimina account",
     "UNDO": "Annulla",
-    "WELCOME_USER": "Benvenuto, {{ user }}!",
+    "WELCOME_USER": "Ciao, {{ user }}!",
     "NOT_LOGGED": "Non loggato",
     
     "USER_STATS": "Statistiche utente",
@@ -60,8 +60,14 @@
     "PLAY_WITH_ME": "Per giocare contro di me, inquadra il codice QR dal tuo smartphone, oppure vai al link {{matchUrl}}",
     "WARN_CREATING_MATCH": "Sto generando la partita…",
     "WARN_GAME_REQ_REFUSED": "Il server ha rifiutato la richiesta. Riprovo fra 5 secondi…",
-    "WELCOME_PLAYER": "Benvenuto, {{playerNickname}}!",
+    
+    "WELCOME_PLAYER_ROYALE": "Ciao, {{playerNickname}}!",
+    "CONNECTED_PLAYERS_ROYALE": "Giocatori attivi al momento: {{connectedPlayers}}.",
+    "RULES_ROYALE": "<p>Stai per sfidare il bot in vetrina a una partita a CodyColor, un gioco educativo creato da Digit.</p><p>Le regole del gioco sono le stesse della modalità custom. L'unica differenza è che il bot più essere sfidato da più giocatori in contemporanea!</p><p>Invita i tuoi amici a scannerizzare il codice QR che appare qua sopra, oppure fornisci loro il codice che appare nel tuo cellulare. Quindi, premi il tasto 'Iniziamo!'.</p>",
+    
+    "WELCOME_PLAYER": "Ciao, {{playerNickname}}!",
     "RULES": "<p>Stai per sfidare il bot in vetrina a una partita a CodyColor, un gioco educativo creato da Digit.</p><p>Come funziona il gioco? Una volta premuto il tasto \"iniziamo\", ti troverai di fronte una scacchiera colorata e un robottino di nome Roby. Dovrai posizionare Roby, trascinandolo, in una delle posizioni di partenza (indicate dalle frecce ai bordi della scacchiera) entro il tempo limite. Anche il bot in vetrina farà la sua mossa; quindi il tuo Roby e quello posizionato dal bot inizieranno a muoversi all'interno della scacchiera, prendendo una direzione differente a seconda del colore delle tessere:</p><p>In corrispondenza delle tessere gialle, Roby si girerà di 90 gradi verso sinistra.</p><p>In corrispondenza delle tessere rosse, di 90 gradi verso destra.</p><p>In corrispondenza delle tessere grigie, proseguirà diritto.</p><p>Scopo del gioco è scegliere una posizione di partenza tale da far rimanere il proprio robottino all'interno della scacchiera il più a lungo possibile. Vince il giocatore che totalizza più punti fra i due a fine partita; punti che possono essere guadagnati effettuando un percorso più lungo possibile, o posizionando più velocemente dell'avversario il proprio robottino. In caso di pareggio assoluto, vince chi ha posizionato per primo il proprio Roby.</p><p>Una volta terminata la partita, potrai decidere di effettuarne un'altra in sequenza.</p><p>Sei pronto? Iniziamo!</p>",
+    
     
     "TERMS_TITLE": "CodyColor Terms of service",
     "TERMS_SUBTITLE": "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.",
