@@ -84,5 +84,13 @@
     "STATS_MOVES_R": "Moves",
     "STATS_TIME_R": "Time",
     "STATS_POINTS_R": "Points",
-    "STATS_WINS_R": "Victories"
+    "STATS_WINS_R": "Victories",
+
+    "PLAYERS_COMPOSITE": "Players: {{numPlayers}}",
+    "POSITIONED_COMPOSITE": "Positioned: {{numPositioned}}",
+    "DRAW": "It's a draw!",
+    "GEN_RANKING": "General ranking",
+    "MAT_RANKING": "Match ranking",
+    "NUM_PLAYERS_AFTERMATCH": "{{numPlayers}} players already in this game",
+    "NUM_READY_AFTERMATCH": "{{numReady}} players want to play another match!"
 }

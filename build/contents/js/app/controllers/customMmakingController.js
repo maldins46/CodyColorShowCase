@@ -1,7 +1,7 @@
 /*
  * Controller partita con avversario custom
  */
-angular.module('codyColor').controller('royaleMmakingCtrl',
+angular.module('codyColor').controller('customMmakingCtrl',
     ['$scope', 'rabbit', 'navigationHandler', '$translate', 'translationHandler', 'audioHandler', '$location',
      'sessionHandler', 'gameData', 'scopeService', 'settings', 'authHandler',
     function ($scope, rabbit, navigationHandler, $translate, translationHandler, audioHandler, $location,
@@ -37,7 +37,6 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
             });
             $scope.general = gameData.getGeneral();
             $scope.enemy = gameData.getEnemy();
-            $scope.aggregated = gameData.getAggregated();
 
             $scope.connected = rabbit.getServerConnectionState();
             if ($scope.connected)
@@ -92,10 +91,9 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                     if (message.code.toString() !== '0000') {
                         gameData.editGeneral(message.general);
                         gameData.editUser(message.user);
-                        gameData.editAggregated(message.aggregated);
-                        $scope.aggregated = gameData.getAggregated();
+                        gameData.editEnemy(message.enemy);
                         $scope.requestRefused = false;
-                        $scope.matchUrl = settings.webBaseUrl + '/#!?royale=' + message.general.code;
+                        $scope.matchUrl = settings.webBaseUrl + '/#!?custom=' + message.general.code;
                         rabbit.subscribeGameRoom();
                         changeScreen(screens.matchReady);
 
@@ -112,23 +110,23 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
 
             }, onPlayerAdded: function(message) {
                 scopeService.safeApply($scope, function () {
-                    gameData.editAggregated(message.aggregated);
-                    $scope.aggregated = gameData.getAggregated();
-
-                    if (message.addedPlayerId !== gameData.getUser().playerId
-                        && gameData.getAggregated().connectedPlayers === 2) {
-
-                        gameData.editEnemy(message.addedPlayer);
+                    if (message.addedPlayerId !== gameData.getUser().playerId) {
                         audioHandler.playSound('enemy-found');
+                        gameData.editEnemy(message.addedPlayer);
+                        rabbit.sendReadyMessage();
                         changeScreen(screens.enemyReady);
                     }
                 });
 
+            }, onReadyMessage: function () {
+                scopeService.safeApply($scope, function () {
+                    $scope.enemyReady = true;
+                })
+
             }, onStartMatch: function (message) {
                 scopeService.safeApply($scope, function () {
-                    gameData.editAggregated(message.aggregated);
                     gameData.editMatch({ tiles: gameData.formatMatchTiles(message.tiles) });
-                    navigationHandler.goToPage($location, '/royale-match');
+                    navigationHandler.goToPage($location, '/arcade-match');
                 });
 
             }, onGameQuit: function () {
