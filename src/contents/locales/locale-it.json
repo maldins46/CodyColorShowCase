@@ -92,5 +92,5 @@
     "GEN_RANKING": "Classifica generale",
     "MAT_RANKING": "Classifica match",
     "NUM_PLAYERS_AFTERMATCH": "{{numPlayers}} giocatori ancora collegati",
-    "NUM_READY_AFTERMATCH": "{{numReady}} giocatori vogliono giocare una nuova partita!",
+    "NUM_READY_AFTERMATCH": "{{numReady}} giocatori vogliono giocare una nuova partita!"
 }

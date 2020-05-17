@@ -11,7 +11,7 @@ angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', '
 
         // metodo per terminare la partita in modo sicuro, disattivando i timer,
         // interrompendo animazioni e connessioni con il server
-        let quitGame = function () {
+        let quitGame = function (fullExit) {
             if (startCountdownTimer !== undefined) {
                 clearInterval(startCountdownTimer);
                 startCountdownTimer = undefined;
