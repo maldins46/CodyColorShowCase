@@ -5,18 +5,6 @@
 angular.module('codyColor').factory("authHandler", ['$cookies', '$http', 'settings', function($cookies, $http, settings) {
     let authHandler = {};
 
-    // oggetto di configurazione Firebse SDK
-    const firebaseConfig = {
-        apiKey: "AIzaSyCrQKvT_P9u86D-ZuB2nQPpSlgLq4OMEu4",
-        authDomain: "codycolor-wall.firebaseapp.com",
-        databaseURL: "https://codycolor-wall.firebaseio.com",
-        projectId: "codycolor-wall",
-        storageBucket: "codycolor-wall.appspot.com",
-        messagingSenderId: "681794177158",
-        appId: "1:681794177158:web:a1904a523c55a62a8c2907",
-        measurementId: "G-B880SH8SSK"
-    };
-
     // oggetto di configurazione dell'istanza firebaseUI
     const uiConfig = {
         callbacks: {
@@ -123,7 +111,7 @@ angular.module('codyColor').factory("authHandler", ['$cookies', '$http', 'settin
     // nulla; tenta l'autenticazione tramite cookies nel caso in cui sia stata abilitata con le funzioni di cui sopra
     authHandler.initializeAuth = function () {
         if (!initialized) {
-            firebase.initializeApp(firebaseConfig);
+            firebase.initializeApp(settings.firebaseConfig);
             //firebase.analytics();
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
