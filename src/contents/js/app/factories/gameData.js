@@ -18,7 +18,8 @@ angular.module('codyColor').factory('gameData', function () {
     let fixedSettings = {
         nickname: "CodyColor",
         botSetting: 1,
-        timerSetting: 30000
+        timerSetting: 30000,
+        gameType: gameTypes.custom
     };
 
 
@@ -42,7 +43,7 @@ angular.module('codyColor').factory('gameData', function () {
     let generateEmptyGeneral = function() {
         return {
             // dati generali: settati a inizio partita
-            gameName:          undefined,
+            gameName:          "CodyColor Wall",
             startDate:         undefined,
             scheduledStart:    false,
             gameRoomId:       -1,

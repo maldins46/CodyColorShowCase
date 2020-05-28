@@ -48,12 +48,13 @@ module.exports = function (grunt) {
                                 return dest + 'contents/js/bower/2-angular.js';
                             else if (src === 'contents/js/bower/angular-translate.js')
                                 return dest + 'contents/js/bower/3-angular-translate.js';
-                            else if (src === 'contents/js/bower/qrcode.js') {
+                            else if (src === 'contents/js/bower/qrcode.js')
                                 return dest + 'contents/js/bower/4-qrcode.js';
-                            }
-                            else if (src === 'contents/js/bower/qrcode_UTF8.js') {
+                            else if (src === 'contents/js/bower/qrcode_UTF8.js')
                                     return dest + 'contents/js/bower/5-qrcode_UTF8.js';
-                            }
+                            else if (src === 'contents/js/bower/firebase-app.js')
+                                return dest + 'contents/js/bower/6-firebase-app.js';
+
                             else
                                 return dest + src;
                         }
@@ -83,10 +84,10 @@ module.exports = function (grunt) {
                 css_dest: 'src/contents/css/bower',
                 options: {
                     keepExpandedHierarchy: false,
-                    ignorePackages: ['components-font-awesome'],
+                    ignorePackages: ['components-font-awesome', 'firebaseui'],
                     packageSpecific: {
                         'firebase': {
-                            files: [ 'firebase-app.js', 'firebase-auth.js' ]
+                            files: [ 'firebase-app.js', 'firebase-auth.js', 'firebase-analytics.js' ]
                         },
                     },
                 }
@@ -105,6 +106,7 @@ module.exports = function (grunt) {
                     'src/contents/js/bower/angular-translate.js',
                     'src/contents/js/bower/qrcode.js',
                     'src/contents/js/bower/qrcode_UTF8.js',
+                    'src/contents/js/bower/firebase-app.js',
                     'src/contents/js/bower/*.js',
                     'src/contents/js/vendor/*.js',
                     'src/contents/js/app/main.js',
@@ -135,7 +137,7 @@ module.exports = function (grunt) {
                     'build/contents/css/app.min.css': [
                         'src/contents/css/normalize.css',
                         'src/contents/css/fontawesome.css',
-                        'src/contents/css/bower/*.css',
+                        'src/contents/css/firebase-ui-auth.css',
                         'src/contents/css/main.css',
                         'src/contents/css/firebase-ui-custom.css'
                     ]

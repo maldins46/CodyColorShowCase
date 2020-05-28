@@ -58,7 +58,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/app.min.css",
-    "revision": "23e0538e0cbe1aa6e45ca71c14d39b4d"
+    "revision": "a5b3d6ba5c3454e11feabb633d059c68"
   },
   {
     "url": "favicon.ico",
@@ -238,19 +238,19 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "43836165a489e3ce67d74a21691baa35"
+    "revision": "d532eb79050d298baa7c96de9793ac07"
   },
   {
     "url": "js/app/app.min.js",
-    "revision": "122e9215cdea6a58053b8cc0c424eb75"
+    "revision": "c86d51fb441b48c99ec8413b97c8923a"
   },
   {
     "url": "locales/locale-en.json",
-    "revision": "e31c393ff6e84389d781801ff0796755"
+    "revision": "211596bc73ebbf2d25c0cfc01e2f0c03"
   },
   {
     "url": "locales/locale-it.json",
-    "revision": "79b49a68e9068f3129c9f4a5f58478ab"
+    "revision": "30b4d67e64e3fd29ae5aebe777434661"
   },
   {
     "url": "manifest.json",
@@ -261,20 +261,44 @@ workbox.precaching.precacheAndRoute([
     "revision": "f7d0d4cb52b72b01ff2b0c3e010037ea"
   },
   {
-    "url": "pages/aftermatch.html",
-    "revision": "7ac9a41bdab12ccaa3459af535fc3c3e"
+    "url": "pages/arcade-aftermatch.html",
+    "revision": "a4a667451c5c6a8f97828d12cf3eb0d0"
+  },
+  {
+    "url": "pages/arcade-match.html",
+    "revision": "9f751eb8da9c9513fdfdb8a57658c773"
   },
   {
     "url": "pages/create-match.html",
-    "revision": "ff0347b67158b1194462e7b0c0f3a1b8"
+    "revision": "20876cc59b682341ac3f47beb36ebe9a"
   },
   {
-    "url": "pages/match.html",
-    "revision": "12851d5dfd9c448330a8dae5face6e27"
+    "url": "pages/custom-mmaking.html",
+    "revision": "475684b842aab19aee18f4e7cc975d99"
   },
   {
-    "url": "pages/mmaking.html",
-    "revision": "a0881a8b305c6f3347ac1c3748c67189"
+    "url": "pages/privacy.html",
+    "revision": "e6481ff454d08b52b5d326f798f768e5"
+  },
+  {
+    "url": "pages/royale-aftermatch.html",
+    "revision": "8e95769970bcced7134f129db70c5833"
+  },
+  {
+    "url": "pages/royale-match.html",
+    "revision": "36c0fe597e32e630465df75913509a0f"
+  },
+  {
+    "url": "pages/royale-mmaking.html",
+    "revision": "11c2e48b6bbc31ea15938c5d70690c14"
+  },
+  {
+    "url": "pages/splash.html",
+    "revision": "d41ef000f42f767d6024428552eeabf0"
+  },
+  {
+    "url": "pages/terms.html",
+    "revision": "c65b8e513a244a1d8c8a9a2f0d1935fd"
   },
   {
     "url": "robots.txt",
@@ -283,5 +307,25 @@ workbox.precaching.precacheAndRoute([
   {
     "url": "site.webmanifest",
     "revision": "8bfc64118a70662c474bceff72b1e681"
+  },
+  {
+    "url": "static/privacy-policy/index.html",
+    "revision": "ef2992b14cbc08c8f2d3948dda84b8b6"
+  },
+  {
+    "url": "static/skeleton-2.0.4/normalize.css",
+    "revision": "4555077d49642ee7558d9e12bc9660e5"
+  },
+  {
+    "url": "static/skeleton-2.0.4/skeleton.css",
+    "revision": "cd542f65c9e43abc5ea195c9ddae1bb9"
+  },
+  {
+    "url": "static/style.css",
+    "revision": "b5fef6dc6524b84f14a794a7e6f69e90"
+  },
+  {
+    "url": "static/terms-of-service/index.html",
+    "revision": "74c0f944191f8c8535aabfeca4c8b52c"
   }
 ], { cleanupOutdatedCaches: true });

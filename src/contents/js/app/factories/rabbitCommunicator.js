@@ -4,8 +4,8 @@
  * e l'invio di messaggi al broker
  */
 
-angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 'settings',
-    function (gameData, sessionHandler, settings) {
+angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 'settings', 'authHandler',
+    function (gameData, sessionHandler, settings, authHandler) {
         let rabbit = {};
 
         const endpoints = {
@@ -120,26 +120,50 @@ angular.module('codyColor').factory("rabbit", [ 'gameData', 'sessionHandler', 's
             }, 5000);
         };
 
+        rabbit.sendSignUpRequest = function (name, surname) {
+            sendInServerControlQueue({
+                msgType:           messageTypes.c_signUpRequest,
+                correlationId:     sessionHandler.getSessionId(),
+                name:              name,
+                surname:           surname,
+                userId:            authHandler.getFirebaseUserData().uid,
+                wallUser:          true,
+            });
+        };
+
+        rabbit.sendLogInRequest = function () {
+            sendInServerControlQueue({
+                msgType:           messageTypes.c_logInRequest,
+                correlationId:     sessionHandler.getSessionId(),
+                userId:            authHandler.getFirebaseUserData().uid,
+                wallUser:          true,
+            });
+        };
+
+
+        rabbit.sendUserDeleteRequest = function () {
+            sendInServerControlQueue({
+                msgType:           messageTypes.c_userDeleteRequest,
+                wallUser:          true,
+                correlationId:     sessionHandler.getSessionId(),
+                userId:            authHandler.getFirebaseUserData().uid
+            });
+        };
+
 
         // richiesta per iniziare una nuova partita
         rabbit.sendGameRequest = function () {
             sendInServerControlQueue({
                 msgType:           messageTypes.c_gameRequest,
+                userId:            authHandler.getFirebaseUserData().uid,
+                wallUser:          true,
                 user:              gameData.getUser(),
                 general:           gameData.getGeneral(),
+                gameType:          gameData.getGeneral().gameType,
                 correlationId:     sessionHandler.getSessionId(),
                 wallVersion:       sessionHandler.getWallVersion()
             });
         };
-
-
-        rabbit.sendRankingsRequest = function () {
-            sendInServerControlQueue({
-                msgType:           messageTypes.c_rankingsRequest,
-                correlationId:     sessionHandler.getSessionId(),
-            });
-        };
-
 
 
         // notifica all'avversario che si è pronti a iniziare la partita
