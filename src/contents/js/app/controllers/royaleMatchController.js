@@ -73,6 +73,9 @@ angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', '
             positioned: true
         });
         rabbit.sendPlayerPositionedMessage();
+        gameData.editAggregated({
+            positionedPlayers: 1
+        });
 
         // inizializzazione tiles
         $scope.tilesCss = new Array(5);
@@ -152,23 +155,20 @@ angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', '
                             rabbit.sendPlayerPositionedMessage();
                         }*/
 
-                        // schedula nuovo decremento se necessario
+                        // schedula nuovo decremento se non si è ancora arrivati
+                        // all'animazione; altrimenti non scedularne uno nuovo
                         if (!$scope.startAnimation) {
                             expected = Date.now() + interval;
                             gameTimer = setTimeout(step, interval); // take into account drift
                         } else {
-                            nextGameTimerValue = 0;
+                            $scope.clockAnimation = "clock--end";
                         }
 
                     } else {
-                        // animazione iniziata o fine del tempo
-
-                        // se l'avversario non si è ancora posizionato, ferma il suo
-                        // timer in attesa del messaggio positioned
-                        if (!gameData.getMatch().enemyPositioned) {
-                            $scope.enemyTimerAnimation = "clock--end";
-                            $scope.enemyTimerValue = 0;
-                        }
+                        // fine del tempo, se si arriva qua degli avversari non
+                        // si sono posizionati in tempo: mostra 0 nel timer
+                        $scope.clockAnimation = "clock--end";
+                        $scope.gameTimerValue = 0;
 
                         // non rinnovare il nextTimerValue e il trigger
                     }
@@ -219,6 +219,7 @@ angular.module('codyColor').controller('royaleMatchCtrl', ['$scope', 'rabbit', '
                 scopeService.safeApply($scope, function () {
                     $scope.startAnimation = true;
                     $scope.clockAnimation = "clock--end";
+                    $scope.gameTimerValue = message.matchTime;
                     gameData.editAggregated(message.aggregated);
 
                     // posiziona tutti gli enemy roby
