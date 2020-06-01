@@ -85,6 +85,7 @@
     "STATS_TIME_R": "Tempo",
     "STATS_POINTS_R": "Punti",
     "STATS_WINS_R": "Vittorie",
+    "NICKNAME": "Nickname",
 
     "PLAYERS_COMPOSITE": "Giocatori: {{numPlayers}}",
     "POSITIONED_COMPOSITE": "Posizionati: {{numPositioned}}",
