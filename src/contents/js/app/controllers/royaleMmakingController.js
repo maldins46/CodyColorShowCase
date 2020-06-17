@@ -124,6 +124,16 @@ angular.module('codyColor').controller('royaleMmakingCtrl',
                     }
                 });
 
+            }, onPlayerRemoved: function (message) {
+                scopeService.safeApply($scope, function () {
+                    if (message.removedPlayerId === gameData.getUser().playerId) {
+                        quitGame();
+
+                    } else {
+                        gameData.editAggregated(message.aggregated);
+                    }
+            });
+
             }, onStartMatch: function (message) {
                 scopeService.safeApply($scope, function () {
                     gameData.editAggregated(message.aggregated);
