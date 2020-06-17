@@ -53,10 +53,13 @@ angular.module('codyColor').controller('arcadeAftermatchCtrl', ['$scope', 'rabbi
         }
 
         autoCloseTimer = setTimeout(function () {
-            scopeService.safeApply($scope, function () {
-                rabbit.sendPlayerQuitRequest();
-                quitGame();
-            });
+            // do nothing in this case. The game will start if some
+            // other player confirmed;
+            //
+            // if some other player completed the timeout, it will send
+            // automatically the ready message, and the wall will follow
+            //
+            // if one or more player left, it will be handled by the server.
         }, 60000);
 
         rabbit.setPageCallbacks({
