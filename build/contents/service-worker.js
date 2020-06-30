@@ -58,7 +58,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/app.min.css",
-    "revision": "a5b3d6ba5c3454e11feabb633d059c68"
+    "revision": "017d37565c1a8c156d314bba69190b25"
   },
   {
     "url": "favicon.ico",
@@ -242,7 +242,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/app/app.min.js",
-    "revision": "e59405d34421f51c6eba043ae5c25aa2"
+    "revision": "e9eac7336b6938ce2d46e7bc3b755982"
   },
   {
     "url": "locales/locale-en.json",
@@ -282,7 +282,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "pages/royale-aftermatch.html",
-    "revision": "8e95769970bcced7134f129db70c5833"
+    "revision": "1afc5a5247f476d40889b4d85a957e94"
   },
   {
     "url": "pages/royale-match.html",
